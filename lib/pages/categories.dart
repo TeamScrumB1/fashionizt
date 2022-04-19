@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:cari/pages/Category.dart';
-import 'package:cari/pages/constants.dart';
-import 'package:cari/theme.dart';
+import 'package:fashionizt/pages/Category.dart';
+import 'package:fashionizt/pages/constants.dart';
+import 'package:fashionizt/theme.dart';
 
 class Categories extends StatelessWidget {
   const Categories({

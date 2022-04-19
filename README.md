@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 # cari
 
 A new Flutter project.
+=======
+# fashionizt
+
+Project Sprint 1
+>>>>>>> aff393a (Srpint 1 start)
 
 ## Getting Started
 

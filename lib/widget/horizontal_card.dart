@@ -1,15 +1,11 @@
+import 'package:fashionizt/model/desainer_model.dart';
 import 'package:flutter/material.dart';
-import 'package:cari/theme.dart';
+import 'package:fashionizt/theme.dart';
 
 class horizontalCard extends StatelessWidget{
-  final String imageUrl;
-  final String name;
-  final String bio;
-  final String rating;
-  final String project;
+  final DesainerElement desainer;
 
-  horizontalCard({required this.imageUrl,required this.name,required this.bio,required this.rating,required this.project});
-
+  const horizontalCard({required this. desainer});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,36 +21,40 @@ class horizontalCard extends StatelessWidget{
                 children:[
                   CircleAvatar(
                     backgroundImage: NetworkImage(
-                        imageUrl),
+                        desainer.imgProfil),
                     radius: 40,
                   ),
                   SizedBox(width: 43,),
                   Container(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              name,
+                              desainer.nama,
                               style: titleHorizontalCardTextStyle,
                             ),
                             SizedBox(height: 2,),
                             Text(
-                                bio,
+                                desainer.bio,
                                 style: subtitleHorizontalCardTextStyle
                             ),
                           ],
                         ),
                         SizedBox(height: 25,),
                         Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      rating + '/5',
+                                      desainer.rating + '/5',
                                       style:subtitleHorizontalCardTextStyle.copyWith(
                                         fontSize: 10,
                                       ),
@@ -64,9 +64,10 @@ class horizontalCard extends StatelessWidget{
                                 ),
                                 SizedBox(width: 10,),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      project,
+                                      desainer.jmlhProject,
                                       style:subtitleHorizontalCardTextStyle.copyWith(
                                         fontSize: 10,
                                       ),
