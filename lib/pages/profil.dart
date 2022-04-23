@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../api/api_desainer.dart';
+import '../model/desainer_model.dart';
+import 'cari.dart';
 
-class ProfilPage extends StatefulWidget {
-  Profil createState() => Profil();
-}
+// class ProfilPage extends StatefulWidget {
+//   Profil createState() => Profil();
+//
+// }
 
-class Profil extends State<ProfilPage> {
+class ProfilPage extends StatelessWidget {
+  const ProfilPage({Key? key, required this.desainer}) : super(key: key);
+  final DesainerElement desainer;
 
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
@@ -18,9 +24,11 @@ class Profil extends State<ProfilPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        leading: IconTheme(
-          data: new IconThemeData(color: blackColor),
-          child: new Icon(Icons.arrow_back_ios_rounded),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
         ),
         title: Text('Profil Desainer',
             style: TextStyle(
@@ -35,13 +43,14 @@ class Profil extends State<ProfilPage> {
           children: <Widget> [
             new Padding(padding: new EdgeInsets.all(20.0)),
             CircleAvatar(
-              backgroundImage: AssetImage('lib/assets/images/igun.jpg'),
+              backgroundImage:  NetworkImage(
+                  desainer.imgProfil),
               radius: 100,
             ),
             Container(
               margin: const EdgeInsets.only(top: 35.0),
               child: Text(
-                'Ivan Gunawan',
+                desainer.nama,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 20.0,
@@ -53,7 +62,7 @@ class Profil extends State<ProfilPage> {
             Container(
               margin: const EdgeInsets.only(top: 8.0),
               child: Text(
-                'Desainer Gaun, Kemeja',
+                desainer.bio,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 14.0,
@@ -70,7 +79,7 @@ class Profil extends State<ProfilPage> {
                   Row(
                     children: <Widget> [
                       Text(
-                          '4/5 ',
+                          desainer.rating + '/5 ',
                           style: const TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.w300,
@@ -84,14 +93,14 @@ class Profil extends State<ProfilPage> {
                   Row(
                     children: <Widget> [
                       Text(
-                        '100k ',
+                        desainer.jmlhProject + ' ',
                         style: const TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w300,
                           fontFamily: 'Poppins',
                         ),
                       ),
-                      const Icon(Icons.mode_comment_outlined, color: Colors.black),
+                      const Icon(Icons.task_outlined, color: Colors.black),
                     ], // <Widget>[]
                   ),
                 ],
@@ -103,11 +112,17 @@ class Profil extends State<ProfilPage> {
                 children: <Widget>[
                   Row(
                     children: <Widget> [
-                      IconButton(
-                          onPressed: () => _launchURL('https://wa.me/6289637685785'),
-                          icon: Icon(Icons.whatsapp, color: Colors.black),
-                          iconSize: 30.0,
-                          tooltip: 'Contacs me on whatsapp'
+                      Ink(
+                        decoration: const ShapeDecoration(
+                        color: Colors.white10,
+                        shape: CircleBorder(),
+                      ),
+                        child: IconButton(
+                            onPressed: () => _launchURL(desainer.linkWa),
+                            icon: Icon(Icons.whatsapp, color: Colors.black),
+                            iconSize: 35.0,
+                            tooltip: 'Contacs me on whatsapp'
+                        )
                       )
                     ], // <Widget>[]
                   ),
@@ -116,9 +131,15 @@ class Profil extends State<ProfilPage> {
                     children: <Widget> [
                       TextButton(
                         style: TextButton.styleFrom(
-                            primary: Colors.black,
-                            backgroundColor: fromCssColor('#EABF9F')),
-                        onPressed: () => _launchURL('https://www.instagram.com/ivan_gunawan'),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          primary: Colors.black,
+                          backgroundColor: fromCssColor('#FAF3E0'),
+                          elevation: 5,
+                          shadowColor: Colors.black,
+                        ),
+                        onPressed: () => _launchURL(desainer.linkPorto),
                         child: Text('Portofolio'),
                       ),
                     ], // <Widget>[]
@@ -151,9 +172,9 @@ class Profil extends State<ProfilPage> {
                 children: <Widget>[
                   Column(
                     children: <Widget> [
-                      for (int i = 0; i < 20; i++)
+                      for (int i = 0; i < 8; i++)
                         Text(
-                          'Designer Paris Fashion Week 2022',
+                          'Designer Paris Fashion Week 2022', //ini belum bener ya
                           style: const TextStyle(
                             fontSize: 13.0,
                             fontWeight: FontWeight.w300,

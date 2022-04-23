@@ -1,4 +1,6 @@
 import 'package:fashionizt/pages/categories.dart';
+import 'package:fashionizt/pages/pilih.dart';
+import 'package:fashionizt/pages/profil.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
 import '../api/api_desainer.dart';
@@ -38,7 +40,7 @@ class Cari extends State<MainPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Explore Garment",
+                  "Explore Desainer",
                   style: Theme.of(context).textTheme.headline4!.copyWith(
                         fontWeight: FontWeight.w800,
                         color: Colors.black,
@@ -58,7 +60,13 @@ class Cari extends State<MainPage> {
                       padding: EdgeInsets.only(right: 24),
                       child: TextButton(
                         style: TextButton.styleFrom(),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                           context,
+                            MaterialPageRoute(
+                                builder: (context) => MainPage1())
+                          );
+                        },
                         child: Text('View All',
                             style: TextStyle(
                               color: blackColor,
@@ -86,7 +94,15 @@ class Cari extends State<MainPage> {
                                 itemCount: snapshot.data?.desainer.length,
                                 itemBuilder: (context, index) {
                                   var desainer = snapshot.data?.desainer[index];
-                                  return horizontalCard(desainer: desainer!);
+                                  return InkWell(
+                                      onTap: () {
+                                        Navigator.push(context,
+                                            MaterialPageRoute(builder: (context) {
+                                              return ProfilPage(desainer: desainer!);
+                                            }));
+                                      },
+                                      child: horizontalCard(desainer: desainer!)
+                                  );
                                 },
                               );
                             } else if (snapshot.hasError) {

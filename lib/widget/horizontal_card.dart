@@ -1,6 +1,7 @@
 import 'package:fashionizt/model/desainer_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
+import 'package:from_css_color/from_css_color.dart';
 
 class horizontalCard extends StatelessWidget{
   final DesainerElement desainer;
@@ -11,8 +12,11 @@ class horizontalCard extends StatelessWidget{
     return Padding(
         padding: EdgeInsets.only(top: 16),
         child:Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
           margin: EdgeInsets.only(right: 24),
-          color: lightYellowColor,
+          color: fromCssColor('#FAF3E0'),
           elevation: 5,
           shadowColor: Colors.black,
           child: Padding(
@@ -38,8 +42,8 @@ class horizontalCard extends StatelessWidget{
                             ),
                             SizedBox(height: 2,),
                             Text(
-                                desainer.bio,
-                                style: subtitleHorizontalCardTextStyle
+                                'Desainer ' + desainer.kategori, //ini belum bener ya
+                                style: subtitleHorizontalCardTextStyle,
                             ),
                           ],
                         ),
@@ -72,7 +76,7 @@ class horizontalCard extends StatelessWidget{
                                         fontSize: 10,
                                       ),
                                     ),
-                                    Icon(Icons.mode_comment_outlined, color: Colors.black),
+                                    Icon(Icons.task_outlined, color: Colors.black),
                                   ],
                                 )
                               ],

@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:fashionizt/pages/profil.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
 import '../api/api_desainer.dart';
@@ -158,7 +159,15 @@ class Pilih extends State<MainPage1> {
                                       itemCount: snapshot.data?.desainer.length,
                                       itemBuilder: (context, index) {
                                         var desainer = snapshot.data?.desainer[index];
-                                        return horizontalCard(desainer: desainer!);
+                                        return InkWell(
+                                            onTap: () {
+                                              Navigator.push(context,
+                                                  MaterialPageRoute(builder: (context) {
+                                                    return ProfilPage(desainer: desainer!);
+                                                  }));
+                                            },
+                                            child: horizontalCard(desainer: desainer!)
+                                        );
                                       },
                                     );
                                   } else if (snapshot.hasError) {
@@ -183,11 +192,13 @@ class Pilih extends State<MainPage1> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        leading: IconTheme(
-          data: new IconThemeData(color: blackColor),
-          child: new Icon(Icons.arrow_back_ios_rounded),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
         ),
-        title: Text('Pilih Garment',
+        title: Text('Pilih Desainer',
             style: TextStyle(
               color: blackColor,
               fontWeight: FontWeight.w600,

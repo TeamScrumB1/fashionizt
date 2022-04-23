@@ -43,9 +43,8 @@ class DesainerElement {
     required this.linkPorto,
     required this.gender,
     required this.jmlhProject,
-    required this.idKategori,
-    required this.idTarif,
-    required this.idPengalaman,
+    required this.kategori,
+    required this.tarif,
   });
 
   String id;
@@ -57,9 +56,8 @@ class DesainerElement {
   String linkPorto;
   String gender;
   String jmlhProject;
-  String idKategori;
-  String idTarif;
-  String idPengalaman;
+  String kategori;
+  String tarif;
 
   factory DesainerElement.fromJson(Map<String, dynamic> json) => DesainerElement(
     id: json["id"],
@@ -71,9 +69,8 @@ class DesainerElement {
     linkPorto: json["link_porto"],
     gender: json["gender"],
     jmlhProject: json["jmlh_project"],
-    idKategori: json["id_kategori"],
-    idTarif: json["id_tarif"],
-    idPengalaman: json["id_pengalaman"],
+    kategori: json["kategori"],
+    tarif: json["tarif"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -86,8 +83,7 @@ class DesainerElement {
     "link_porto": linkPorto,
     "gender": gender,
     "jmlh_project": jmlhProject,
-    "id_kategori": idKategori,
-    "id_tarif": idTarif,
-    "id_pengalaman": idPengalaman,
+    "kategori": kategori,
+    "tarif": tarif,
   };
 }
