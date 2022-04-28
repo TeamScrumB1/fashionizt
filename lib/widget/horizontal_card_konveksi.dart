@@ -1,12 +1,12 @@
-import 'package:fashionizt/model/desainer_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:from_css_color/from_css_color.dart';
+import '../model/konveksi_model.dart';
 
-class horizontalCard extends StatelessWidget{
-  final DesainerElement desainer;
+class horizontalCardKonveksi extends StatelessWidget{
+  final KonveksiElement konveksi;
 
-  const horizontalCard({required this. desainer});
+  const horizontalCardKonveksi({required this. konveksi});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +25,7 @@ class horizontalCard extends StatelessWidget{
                 children:[
                   CircleAvatar(
                     backgroundImage: NetworkImage(
-                        desainer.imgProfil),
+                        konveksi.imgProfil),
                     radius: 40,
                   ),
                   SizedBox(width: 43,),
@@ -37,12 +37,12 @@ class horizontalCard extends StatelessWidget{
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              desainer.nama,
+                              konveksi.nama,
                               style: titleHorizontalCardTextStyle,
                             ),
                             SizedBox(height: 2,),
                             Text(
-                                'Desainer ' + desainer.kategori,
+                                'Konveksi ' + konveksi.kategori,
                                 style: subtitleHorizontalCardTextStyle,
                             ),
                           ],
@@ -58,7 +58,7 @@ class horizontalCard extends StatelessWidget{
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      desainer.rating + '/5',
+                                      konveksi.rating + '/5',
                                       style:subtitleHorizontalCardTextStyle.copyWith(
                                         fontSize: 10,
                                       ),
@@ -71,7 +71,7 @@ class horizontalCard extends StatelessWidget{
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      desainer.jmlhProject,
+                                      konveksi.jmlhProject,
                                       style:subtitleHorizontalCardTextStyle.copyWith(
                                         fontSize: 10,
                                       ),

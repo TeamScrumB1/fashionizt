@@ -2,18 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../api/api_desainer.dart';
-import '../model/desainer_model.dart';
-import 'cari.dart';
+import '../model/konveksi_model.dart';
 
-// class ProfilPage extends StatefulWidget {
-//   Profil createState() => Profil();
-//
-// }
-
-class ProfilPage extends StatelessWidget {
-  const ProfilPage({Key? key, required this.desainer}) : super(key: key);
-  final DesainerElement desainer;
+class ProfilPageKonveksi extends StatelessWidget {
+  const ProfilPageKonveksi({Key? key, required this.konveksi}) : super(key: key);
+  final KonveksiElement konveksi;
 
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
@@ -30,7 +23,7 @@ class ProfilPage extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
         ),
-        title: Text('Profil Desainer',
+        title: Text('Profil Konveksi',
             style: TextStyle(
               color: blackColor,
               fontWeight: FontWeight.w600,
@@ -44,13 +37,13 @@ class ProfilPage extends StatelessWidget {
             new Padding(padding: new EdgeInsets.all(20.0)),
             CircleAvatar(
               backgroundImage:  NetworkImage(
-                  desainer.imgProfil),
+                  konveksi.imgProfil),
               radius: 100,
             ),
             Container(
               margin: const EdgeInsets.only(top: 35.0),
               child: Text(
-                desainer.nama,
+                konveksi.nama,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 20.0,
@@ -62,7 +55,7 @@ class ProfilPage extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(top: 8.0),
               child: Text(
-                desainer.bio,
+                konveksi.bio,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 14.0,
@@ -79,7 +72,7 @@ class ProfilPage extends StatelessWidget {
                   Row(
                     children: <Widget> [
                       Text(
-                          desainer.rating + '/5 ',
+                          konveksi.rating + '/5 ',
                           style: const TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.w300,
@@ -93,7 +86,7 @@ class ProfilPage extends StatelessWidget {
                   Row(
                     children: <Widget> [
                       Text(
-                        desainer.jmlhProject + ' ',
+                        konveksi.jmlhProject + ' ',
                         style: const TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w300,
@@ -118,7 +111,7 @@ class ProfilPage extends StatelessWidget {
                         shape: CircleBorder(),
                       ),
                         child: IconButton(
-                            onPressed: () => _launchURL(desainer.linkWa),
+                            onPressed: () => _launchURL(konveksi.linkWa),
                             icon: Icon(Icons.whatsapp, color: Colors.black),
                             iconSize: 35.0,
                             tooltip: 'Contacs me on whatsapp'
@@ -139,7 +132,7 @@ class ProfilPage extends StatelessWidget {
                           elevation: 5,
                           shadowColor: Colors.black,
                         ),
-                        onPressed: () => _launchURL(desainer.linkPorto),
+                        onPressed: () => _launchURL(konveksi.linkPorto),
                         child: Text('Portofolio'),
                       ),
                     ], // <Widget>[]
@@ -174,7 +167,7 @@ class ProfilPage extends StatelessWidget {
                     children: <Widget> [
                       for (int i = 0; i < 8; i++)
                         Text(
-                          'Designer Paris Fashion Week 2022', //ini belum bener ya
+                          'Produksi PDH Pegawai Shopee 2022', //ini belum bener ya
                           style: const TextStyle(
                             fontSize: 13.0,
                             fontWeight: FontWeight.w300,

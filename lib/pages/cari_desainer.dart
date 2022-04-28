@@ -1,6 +1,6 @@
 import 'package:fashionizt/pages/categories.dart';
-import 'package:fashionizt/pages/pilih.dart';
-import 'package:fashionizt/pages/profil.dart';
+import 'package:fashionizt/pages/pilih_desainer.dart';
+import 'package:fashionizt/pages/profil_desainer.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
 import '../api/api_desainer.dart';
@@ -20,7 +20,6 @@ class Cari extends State<MainPage> {
     super.initState();
     _desainer = ApiService().topHeadlines();
   }
-
 
   @override
   Widget _buildList(BuildContext context) {

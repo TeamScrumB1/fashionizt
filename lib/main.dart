@@ -1,7 +1,6 @@
-import 'package:fashionizt/pages/pilih.dart';
-import 'package:fashionizt/pages/profil.dart';
+import 'package:fashionizt/pages/cari_konveksi.dart';
+import 'pages/cari_desainer.dart';
 import 'package:flutter/material.dart';
-import 'pages/cari.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget{
       theme: ThemeData(
         fontFamily: 'Poppins',
       ),
-      home: MainPage(),
+      home: MainPageKonveksi(),
     );
   }
 }
