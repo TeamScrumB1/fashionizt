@@ -3,16 +3,16 @@ import 'package:fashionizt/pages/pilih_desainer.dart';
 import 'package:fashionizt/pages/profil_desainer.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
-import '../api/api_desainer.dart';
+import '../api/api_short_desainer.dart';
 import '../model/desainer_model.dart';
-import '../widget/horizontal_card.dart';
+import '../widget/horizontal_card_desainer.dart';
 import 'categories.dart';
 
-class MainPage extends StatefulWidget {
+class MainPageDesainer extends StatefulWidget {
   Cari createState() => Cari();
 }
 
-class Cari extends State<MainPage> {
+class Cari extends State<MainPageDesainer> {
   late Future<Desainer> _desainer;
 
   @override

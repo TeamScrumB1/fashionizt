@@ -1,4 +1,4 @@
-import 'package:fashionizt/pages/cari_konveksi.dart';
+import 'pages/cari_konveksi.dart';
 import 'pages/cari_desainer.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget{
       theme: ThemeData(
         fontFamily: 'Poppins',
       ),
-      home: MainPageKonveksi(),
+      home: MainPageDesainer(),
     );
   }
 }

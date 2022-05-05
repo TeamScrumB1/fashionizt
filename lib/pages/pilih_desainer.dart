@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
 import '../api/api_desainer.dart';
 import '../model/desainer_model.dart';
-import '../widget/horizontal_card.dart';
+import '../widget/horizontal_card_desainer.dart';
 
 class MainPage1 extends StatefulWidget {
   Pilih createState() => Pilih();

@@ -3,7 +3,7 @@ import 'package:fashionizt/pages/pilih_konveksi.dart';
 import 'package:fashionizt/pages/profil_konveksi.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
-import '../api/api_konveksi.dart';
+import '../api/api_short_konveksi.dart';
 import '../model/konveksi_model.dart';
 import '../widget/horizontal_card_konveksi.dart';
 import 'categories.dart';

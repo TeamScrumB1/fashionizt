@@ -1,11 +1,9 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:fashionizt/pages/profil_desainer.dart';
 import 'package:fashionizt/pages/profil_konveksi.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
 import '../api/api_konveksi.dart';
 import '../model/konveksi_model.dart';
-import '../widget/horizontal_card.dart';
 import '../widget/horizontal_card_konveksi.dart';
 
 class MainPage2 extends StatefulWidget {
@@ -200,7 +198,7 @@ class PilihKonveksi extends State<MainPage2> {
           },
           icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
         ),
-        title: Text('Pilih Desainer',
+        title: Text('Pilih Konveksi',
             style: TextStyle(
               color: blackColor,
               fontWeight: FontWeight.w600,

@@ -5,8 +5,8 @@ import '../model/konveksi_model.dart';
 
 class horizontalCardKonveksi extends StatelessWidget{
   final KonveksiElement konveksi;
-
   const horizontalCardKonveksi({required this. konveksi});
+
   @override
   Widget build(BuildContext context) {
     return Padding(

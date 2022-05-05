@@ -2,14 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../api/api_desainer.dart';
 import '../model/desainer_model.dart';
-import 'cari_desainer.dart';
-
-// class ProfilPage extends StatefulWidget {
-//   Profil createState() => Profil();
-//
-// }
 
 class ProfilPage extends StatelessWidget {
   const ProfilPage({Key? key, required this.desainer}) : super(key: key);
