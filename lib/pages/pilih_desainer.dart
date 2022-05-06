@@ -1,16 +1,16 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:fashionizt/pages/profil_desainer.dart';
+import 'package:fashionizt/Pages/detail_desainer.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
 import '../api/api_desainer.dart';
-import '../model/desainer_model.dart';
-import '../widget/horizontal_card_desainer.dart';
+import '../Models/desainer_model.dart';
+import '../Widget/vertical_listview.dart';
 
-class MainPage1 extends StatefulWidget {
+class PilihDesainer extends StatefulWidget {
   Pilih createState() => Pilih();
 }
 
-class Pilih extends State<MainPage1> {
+class Pilih extends State<PilihDesainer> {
   late Future<Desainer> _desainer;
 
   String? selectedValue;
@@ -24,7 +24,7 @@ class Pilih extends State<MainPage1> {
   @override
   void initState() {
     super.initState();
-    _desainer = ApiService().topHeadlines();
+    _desainer = ApiServiceDes().topHeadlines();
   }
 
   @override
@@ -146,38 +146,38 @@ class Pilih extends State<MainPage1> {
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                            FutureBuilder(
+                          FutureBuilder(
                             future: _desainer,
-                              builder: (context, AsyncSnapshot<Desainer> snapshot) {
-                                var state = snapshot.connectionState;
-                                if (state != ConnectionState.done) {
-                                  return Center(child: CircularProgressIndicator());
+                            builder: (context, AsyncSnapshot<Desainer> snapshot) {
+                              var state = snapshot.connectionState;
+                              if (state != ConnectionState.done) {
+                                return Center(child: CircularProgressIndicator());
+                              } else {
+                                if (snapshot.hasData) {
+                                  return ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data?.desainer.length,
+                                    itemBuilder: (context, index) {
+                                      var desainer = snapshot.data?.desainer[index];
+                                      return InkWell(
+                                          onTap: () {
+                                            Navigator.push(context,
+                                                MaterialPageRoute(builder: (context) {
+                                                  return DetailDesainer(desainer: desainer!);
+                                                }));
+                                          },
+                                          child: VerListDes(desainer: desainer!)
+                                      );
+                                    },
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Center(child: Text(snapshot.error.toString()));
                                 } else {
-                                  if (snapshot.hasData) {
-                                    return ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: snapshot.data?.desainer.length,
-                                      itemBuilder: (context, index) {
-                                        var desainer = snapshot.data?.desainer[index];
-                                        return InkWell(
-                                            onTap: () {
-                                              Navigator.push(context,
-                                                  MaterialPageRoute(builder: (context) {
-                                                    return ProfilPage(desainer: desainer!);
-                                                  }));
-                                            },
-                                            child: horizontalCard(desainer: desainer!)
-                                        );
-                                      },
-                                    );
-                                  } else if (snapshot.hasError) {
-                                    return Center(child: Text(snapshot.error.toString()));
-                                  } else {
-                                    return Text('');
-                                  }
+                                  return Text('');
                                 }
-                              },
-                            )
+                              }
+                            },
+                          )
                         ]),
                   ],
                 ),

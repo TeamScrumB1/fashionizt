@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../model/konveksi_model.dart';
+import '../Models/konveksi_model.dart';
 
-class ApiService {
+class ApiServiceMit {
   Future<Konveksi> topHeadlines() async {
     final response = await http.get(
         Uri.parse('https://fashionizt.yufagency.com/koneksi_konveksi.php'));

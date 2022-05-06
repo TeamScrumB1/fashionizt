@@ -1,18 +1,21 @@
-import 'pages/cari_konveksi.dart';
-import 'pages/cari_desainer.dart';
 import 'package:flutter/material.dart';
+import 'package:fashionizt/Pages/home_pages.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
       theme: ThemeData(
-        fontFamily: 'Poppins',
+        primarySwatch: Colors.blue,
       ),
-      home: MainPageDesainer(),
+      home: HomePages(),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../model/desainer_model.dart';
+import '../Models/desainer_model.dart';
 
-class ApiService {
+class ApiServiceDes {
   Future<Desainer> topHeadlines() async {
     final response = await http.get(
         Uri.parse('https://fashionizt.yufagency.com/shorting_desainer.php'));

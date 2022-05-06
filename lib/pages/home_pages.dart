@@ -1,0 +1,72 @@
+import 'package:fashionizt/Widget/button_role.dart';
+import 'package:fashionizt/Widget/category_product.dart';
+import 'package:fashionizt/Widget/gridview_produk.dart';
+import 'package:fashionizt/Widget/sub_tittle.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:fashionizt/Widget/horizontal_mit_listview.dart';
+import 'package:fashionizt/Widget/my_slideview.dart';
+import 'package:fashionizt/Widget/horizontal_des_listview.dart';
+
+
+class HomePages extends StatelessWidget {
+  const HomePages({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Container(
+          width: 700,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Color(0xd6d6d6d6),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: TextField(
+            onChanged: (value){
+              //Search Cuy
+            },
+            decoration: InputDecoration(
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              hintText: "Search Product",
+              prefixIcon: Icon(Icons.search),
+            ),
+          ),
+        ),
+
+        actions: <Widget>[
+          IconButton(
+            onPressed: (){},
+            icon: const Icon(Icons.shopping_cart, size: 30,),
+            color: Colors.black,
+          ),
+          IconButton(
+            onPressed: (){},
+            icon: const Icon(Icons.notifications_active,size: 30,),
+            color: Colors.black,
+          ),
+        ],
+      ),
+      body: Container(
+        child: ListView(
+          children: <Widget>[
+            SlideView(),
+            ButtonRole(),
+            Center(child: SubTittle(sub: "Kategori")),
+            CategoryProduct(),
+            SubTittle(sub: "Top Desainer"),
+            HorDesListView(),
+            SubTittle(sub: "Top Mitra Produksi"),
+            HorMitListView(),
+            SubTittle(sub: "Produk Rekomendasi",),
+            GridViewProduk(),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -1,16 +1,17 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:fashionizt/pages/profil_konveksi.dart';
+import 'package:fashionizt/Pages/detail_desainer.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
 import '../api/api_konveksi.dart';
-import '../model/konveksi_model.dart';
-import '../widget/horizontal_card_konveksi.dart';
+import '../Models/konveksi_model.dart';
+import '../Widget/vertical_listview.dart';
+import 'detail_mitra.dart';
 
-class MainPage2 extends StatefulWidget {
-  PilihKonveksi createState() => PilihKonveksi();
+class PilihKonveksi extends StatefulWidget {
+  Pilih createState() => Pilih();
 }
 
-class PilihKonveksi extends State<MainPage2> {
+class Pilih extends State<PilihKonveksi> {
   late Future<Konveksi> _konveksi;
 
   String? selectedValue;
@@ -24,7 +25,7 @@ class PilihKonveksi extends State<MainPage2> {
   @override
   void initState() {
     super.initState();
-    _konveksi = ApiService().topHeadlines();
+    _konveksi = ApiServiceMit().topHeadlines();
   }
 
   @override
@@ -146,38 +147,38 @@ class PilihKonveksi extends State<MainPage2> {
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                            FutureBuilder(
+                          FutureBuilder(
                             future: _konveksi,
-                              builder: (context, AsyncSnapshot<Konveksi> snapshot) {
-                                var state = snapshot.connectionState;
-                                if (state != ConnectionState.done) {
-                                  return Center(child: CircularProgressIndicator());
+                            builder: (context, AsyncSnapshot<Konveksi> snapshot) {
+                              var state = snapshot.connectionState;
+                              if (state != ConnectionState.done) {
+                                return Center(child: CircularProgressIndicator());
+                              } else {
+                                if (snapshot.hasData) {
+                                  return ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data?.konveksi.length,
+                                    itemBuilder: (context, index) {
+                                      var konveksi = snapshot.data?.konveksi[index];
+                                      return InkWell(
+                                          onTap: () {
+                                            Navigator.push(context,
+                                                MaterialPageRoute(builder: (context) {
+                                                  return DetailKonveksi(konveksi: konveksi!);
+                                                }));
+                                          },
+                                          child: VerListMit(konveksi: konveksi!)
+                                      );
+                                    },
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Center(child: Text(snapshot.error.toString()));
                                 } else {
-                                  if (snapshot.hasData) {
-                                    return ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: snapshot.data?.konveksi.length,
-                                      itemBuilder: (context, index) {
-                                        var konveksi = snapshot.data?.konveksi[index];
-                                        return InkWell(
-                                            onTap: () {
-                                              Navigator.push(context,
-                                                  MaterialPageRoute(builder: (context) {
-                                                    return ProfilPageKonveksi(konveksi: konveksi!);
-                                                  }));
-                                            },
-                                            child: horizontalCardKonveksi(konveksi: konveksi!)
-                                        );
-                                      },
-                                    );
-                                  } else if (snapshot.hasError) {
-                                    return Center(child: Text(snapshot.error.toString()));
-                                  } else {
-                                    return Text('');
-                                  }
+                                  return Text('');
                                 }
-                              },
-                            )
+                              }
+                            },
+                          )
                         ]),
                   ],
                 ),
