@@ -156,6 +156,7 @@ class Pilih extends State<PilihDesainer> {
                                 if (snapshot.hasData) {
                                   return ListView.builder(
                                     shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount: snapshot.data?.desainer.length,
                                     itemBuilder: (context, index) {
                                       var desainer = snapshot.data?.desainer[index];

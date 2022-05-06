@@ -156,8 +156,8 @@ class Pilih extends State<PilihKonveksi> {
                               } else {
                                 if (snapshot.hasData) {
                                   return ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
                                     itemCount: snapshot.data?.konveksi.length,
                                     itemBuilder: (context, index) {
                                       var konveksi = snapshot.data?.konveksi[index];
