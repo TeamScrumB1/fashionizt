@@ -15,7 +15,7 @@ class CheckoutCard extends StatelessWidget {
     {
       return Container(
         padding: EdgeInsets.symmetric(
-          vertical: getProportionateScreenWidth(15),
+          vertical: getProportionateScreenWidth(10),
           horizontal: getProportionateScreenWidth(30),
         ),
         // height: 174,
@@ -39,7 +39,7 @@ class CheckoutCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: getProportionateScreenHeight(10)),
+              SizedBox(height: getProportionateScreenHeight(5)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/produk_model.dart';
+import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
@@ -91,7 +92,13 @@ class DetailProduct extends StatelessWidget {
         ),),
         actions: [
           IconButton(
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CartScreen())
+              );
+            },
             icon: const Icon(Icons.shopping_cart, size: 25,),
             color: Colors.black,
           ),

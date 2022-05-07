@@ -24,12 +24,12 @@ class CartScreen extends StatelessWidget {
     return AppBar(
       centerTitle: false,
       titleSpacing: 0,
-        leading: GestureDetector(
-          onTap: () {},
-          child: IconTheme(
-            data: new IconThemeData(color: Colors.black),
-            child: new Icon(Icons.arrow_back_ios_rounded),
-          ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+          color: Colors.black,
+          onPressed: (){
+            Navigator.pop(context);
+          },
         ),
       backgroundColor: darkYellowColor,
       title: Column(

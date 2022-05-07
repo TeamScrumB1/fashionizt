@@ -2,6 +2,7 @@ import 'package:fashionizt/Widget/button_role.dart';
 import 'package:fashionizt/Widget/category_product.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';
+import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/horizontal_mit_listview.dart';
@@ -40,13 +41,19 @@ class HomePages extends StatelessWidget {
 
         actions: <Widget>[
           IconButton(
-            onPressed: (){},
-            icon: const Icon(Icons.shopping_cart, size: 30,),
+            onPressed: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CartScreen())
+              );
+            },
+            icon: const Icon(Icons.shopping_cart, size: 25,),
             color: Colors.black,
           ),
           IconButton(
             onPressed: (){},
-            icon: const Icon(Icons.notifications_active,size: 30,),
+            icon: const Icon(Icons.notifications_active,size: 25,),
             color: Colors.black,
           ),
         ],

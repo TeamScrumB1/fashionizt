@@ -30,7 +30,7 @@ List<Product> demoProducts = [
     id: 1,
     owner: "Izzudin Fasya",
     images: [
-      "assets/images/Image Popular Product 1.jpg",
+      "lib/Assets/images/Jaket.jpg",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -49,7 +49,7 @@ List<Product> demoProducts = [
     id: 2,
     owner: "Alfikiyar Tirta",
     images: [
-      "assets/images/Image Popular Product 2.jpg",
+      "lib/Assets/images/Kemeja.jpg",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -67,7 +67,7 @@ List<Product> demoProducts = [
     id: 3,
     owner: "Yusril Falih",
     images: [
-      "assets/images/Image Popular Product 3.jpg",
+      "lib/Assets/images/Kaos.jpg",
     ],
     colors: [
       Color(0xFFF6625E),
@@ -86,7 +86,7 @@ List<Product> demoProducts = [
     id: 4,
     owner: "Abdul Aziz",
     images: [
-      "assets/images/wireless headset.png",
+      "lib/Assets/images/Rok.jpg",
     ],
     colors: [
       Color(0xFFF6625E),
