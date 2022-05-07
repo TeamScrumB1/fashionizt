@@ -1,7 +1,7 @@
 import 'package:fashionizt/Pages/detail_desainer.dart';
 import 'package:fashionizt/Widget/card_des_profile.dart';
 import 'package:flutter/material.dart';
-import 'package:fashionizt/Api/api_desainer.dart';
+import 'package:fashionizt/Api/api_short_desainer.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
 
 class HorDesListView extends StatefulWidget {

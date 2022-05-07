@@ -40,8 +40,15 @@ class ProdukElement {
     required this.harga,
     required this.rating,
     required this.deskripsi,
+    required this.idDesainer,
+    required this.imgDesainer,
     required this.namaDesainer,
-    required this.namaKonveksi,
+    required this.bioDesainer,
+    required this.ratingDesainer,
+    required this.waDesainer,
+    required this.portoDesainer,
+    required this.projekDesainer,
+    required this.kategoriDesainer,
   });
 
   String id;
@@ -51,7 +58,14 @@ class ProdukElement {
   String rating;
   String deskripsi;
   String namaDesainer;
-  String namaKonveksi;
+  String idDesainer;
+  String imgDesainer;
+  String bioDesainer;
+  String ratingDesainer;
+  String waDesainer;
+  String portoDesainer;
+  String projekDesainer;
+  String kategoriDesainer;
 
   factory ProdukElement.fromJson(Map<String, dynamic> json) => ProdukElement(
     id: json["id"],
@@ -61,7 +75,15 @@ class ProdukElement {
     rating: json["rating"],
     deskripsi: json["deskripsi"],
     namaDesainer: json["nama_desainer"],
-    namaKonveksi: json["nama_konveksi"],
+    idDesainer: json["id_desainer"],
+    imgDesainer: json["img_profil"],
+    bioDesainer: json["bio_desainer"],
+    ratingDesainer: json["rating_desainer"],
+    waDesainer: json["link_wa"],
+    portoDesainer: json["link_porto"],
+    projekDesainer: json["jmlh_project"],
+    kategoriDesainer: json["kategori"]
+
   );
 
   Map<String, dynamic> toJson() => {
@@ -71,7 +93,14 @@ class ProdukElement {
     "harga": harga,
     "rating": rating,
     "deskripsi": deskripsi,
+    "id_desainer": idDesainer,
     "nama_desainer": namaDesainer,
-    "nama_konveksi": namaKonveksi,
+    "img_profil": imgDesainer,
+    "bio_desainer": bioDesainer,
+    "rating_desainer": ratingDesainer,
+    "link_wa": waDesainer,
+    "link_porto": portoDesainer,
+    "jmlh_project": projekDesainer,
+    "kategori": kategoriDesainer,
   };
 }

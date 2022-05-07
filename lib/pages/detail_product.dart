@@ -40,7 +40,7 @@ class DetailProduct extends StatelessWidget {
                   border: Border(right: BorderSide(width: 0.5,color: Colors.black)),
                 ),
                 child: IconButton(
-                  onPressed: () => _launchURL('https://api.whatsapp.com/send/?phone=6281615464797&text&app_absent=0'),
+                  onPressed: () => _launchURL(detail.waDesainer),
                   icon: Icon(Icons.whatsapp, color: Colors.black),
                   iconSize: 25.0,
                 ),
@@ -195,7 +195,7 @@ class DetailProduct extends StatelessWidget {
                                   children:[
                                     CircleAvatar(
                                       backgroundImage: CachedNetworkImageProvider(
-                                        'https://drive.google.com/uc?export=view&id=13ZdIO71qyJJfjQYp3fflmGG871EcpIhR',
+                                        detail.imgDesainer,
                                       ),
                                       radius: 40,
                                     ),
@@ -212,7 +212,7 @@ class DetailProduct extends StatelessWidget {
                                               ),
                                               SizedBox(height: 2,),
                                               Text(
-                                                'Desainer Kaos',
+                                                'Desainer '+detail.kategoriDesainer,
                                               ),
                                             ],
                                           ),
@@ -227,7 +227,7 @@ class DetailProduct extends StatelessWidget {
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: [
                                                       Text(
-                                                        '4.9/5',
+                                                        detail.ratingDesainer,
                                                         // style:subtitleHorizontalCardTextStyle.copyWith(
                                                         //   fontSize: 10,
                                                         // ),
@@ -240,7 +240,7 @@ class DetailProduct extends StatelessWidget {
                                                     mainAxisAlignment: MainAxisAlignment.start,
                                                     children: [
                                                       Text(
-                                                        '1000+',
+                                                        detail.projekDesainer,
                                                         // style:subtitleHorizontalCardTextStyle.copyWith(
                                                         //   fontSize: 10,
                                                         // ),

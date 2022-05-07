@@ -1,9 +1,7 @@
-import 'package:fashionizt/Pages/detail_desainer.dart';
 import 'package:flutter/material.dart';
-import 'package:fashionizt/Api/api_konveksi.dart';
+import 'package:fashionizt/Api/api_short_konveksi.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:fashionizt/Widget/card_mit_profile.dart';
-
 import '../Pages/detail_mitra.dart';
 
 class HorMitListView extends StatefulWidget {
