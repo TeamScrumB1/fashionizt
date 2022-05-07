@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 Color whiteColor =Color(0xffFBFBFB);
 Color blackColor =Color(0xff000000);
@@ -21,3 +22,28 @@ TextStyle subtitleHorizontalCardTextStyle = TextStyle(
   fontWeight: FontWeight.w300,
   fontSize: 11,
 );
+
+ThemeData theme() {
+  return ThemeData(
+    scaffoldBackgroundColor: Colors.white,
+    fontFamily: "Poppins",
+    appBarTheme: appBarTheme(),
+    textTheme: textTheme(),
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+  );
+}
+
+TextTheme textTheme() {
+  return TextTheme(
+    bodyText1: TextStyle(color: kTextColor),
+    bodyText2: TextStyle(color: kTextColor),
+  );
+}
+
+AppBarTheme appBarTheme() {
+  return AppBarTheme(
+    color: darkYellowColor,
+    elevation: 0,
+    iconTheme: IconThemeData(color: Colors.black),
+    );
+}
