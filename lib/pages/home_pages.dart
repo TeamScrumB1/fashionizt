@@ -63,8 +63,6 @@ class HomePages extends StatelessWidget {
           children: <Widget>[
             SlideView(),
             ButtonRole(),
-            // Center(child: SubTittle(sub: "Kategori")),
-            // CategoryProduct(),
             SubTittle(sub: "Top Desainer"),
             HorDesListView(),
             SubTittle(sub: "Top Mitra Produksi"),
