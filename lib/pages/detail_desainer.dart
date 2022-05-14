@@ -316,12 +316,12 @@ class ProfileKonveksi extends StatelessWidget {
                                   Icon(
                                     Icons.whatsapp,
                                     size: 35.0), // <-- Icon
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
                     ], // <Widget>[]
                   ),
                   SizedBox(width: 25),

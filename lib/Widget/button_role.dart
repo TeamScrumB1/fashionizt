@@ -21,7 +21,7 @@ class ButtonRole extends StatelessWidget {
               color: Colors.grey,
               spreadRadius: 2,
               blurRadius: 3,
-              offset: Offset(0, 1),
+              offset: Offset(0,1),
             ),
           ],
         ),
@@ -58,7 +58,7 @@ class ButtonRole extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Mitra Desainer',
+                              'Desainer',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 17, fontWeight: FontWeight.bold),
@@ -85,7 +85,6 @@ class ButtonRole extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
-                        width: 70,
                         width: 80,
                         child: Column(
                           children: [
@@ -143,7 +142,7 @@ class ButtonRole extends StatelessWidget {
                               'Mitra Produksi',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold),
+                                  fontSize: 15, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),

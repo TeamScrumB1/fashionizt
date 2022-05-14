@@ -18,44 +18,39 @@ class ProductCard extends StatelessWidget {
       elevation: 5,
       child: Column(
         children: [
+          SizedBox(height: 10),
           Image(
             fit: BoxFit.fill,
-            width: 200,
-            height: 200,
+            width: 150,
+            height: 150,
             image: CachedNetworkImageProvider(
               produk.imgProduk,
             ),
           ),
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: Column(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 5,right: 5,top: 5),
                     child: Text(
                       produk.nama,
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
+                      style: nameHorizontalCardTextStyle,
                     ),
                   ),
                   Text(
                     produk.deskripsi,
-                    style: TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 15,
-                    ),
+                    style: bioHorizontalCardTextStyle,
+                      textAlign: TextAlign.center
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children : [
                       Container(
                         child: Text(
-                          'Rp.'+ produk.harga,
+                          'Rp '+ produk.harga,
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -65,10 +60,10 @@ class ProductCard extends StatelessWidget {
                         children: <Widget>[
                           Icon(
                             Icons.star,
-                            size: 30.0,
+                            size: 20.0,
                             color: Colors.yellow,
                           ),
-                          Text(produk.rating,style: TextStyle(fontSize: 18),),
+                          Text(produk.rating, style: ratingHorizontalCardTextStyle,),
                         ],
                       ),
                     ],
@@ -78,65 +73,6 @@ class ProductCard extends StatelessWidget {
           )
         ],
       ),
-      // child: Container(
-      //   margin: EdgeInsets.all(5),
-      //   child: Column(
-      //     children: [
-      //       Text(
-      //         produk.nama,
-      //         style: TextStyle(
-      //           fontSize: 18,
-      //           fontWeight: FontWeight.bold,
-      //         ),
-      //       ),
-      //       Padding(
-      //         padding: const EdgeInsets.all(4.0),
-      //         child: ClipRRect(
-      //           borderRadius: BorderRadius.circular(20.0),
-      //           child: Image(
-      //             // 'assets/images/Kemeja.jpg',
-      //             image: CachedNetworkImageProvider(
-      //                 produk.imgProduk
-      //             ),
-      //             width: 150,
-      //             height: 150,
-      //           ),
-      //         ),
-      //       ),
-      //       Container(
-      //         margin: EdgeInsets.symmetric(vertical: 3),
-      //         child: Row(
-      //           mainAxisAlignment: MainAxisAlignment.center,
-      //           children: <Widget>[
-      //             Icon(
-      //               Icons.star,
-      //               size: 30.0,
-      //               color: Colors.grey,
-      //             ),
-      //             Text(produk.rating,style: TextStyle(fontSize: 18),),
-      //           ],
-      //         ),
-      //       ),
-      //       Text(
-      //         produk.deskripsi,
-      //         style: TextStyle(
-      //             fontSize: 15
-      //         ),
-      //         textAlign : TextAlign.center,
-      //       ),
-      //       Container(
-      //         margin: EdgeInsets.symmetric(vertical: 3),
-      //         child: Text(
-      //           'Rp.'+ produk.harga,
-      //           style: TextStyle(
-      //             fontSize: 20,
-      //             fontWeight: FontWeight.bold,
-      //           ),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

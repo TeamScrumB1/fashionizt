@@ -105,17 +105,27 @@ class DetailKonveksi extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget> [
-                      Ink(
-                          decoration: const ShapeDecoration(
-                            color: Colors.white10,
-                            shape: CircleBorder(),
+                      SizedBox.fromSize(
+                        size: Size(56, 56),
+                        child: ClipOval(
+                          child: Material(
+                            color: fromCssColor('#FAF3E0'),
+                            elevation: 5,
+                            shadowColor: Colors.black,
+                            child: InkWell(
+                              splashColor: Colors.grey,
+                              onTap: () => _launchURL(konveksi.linkWa),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                      Icons.whatsapp,
+                                      size: 35.0), // <-- Icon
+                                ],
+                              ),
+                            ),
                           ),
-                          child: IconButton(
-                              onPressed: () => _launchURL(konveksi.linkWa),
-                              icon: Icon(Icons.whatsapp, color: Colors.black),
-                              iconSize: 35.0,
-                              tooltip: 'Contacs me on whatsapp'
-                          )
+                        ),
                       )
                     ], // <Widget>[]
                   ),
@@ -287,17 +297,27 @@ class ProfileKonveksi extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget> [
-                      Ink(
-                          decoration: const ShapeDecoration(
-                            color: Colors.white10,
-                            shape: CircleBorder(),
+                      SizedBox.fromSize(
+                        size: Size(56, 56),
+                        child: ClipOval(
+                          child: Material(
+                            color: fromCssColor('#FAF3E0'),
+                            elevation: 5,
+                            shadowColor: Colors.black,
+                            child: InkWell(
+                              splashColor: Colors.grey,
+                              onTap: () => _launchURL(konveksi.linkWa),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                      Icons.whatsapp,
+                                      size: 35.0), // <-- Icon
+                                ],
+                              ),
+                            ),
                           ),
-                          child: IconButton(
-                              onPressed: () => _launchURL(konveksi.linkWa),
-                              icon: Icon(Icons.whatsapp, color: Colors.black),
-                              iconSize: 35.0,
-                              tooltip: 'Contacs me on whatsapp'
-                          )
+                        ),
                       )
                     ], // <Widget>[]
                   ),
