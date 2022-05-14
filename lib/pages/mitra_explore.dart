@@ -131,6 +131,11 @@ class _MitraExploreState extends State<MitraExplore> {
                         ),
                       ],
                     ),
+                    Container(
+                        margin: EdgeInsets.only(top: 10),
+                        child: SubTittle(sub: "Kategori")
+                    ),
+                    CategoryProduct(),
                     Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -172,11 +177,6 @@ class _MitraExploreState extends State<MitraExplore> {
                   ],
                 ),
               ),
-              Container(
-                  margin: EdgeInsets.only(top: 10),
-                  child: SubTittle(sub: "Kategori")
-              ),
-              CategoryProduct(),
             ],
           )),
     );
