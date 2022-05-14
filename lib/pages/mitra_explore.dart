@@ -101,6 +101,11 @@ class _MitraExploreState extends State<MitraExplore> {
                         fontSize: 25,
                       ),
                     ),
+                    Container(
+                        margin: EdgeInsets.only(top: 10),
+                        child: SubTittle(sub: "Kategori")
+                    ),
+                    CategoryProduct(),
                     Row(
                       children: [
                         Text('Recommended',
@@ -172,11 +177,6 @@ class _MitraExploreState extends State<MitraExplore> {
                   ],
                 ),
               ),
-              Container(
-                  margin: EdgeInsets.only(top: 10),
-                  child: SubTittle(sub: "Kategori")
-              ),
-              CategoryProduct(),
             ],
           )),
     );
