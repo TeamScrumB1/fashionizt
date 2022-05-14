@@ -85,7 +85,7 @@ class ButtonRole extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
-                        width: 100,
+                        width: 70,
                         child: Column(
                           children: [
                             AspectRatio(
@@ -100,7 +100,7 @@ class ButtonRole extends StatelessWidget {
                               'Mall',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
+                                  fontSize: 17, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -138,7 +138,7 @@ class ButtonRole extends StatelessWidget {
                               'Mitra Produksi',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                                  fontSize: 17, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
