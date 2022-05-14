@@ -38,7 +38,7 @@ class _GridViewProdukState extends State<GridViewProduk> {
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 1/1.8,
+                  childAspectRatio: 1/1.5,
                 ),
                 itemBuilder: (context, index) {
                   var produk = snapshot.data?.produk[index];

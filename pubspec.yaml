@@ -107,5 +107,7 @@ flutter:
           weight: 500
         - asset: lib/Assets/fonts/Poppins-SemiBold.ttf
           weight: 600
+        - asset: lib/Assets/fonts/Poppins-Bold.ttf
+          weight: 700
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

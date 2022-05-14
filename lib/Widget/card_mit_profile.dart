@@ -3,6 +3,8 @@ import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../theme.dart';
+
 class CardMitProfile extends StatelessWidget {
   final KonveksiElement konveksi;
   const CardMitProfile({required this.konveksi});
@@ -10,18 +12,29 @@ class CardMitProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
       elevation: 5,
       child: Container(
         margin: EdgeInsets.all(5),
         width: 150,
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0),
+                child: CircleAvatar(
+                  backgroundImage:  CachedNetworkImageProvider(
+                      konveksi.imgProfil),
+                  radius: 65,
+                ),
+              ),
+            ),
             Text(
               konveksi.nama,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-              ),
+              style: nameHorizontalCardTextStyle,
             ),
             Container(
               child: Row(
@@ -30,31 +43,16 @@ class CardMitProfile extends StatelessWidget {
                   Icon(
                     Icons.star,
                     size: 20.0,
-                    color: Colors.grey,
+                    color: Colors.yellow,
                   ),
-                  Text(konveksi.rating,style: TextStyle(fontSize: 15),),
+                  Text(konveksi.rating,style: ratingHorizontalCardTextStyle,),
                 ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20.0),
-                child: Image(
-                  image: CachedNetworkImageProvider(
-                      konveksi.imgProfil
-                  ),
-                  width: 150,
-                  height: 150,
-                ),
               ),
             ),
             Text(
               konveksi.bio,
-              style: TextStyle(
-                fontSize: 12,
-              ),
-              textAlign : TextAlign.center,
+              style: bioHorizontalCardTextStyle,
+              textAlign: TextAlign.center,
             )
           ],
         ),

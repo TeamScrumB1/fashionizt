@@ -4,6 +4,8 @@ import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
 
+import '../theme.dart';
+
 class VerListDes extends StatelessWidget {
   const VerListDes({Key? key,required this.desainer}) : super(key: key);
   final DesainerElement desainer;
@@ -18,7 +20,7 @@ class VerListDes extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
           ),
           margin: EdgeInsets.only(right: 24),
-          color: fromCssColor('#FAF3E0'),
+          color: lightYellowColor,
           elevation: 5,
           shadowColor: Colors.black,
           child: Padding(
@@ -40,10 +42,12 @@ class VerListDes extends StatelessWidget {
                           children: [
                             Text(
                               desainer.nama,
+                              style: titleVerticalCardTextStyle,
                             ),
                             SizedBox(height: 2,),
                             Text(
                               'Desainer ' + desainer.kategori,
+                              style: subtitleVerticalCardTextStyle,
                             ),
                           ],
                         ),
@@ -59,9 +63,6 @@ class VerListDes extends StatelessWidget {
                                   children: [
                                     Text(
                                       desainer.rating + '/5',
-                                      // style:subtitleHorizontalCardTextStyle.copyWith(
-                                      //   fontSize: 10,
-                                      // ),
                                     ),
                                     Icon(Icons.star_border, color: Colors.black),
                                   ],
@@ -72,9 +73,6 @@ class VerListDes extends StatelessWidget {
                                   children: [
                                     Text(
                                       desainer.jmlhProject,
-                                      // style:subtitleHorizontalCardTextStyle.copyWith(
-                                      //   fontSize: 10,
-                                      // ),
                                     ),
                                     Icon(Icons.task_outlined, color: Colors.black),
                                   ],
@@ -129,10 +127,12 @@ class VerListMit extends StatelessWidget {
                           children: [
                             Text(
                               konveksi.nama,
+                              style: titleVerticalCardTextStyle,
                             ),
                             SizedBox(height: 2,),
                             Text(
                               'Mitra Produksi ' + konveksi.kategori,
+                              style: subtitleVerticalCardTextStyle,
                             ),
                           ],
                         ),

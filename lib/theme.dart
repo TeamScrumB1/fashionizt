@@ -11,16 +11,48 @@ TextStyle menuFilterTextStyle = TextStyle(
   fontSize: 12,
 );
 
-TextStyle titleHorizontalCardTextStyle = TextStyle(
+//card explore desainer & mitra
+TextStyle titleVerticalCardTextStyle = TextStyle(
   color: blackColor,
   fontWeight: FontWeight.w500,
   fontSize: 15,
 );
 
-TextStyle subtitleHorizontalCardTextStyle = TextStyle(
+TextStyle subtitleVerticalCardTextStyle = TextStyle(
   color: blackColor,
   fontWeight: FontWeight.w300,
-  fontSize: 11,
+  fontSize: 12,
+);
+
+//card homepage
+TextStyle nameHorizontalCardTextStyle = TextStyle(
+  color: blackColor,
+  fontWeight: FontWeight.w600,
+  fontSize: 15,
+);
+
+TextStyle ratingHorizontalCardTextStyle = TextStyle(
+  color: blackColor,
+  fontWeight: FontWeight.w300,
+  fontSize: 13,
+);
+
+TextStyle bioHorizontalCardTextStyle = TextStyle(
+  color: blackColor,
+  fontWeight: FontWeight.w400,
+  fontSize: 12,
+);
+
+TextStyle nameProductTextStyle = TextStyle(
+  color: blackColor,
+  fontWeight: FontWeight.w600,
+  fontSize: 17,
+);
+
+TextStyle priceProductTextStyle = TextStyle(
+  color: blackColor,
+  fontWeight: FontWeight.w600,
+  fontSize: 17,
 );
 
 ThemeData theme() {

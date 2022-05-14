@@ -20,7 +20,7 @@ class ItemCategory extends StatelessWidget {
             AspectRatio(
               aspectRatio: 1,
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                margin: EdgeInsets.symmetric(horizontal: 7),
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(20.0),
                     child: Image.asset(

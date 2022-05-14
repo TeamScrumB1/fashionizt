@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:from_css_color/from_css_color.dart';
 
+import '../constants.dart';
+
 class DetailDesainer extends StatelessWidget {
   const DetailDesainer({Key? key,required this.desainer}) : super(key: key);
   final DesainerElement desainer;
@@ -106,17 +108,27 @@ class DetailDesainer extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget> [
-                      Ink(
-                          decoration: const ShapeDecoration(
-                            color: Colors.white10,
-                            shape: CircleBorder(),
+                      SizedBox.fromSize(
+                        size: Size(56, 56),
+                        child: ClipOval(
+                          child: Material(
+                            color: fromCssColor('#FAF3E0'),
+                            elevation: 5,
+                            shadowColor: Colors.black,
+                            child: InkWell(
+                              splashColor: Colors.grey,
+                              onTap: () => _launchURL(desainer.linkWa),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                      Icons.whatsapp,
+                                      size: 35.0), // <-- Icon
+                                ],
+                              ),
+                            ),
                           ),
-                          child: IconButton(
-                              onPressed: () => _launchURL(desainer.linkWa),
-                              icon: Icon(Icons.whatsapp, color: Colors.black),
-                              iconSize: 35.0,
-                              tooltip: 'Contacs me on whatsapp'
-                          )
+                        ),
                       )
                     ], // <Widget>[]
                   ),
@@ -288,18 +300,28 @@ class ProfileKonveksi extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget> [
-                      Ink(
-                          decoration: const ShapeDecoration(
-                            color: Colors.white10,
-                            shape: CircleBorder(),
-                          ),
-                          child: IconButton(
-                              onPressed: () => _launchURL(konveksi.linkWa),
-                              icon: Icon(Icons.whatsapp, color: Colors.black),
-                              iconSize: 35.0,
-                              tooltip: 'Contacs me on whatsapp'
-                          )
-                      )
+                      SizedBox.fromSize(
+                        size: Size(56, 56),
+                        child: ClipOval(
+                          child: Material(
+                            color: fromCssColor('#FAF3E0'),
+                            elevation: 5,
+                            shadowColor: Colors.black,
+                            child: InkWell(
+                              splashColor: Colors.grey,
+                              onTap: () => _launchURL(konveksi.linkWa),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.whatsapp,
+                                    size: 35.0), // <-- Icon
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            )
                     ], // <Widget>[]
                   ),
                   SizedBox(width: 25),

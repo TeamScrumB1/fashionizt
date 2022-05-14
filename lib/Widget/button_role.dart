@@ -23,7 +23,7 @@ class ButtonRole extends StatelessWidget {
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.only(top:0, bottom: 5),
             child: Wrap(
               children: [
                 InkWell(
@@ -35,7 +35,7 @@ class ButtonRole extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    margin: EdgeInsets.symmetric(horizontal: 40),
                     decoration: BoxDecoration(
                       // color: Color(0xd6d6d6d6),
                       borderRadius: BorderRadius.circular(20),
@@ -43,8 +43,9 @@ class ButtonRole extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
-                        width: 100,
+                        width: 80,
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             AspectRatio(
                               aspectRatio: 1,
@@ -54,7 +55,7 @@ class ButtonRole extends StatelessWidget {
                                 width: 100,
                               ),
                             ),
-                            Text('Desainer',style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
+                            Text('Desainer', textAlign: TextAlign.center, style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
                           ],
                         ),
                       ),
@@ -72,15 +73,16 @@ class ButtonRole extends StatelessWidget {
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    margin: EdgeInsets.symmetric(horizontal: 30),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SizedBox(
-                        width: 100,
+                        width: 80,
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             AspectRatio(
                               aspectRatio: 1,
@@ -90,7 +92,7 @@ class ButtonRole extends StatelessWidget {
                                 height: 100,
                               ),
                             ),
-                            Text('Mitra Produksi',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
+                            Text('Mitra Produksi', textAlign: TextAlign.center, style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
                           ],
                         ),
                       ),

@@ -50,7 +50,7 @@ class CheckoutCard extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                       children: [
                         TextSpan(
-                          text: "\Rp. 639.000",
+                          text: "\Rp 639.000",
                           style: TextStyle(fontFamily: 'Poppins', fontSize: 16, color: Colors.black, fontWeight: FontWeight.w800),
                         ),
                       ],
