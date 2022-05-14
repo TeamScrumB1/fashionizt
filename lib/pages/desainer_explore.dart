@@ -101,6 +101,11 @@ class _DesainerExploreState extends State<DesainerExplore> {
                         fontSize: 25,
                       ),
                     ),
+                    Container(
+                        margin: EdgeInsets.only(top: 10),
+                        child: SubTittle(sub: "Kategori")
+                    ),
+                    CategoryProduct(),
                     Row(
                       children: [
                         Text('Recommended',
@@ -131,11 +136,6 @@ class _DesainerExploreState extends State<DesainerExplore> {
                         ),
                       ],
                     ),
-                    Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: SubTittle(sub: "Kategori")
-                    ),
-                    CategoryProduct(),
                     Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
