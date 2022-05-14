@@ -58,7 +58,8 @@ class ButtonRole extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Desainer',
+                              'Mitra Desainer',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 17, fontWeight: FontWeight.bold),
                             ),
@@ -97,8 +98,9 @@ class ButtonRole extends StatelessWidget {
                             ),
                             Text(
                               'Mall',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold),
+                                  fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -134,6 +136,7 @@ class ButtonRole extends StatelessWidget {
                             ),
                             Text(
                               'Mitra Produksi',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.bold),
                             ),
