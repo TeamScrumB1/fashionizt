@@ -21,8 +21,8 @@ class ProductCard extends StatelessWidget {
           SizedBox(height: 10),
           Image(
             fit: BoxFit.fill,
-            width: 150,
-            height: 150,
+            width: 200,
+            height: 190,
             image: CachedNetworkImageProvider(
               produk.imgProduk,
             ),

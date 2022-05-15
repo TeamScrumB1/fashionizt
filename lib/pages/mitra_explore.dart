@@ -40,24 +40,9 @@ class _MitraExploreState extends State<MitraExplore> {
             Navigator.pop(context);
           },
         ),
-        title: Container(
-          width: 700,
-          height: 40,
-          decoration: BoxDecoration(
-            color: Color(0xd6d6d6d6),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: TextField(
-            onChanged: (value){
-              //Search Cuy
-            },
-            decoration: InputDecoration(
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              hintText: "Search Mitra",
-              prefixIcon: Icon(Icons.search),
-            ),
-          ),
+        title: Text(
+          'Fashionizt',
+          style: titleApps,
         ),
 
         actions: <Widget>[

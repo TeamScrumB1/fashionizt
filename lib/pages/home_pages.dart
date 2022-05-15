@@ -1,14 +1,13 @@
 import 'package:fashionizt/Widget/button_role.dart';
-import 'package:fashionizt/Widget/category_product.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';
 import 'package:fashionizt/pages/cart_screen.dart';
+import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/horizontal_mit_listview.dart';
 import 'package:fashionizt/Widget/my_slideview.dart';
 import 'package:fashionizt/Widget/horizontal_des_listview.dart';
-
 
 class HomePages extends StatelessWidget {
   const HomePages({Key? key}) : super(key: key);
@@ -19,25 +18,29 @@ class HomePages extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: Container(
-          width: 700,
-          height: 40,
-          decoration: BoxDecoration(
-            color: Color(0xd6d6d6d6),
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: TextField(
-            onChanged: (value){
-              //Search Cuy
-            },
-            decoration: InputDecoration(
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              hintText: "Search Product",
-              prefixIcon: Icon(Icons.search),
-            ),
-          ),
+        title: Text(
+          'Fashionizt',
+          style: titleApps,
         ),
+        // Container(
+        //   width: 700,
+        //   height: 40,
+        //   decoration: BoxDecoration(
+        //     color: Color(0xd6d6d6d6),
+        //     borderRadius: BorderRadius.circular(15),
+        //   ),
+        //   child: TextField(
+        //     onChanged: (value){
+        //       //Search Cuy
+        //     },
+        //     decoration: InputDecoration(
+        //       enabledBorder: InputBorder.none,
+        //       focusedBorder: InputBorder.none,
+        //       hintText: "Search Product",
+        //       prefixIcon: Icon(Icons.search),
+        //     ),
+        //   ),
+        // ),
 
         actions: <Widget>[
           IconButton(
