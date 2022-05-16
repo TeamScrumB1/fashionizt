@@ -33,7 +33,7 @@ TextStyle nameHorizontalCardTextStyle = TextStyle(
 
 TextStyle ratingHorizontalCardTextStyle = TextStyle(
   color: blackColor,
-  fontWeight: FontWeight.w300,
+  fontWeight: FontWeight.w400,
   fontSize: 13,
 );
 

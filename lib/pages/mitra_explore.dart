@@ -5,7 +5,6 @@ import 'package:fashionizt/Pages/pilih_mitra.dart';
 import 'package:fashionizt/Widget/vertical_listview.dart';
 import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:fashionizt/Widget/sub_tittle.dart';
 import 'package:fashionizt/Widget/category_product.dart';
 
 import '../theme.dart';
@@ -74,93 +73,82 @@ class _MitraExploreState extends State<MitraExplore> {
                 fit: BoxFit.cover,
               ),
               Padding(
-                padding: EdgeInsets.only(top: 20.0, left: 31),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Text(
+                  "Explore Mitra Produksi",
+                  style: Theme.of(context).textTheme.headline4!.copyWith(
+                    fontWeight: FontWeight.w800,
+                    color: Colors.black,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+              CategoryProduct(),
+              Padding(
+                padding: const EdgeInsets.only(left: 25,right: 25, top: 10),
+                child: Row(
                   children: [
                     Text(
-                      "Explore Mitra Produksi",
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                        fontWeight: FontWeight.w800,
-                        color: Colors.black,
-                        fontSize: 25,
+                      'Recommended',
+                      style: nameHorizontalCardTextStyle,
+                    ),
+                    Spacer(),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PilihKonveksi(),
+                            ),
+                        );
+                      },
+                      child: Text('View All',
+                          style: ratingHorizontalCardTextStyle,
                       ),
                     ),
-                    Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: SubTittle(sub: "Kategori")
-                    ),
-                    CategoryProduct(),
-                    Row(
-                      children: [
-                        Text('Recommended',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                            )),
-                        Spacer(),
-                        Padding(
-                          padding: EdgeInsets.only(right: 24),
-                          child: TextButton(
-                            style: TextButton.styleFrom(),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PilihKonveksi())
-                              );
-                            },
-                            child: Text('View All',
-                                style: TextStyle(
-                                  color: blackColor,
-                                  fontWeight: FontWeight.w200,
-                                  fontSize: 13,
-                                )),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          FutureBuilder(
-                            future: _konveksi,
-                            builder: (context, AsyncSnapshot<Konveksi> snapshot) {
-                              var state = snapshot.connectionState;
-                              if (state != ConnectionState.done) {
-                                return Center(child: CircularProgressIndicator());
-                              } else {
-                                if (snapshot.hasData) {
-                                  return ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data?.konveksi.length,
-                                    itemBuilder: (context, index) {
-                                      var konveksi = snapshot.data?.konveksi[index];
-                                      return InkWell(
-                                          onTap: () {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(builder: (context) {
-                                                  return ProfileKonveksi(konveksi: konveksi!);
-                                                }));
-                                          },
-                                          child: VerListMit(konveksi: konveksi!)
-                                      );
-                                    },
-                                  );
-                                } else if (snapshot.hasError) {
-                                  return Center(child: Text(snapshot.error.toString()));
-                                } else {
-                                  return Text('');
-                                }
-                              }
-                            },
-                          )
-                        ]),
                   ],
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 20,right: 20,top: 5),
+                child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      FutureBuilder(
+                        future: _konveksi,
+                        builder: (context, AsyncSnapshot<Konveksi> snapshot) {
+                          var state = snapshot.connectionState;
+                          if (state != ConnectionState.done) {
+                            return Center(child: CircularProgressIndicator());
+                          } else {
+                            if (snapshot.hasData) {
+                              return ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: snapshot.data?.konveksi.length,
+                                itemBuilder: (context, index) {
+                                  var konveksi = snapshot.data?.konveksi[index];
+                                  return InkWell(
+                                      onTap: () {
+                                        Navigator.push(context,
+                                            MaterialPageRoute(builder: (context) {
+                                              return ProfileKonveksi(konveksi: konveksi!);
+                                            }));
+                                      },
+                                      child: VerListMit(konveksi: konveksi!)
+                                  );
+                                },
+                              );
+                            } else if (snapshot.hasError) {
+                              return Center(child: Text(snapshot.error.toString()));
+                            } else {
+                              return Text('');
+                            }
+                          }
+                        },
+                      )
+                    ]),
               ),
             ],
           )),
