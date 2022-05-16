@@ -45,7 +45,7 @@ TextStyle bioHorizontalCardTextStyle = TextStyle(
 TextStyle titleApps = TextStyle(
   fontSize: 23,
   fontWeight: FontWeight.bold,
-  color: Colors.black,
+  color: blush,
 );
 TextStyle nameProductTextStyle = TextStyle(
   color: blackColor,
@@ -83,3 +83,4 @@ AppBarTheme appBarTheme() {
     iconTheme: IconThemeData(color: Colors.black),
     );
 }
+

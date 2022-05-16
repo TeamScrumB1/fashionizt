@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fashionizt/size_config.dart';
+import 'package:from_css_color/from_css_color.dart';
 
 const kPrimaryColor = Color(0xFFFF7643);
 const kPrimaryLightColor = Color(0xFFFFECDF);
@@ -8,7 +9,11 @@ Color blackColor =Color(0xff000000);
 Color lightYellowColor =Color(0xffFAF3E0);
 Color darkYellowColor =Color(0xFFEABF9F);
 Color brownColor =Color(0xFFB68974);
-
+Color brown = fromCssColor('#874E4C');
+Color nude = fromCssColor('#E2B091');
+Color blacksand = fromCssColor('#3F3931');
+Color blush = fromCssColor('#EABCAC');
+// Color blush = Color(0xFFFAF3E0);
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,

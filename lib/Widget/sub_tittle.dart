@@ -1,3 +1,4 @@
+import 'package:fashionizt/constants.dart';
 import 'package:flutter/material.dart';
 
 class SubTittle extends StatelessWidget {
@@ -11,7 +12,7 @@ class SubTittle extends StatelessWidget {
       child: Text(
         sub,
         style: TextStyle(
-            color: Colors.black,
+            color: blacksand,
             fontSize: 18,
             fontWeight: FontWeight.bold
         ),

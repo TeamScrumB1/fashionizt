@@ -1,6 +1,7 @@
 import 'package:fashionizt/Widget/button_role.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';
+import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +17,7 @@ class HomePages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: blacksand,
         elevation: 0,
         title: Text(
           'Fashionizt',
@@ -52,12 +53,12 @@ class HomePages extends StatelessWidget {
               );
             },
             icon: const Icon(Icons.shopping_cart, size: 25,),
-            color: Colors.black,
+            color: blush,
           ),
           IconButton(
             onPressed: (){},
             icon: const Icon(Icons.notifications_active,size: 25,),
-            color: Colors.black,
+            color: blush,
           ),
         ],
       ),

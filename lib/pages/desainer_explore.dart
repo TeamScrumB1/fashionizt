@@ -2,6 +2,7 @@ import 'package:fashionizt/Pages/detail_desainer.dart';
 import 'package:fashionizt/Pages/pilih_desainer.dart';
 import 'package:fashionizt/Widget/vertical_listview.dart';
 import 'package:fashionizt/Widget/category_product.dart';
+import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
@@ -30,11 +31,11 @@ class _DesainerExploreState extends State<DesainerExplore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: blacksand,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
-          color: Colors.black,
+          color: blush,
           onPressed: (){
             Navigator.pop(context);
           },
@@ -53,12 +54,12 @@ class _DesainerExploreState extends State<DesainerExplore> {
               );
             },
             icon: const Icon(Icons.shopping_cart, size: 25,),
-            color: Colors.black,
+            color: blush,
           ),
           IconButton(
             onPressed: (){},
             icon: const Icon(Icons.notifications_active,size: 25,),
-            color: Colors.black,
+            color: blush,
           ),
         ],
       ),
@@ -77,7 +78,7 @@ class _DesainerExploreState extends State<DesainerExplore> {
                   "Explore Desainer",
                   style: Theme.of(context).textTheme.headline4!.copyWith(
                     fontWeight: FontWeight.w800,
-                    color: Colors.black,
+                    color: blacksand,
                     fontSize: 25,
                   ),
                 ),

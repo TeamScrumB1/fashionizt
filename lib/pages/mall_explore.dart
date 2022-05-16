@@ -1,11 +1,10 @@
 import 'package:fashionizt/Api/api_short_konveksi.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
-import 'package:fashionizt/Pages/detail_desainer.dart';
-import 'package:fashionizt/Pages/pilih_mitra.dart';
-import 'package:fashionizt/Widget/vertical_listview.dart';
+import 'package:fashionizt/Widget/gridview_produk.dart';
+import 'package:fashionizt/Widget/my_slideview.dart';
+import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:fashionizt/Widget/sub_tittle.dart';
 import 'package:fashionizt/Widget/category_product.dart';
 
 import '../theme.dart';
@@ -31,11 +30,11 @@ class _MallExploreState extends State<MallExplore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: blacksand,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
-          color: Colors.black,
+          color: nude,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -54,7 +53,7 @@ class _MallExploreState extends State<MallExplore> {
               Icons.shopping_cart,
               size: 25,
             ),
-            color: Colors.black,
+            color: blush,
           ),
           IconButton(
             onPressed: () {},
@@ -62,22 +61,44 @@ class _MallExploreState extends State<MallExplore> {
               Icons.notifications_active,
               size: 25,
             ),
-            color: Colors.black,
+            color: blush,
           ),
         ],
       ),
       body: SingleChildScrollView(
           child: Column(
         children: <Widget>[
-          Image.asset(
-            "lib/Assets/images/cover1.jpg",
-            width: 600.0,
-            height: 180,
-            fit: BoxFit.cover,
+          SlideView(),
+          Container(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              child: CategoryProduct()
           ),
-          SubTittle(sub: "Kategori"),
-          CategoryProduct(),
-
+          Padding(
+            padding: const EdgeInsets.only(left: 25,right: 25, top: 10),
+            child: Row(
+              children: [
+                Text(
+                  'Recommended',
+                  style: nameHorizontalCardTextStyle,
+                ),
+                Spacer(),
+                TextButton(
+                  onPressed: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => PilihDesainer(),
+                    //   ),
+                    // );
+                  },
+                  child: Text('View All',
+                    style: ratingHorizontalCardTextStyle,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          GridViewProduk(),
         ],
       )),
     );

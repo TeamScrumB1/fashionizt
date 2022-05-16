@@ -18,7 +18,7 @@ class ProductCard extends StatelessWidget {
       elevation: 5,
       child: Column(
         children: [
-          SizedBox(height: 10),
+          SizedBox(height: 15),
           Image(
             fit: BoxFit.fill,
             width: 200,
