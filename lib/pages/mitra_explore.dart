@@ -36,7 +36,7 @@ class _MitraExploreState extends State<MitraExplore> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
           color: Colors.black,
-          onPressed: (){
+          onPressed: () {
             Navigator.pop(context);
           },
         ),
@@ -44,126 +44,138 @@ class _MitraExploreState extends State<MitraExplore> {
           'Fashionizt',
           style: titleApps,
         ),
-
         actions: <Widget>[
           IconButton(
-            onPressed: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CartScreen())
-              );
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CartScreen()));
             },
-            icon: const Icon(Icons.shopping_cart, size: 25,),
+            icon: const Icon(
+              Icons.shopping_cart,
+              size: 25,
+            ),
             color: Colors.black,
           ),
           IconButton(
-            onPressed: (){},
-            icon: const Icon(Icons.notifications_active,size: 25,),
+            onPressed: () {},
+            icon: const Icon(
+              Icons.notifications_active,
+              size: 25,
+            ),
             color: Colors.black,
           ),
         ],
       ),
       body: SingleChildScrollView(
           child: Column(
-            children: <Widget>[
-              Image.asset(
-                "lib/Assets/images/cover1.jpg",
-                width: 600.0,
-                height: 180,
-                fit: BoxFit.cover,
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 20.0, left: 31),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Image.asset(
+            "lib/Assets/images/cover1.jpg",
+            width: 600.0,
+            height: 180,
+            fit: BoxFit.cover,
+          ),
+          Container(
+            padding: EdgeInsets.all(1.0),
+            margin: EdgeInsets.only(top: 10.0, right: 30),
+          ),
+          Text(
+            "Explore Mitra Produksi",
+            textAlign: TextAlign.right,
+            style: Theme.of(context).textTheme.headline4!.copyWith(
+                  fontWeight: FontWeight.w800,
+                  color: Colors.black,
+                  fontSize: 25,
+                ),
+          ),
+          Container(
+            padding: EdgeInsets.all(1.0),
+            margin: EdgeInsets.only(top: 0, right: 30),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 15),
+            //     child: SubTittle(sub: "Kategori")
+          ),
+          CategoryProduct(),
+          Padding(
+            padding: EdgeInsets.only(top: 10.0, left: 31),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
-                    Text(
-                      "Explore Mitra Produksi",
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                        fontWeight: FontWeight.w800,
-                        color: Colors.black,
-                        fontSize: 25,
-                      ),
-                    ),
-                    Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: SubTittle(sub: "Kategori")
-                    ),
-                    CategoryProduct(),
-                    Row(
-                      children: [
-                        Text('Recommended',
+                    const Text('Recommended',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 13,
+                        )),
+                    Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 24),
+                      child: TextButton(
+                        style: TextButton.styleFrom(),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PilihKonveksi()));
+                        },
+                        child: Text('View All',
                             style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
+                              color: blackColor,
+                              fontWeight: FontWeight.w200,
                               fontSize: 13,
                             )),
-                        Spacer(),
-                        Padding(
-                          padding: EdgeInsets.only(right: 24),
-                          child: TextButton(
-                            style: TextButton.styleFrom(),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PilihKonveksi())
-                              );
-                            },
-                            child: Text('View All',
-                                style: TextStyle(
-                                  color: blackColor,
-                                  fontWeight: FontWeight.w200,
-                                  fontSize: 13,
-                                )),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                    Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          FutureBuilder(
-                            future: _konveksi,
-                            builder: (context, AsyncSnapshot<Konveksi> snapshot) {
-                              var state = snapshot.connectionState;
-                              if (state != ConnectionState.done) {
-                                return Center(child: CircularProgressIndicator());
-                              } else {
-                                if (snapshot.hasData) {
-                                  return ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: snapshot.data?.konveksi.length,
-                                    itemBuilder: (context, index) {
-                                      var konveksi = snapshot.data?.konveksi[index];
-                                      return InkWell(
-                                          onTap: () {
-                                            Navigator.push(context,
-                                                MaterialPageRoute(builder: (context) {
-                                                  return ProfileKonveksi(konveksi: konveksi!);
-                                                }));
-                                          },
-                                          child: VerListMit(konveksi: konveksi!)
-                                      );
-                                    },
-                                  );
-                                } else if (snapshot.hasError) {
-                                  return Center(child: Text(snapshot.error.toString()));
-                                } else {
-                                  return Text('');
-                                }
-                              }
-                            },
-                          )
-                        ]),
                   ],
                 ),
-              ),
-            ],
-          )),
+                Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      FutureBuilder(
+                        future: _konveksi,
+                        builder: (context, AsyncSnapshot<Konveksi> snapshot) {
+                          var state = snapshot.connectionState;
+                          if (state != ConnectionState.done) {
+                            return Center(child: CircularProgressIndicator());
+                          } else {
+                            if (snapshot.hasData) {
+                              return ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: snapshot.data?.konveksi.length,
+                                itemBuilder: (context, index) {
+                                  var konveksi = snapshot.data?.konveksi[index];
+                                  return InkWell(
+                                      onTap: () {
+                                        Navigator.push(context,
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return ProfileKonveksi(
+                                              konveksi: konveksi!);
+                                        }));
+                                      },
+                                      child: VerListMit(konveksi: konveksi!));
+                                },
+                              );
+                            } else if (snapshot.hasError) {
+                              return Center(
+                                  child: Text(snapshot.error.toString()));
+                            } else {
+                              return Text('');
+                            }
+                          }
+                        },
+                      )
+                    ]),
+              ],
+            ),
+          ),
+        ],
+      )),
     );
   }
 }

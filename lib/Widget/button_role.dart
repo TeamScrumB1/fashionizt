@@ -61,7 +61,7 @@ class ButtonRole extends StatelessWidget {
                               'Desainer',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold),
+                                  fontSize: 15, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -100,7 +100,7 @@ class ButtonRole extends StatelessWidget {
                               'Mall',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold),
+                                  fontSize: 15, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),

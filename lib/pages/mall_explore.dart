@@ -7,7 +7,6 @@ import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';
 import 'package:fashionizt/Widget/category_product.dart';
-
 import '../theme.dart';
 
 class MallExplore extends StatefulWidget {
