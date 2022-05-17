@@ -46,19 +46,9 @@ class DetailProduct extends StatelessWidget {
                   iconSize: 25.0,
                 ),
               ),
+
               Container(
-                width: size.width*0.3,
-                alignment: Alignment.center,
-                child: IconButton(
-                  onPressed: () {
-                    _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
-                  },
-                  icon: Icon(Icons.add_shopping_cart, color: Colors.black),
-                  iconSize: 25.0,
-                ),
-              ),
-              Container(
-                width: size.width*0.4,
+                width: size.width*0.7,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: Colors.red,
