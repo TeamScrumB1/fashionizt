@@ -33,7 +33,7 @@ TextStyle nameHorizontalCardTextStyle = TextStyle(
 
 TextStyle ratingHorizontalCardTextStyle = TextStyle(
   color: blackColor,
-  fontWeight: FontWeight.w300,
+  fontWeight: FontWeight.w400,
   fontSize: 13,
 );
 
@@ -45,7 +45,7 @@ TextStyle bioHorizontalCardTextStyle = TextStyle(
 TextStyle titleApps = TextStyle(
   fontSize: 23,
   fontWeight: FontWeight.bold,
-  color: Colors.black,
+  color: blush,
 );
 TextStyle nameProductTextStyle = TextStyle(
   color: blackColor,
@@ -83,3 +83,4 @@ AppBarTheme appBarTheme() {
     iconTheme: IconThemeData(color: Colors.black),
     );
 }
+

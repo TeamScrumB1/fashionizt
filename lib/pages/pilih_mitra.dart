@@ -35,7 +35,7 @@ class Pilih extends State<PilihKonveksi> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 5.0, left: 31),
+                padding: EdgeInsets.symmetric(horizontal: 25),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

@@ -62,26 +62,11 @@ class DetailProduct extends StatelessWidget {
                   color: Colors.red,
                 ),
                 child:  TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                   onPressed: () {
                     _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
                   },
-                  child: const Text('Buy Now'),
+                  child: const Text('Buy Now',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),),
                 ),
-                /*Text(
-                  'Buy Now',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),*/
               ),
             ],
           ),

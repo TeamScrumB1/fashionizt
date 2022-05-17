@@ -14,12 +14,11 @@ class VerListDes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(top: 16),
+        padding: EdgeInsets.only(top: 5),
         child:Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
-          margin: EdgeInsets.only(right: 24),
           color: lightYellowColor,
           elevation: 5,
           shadowColor: Colors.black,
@@ -32,7 +31,7 @@ class VerListDes extends StatelessWidget {
                         desainer.imgProfil),
                     radius: 40,
                   ),
-                  SizedBox(width: 43,),
+                  SizedBox(width: 40,),
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +50,7 @@ class VerListDes extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 25,),
+                        SizedBox(height: 15,),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -99,12 +98,11 @@ class VerListMit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(top: 16),
+        padding: EdgeInsets.only(top: 5),
         child:Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
-          margin: EdgeInsets.only(right: 24),
           color: fromCssColor('#FAF3E0'),
           elevation: 5,
           shadowColor: Colors.black,
@@ -117,7 +115,7 @@ class VerListMit extends StatelessWidget {
                         konveksi.imgProfil),
                     radius: 40,
                   ),
-                  SizedBox(width: 43,),
+                  SizedBox(width: 40,),
                   Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +134,7 @@ class VerListMit extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 25,),
+                        SizedBox(height: 15,),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
