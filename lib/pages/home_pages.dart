@@ -9,6 +9,8 @@ import 'package:fashionizt/Widget/horizontal_mit_listview.dart';
 import 'package:fashionizt/Widget/my_slideview.dart';
 import 'package:fashionizt/Widget/horizontal_des_listview.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../constants.dart';
 class HomePages extends StatelessWidget {
   const HomePages({Key? key}) : super(key: key);
 
@@ -52,12 +54,6 @@ class HomePages extends StatelessWidget {
               _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
             },
             icon: const Icon(Icons.shopping_cart, size: 25,),
-            color: Colors.black,
-            color: blush,
-          ),
-          IconButton(
-            onPressed: (){},
-            icon: const Icon(Icons.notifications_active,size: 25,),
             color: blush,
           ),
         ],
