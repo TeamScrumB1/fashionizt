@@ -1,5 +1,6 @@
 import 'package:fashionizt/Pages/desainer_explore.dart';
 import 'package:fashionizt/Pages/mitra_explore.dart';
+import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/mall_explore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class ButtonRole extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: blush,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
@@ -27,7 +28,7 @@ class ButtonRole extends StatelessWidget {
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(top:0, bottom: 5),
+            padding: const EdgeInsets.only(top:5, bottom: 5),
             child: Wrap(
               children: [
                 InkWell(
@@ -55,13 +56,14 @@ class ButtonRole extends StatelessWidget {
                                 'lib/Assets/svg/dress.svg',
                                 height: 100,
                                 width: 100,
+                                color: blacksand,
                               ),
                             ),
                             Text(
                               'Desainer',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold),
+                                  fontSize: 17, fontWeight: FontWeight.bold,color: blacksand,)
                             ),
                           ],
                         ),
@@ -94,13 +96,14 @@ class ButtonRole extends StatelessWidget {
                                 'lib/Assets/svg/marketplace.svg',
                                 height: 100,
                                 width: 100,
+                                color: blacksand,
                               ),
                             ),
                             Text(
                               'Mall',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold),
+                                  fontSize: 17, fontWeight: FontWeight.bold,color: blacksand),
                             ),
                           ],
                         ),
@@ -136,13 +139,14 @@ class ButtonRole extends StatelessWidget {
                                 'lib/Assets/svg/sewingmachine.svg',
                                 width: 100,
                                 height: 100,
+                                color: blacksand,
                               ),
                             ),
                             Text(
                               'Mitra Produksi',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                                  fontSize: 15, fontWeight: FontWeight.bold,color: blacksand),
                             ),
                           ],
                         ),

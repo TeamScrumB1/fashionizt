@@ -43,7 +43,7 @@ TextStyle bioHorizontalCardTextStyle = TextStyle(
   fontSize: 12,
 );
 TextStyle titleApps = TextStyle(
-  fontSize: 23,
+  fontSize: 20,
   fontWeight: FontWeight.bold,
   color: blush,
 );
@@ -52,7 +52,6 @@ TextStyle nameProductTextStyle = TextStyle(
   fontWeight: FontWeight.w600,
   fontSize: 17,
 );
-
 TextStyle priceProductTextStyle = TextStyle(
   color: blackColor,
   fontWeight: FontWeight.w600,
