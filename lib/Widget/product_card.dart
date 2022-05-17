@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/produk_model.dart';
+import 'package:fashionizt/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class ProductCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
-      elevation: 5,
+      elevation: 1,
       child: Column(
         children: [
           SizedBox(height: 15),
@@ -52,6 +53,8 @@ class ProductCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins',
+                            color: blacksand,
                           ),
                         ),
                       ),

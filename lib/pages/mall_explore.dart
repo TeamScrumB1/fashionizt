@@ -39,7 +39,7 @@ class _MallExploreState extends State<MallExplore> {
           },
         ),
         title: Text(
-          'Fashionizt Mall',
+          'Fashionizt',
           style: titleApps,
         ),
         actions: <Widget>[
@@ -68,10 +68,15 @@ class _MallExploreState extends State<MallExplore> {
           child: Column(
         children: <Widget>[
           SlideView(),
-          Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              child: CategoryProduct()
+          Text(
+            "Fashionizt Mall",
+            style: Theme.of(context).textTheme.headline4!.copyWith(
+              fontWeight: FontWeight.w800,
+              color: blacksand,
+              fontSize: 25,
+            ),
           ),
+          CategoryProduct(),
           Padding(
             padding: const EdgeInsets.only(left: 25,right: 25, top: 10),
             child: Row(
