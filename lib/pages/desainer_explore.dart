@@ -72,24 +72,27 @@ class _DesainerExploreState extends State<DesainerExplore> {
                 height: 180,
                 fit: BoxFit.cover,
               ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+              ),
+              Text(
+                "Explore Desainer",
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                  fontWeight: FontWeight.w800,
+                  color: Colors.black,
+                  fontSize: 25,
+                ),
+              ),
+              Container(
+                  margin: EdgeInsets.only(top: 10),
+                  //child: SubTittle(sub: "Kategori")
+              ),
+              CategoryProduct(),
               Padding(
                 padding: EdgeInsets.only(top: 20.0, left: 31),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Explore Desainer",
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                        fontWeight: FontWeight.w800,
-                        color: Colors.black,
-                        fontSize: 25,
-                      ),
-                    ),
-                    Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: SubTittle(sub: "Kategori")
-                    ),
-                    CategoryProduct(),
                     Row(
                       children: [
                         Text('Recommended',

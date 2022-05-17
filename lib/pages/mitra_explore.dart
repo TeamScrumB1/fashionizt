@@ -73,24 +73,28 @@ class _MitraExploreState extends State<MitraExplore> {
                 height: 180,
                 fit: BoxFit.cover,
               ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                //child: SubTittle(sub: "Kategori")
+              ),
+              Text(
+                "Explore Mitra Produksi",
+                style: Theme.of(context).textTheme.headline4!.copyWith(
+                  fontWeight: FontWeight.w800,
+                  color: Colors.black,
+                  fontSize: 25,
+                ),
+              ),
+              Container(
+                  margin: EdgeInsets.only(top: 10),
+                  //child: SubTittle(sub: "Kategori")
+              ),
+              CategoryProduct(),
               Padding(
                 padding: EdgeInsets.only(top: 20.0, left: 31),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Explore Mitra Produksi",
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
-                        fontWeight: FontWeight.w800,
-                        color: Colors.black,
-                        fontSize: 25,
-                      ),
-                    ),
-                    Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: SubTittle(sub: "Kategori")
-                    ),
-                    CategoryProduct(),
                     Row(
                       children: [
                         Text('Recommended',
