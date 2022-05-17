@@ -50,7 +50,9 @@ class DetailProduct extends StatelessWidget {
                 width: size.width*0.3,
                 alignment: Alignment.center,
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
+                  },
                   icon: Icon(Icons.add_shopping_cart, color: Colors.black),
                   iconSize: 25.0,
                 ),
@@ -90,19 +92,10 @@ class DetailProduct extends StatelessWidget {
         ),),
         actions: [
           IconButton(
-            onPressed: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CartScreen())
-              );
+            onPressed: () {
+              _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
             },
             icon: const Icon(Icons.shopping_cart, size: 25,),
-            color: Colors.black,
-          ),
-          IconButton(
-            onPressed: (){},
-            icon: const Icon(Icons.notifications_active,size: 25,),
             color: Colors.black,
           ),
         ],
