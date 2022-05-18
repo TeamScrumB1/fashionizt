@@ -1,7 +1,6 @@
 import 'package:fashionizt/Widget/button_role.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';
-import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,9 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/horizontal_mit_listview.dart';
 import 'package:fashionizt/Widget/my_slideview.dart';
 import 'package:fashionizt/Widget/horizontal_des_listview.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../constants.dart';
 class HomePages extends StatelessWidget {
   const HomePages({Key? key}) : super(key: key);
+
+  void _launchURL(String _url) async {
+    if (!await launch(_url)) throw 'Could not launch $_url';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,21 +50,18 @@ class HomePages extends StatelessWidget {
 
         actions: <Widget>[
           IconButton(
-            onPressed: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CartScreen())
-              );
+            onPressed: () {
+              _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
             },
             icon: const Icon(Icons.shopping_cart, size: 25,),
             color: blush,
           ),
-          IconButton(
-            onPressed: (){},
-            icon: const Icon(Icons.notifications_active,size: 25,),
-            color: blush,
-          ),
+          // IconButton(
+          //   onPressed: (){},
+          //   icon: const Icon(Icons.notifications_active,size: 25,),
+          //   color: blush,
+          // ),
+
         ],
       ),
       body: Container(
@@ -69,8 +71,16 @@ class HomePages extends StatelessWidget {
             ButtonRole(),
             SubTittle(sub: "Top Desainer"),
             HorDesListView(),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              //child: SubTittle(sub: "Kategori")
+            ),
             SubTittle(sub: "Top Mitra Produksi"),
             HorMitListView(),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              //child: SubTittle(sub: "Kategori")
+            ),
             SubTittle(sub: "Produk Rekomendasi",),
             GridViewProduk(),
           ],

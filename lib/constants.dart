@@ -11,8 +11,9 @@ Color darkYellowColor =Color(0xFFEABF9F);
 Color brownColor =Color(0xFFB68974);
 Color brown = fromCssColor('#874E4C');
 Color nude = fromCssColor('#E2B091');
-Color blacksand = fromCssColor('#3F3931');
-Color blush = fromCssColor('#EABCAC');
+Color blacksand = fromCssColor('#6F6059');
+Color blush = fromCssColor('#FAF3E0');
+
 // Color blush = Color(0xFFFAF3E0);
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
