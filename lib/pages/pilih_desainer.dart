@@ -34,7 +34,7 @@ class Pilih extends State<PilihDesainer> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 5.0, left: 31),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -48,7 +48,7 @@ class Pilih extends State<PilihDesainer> {
                             )),
                         Spacer(),
                         Padding(
-                          padding: EdgeInsets.only(right: 24),
+                          padding: EdgeInsets.symmetric(horizontal: 20),
                           child: TextButton(
                             style: TextButton.styleFrom(),
                             onPressed: () {},
