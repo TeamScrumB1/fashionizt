@@ -55,11 +55,11 @@ class HomePages extends StatelessWidget {
             icon: const Icon(Icons.shopping_cart, size: 25,),
             color: blush,
           ),
-          IconButton(
-            onPressed: (){},
-            icon: const Icon(Icons.notifications_active,size: 25,),
-            color: blush,
-          ),
+          // IconButton(
+          //   onPressed: (){},
+          //   icon: const Icon(Icons.notifications_active,size: 25,),
+          //   color: blush,
+          // ),
         ],
       ),
       body: Container(
@@ -69,8 +69,16 @@ class HomePages extends StatelessWidget {
             ButtonRole(),
             SubTittle(sub: "Top Desainer"),
             HorDesListView(),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              //child: SubTittle(sub: "Kategori")
+            ),
             SubTittle(sub: "Top Mitra Produksi"),
             HorMitListView(),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              //child: SubTittle(sub: "Kategori")
+            ),
             SubTittle(sub: "Produk Rekomendasi",),
             GridViewProduk(),
           ],

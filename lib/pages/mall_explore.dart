@@ -68,6 +68,10 @@ class _MallExploreState extends State<MallExplore> {
           child: Column(
         children: <Widget>[
           SlideView(),
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            //child: SubTittle(sub: "Kategori")
+          ),
           Text(
             "Fashionizt Mall",
             style: Theme.of(context).textTheme.headline4!.copyWith(
