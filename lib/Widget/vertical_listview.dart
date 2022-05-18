@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
+import 'package:fashionizt/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:from_css_color/from_css_color.dart';
-
 import '../theme.dart';
 
 class VerListDes extends StatelessWidget {
@@ -19,7 +18,7 @@ class VerListDes extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
-          color: lightYellowColor,
+          color: blush,
           elevation: 5,
           shadowColor: Colors.black,
           child: Padding(
@@ -63,7 +62,7 @@ class VerListDes extends StatelessWidget {
                                     Text(
                                       desainer.rating + '/5',
                                     ),
-                                    Icon(Icons.star_border, color: Colors.black),
+                                    Icon(Icons.star_border, color: blacksand),
                                   ],
                                 ),
                                 SizedBox(width: 10,),
@@ -73,7 +72,7 @@ class VerListDes extends StatelessWidget {
                                     Text(
                                       desainer.jmlhProject,
                                     ),
-                                    Icon(Icons.task_outlined, color: Colors.black),
+                                    Icon(Icons.task_outlined, color: blacksand),
                                   ],
                                 )
                               ],
@@ -103,7 +102,7 @@ class VerListMit extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
-          color: fromCssColor('#FAF3E0'),
+          color: blush,
           elevation: 5,
           shadowColor: Colors.black,
           child: Padding(
@@ -146,11 +145,11 @@ class VerListMit extends StatelessWidget {
                                   children: [
                                     Text(
                                       konveksi.rating + '/5',
-                                      // style:subtitleHorizontalCardTextStyle.copyWith(
-                                      //   fontSize: 10,
-                                      // ),
+                                      style: TextStyle(
+                                        color: blacksand
+                                      ),
                                     ),
-                                    Icon(Icons.star_border, color: Colors.black),
+                                    Icon(Icons.star_border, color: blacksand),
                                   ],
                                 ),
                                 SizedBox(width: 10,),
@@ -159,11 +158,11 @@ class VerListMit extends StatelessWidget {
                                   children: [
                                     Text(
                                       konveksi.jmlhProject,
-                                      // style:subtitleHorizontalCardTextStyle.copyWith(
-                                      //   fontSize: 10,
-                                      // ),
+                                      style: TextStyle(
+                                          color: blacksand
+                                      ),
                                     ),
-                                    Icon(Icons.task_outlined, color: Colors.black),
+                                    Icon(Icons.task_outlined, color: blacksand),
                                   ],
                                 )
                               ],

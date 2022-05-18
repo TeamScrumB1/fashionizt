@@ -2,7 +2,7 @@ import 'package:fashionizt/Pages/detail_desainer.dart';
 import 'package:fashionizt/Pages/pilih_desainer.dart';
 import 'package:fashionizt/Widget/vertical_listview.dart';
 import 'package:fashionizt/Widget/category_product.dart';
-import 'package:fashionizt/Widget/sub_tittle.dart';
+import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
@@ -34,11 +34,11 @@ class _DesainerExploreState extends State<DesainerExplore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: blacksand,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
-          color: Colors.black,
+          color: blush,
           onPressed: (){
             Navigator.pop(context);
           },
@@ -53,8 +53,13 @@ class _DesainerExploreState extends State<DesainerExplore> {
               _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
             },
             icon: const Icon(Icons.shopping_cart, size: 25,),
-            color: Colors.black,
+            color: blush,
           ),
+//           IconButton(
+//             onPressed: (){},
+//             icon: const Icon(Icons.notifications_active,size: 25,),
+//             color: blush,
+//           ),
         ],
       ),
       body: SingleChildScrollView(
@@ -73,7 +78,7 @@ class _DesainerExploreState extends State<DesainerExplore> {
                 "Explore Desainer",
                 style: Theme.of(context).textTheme.headline4!.copyWith(
                   fontWeight: FontWeight.w800,
-                  color: Colors.black,
+                  color: blacksand,
                   fontSize: 25,
                 ),
               ),
@@ -83,7 +88,7 @@ class _DesainerExploreState extends State<DesainerExplore> {
               ),
               CategoryProduct(),
               Padding(
-                padding: EdgeInsets.only(top: 20.0, left: 31),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -91,14 +96,12 @@ class _DesainerExploreState extends State<DesainerExplore> {
                       children: [
                         Text('Recommended',
                             style: TextStyle(
-                              color: blackColor,
+                              color: blacksand,
                               fontWeight: FontWeight.w500,
                               fontSize: 13,
                             )),
                         Spacer(),
-                        Padding(
-                          padding: EdgeInsets.only(right: 24),
-                          child: TextButton(
+                        TextButton(
                             style: TextButton.styleFrom(),
                             onPressed: () {
                               Navigator.push(
@@ -109,12 +112,11 @@ class _DesainerExploreState extends State<DesainerExplore> {
                             },
                             child: Text('View All',
                                 style: TextStyle(
-                                  color: blackColor,
+                                  color: blacksand,
                                   fontWeight: FontWeight.w200,
                                   fontSize: 13,
                                 )),
                           ),
-                        ),
                       ],
                     ),
                     Column(

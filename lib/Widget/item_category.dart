@@ -1,3 +1,4 @@
+import 'package:fashionizt/constants.dart';
 import 'package:flutter/material.dart';
 
 class ItemCategory extends StatelessWidget {
@@ -30,7 +31,12 @@ class ItemCategory extends StatelessWidget {
                 ),
               ),
             ),
-            Text(nama),
+            Text(
+              nama,
+              style: TextStyle(
+                color: blacksand
+              ),
+            ),
           ],
         ),
       ),
