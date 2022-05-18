@@ -7,7 +7,7 @@ import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
 import 'package:fashionizt/Api/api_short_desainer.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../theme.dart';
 
 class DesainerExplore extends StatefulWidget {
@@ -18,6 +18,9 @@ class DesainerExplore extends StatefulWidget {
 }
 
 class _DesainerExploreState extends State<DesainerExplore> {
+  void _launchURL(String _url) async {
+    if (!await launch(_url)) throw 'Could not launch $_url';
+  }
   @override
   late Future<Desainer> _desainer;
 
@@ -46,21 +49,17 @@ class _DesainerExploreState extends State<DesainerExplore> {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CartScreen())
-              );
+            onPressed: () {
+              _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
             },
             icon: const Icon(Icons.shopping_cart, size: 25,),
             color: blush,
           ),
-          IconButton(
-            onPressed: (){},
-            icon: const Icon(Icons.notifications_active,size: 25,),
-            color: blush,
-          ),
+//           IconButton(
+//             onPressed: (){},
+//             icon: const Icon(Icons.notifications_active,size: 25,),
+//             color: blush,
+//           ),
         ],
       ),
       body: SingleChildScrollView(
