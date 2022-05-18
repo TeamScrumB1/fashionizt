@@ -72,7 +72,7 @@ class _DesainerExploreState extends State<DesainerExplore> {
                 fit: BoxFit.cover,
               ),
               Container(
-                margin: EdgeInsets.only(top: 10),
+                margin: EdgeInsets.only(top: 20),
               ),
               Text(
                 "Explore Desainer",

@@ -44,7 +44,7 @@ class _MallExploreState extends State<MallExplore> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
-          color: nude,
+          color: blush,
           onPressed: () {
             Navigator.pop(context);
           },

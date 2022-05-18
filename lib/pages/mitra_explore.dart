@@ -73,7 +73,7 @@ class _MitraExploreState extends State<MitraExplore> {
                 fit: BoxFit.cover,
               ),
               Container(
-                margin: EdgeInsets.only(top: 10),
+                margin: EdgeInsets.only(top: 20),
                 //child: SubTittle(sub: "Kategori")
               ),
               Text(

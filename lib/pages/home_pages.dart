@@ -68,7 +68,7 @@ class HomePages extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             SlideView(),
-            ButtonRole(),
+            Role(),
             SubTittle(sub: "Top Desainer"),
             HorDesListView(),
             Container(

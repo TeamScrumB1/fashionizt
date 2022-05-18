@@ -24,9 +24,10 @@ class SlideView extends StatelessWidget {
         ),
         items: imgList.map((item) => Container(
           child: Container(
-            margin: EdgeInsets.all(4.0),
+            margin: EdgeInsets.all(15.0),
+            padding: EdgeInsets.only(top: 12),
             child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                borderRadius: BorderRadius.all(Radius.circular(12)),
                 child: Stack(
                   children: <Widget>[
                     Image.network(item, fit: BoxFit.cover, width: 1000.0),

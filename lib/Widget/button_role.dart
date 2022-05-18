@@ -1,162 +1,77 @@
-import 'package:fashionizt/Pages/desainer_explore.dart';
-import 'package:fashionizt/Pages/mitra_explore.dart';
 import 'package:fashionizt/constants.dart';
-import 'package:fashionizt/pages/mall_explore.dart';
+import 'package:fashionizt/size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fashionizt/Pages/desainer_explore.dart';
+import 'package:fashionizt/Pages/mitra_explore.dart';
+import 'package:fashionizt/pages/mall_explore.dart';
 
-class ButtonRole extends StatelessWidget {
-  const ButtonRole({Key? key}) : super(key: key);
+
+class Role extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    List<Map<String, dynamic>> role = [
+      {"icon": "lib/Assets/svg/desainer.svg", "text": "Desainer", "press": DesainerExplore()},
+      {"icon": "lib/Assets/svg/mall.svg", "text": "Marketplace", "press": MallExplore()},
+      {"icon": "lib/Assets/svg/sewing.svg", "text": "Mitra Produksi", "press": MitraExplore()},
+    ];
+    return Padding(
+      padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: List.generate(
+          role.length,
+              (index) => RoleCard(
+            icon: role[index]["icon"],
+            text: role[index]["text"],
+            press: () {
+              Navigator.push(context, MaterialPageRoute(builder: ((context){
+                return role[index]["press"];
+              })));
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class RoleCard extends StatelessWidget {
+  const RoleCard({
+    Key? key,
+    required this.icon,
+    required this.text,
+    required this.press,
+  }) : super(key: key);
+
+  final String? icon, text;
+  final GestureTapCallback press;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        decoration: BoxDecoration(
-          color: blush,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(0,1),
+    return GestureDetector(
+      onTap: press,
+      child: SizedBox(
+        width: getProportionateScreenWidth(100),
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(getProportionateScreenWidth(10)),
+              height: getProportionateScreenWidth(65),
+              width: getProportionateScreenWidth(65),
+              decoration: BoxDecoration(
+                color: blush,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: SvgPicture.asset(icon!),
             ),
+            SizedBox(height: 10),
+            Text(text!, textAlign: TextAlign.center)
           ],
-        ),
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.only(top:5, bottom: 5),
-            child: Wrap(
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return DesainerExplore();
-                    }));
-                  },
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
-                    decoration: BoxDecoration(
-                      // color: Color(0xd6d6d6d6),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        width: 80,
-                        child: Column(
-                          children: [
-                            AspectRatio(
-                              aspectRatio: 1,
-                              child: SvgPicture.asset(
-                                'lib/Assets/svg/dress.svg',
-                                height: 100,
-                                width: 100,
-                                color: blacksand,
-                              ),
-                            ),
-                            Text(
-                              'Desainer',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold,color: blacksand,)
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return MallExplore();
-                    }));
-                  },
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
-                    decoration: BoxDecoration(
-                      // color: Color(0xd6d6d6d6),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        width: 80,
-                        child: Column(
-                          children: [
-                            AspectRatio(
-                              aspectRatio: 1,
-                              child: SvgPicture.asset(
-                                'lib/Assets/svg/marketplace.svg',
-                                height: 100,
-                                width: 100,
-                                color: blacksand,
-                              ),
-                            ),
-                            Text(
-                              'Mall',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold,color: blacksand),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(
-                            builder: ((context){
-                              return MitraExplore();
-                            })
-                        )
-                    );
-                  },
-                  child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        width: 70,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            AspectRatio(
-                              aspectRatio: 1,
-                              child: SvgPicture.asset(
-                                'lib/Assets/svg/sewingmachine.svg',
-                                width: 100,
-                                height: 100,
-                                color: blacksand,
-                              ),
-                            ),
-                            Text(
-                              'Mitra Produksi',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold,color: blacksand),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
         ),
       ),
     );
