@@ -49,7 +49,7 @@ class Pilih extends State<PilihKonveksi> {
                             )),
                         Spacer(),
                         Padding(
-                          padding: EdgeInsets.only(right: 24),
+                          padding: EdgeInsets.symmetric(horizontal: 20),
                           child: TextButton(
                             style: TextButton.styleFrom(),
                             onPressed: () {},
