@@ -49,3 +49,16 @@ OutlineInputBorder outlineInputBorder() {
     borderSide: BorderSide(color: kTextColor),
   );
 }
+
+// Repeated code for TextField
+InputDecoration kTextFiledInputDecoration = InputDecoration(
+  focusedBorder: UnderlineInputBorder(
+    borderSide: BorderSide(color: blush),
+  ),
+  enabledBorder: UnderlineInputBorder(
+    borderSide: BorderSide(color: blush, width: 2),
+  ),
+  labelText: "Username",
+  labelStyle:
+  TextStyle(color: blush, fontSize: 18, fontWeight: FontWeight.w700),
+);
