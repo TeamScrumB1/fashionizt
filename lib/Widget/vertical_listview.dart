@@ -19,10 +19,10 @@ class VerListDes extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
           ),
           color: blush,
-          elevation: 5,
+          elevation: 3,
           shadowColor: Colors.black,
           child: Padding(
-              padding: EdgeInsets.only(top: 13, left: 30, bottom: 13),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child:Row(
                 children:[
                   CircleAvatar(
@@ -59,20 +59,20 @@ class VerListDes extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
+                                    Icon(Icons.star_border, color: blacksand),
                                     Text(
                                       desainer.rating + '/5',
                                     ),
-                                    Icon(Icons.star_border, color: blacksand),
                                   ],
                                 ),
                                 SizedBox(width: 10,),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
+                                    Icon(Icons.task_outlined, color: blacksand),
                                     Text(
                                       desainer.jmlhProject,
                                     ),
-                                    Icon(Icons.task_outlined, color: blacksand),
                                   ],
                                 )
                               ],
@@ -103,10 +103,10 @@ class VerListMit extends StatelessWidget {
             borderRadius: BorderRadius.circular(15.0),
           ),
           color: blush,
-          elevation: 5,
+          elevation: 3,
           shadowColor: Colors.black,
           child: Padding(
-              padding: EdgeInsets.only(top: 13, left: 30, bottom: 13),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child:Row(
                 children:[
                   CircleAvatar(

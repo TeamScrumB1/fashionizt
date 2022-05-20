@@ -47,7 +47,6 @@ class _MitraExploreState extends State<MitraExplore> {
           'Fashionizt',
           style: titleApps,
         ),
-
         actions: <Widget>[
           IconButton(
             onPressed: () {

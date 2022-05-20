@@ -1,4 +1,5 @@
 import 'package:fashionizt/pages/home_pages.dart';
+import 'package:fashionizt/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -14,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
    super.initState();
    Timer(Duration(seconds: 3),() {
      Navigator.pushReplacement(
-         context, MaterialPageRoute(builder: (context) => HomePages()));
+         context, MaterialPageRoute(builder: (context) => LoginScreen()));
    });
   }
 
