@@ -22,7 +22,7 @@ class CardDesProfile extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(13),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
                 child: CircleAvatar(
@@ -36,6 +36,7 @@ class CardDesProfile extends StatelessWidget {
               desainer.nama,
               style: nameHorizontalCardTextStyle,
             ),
+            SizedBox(height: 5),
             Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -49,6 +50,7 @@ class CardDesProfile extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 5),
             Text(
               desainer.bio,
               style: bioHorizontalCardTextStyle,

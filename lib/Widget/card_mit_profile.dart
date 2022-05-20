@@ -22,7 +22,7 @@ class CardMitProfile extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(13),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
                 child: CircleAvatar(
@@ -32,10 +32,12 @@ class CardMitProfile extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 0),
             Text(
               konveksi.nama,
               style: nameHorizontalCardTextStyle,
             ),
+            SizedBox(height: 5),
             Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -49,6 +51,7 @@ class CardMitProfile extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 5),
             Text(
               konveksi.bio,
               style: bioHorizontalCardTextStyle,

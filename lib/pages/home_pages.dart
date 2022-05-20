@@ -66,22 +66,22 @@ class HomePages extends StatelessWidget {
       ),
       body: Container(
         child: ListView(
-          children: <Widget>[
+          children: [
             SlideView(),
             Role(),
             SubTittle(sub: "Top Desainer"),
             HorDesListView(),
             Container(
-              margin: EdgeInsets.only(top: 10),
+              margin: EdgeInsets.only(top: 20),
               //child: SubTittle(sub: "Kategori")
             ),
             SubTittle(sub: "Top Mitra Produksi"),
             HorMitListView(),
             Container(
-              margin: EdgeInsets.only(top: 10),
+              margin: EdgeInsets.only(top: 20),
               //child: SubTittle(sub: "Kategori")
             ),
-            SubTittle(sub: "Produk Rekomendasi",),
+            SubTittle(sub: "Rekomendasi Produk",),
             GridViewProduk(),
           ],
         ),

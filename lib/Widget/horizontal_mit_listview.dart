@@ -22,7 +22,8 @@ class _HorMitListViewState extends State<HorMitListView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
+      height: 275,
+      padding: EdgeInsets.only(left: 10),
       child: FutureBuilder(
         future: _konveksi,
         builder: (context, AsyncSnapshot<Konveksi> snapshot){

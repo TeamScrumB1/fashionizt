@@ -26,19 +26,19 @@ TextStyle subtitleVerticalCardTextStyle = TextStyle(
 
 //card homepage
 TextStyle nameHorizontalCardTextStyle = TextStyle(
-  color: blacksand,
+  color: blackColor,
   fontWeight: FontWeight.w600,
-  fontSize: 15,
+  fontSize: 16,
 );
 
 TextStyle ratingHorizontalCardTextStyle = TextStyle(
-  color: blacksand,
+  color: Colors.black,
   fontWeight: FontWeight.w400,
   fontSize: 13,
 );
 
 TextStyle bioHorizontalCardTextStyle = TextStyle(
-  color: blacksand,
+  color: blackColor,
   fontWeight: FontWeight.w400,
   fontSize: 12,
 );
@@ -55,7 +55,7 @@ TextStyle nameProductTextStyle = TextStyle(
 TextStyle priceProductTextStyle = TextStyle(
   color: blackColor,
   fontWeight: FontWeight.w600,
-  fontSize: 17,
+  fontSize: 16,
 );
 
 ThemeData theme() {
