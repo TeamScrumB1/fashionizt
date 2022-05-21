@@ -1,11 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fashionizt/Models/desainer_model.dart';
-import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:from_css_color/from_css_color.dart';
 import 'package:fashionizt/animation/animations.dart';
 import 'package:fashionizt/pages/signup_screen.dart';
 import '../constants.dart';
@@ -33,14 +28,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                           child: Column(
                             children: [
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 50),
+                                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
                               ), // Top Text
                               Container(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                padding: EdgeInsets.symmetric(horizontal: 30),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -136,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 ),
                                               ),
                                               Text(
-                                                "OR",
+                                                "OR  ",
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   color: blush,

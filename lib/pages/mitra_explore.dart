@@ -7,6 +7,7 @@ import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/category_product.dart';
+import 'package:fashionizt/Widget/mitra_slideview.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../theme.dart';
 
@@ -66,12 +67,7 @@ class _MitraExploreState extends State<MitraExplore> {
       body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Image.asset(
-                "lib/Assets/images/cover1.jpg",
-                width: 600.0,
-                height: 180,
-                fit: BoxFit.cover,
-              ),
+              MitraSlideView(),
               Container(
                 margin: EdgeInsets.only(top: 20),
                 //child: SubTittle(sub: "Kategori")

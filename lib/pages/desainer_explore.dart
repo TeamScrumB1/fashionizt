@@ -1,5 +1,6 @@
 import 'package:fashionizt/Pages/detail_desainer.dart';
 import 'package:fashionizt/Pages/pilih_desainer.dart';
+import 'package:fashionizt/Widget/desainer_slideview.dart';
 import 'package:fashionizt/Widget/vertical_listview.dart';
 import 'package:fashionizt/Widget/category_product.dart';
 import 'package:fashionizt/constants.dart';
@@ -65,12 +66,7 @@ class _DesainerExploreState extends State<DesainerExplore> {
       body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Image.asset(
-                "lib/Assets/images/cover.jpg",
-                width: 600.0,
-                height: 180,
-                fit: BoxFit.cover,
-              ),
+              DesainerSlideView(),
               Container(
                 margin: EdgeInsets.only(top: 20),
               ),

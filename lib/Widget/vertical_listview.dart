@@ -62,7 +62,7 @@ class VerListDes extends StatelessWidget {
                                     Text(
                                       desainer.rating + '/5',
                                     ),
-                                    Icon(Icons.star_border, color: Colors.black),
+                                    Icon(Icons.star_border, color: Colors.black, size: 18),
                                   ],
                                 ),
                                 SizedBox(width: 10,),
@@ -70,9 +70,9 @@ class VerListDes extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      desainer.jmlhProject,
+                                      desainer.jmlhProject+ ' ',
                                     ),
-                                    Icon(Icons.task_outlined, color: blacksand),
+                                    Icon(Icons.task_outlined, color: Colors.black, size: 18),
                                   ],
                                 )
                               ],
@@ -149,7 +149,7 @@ class VerListMit extends StatelessWidget {
                                         color: Colors.black,
                                       ),
                                     ),
-                                    Icon(Icons.star_border, color: Colors.black),
+                                    Icon(Icons.star_border, color: Colors.black, size: 18),
                                   ],
                                 ),
                                 SizedBox(width: 10,),
@@ -162,7 +162,7 @@ class VerListMit extends StatelessWidget {
                                           color: Colors.black,
                                       ),
                                     ),
-                                    Icon(Icons.task_outlined, color: Colors.black),
+                                    Icon(Icons.task_outlined, color: Colors.black, size: 18),
                                   ],
                                 )
                               ],

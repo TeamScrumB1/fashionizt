@@ -69,7 +69,7 @@ class ProductCard extends StatelessWidget {
                           Icon(
                             Icons.star,
                             size: 20.0,
-                            color: Colors.yellow,
+                            color: Colors.amber,
                           ),
                           Text(produk.rating, style: ratingHorizontalCardTextStyle,),
                         ],
