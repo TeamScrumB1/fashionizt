@@ -47,6 +47,7 @@ class _MitraExploreState extends State<MitraExplore> {
           'Fashionizt',
           style: titleApps,
         ),
+
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -98,8 +99,8 @@ class _MitraExploreState extends State<MitraExplore> {
                         Text('Recommended',
                             style: TextStyle(
                               color: blacksand,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
                             )),
                         Spacer(),
                         TextButton(
@@ -114,8 +115,8 @@ class _MitraExploreState extends State<MitraExplore> {
                             child: Text('View All',
                                 style: TextStyle(
                                   color: blacksand,
-                                  fontWeight: FontWeight.w200,
-                                  fontSize: 13,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 14,
                                 )),
                           ),
                       ],

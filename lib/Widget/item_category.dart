@@ -35,7 +35,7 @@ class ItemCategory extends StatelessWidget {
             Text(
               nama,
               style: TextStyle(
-                color: blacksand
+                color: Colors.black,
               ),
             ),
           ],

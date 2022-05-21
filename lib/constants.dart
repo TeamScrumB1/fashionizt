@@ -4,11 +4,12 @@ import 'package:from_css_color/from_css_color.dart';
 
 const kPrimaryColor = Color(0xFFFF7643);
 const kPrimaryLightColor = Color(0xFFFFECDF);
-Color whiteColor = Color(0xffFBFBFB);
-Color blackColor = Color(0xff000000);
-Color lightYellowColor = Color(0xffFAF3E0);
-Color darkYellowColor = Color(0xFFEABF9F);
-Color brownColor = Color(0xFFB68974);
+Color greyy =Color(0xd8e0e0e0);
+Color darkgrey =Color(0xd8686868);
+Color blackColor =Color(0xff000000);
+Color lightYellowColor =Color(0xffFAF3E0);
+Color darkYellowColor =Color(0xFFEABF9F);
+Color brownColor =Color(0xFFB68974);
 Color brown = fromCssColor('#874E4C');
 Color nude = fromCssColor('#E2B091');
 Color blacksand = fromCssColor('#6F6059');
@@ -50,7 +51,6 @@ OutlineInputBorder outlineInputBorder() {
   );
 }
 
-// Repeated code for TextField
 InputDecoration kTextFiledInputDecoration = InputDecoration(
   focusedBorder: UnderlineInputBorder(
     borderSide: BorderSide(color: blush),
@@ -60,5 +60,5 @@ InputDecoration kTextFiledInputDecoration = InputDecoration(
   ),
   labelText: "Username",
   labelStyle:
-      TextStyle(color: blush, fontSize: 18, fontWeight: FontWeight.w700),
+  TextStyle(color: blush, fontSize: 18, fontWeight: FontWeight.w700),
 );

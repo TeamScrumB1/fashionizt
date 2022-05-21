@@ -18,11 +18,11 @@ class VerListDes extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
-          color: blush,
-          elevation: 3,
+          color: whiteColor,
+          elevation: 1,
           shadowColor: Colors.black,
           child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: EdgeInsets.only(top: 13, left: 30, bottom: 13),
               child:Row(
                 children:[
                   CircleAvatar(
@@ -59,20 +59,20 @@ class VerListDes extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Icon(Icons.star_border, color: blacksand),
                                     Text(
                                       desainer.rating + '/5',
                                     ),
+                                    Icon(Icons.star_border, color: Colors.black),
                                   ],
                                 ),
                                 SizedBox(width: 10,),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Icon(Icons.task_outlined, color: blacksand),
                                     Text(
                                       desainer.jmlhProject,
                                     ),
+                                    Icon(Icons.task_outlined, color: blacksand),
                                   ],
                                 )
                               ],
@@ -102,11 +102,11 @@ class VerListMit extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
-          color: blush,
-          elevation: 3,
+          color: whiteColor,
+          elevation: 1,
           shadowColor: Colors.black,
           child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: EdgeInsets.only(top: 13, left: 30, bottom: 13),
               child:Row(
                 children:[
                   CircleAvatar(
@@ -146,10 +146,10 @@ class VerListMit extends StatelessWidget {
                                     Text(
                                       konveksi.rating + '/5',
                                       style: TextStyle(
-                                        color: blacksand
+                                        color: Colors.black,
                                       ),
                                     ),
-                                    Icon(Icons.star_border, color: blacksand),
+                                    Icon(Icons.star_border, color: Colors.black),
                                   ],
                                 ),
                                 SizedBox(width: 10,),
@@ -159,10 +159,10 @@ class VerListMit extends StatelessWidget {
                                     Text(
                                       konveksi.jmlhProject,
                                       style: TextStyle(
-                                          color: blacksand
+                                          color: Colors.black,
                                       ),
                                     ),
-                                    Icon(Icons.task_outlined, color: blacksand),
+                                    Icon(Icons.task_outlined, color: Colors.black),
                                   ],
                                 )
                               ],
