@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
+import 'package:fashionizt/Widget/gridview_feeds.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:from_css_color/from_css_color.dart';
@@ -23,7 +24,7 @@ class DetailKonveksi extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
         ),
-        title: Text('Profil Desainer',
+        title: Text('Profil Garment',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w600,
@@ -96,17 +97,11 @@ class DetailKonveksi extends StatelessWidget {
                       const Icon(Icons.task_outlined, color: Colors.black),
                     ], // <Widget>[]
                   ),
-                ],
-              ), // Row
-            ),//Container Icon
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
                   Row(
                     children: <Widget> [
+                      Container(padding: EdgeInsets.symmetric(horizontal: 15),
+                      ),
                       SizedBox.fromSize(
-                        size: Size(56, 56),
                         child: ClipOval(
                           child: Material(
                             color: fromCssColor('#FAF3E0'),
@@ -119,7 +114,7 @@ class DetailKonveksi extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Icon(
-                                      Icons.whatsapp,
+                                      Icons.chat_outlined,
                                       size: 35.0), // <-- Icon
                                 ],
                               ),
@@ -129,66 +124,76 @@ class DetailKonveksi extends StatelessWidget {
                       )
                     ], // <Widget>[]
                   ),
-                  SizedBox(width: 25),
-                  Row(
-                    children: <Widget> [
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          primary: Colors.black,
-                          backgroundColor: fromCssColor('#FAF3E0'),
-                          elevation: 5,
-                          shadowColor: Colors.black,
-                        ),
-                        onPressed: () => _launchURL(konveksi.linkPorto),
-                        child: Text('Portofolio'),
-                      ),
-                    ], // <Widget>[]
-                  ),
                 ],
-              ), // Row
+              ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 20.0, left: 30.0),
-              child: Row(
-                children: <Widget>[
-                  Row(
-                    children: <Widget> [
-                      Text(
-                        'Pengalaman',
-                        style: const TextStyle(
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                    ], // <Widget>[]
-                  ),
-                ],
-              ), // Row
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 10.0, left: 30.0),
-              child: Row(
-                children: <Widget>[
-                  Column(
-                    children: <Widget> [
-                      for (int i = 0; i < 8; i++)
-                        Text(
-                          'Designer Paris Fashion Week 2022', //ini belum bener ya
-                          style: const TextStyle(
-                            fontSize: 13.0,
-                            fontWeight: FontWeight.w300,
-                            fontFamily: 'Poppins',
-                          ),
-                        ),
-                    ],
-                  ),
-                ],
-              ), // Row
-            ),
+              child: GridViewFeeds(),
+            ),//Container Icon
+            // Container(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: <Widget>[
+            //       SizedBox(width: 25),
+            //       Row(
+            //         children: <Widget> [
+            //           TextButton(
+            //             style: TextButton.styleFrom(
+            //               shape: RoundedRectangleBorder(
+            //                 borderRadius: BorderRadius.circular(10.0),
+            //               ),
+            //               primary: Colors.black,
+            //               backgroundColor: fromCssColor('#FAF3E0'),
+            //               elevation: 5,
+            //               shadowColor: Colors.black,
+            //             ),
+            //             onPressed: () => _launchURL(konveksi.linkPorto),
+            //             child: Text('Portofolio'),
+            //           ),
+            //         ], // <Widget>[]
+            //       ),
+            //     ],
+            //   ), // Row
+            // ),
+            // Container(
+            //   margin: const EdgeInsets.only(top: 20.0, left: 30.0),
+            //   child: Row(
+            //     children: <Widget>[
+            //       Row(
+            //         children: <Widget> [
+            //           Text(
+            //             'Pengalaman',
+            //             style: const TextStyle(
+            //               fontSize: 15.0,
+            //               fontWeight: FontWeight.w400,
+            //               fontFamily: 'Poppins',
+            //             ),
+            //           ),
+            //         ], // <Widget>[]
+            //       ),
+            //     ],
+            //   ), // Row
+            // ),
+            // Container(
+            //   margin: const EdgeInsets.only(top: 10.0, left: 30.0),
+            //   child: Row(
+            //     children: <Widget>[
+            //       Column(
+            //         children: <Widget> [
+            //           for (int i = 0; i < 8; i++)
+            //             Text(
+            //               'Designer Paris Fashion Week 2022', //ini belum bener ya
+            //               style: const TextStyle(
+            //                 fontSize: 13.0,
+            //                 fontWeight: FontWeight.w300,
+            //                 fontFamily: 'Poppins',
+            //               ),
+            //             ),
+            //         ],
+            //       ),
+            //     ],
+            //   ), // Row
+            // ),
           ],
         ),
       ),
@@ -288,13 +293,6 @@ class ProfileKonveksi extends StatelessWidget {
                       const Icon(Icons.task_outlined, color: Colors.black),
                     ], // <Widget>[]
                   ),
-                ],
-              ), // Row
-            ),//Container Icon
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
                   Row(
                     children: <Widget> [
                       SizedBox.fromSize(
@@ -311,7 +309,7 @@ class ProfileKonveksi extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Icon(
-                                      Icons.whatsapp,
+                                      Icons.chat_outlined,
                                       size: 35.0), // <-- Icon
                                 ],
                               ),
@@ -319,68 +317,105 @@ class ProfileKonveksi extends StatelessWidget {
                           ),
                         ),
                       )
-                    ], // <Widget>[]
-                  ),
-                  SizedBox(width: 25),
-                  Row(
-                    children: <Widget> [
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          primary: Colors.black,
-                          backgroundColor: fromCssColor('#FAF3E0'),
-                          elevation: 5,
-                          shadowColor: Colors.black,
-                        ),
-                        onPressed: () => _launchURL(konveksi.linkPorto),
-                        child: Text('Portofolio'),
-                      ),
-                    ], // <Widget>[]
-                  ),
-                ],
-              ), // Row
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 20.0, left: 30.0),
-              child: Row(
-                children: <Widget>[
-                  Row(
-                    children: <Widget> [
-                      Text(
-                        'Pengalaman',
-                        style: const TextStyle(
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                    ], // <Widget>[]
-                  ),
-                ],
-              ), // Row
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 10.0, left: 30.0),
-              child: Row(
-                children: <Widget>[
-                  Column(
-                    children: <Widget> [
-                      for (int i = 0; i < 8; i++)
-                        Text(
-                          'Produksi PDH Pegawai Shopee 2022', //ini belum bener ya
-                          style: const TextStyle(
-                            fontSize: 13.0,
-                            fontWeight: FontWeight.w300,
-                            fontFamily: 'Poppins',
-                          ),
-                        ),
                     ],
                   ),
                 ],
               ), // Row
             ),
+            Container(
+              child: GridViewFeeds(),
+            ),
+            //Container Icon
+            // Container(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: <Widget>[
+            //       Row(
+            //         children: <Widget> [
+            //           SizedBox.fromSize(
+            //             size: Size(56, 56),
+            //             child: ClipOval(
+            //               child: Material(
+            //                 color: fromCssColor('#FAF3E0'),
+            //                 elevation: 5,
+            //                 shadowColor: Colors.black,
+            //                 child: InkWell(
+            //                   splashColor: Colors.grey,
+            //                   onTap: () => _launchURL(konveksi.linkWa),
+            //                   child: Column(
+            //                     mainAxisAlignment: MainAxisAlignment.center,
+            //                     children: <Widget>[
+            //                       Icon(
+            //                           Icons.whatsapp,
+            //                           size: 35.0), // <-- Icon
+            //                     ],
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //           )
+            //         ], // <Widget>[]
+            //       ),
+            //       SizedBox(width: 25),
+            //       Row(
+            //         children: <Widget> [
+            //           TextButton(
+            //             style: TextButton.styleFrom(
+            //               shape: RoundedRectangleBorder(
+            //                 borderRadius: BorderRadius.circular(10.0),
+            //               ),
+            //               primary: Colors.black,
+            //               backgroundColor: fromCssColor('#FAF3E0'),
+            //               elevation: 5,
+            //               shadowColor: Colors.black,
+            //             ),
+            //             onPressed: () => _launchURL(konveksi.linkPorto),
+            //             child: Text('Portofolio'),
+            //           ),
+            //         ], // <Widget>[]
+            //       ),
+            //     ],
+            //   ), // Row
+            // ),
+            // Container(
+            //   margin: const EdgeInsets.only(top: 20.0, left: 30.0),
+            //   child: Row(
+            //     children: <Widget>[
+            //       Row(
+            //         children: <Widget> [
+            //           Text(
+            //             'Pengalaman',
+            //             style: const TextStyle(
+            //               fontSize: 15.0,
+            //               fontWeight: FontWeight.w400,
+            //               fontFamily: 'Poppins',
+            //             ),
+            //           ),
+            //         ], // <Widget>[]
+            //       ),
+            //     ],
+            //   ), // Row
+            // ),
+            // Container(
+            //   margin: const EdgeInsets.only(top: 10.0, left: 30.0),
+            //   child: Row(
+            //     children: <Widget>[
+            //       Column(
+            //         children: <Widget> [
+            //           for (int i = 0; i < 8; i++)
+            //             Text(
+            //               'Produksi PDH Pegawai Shopee 2022', //ini belum bener ya
+            //               style: const TextStyle(
+            //                 fontSize: 13.0,
+            //                 fontWeight: FontWeight.w300,
+            //                 fontFamily: 'Poppins',
+            //               ),
+            //             ),
+            //         ],
+            //       ),
+            //     ],
+            //   ), // Row
+            // ),
           ],
         ),
       ),

@@ -8,9 +8,9 @@ import 'package:from_css_color/from_css_color.dart';
 
 import '../constants.dart';
 
-class DetailDesainer extends StatelessWidget {
-  const DetailDesainer({Key? key,required this.desainer}) : super(key: key);
-  final DesainerElement desainer;
+class DetailFeeds extends StatelessWidget {
+  const DetailFeeds({Key? key,required this.feeds}) : super(key: key);
+  final DesainerElement feeds;
 
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
@@ -41,13 +41,13 @@ class DetailDesainer extends StatelessWidget {
             new Padding(padding: new EdgeInsets.all(20.0)),
             CircleAvatar(
               backgroundImage:  CachedNetworkImageProvider(
-                  desainer.imgProfil),
+                  feeds.imgProfil),
               radius: 100,
             ),
             Container(
               margin: const EdgeInsets.only(top: 35.0),
               child: Text(
-                desainer.nama,
+                feeds.nama,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 20.0,
@@ -59,7 +59,7 @@ class DetailDesainer extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(top: 8.0),
               child: Text(
-                desainer.bio,
+                feeds.bio,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 14.0,
@@ -76,7 +76,7 @@ class DetailDesainer extends StatelessWidget {
                   Row(
                     children: <Widget> [
                       Text(
-                          desainer.rating + '/5 ',
+                          feeds.rating + '/5 ',
                           style: const TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.w300,
@@ -90,7 +90,7 @@ class DetailDesainer extends StatelessWidget {
                   Row(
                     children: <Widget> [
                       Text(
-                        desainer.jmlhProject + ' ',
+                        feeds.jmlhProject + ' ',
                         style: const TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w300,
@@ -102,7 +102,7 @@ class DetailDesainer extends StatelessWidget {
                   ),
                   Row(
                     children: <Widget> [
-                      Container(padding: EdgeInsets.symmetric(horizontal: 15),
+                      Container(padding: EdgeInsets.symmetric(horizontal: 10),
                       ),
                       SizedBox.fromSize(
                         size: Size(56, 56),
@@ -113,12 +113,12 @@ class DetailDesainer extends StatelessWidget {
                             shadowColor: Colors.black,
                             child: InkWell(
                               // splashColor: Colors.grey,
-                              onTap: () => _launchURL(desainer.linkWa),
+                              onTap: () => _launchURL(feeds.linkWa),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Icon(
-                                      Icons.chat_outlined,
+                                      Icons.chat_bubble_outline,
                                       size: 35.0), // <-- Icon
                                 ],
                               ),
