@@ -35,12 +35,36 @@ class DetailKonveksi extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget> [
-            new Padding(padding: new EdgeInsets.all(20.0)),
-            CircleAvatar(
-              backgroundImage:  CachedNetworkImageProvider(
-                  konveksi.imgProfil),
-              radius: 100,
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image:
+                    AssetImage('lib/Assets/images/cover.jpg'),
+                        // data image dari konveksi
+                    // CachedNetworkImageProvider(
+                    //     konveksi.imgProfil),
+                    fit: BoxFit.fill,
+                  ),
+                  boxShadow: [new BoxShadow(color: Colors.black, blurRadius: 8.0)],
+                  color: Colors.white),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(padding: EdgeInsets.symmetric(vertical: 50)),
+                  CircleAvatar(
+                    backgroundImage:  CachedNetworkImageProvider(
+                        konveksi.imgProfil),
+                    radius: 100,
+                  ),
+                ],
+              ),
             ),
+            // CircleAvatar(
+            //   backgroundImage:  CachedNetworkImageProvider(
+            //       konveksi.imgProfil),
+            //   radius: 100,
+            // ),
             Container(
               margin: const EdgeInsets.only(top: 35.0),
               child: Text(

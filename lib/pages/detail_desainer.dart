@@ -2,11 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:fashionizt/Widget/gridview_feeds.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:from_css_color/from_css_color.dart';
-
-import '../constants.dart';
 
 class DetailDesainer extends StatelessWidget {
   const DetailDesainer({Key? key,required this.desainer}) : super(key: key);
@@ -38,12 +37,36 @@ class DetailDesainer extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget> [
-            new Padding(padding: new EdgeInsets.all(20.0)),
-            CircleAvatar(
-              backgroundImage:  CachedNetworkImageProvider(
-                  desainer.imgProfil),
-              radius: 100,
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image:
+                    AssetImage('lib/Assets/images/cover.jpg'),
+                    //dari data desianer
+                    // CachedNetworkImageProvider(
+                    //     desainer.imgProfil),
+                    fit: BoxFit.fill,
+                  ),
+                  boxShadow: [new BoxShadow(color: Colors.black, blurRadius: 8.0)],
+                  color: Colors.white),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(padding: EdgeInsets.symmetric(vertical: 50)),
+                  CircleAvatar(
+                    backgroundImage:  CachedNetworkImageProvider(
+                        desainer.imgProfil),
+                    radius: 100,
+                  ),
+                ],
+              ),
             ),
+            // CircleAvatar(
+            //   backgroundImage:  CachedNetworkImageProvider(
+            //       desainer.imgProfil),
+            //   radius: 100,
+            // ),
             Container(
               margin: const EdgeInsets.only(top: 35.0),
               child: Text(
@@ -75,6 +98,7 @@ class DetailDesainer extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget> [
+                      const Icon(Icons.star_border, color: Colors.black),
                       Text(
                           desainer.rating + '/5 ',
                           style: const TextStyle(
@@ -83,12 +107,12 @@ class DetailDesainer extends StatelessWidget {
                             fontFamily: 'Poppins',
                           )
                       ),
-                      const Icon(Icons.star_border, color: Colors.black),
                     ], // <Widget>[]
                   ),
                   SizedBox(width: 25),
                   Row(
                     children: <Widget> [
+                      const Icon(Icons.task_outlined, color: Colors.black),
                       Text(
                         desainer.jmlhProject + ' ',
                         style: const TextStyle(
@@ -97,29 +121,36 @@ class DetailDesainer extends StatelessWidget {
                           fontFamily: 'Poppins',
                         ),
                       ),
-                      const Icon(Icons.task_outlined, color: Colors.black),
                     ], // <Widget>[]
                   ),
                   Row(
                     children: <Widget> [
-                      Container(padding: EdgeInsets.symmetric(horizontal: 15),
+                      Container(padding: EdgeInsets.symmetric(horizontal: 10),
                       ),
                       SizedBox.fromSize(
-                        size: Size(56, 56),
+                        size: Size(100, 50),
                         child: ClipOval(
                           child: Material(
                             color: fromCssColor('#FAF3E0'),
-                            elevation: 5,
+                            elevation: 1,
                             shadowColor: Colors.black,
                             child: InkWell(
                               // splashColor: Colors.grey,
                               onTap: () => _launchURL(desainer.linkWa),
-                              child: Column(
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Icon(
                                       Icons.chat_outlined,
-                                      size: 35.0), // <-- Icon
+                                      size: 25.0), // <-- Icon
+                                  Text(
+                                    ' Chat ',
+                                    style: const TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.w300,
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
