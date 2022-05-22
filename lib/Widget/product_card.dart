@@ -12,7 +12,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    Size size = MediaQuery.of(context).size;
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
@@ -24,8 +24,8 @@ class ProductCard extends StatelessWidget {
         children: [
           Image(
             fit: BoxFit.fill,
-            width: 200,
-            height: 200,
+            width: size.width*0.5,
+            height: size.height*0.23,
             image: CachedNetworkImageProvider(
               produk.imgProduk,
             ),

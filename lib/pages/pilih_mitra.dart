@@ -1,5 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:fashionizt/Pages/detail_desainer.dart';
+import 'package:fashionizt/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/theme.dart';
 import '../api/api_konveksi.dart';
@@ -43,7 +43,7 @@ class Pilih extends State<PilihKonveksi> {
                       children: [
                         Text('Filter berdasarkan',
                             style: TextStyle(
-                              color: blackColor,
+                              color: Colors.black,
                               fontWeight: FontWeight.w500,
                               fontSize: 13,
                             )),
@@ -55,7 +55,7 @@ class Pilih extends State<PilihKonveksi> {
                             onPressed: () {},
                             child: Text('Hapus Filter',
                                 style: TextStyle(
-                                  color: blackColor,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w200,
                                   fontSize: 13,
                                 )),
@@ -190,7 +190,7 @@ class Pilih extends State<PilihKonveksi> {
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -198,15 +198,12 @@ class Pilih extends State<PilihKonveksi> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
+          icon: Icon(Icons.arrow_back_ios_rounded, color: blush),
         ),
-        title: Text('Pilih Konveksi',
-            style: TextStyle(
-              color: blackColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 15,
-            )),
-        backgroundColor: whiteColor,
+        title: Text('Pilih Mitra Produksi',
+          style: titleApps,
+        ),
+        backgroundColor: blacksand,
       ),
       body: _buildList(context),
     );

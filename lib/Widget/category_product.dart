@@ -12,7 +12,7 @@ class CategoryProduct extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(getProportionateScreenWidth(10)),
       child: Wrap(
-        spacing: 30,
+        spacing: 20,
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
           for(int i=0;i<kategoriList.length;i++)

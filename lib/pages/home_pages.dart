@@ -1,7 +1,9 @@
+import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/Widget/button_role.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';
 import 'package:fashionizt/pages/cart_screen.dart';
+import 'package:fashionizt/pages/pre_order.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,7 @@ class HomePages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
@@ -76,6 +79,19 @@ class HomePages extends StatelessWidget {
 
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: blacksand,
+        child: Icon(Icons.assignment,color: blush,),
+        onPressed: (){
+          Navigator.push((context),
+              MaterialPageRoute(builder: (context){
+                return PreOrder();
+              })
+          );
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomNavBar(),
       body: Container(
         child: ListView(
           children: [
