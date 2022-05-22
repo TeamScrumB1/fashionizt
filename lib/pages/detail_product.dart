@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/produk_model.dart';
-import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:fashionizt/constants.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class DetailProduct extends StatelessWidget {
   const DetailProduct({Key? key,required this.detail}) : super(key: key);
@@ -34,24 +35,23 @@ class DetailProduct extends StatelessWidget {
           height: size.height*0.06,
           child: Row(
             children: [
+         //   Container(
+         //    width: size.width*0.3,
+         //    alignment: Alignment.center,
+         //    decoration: BoxDecoration(
+         //        border: Border(right: BorderSide(width: 0.5,color: Colors.black)),
+         //      ),
+         //      child: IconButton(
+         //        onPressed: () => _launchURL(detail.waDesainer),
+         //        icon: Icon(Icons.add_shopping_cart_outlined, color: blacksand),
+         //        iconSize: 25.0,
+         //      ),
+         //    ),
               Container(
-                width: size.width*0.3,
+                width: size.width,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  border: Border(right: BorderSide(width: 0.5,color: Colors.black)),
-                ),
-                child: IconButton(
-                  onPressed: () => _launchURL(detail.waDesainer),
-                  icon: Icon(Icons.whatsapp, color: Colors.black),
-                  iconSize: 25.0,
-                ),
-              ),
-
-              Container(
-                width: size.width*0.7,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.red,
+                  color: blacksand,
                 ),
                 child:  TextButton(
                   onPressed: () {
@@ -65,38 +65,50 @@ class DetailProduct extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_rounded),
-          color: Colors.black,
+        leading: ElevatedButton(
+          child: Icon(Icons.arrow_back_ios_rounded),
+          style: ElevatedButton.styleFrom(
+            shape: CircleBorder(),
+            padding: EdgeInsets.all(5),
+            primary: Colors.black38,
+            onPrimary: Colors.white,
+          ),
           onPressed: (){
             Navigator.pop(context);
           },
         ),
-        title: const Text('Detail Produk', style: TextStyle(
-          fontFamily: 'Poppins',
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-          color: Colors.black,
-        ),),
+        //title: const Text('Detail Produk', style: TextStyle(
+        //  fontFamily: 'Poppins',
+        //  fontWeight: FontWeight.bold,
+        //  fontSize: 20,
+        //  color: Colors.black,
+        //),),
         actions: [
-          IconButton(
+          ElevatedButton(
+            child: Icon(Icons.shopping_cart),
+            style: ElevatedButton.styleFrom(
+              shape: CircleBorder(),
+              padding: EdgeInsets.all(5),
+              primary: Colors.black38,
+              onPrimary: Colors.white,
+            ),
             onPressed: () {
               _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
             },
-            icon: const Icon(Icons.shopping_cart, size: 25,),
-            color: Colors.black,
           ),
         ],
       ),
+      extendBodyBehindAppBar: true,
+
       body: SingleChildScrollView(
         child: Container(
           child: Stack(
             children: [
               Container(
                 color: Colors.black,
-                height: size.height*0.45,
+                height: size.height*0.5,
                 alignment: Alignment.center,
                 child: Image(
                   image: CachedNetworkImageProvider(
@@ -109,29 +121,31 @@ class DetailProduct extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(24),
-                    topRight: Radius.circular(24),
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
                   ),
                 ),
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(top: 10,left: 20,right: 20),
+                      margin: EdgeInsets.only(top: 20,left: 20,right: 20),
                       child: Row(
                         children: [
                           Text(detail.nama,
                             style: TextStyle(
                               fontSize: 20,
                               fontFamily: 'Poppins',
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                           Spacer(),
                           Text(
-                            'Rp. '+detail.harga,
+                            'Rp'+detail.harga,
                             style: TextStyle(
                               fontSize: 20,
                               fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w600,
+                              color: blacksand,
                             ),
                           ),
                         ],
@@ -141,12 +155,17 @@ class DetailProduct extends StatelessWidget {
                       margin: EdgeInsets.symmetric(horizontal:20),
                       child: Row(
                         children: <Widget>[
-                          Icon(
-                            Icons.star,
-                            size: 25.0,
-                            color: Colors.yellow,
+                          RatingBarIndicator(
+                            rating: double.parse(detail.rating),
+                            itemBuilder: (_, __) {
+                              return Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                              );
+                            },
+                            itemSize: 20,
                           ),
-                          Text(detail.rating,style: TextStyle(fontSize: 20),),
+                          Text(' '+detail.rating,style: TextStyle(fontSize: 15),),
                         ],
                       ),
                     ),
@@ -157,27 +176,17 @@ class DetailProduct extends StatelessWidget {
                         textAlign: TextAlign.justify,
                       ),
                     ),
-                    Text(
-                      'Desainer',
-                      style:  TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.justify,
+                    Divider(
+                      color: greyy,
+                      height: 25,
+                      thickness: 2,
+                      indent: 5,
+                      endIndent: 5,
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20),
-                      child: Padding(
-                          padding: EdgeInsets.only(top: 5),
-                          child:Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            color: fromCssColor('#FAF3E0'),
-                            elevation: 5,
-                            shadowColor: Colors.black,
+                      margin: EdgeInsets.symmetric(horizontal: 0),
                             child: Padding(
-                                padding: EdgeInsets.only(top: 13, left: 30, bottom: 13),
+                                padding: EdgeInsets.only(top: 5, left: 30, bottom: 20),
                                 child:Row(
                                   children:[
                                     CircleAvatar(
@@ -196,14 +205,40 @@ class DetailProduct extends StatelessWidget {
                                             children: [
                                               Text(
                                                 detail.namaDesainer,
+                                                style:  TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16,
+                                                ),
                                               ),
                                               SizedBox(height: 2,),
                                               Text(
                                                 'Desainer '+detail.kategoriDesainer,
+                                                style:  TextStyle(
+                                                  fontSize: 13,
+                                                  color: darkgrey,
+                                                ),
                                               ),
                                             ],
                                           ),
-                                          SizedBox(height: 25,),
+                                          ElevatedButton(
+                                            child: Text("Kunjungi",
+                                              style:  TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                              onPressed: () {
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              primary: Colors.white,
+                                              onPrimary: blacksand,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(10.0),
+                                                side: BorderSide(color: blacksand, width: 1),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 5),
                                           Column(
                                             mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
@@ -215,11 +250,18 @@ class DetailProduct extends StatelessWidget {
                                                     children: [
                                                       Text(
                                                         detail.ratingDesainer,
+                                                        style:  TextStyle(
+                                                          fontSize: 14,
+                                                          color: blacksand,
+                                                        ),
                                                         // style:subtitleHorizontalCardTextStyle.copyWith(
                                                         //   fontSize: 10,
                                                         // ),
                                                       ),
-                                                      Icon(Icons.star_border, color: Colors.black),
+                                                      Text(
+                                                       "  Penilaian"
+                                                      ),
+                                                      //Icon(Icons.star_border, color: Colors.black),
                                                     ],
                                                   ),
                                                   SizedBox(width: 10,),
@@ -228,11 +270,19 @@ class DetailProduct extends StatelessWidget {
                                                     children: [
                                                       Text(
                                                         detail.projekDesainer,
+                                                        style:  TextStyle(
+                                                          fontSize: 14,
+                                                          color: blacksand,
+                                                        ),
                                                         // style:subtitleHorizontalCardTextStyle.copyWith(
                                                         //   fontSize: 10,
                                                         // ),
                                                       ),
-                                                      Icon(Icons.task_outlined, color: Colors.black),
+                                                      Text(
+                                                        " Projek"
+
+                                                      ),
+                                                      //Icon(Icons.task_outlined, color: Colors.black),
                                                     ],
                                                   )
                                                 ],
@@ -245,8 +295,13 @@ class DetailProduct extends StatelessWidget {
                                   ],
                                 )
                             ),
-                          )
                       ),
+                    Divider(
+                      color: greyy,
+                      height: 0,
+                      thickness: 2,
+                      indent: 5,
+                      endIndent: 5,
                     ),
                   ],
                 ),
@@ -258,4 +313,3 @@ class DetailProduct extends StatelessWidget {
     );
   }
 }
-

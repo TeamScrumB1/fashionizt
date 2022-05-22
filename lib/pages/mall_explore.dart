@@ -44,7 +44,7 @@ class _MallExploreState extends State<MallExplore> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
-          color: nude,
+          color: blush,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -75,7 +75,7 @@ class _MallExploreState extends State<MallExplore> {
             //child: SubTittle(sub: "Kategori")
           ),
           Text(
-            "Fashionizt Mall",
+            "Explore Mall",
             style: Theme.of(context).textTheme.headline4!.copyWith(
               fontWeight: FontWeight.w800,
               color: blacksand,
@@ -87,10 +87,12 @@ class _MallExploreState extends State<MallExplore> {
             padding: const EdgeInsets.only(left: 25,right: 25, top: 10),
             child: Row(
               children: [
-                Text(
-                  'Recommended',
-                  style: nameHorizontalCardTextStyle,
-                ),
+                Text('Recommended',
+                    style: TextStyle(
+                      color: blacksand,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    )),
                 Spacer(),
                 TextButton(
                   onPressed: () {
@@ -102,8 +104,11 @@ class _MallExploreState extends State<MallExplore> {
                     // );
                   },
                   child: Text('View All',
-                    style: ratingHorizontalCardTextStyle,
-                  ),
+                      style: TextStyle(
+                        color: blacksand,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 14,
+                      )),
                 ),
               ],
             ),

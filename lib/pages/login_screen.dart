@@ -1,13 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fashionizt/Models/desainer_model.dart';
-import 'package:fashionizt/Models/konveksi_model.dart';
+import 'package:fashionizt/pages/home_pages.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:from_css_color/from_css_color.dart';
 import 'package:fashionizt/animation/animations.dart';
 import 'package:fashionizt/pages/signup_screen.dart';
 import '../constants.dart';
-
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -18,9 +14,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final feature = ["Login", "Sign Up"];
-
   int i = 0;
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -30,156 +24,242 @@ class _LoginScreenState extends State<LoginScreen> {
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Scaffold(
             backgroundColor: blacksand,
-            body: i == 0
-                ? SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(25),
-                        child: Column(
-                          children: [
-
-                            SizedBox(
-                              height: 130,
-                            ),
-
-                            // Top Text
-                            Container(
-                              padding: EdgeInsets.only(left: 15),
-                              width: width,
-                              child: TopAnime(
-                                1,
-                                20,
-                                curve: Curves.fastOutSlowIn,
-                                child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Login",
-                                      style: TextStyle(
-                                        color: blush,
-                                        fontSize: 48,
-                                        fontWeight: FontWeight.bold,
+            body: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+                              ), // Top Text
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 30),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Login",
+                                        style: TextStyle(
+                                          color: blush,
+                                          fontSize: 48,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
+                                    ],
+                                  ),
                               ),
-                            ),
-
-                            SizedBox(
-                              height: height / 25,
-                            ),
-
-                            // TextFiled
-                            Column(
-                              children: [
-                                Container(
-                                  width: width / 1.2,
-                                  height: height / 3.10,
-                                  //  color: Colors.red,
-                                  child: TopAnime(
-                                    1,
-                                    15,
-                                    curve: Curves.easeInExpo,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        TextField(
-                                          // readOnly: true, // * Just for Debug
-                                          cursorColor: blush,
-                                          style:
-                                          TextStyle(color: blush),
-                                          showCursor: true,
-                                          //cursorColor: mainColor,
-                                          decoration:
-                                          kTextFiledInputDecoration, //ada di constant.dart
-                                        ),
-                                        SizedBox(
-                                          height: 25,
-                                        ),
-                                        TextField(
-                                          // readOnly: true, // * Just for Debug
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                              ),
+                              //TextFiled
+                              Column(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          TextField(
+                                            // readOnly: true, // * Just for Debug
                                             cursorColor: blush,
-                                            style: TextStyle(
-                                                color: blush),
+                                            style: TextStyle(color: blush),
                                             showCursor: true,
                                             //cursorColor: mainColor,
                                             decoration:
-                                            kTextFiledInputDecoration
-                                                .copyWith(
-                                                labelText:
-                                                "Password")),
-
-                                        SizedBox(
-                                          height: 40,
-                                        ),
-
-                                        Row(
-                                          children: <Widget> [
-                                            Container(
-                                              width: width / 1.2,
-                                              height: 37,
-                                              child: TextButton(
-                                                style: TextButton.styleFrom(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(5.0),
+                                                kTextFiledInputDecoration, //ada di constant.dart
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                          ),
+                                          TextField(
+                                              // readOnly: true, // * Just for Debug
+                                              cursorColor: blush,
+                                              style: TextStyle(color: blush),
+                                              showCursor: true,
+                                              //cursorColor: mainColor,
+                                              decoration:
+                                                  kTextFiledInputDecoration.copyWith(
+                                                          labelText: "Password")),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Container(
+                                                padding: EdgeInsets.symmetric(horizontal: 1),
+                                                width: width / 1.2,
+                                                height: 37,
+                                                child: TextButton(
+                                                  style: TextButton.styleFrom(
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(5.0),
+                                                    ),
+                                                    padding: const EdgeInsets.all(5.0),
+                                                    primary: blacksand,
+                                                    backgroundColor: blush,
+                                                    shadowColor: Colors.black,
+                                                    textStyle: const TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontFamily: 'Poppins'),
                                                   ),
-                                                  padding: const EdgeInsets.all(5.0),
-                                                  primary: blacksand,
-                                                  backgroundColor: blush,
-                                                  shadowColor: Colors.black,
-                                                  textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700, fontFamily: 'Poppins'),
+                                                  onPressed: () {Navigator.push(context,
+                                                        MaterialPageRoute(builder: (context) {
+                                                        return HomePages();
+                                                        }));},
+                                                  child: Text('Login'),
                                                 ),
-                                                onPressed: () {},
-                                                child: Text('Login'),
+                                              )
+                                            ], // <Widget>[]
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Expanded(
+                                                child: Divider(
+                                                  color: blush,
+                                                  height: 1.5,
+                                                ),
                                               ),
-                                            )
-                                          ], // <Widget>[]
-                                        ),
-
-                                        // SizedBox(
-                                        //   height: 40,
-                                        // ),
-
-                                        // Row(
-                                        //   children: <Widget> [
-                                        //     Container(
-                                        //       width: width / 1.2,
-                                        //       height: 37,
-                                        //       child: TextButton(
-                                        //         style: TextButton.styleFrom(
-                                        //           shape: RoundedRectangleBorder(
-                                        //             borderRadius: BorderRadius.circular(5.0),
-                                        //           ),
-                                        //           padding: const EdgeInsets.all(5.0),
-                                        //           primary: blacksand,
-                                        //           backgroundColor: blush,
-                                        //           shadowColor: Colors.black,
-                                        //           textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, fontFamily: 'Poppins'),
-                                        //         ),
-                                        //         onPressed: () {},
-                                        //         child: Text('Login with Apple ID'),
-                                        //       ),
-                                        //     )
-                                        //   ], // <Widget>[]
-                                        // ),
-
-                                      ],
+                                              Text(
+                                                "OR  ",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  color: blush,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Expanded(
+                                                    child: Divider(
+                                                      color: blush,
+                                                      height: 1.5,
+                                                    ),
+                                                  ),
+                                            ], // <Widget>[]
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Container(
+                                                  padding: EdgeInsets.symmetric(horizontal: 1,),
+                                                width: width / 1.2,
+                                                height: 37,
+                                                child: TextButton(
+                                                  style: TextButton.styleFrom(
+                                                    side: (
+                                                        BorderSide(
+                                                            width: 1, color: blush)),
+                                                    padding: const EdgeInsets.all(5.0),
+                                                    primary: blush,
+                                                    // backgroundColor: blush,
+                                                    shadowColor: Colors.black,
+                                                    textStyle: const TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                        FontWeight.w700,
+                                                        fontFamily: 'Poppins'),
+                                                  ),
+                                                  onPressed: () {
+                                                      Navigator.push(context,
+                                                      MaterialPageRoute(builder: (context) {
+                                                      return HomePages();
+                                                      }));
+                                                  },
+                                                  child:
+                                                      Text('Login as Designer'),
+                                                ),
+                                              )
+                                            ], // <Widget>[]
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Container(
+                                                  padding: EdgeInsets.symmetric(horizontal: 1,),
+                                                width: width / 1.2,
+                                                height: 37,
+                                                child: TextButton(
+                                                  style: TextButton.styleFrom(
+                                                    side: (
+                                                        BorderSide(
+                                                            width: 1, color: blush)),
+                                                    padding: const EdgeInsets.all(5.0),
+                                                    primary: blush,
+                                                    // backgroundColor: blush,
+                                                    shadowColor: Colors.black,
+                                                    textStyle: const TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                        FontWeight.w700,
+                                                        fontFamily: 'Poppins'),
+                                                  ),
+                                                  onPressed: () {
+                                                    Navigator.push(context,
+                                                        MaterialPageRoute(builder: (context) {
+                                                          return HomePages();
+                                                        }));
+                                                  },
+                                                  child: Text(
+                                                      'Login as Mitra Produksi'),
+                                                ),
+                                              )
+                                            ], // <Widget>[]
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 60),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Text("Don't have an Account ?",
+                                              style: TextStyle(color: blush),
+                                              ),
+                                              GestureDetector(
+                                                onTap: (){
+                                                  Navigator.push(context,
+                                                      MaterialPageRoute(builder: (context) {
+                                                        return SignUpScreen();
+                                                      }));
+                                                },
+                                                child: Text(
+                                                  " Sign Up",
+                                                  style: TextStyle(
+                                                    color: blush,
+                                                    fontWeight: FontWeight.bold
+                                                  ),
+                                                ),
+                                              )
+                                            ], // <Widget>[]
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
+                                ],
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-            )
-                : LoginScreen()), //ntar sign up
+                      ],
+                    ),
+                  )
+                )
+                 // : SignUpScreen()), //ntar sign up
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:fashionizt/Pages/detail_desainer.dart';
 import 'package:fashionizt/Pages/pilih_desainer.dart';
+import 'package:fashionizt/Widget/desainer_slideview.dart';
 import 'package:fashionizt/Widget/vertical_listview.dart';
 import 'package:fashionizt/Widget/category_product.dart';
 import 'package:fashionizt/constants.dart';
@@ -65,14 +66,9 @@ class _DesainerExploreState extends State<DesainerExplore> {
       body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Image.asset(
-                "lib/Assets/images/cover.jpg",
-                width: 600.0,
-                height: 180,
-                fit: BoxFit.cover,
-              ),
+              DesainerSlideView(),
               Container(
-                margin: EdgeInsets.only(top: 10),
+                margin: EdgeInsets.only(top: 20),
               ),
               Text(
                 "Explore Desainer",
@@ -97,8 +93,8 @@ class _DesainerExploreState extends State<DesainerExplore> {
                         Text('Recommended',
                             style: TextStyle(
                               color: blacksand,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
                             )),
                         Spacer(),
                         TextButton(
@@ -113,8 +109,8 @@ class _DesainerExploreState extends State<DesainerExplore> {
                             child: Text('View All',
                                 style: TextStyle(
                                   color: blacksand,
-                                  fontWeight: FontWeight.w200,
-                                  fontSize: 13,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 14,
                                 )),
                           ),
                       ],
