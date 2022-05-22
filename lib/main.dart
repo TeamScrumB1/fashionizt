@@ -1,7 +1,6 @@
 import 'package:fashionizt/pages/login_screen.dart';
 import 'package:fashionizt/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:fashionizt/pages/home_pages.dart';
 
 
 void main() {
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Poppins',
       ),
-      home: LoginScreen(),
+      home: SplashScreen(),
     );
   }
 }

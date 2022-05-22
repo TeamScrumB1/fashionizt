@@ -1,7 +1,8 @@
-import 'package:fashionizt/pages/home_pages.dart';
 import 'package:fashionizt/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+
+import '../constants.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -22,13 +23,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFFAF3E0),
+        color: blush,
         width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'lib/Assets/images/fashionizt.jpeg',
+              'lib/Assets/images/fashionizt.png',
               width: 450,
               height: 600,
             ),
