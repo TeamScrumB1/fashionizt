@@ -13,7 +13,6 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
@@ -70,7 +69,7 @@ class ProductCard extends StatelessWidget {
                           Icon(
                             Icons.star,
                             size: 20.0,
-                            color: Colors.yellow,
+                            color: Colors.amber,
                           ),
                           Text(produk.rating, style: ratingHorizontalCardTextStyle,),
                         ],

@@ -227,7 +227,8 @@ class DetailProduct extends StatelessWidget {
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ),
-                                            onPressed: () {},
+                                              onPressed: () {
+                                            },
                                             style: ElevatedButton.styleFrom(
                                               primary: Colors.white,
                                               onPrimary: blacksand,
@@ -312,4 +313,3 @@ class DetailProduct extends StatelessWidget {
     );
   }
 }
-

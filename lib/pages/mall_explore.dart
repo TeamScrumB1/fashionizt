@@ -75,7 +75,7 @@ class _MallExploreState extends State<MallExplore> {
             //child: SubTittle(sub: "Kategori")
           ),
           Text(
-            "Fashionizt Mall",
+            "Explore Mall",
             style: Theme.of(context).textTheme.headline4!.copyWith(
               fontWeight: FontWeight.w800,
               color: blacksand,
