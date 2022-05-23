@@ -19,6 +19,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    Size size = MediaQuery.of(context).size;
+
     return SafeArea(
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -32,6 +34,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Column(
                             children: [
                               Container(
+                                // height: size.height*0.08,
+                                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 50),
                                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
                               ), // Top Text
                               Container(
@@ -222,7 +226,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                             ], // <Widget>[]
                                           ),
                                           Container(
-                                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 60),
+                                            height: size.height*0.1,
+                                            // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 40),
                                           ),
                                           Row(
                                             mainAxisAlignment: MainAxisAlignment.center,

@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
+import 'package:fashionizt/Widget/gridview_feeds.dart';
+import 'package:fashionizt/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:from_css_color/from_css_color.dart';
-
-import '../constants.dart';
 
 class DetailDesainer extends StatelessWidget {
   const DetailDesainer({Key? key,required this.desainer}) : super(key: key);
@@ -17,6 +18,7 @@ class DetailDesainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -37,14 +39,43 @@ class DetailDesainer extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget> [
-            new Padding(padding: new EdgeInsets.all(20.0)),
-            CircleAvatar(
-              backgroundImage:  CachedNetworkImageProvider(
-                  desainer.imgProfil),
-              radius: 100,
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: <Widget>[
+                Container(
+                  height: size.height*0.3,
+                  padding: EdgeInsets.only(bottom: 10),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image:
+                        AssetImage('lib/Assets/images/cover.jpg'),
+                        // data image dari konveksi
+                        // CachedNetworkImageProvider(
+                        //     konveksi.imgProfil),
+                        fit: BoxFit.fill,
+                      ),
+                      // boxShadow: [new BoxShadow(color: Colors.black, blurRadius: 8.0)],
+                      color: Colors.white),
+                ),
+                Positioned(
+                    top: 150,
+                    left: 100,
+                    child: CircleAvatar(
+                      radius: 108,
+                      backgroundColor: Color(0xFFFFFFFF),
+                      child: CircleAvatar(
+                        backgroundImage:  CachedNetworkImageProvider(
+                            desainer.imgProfil),
+                        radius: 100,
+                      ),
+                    )
+                ),
+              ],
             ),
             Container(
-              margin: const EdgeInsets.only(top: 35.0),
+              margin: const EdgeInsets.only(top: 100.0),
               child: Text(
                 desainer.nama,
                 textAlign: TextAlign.center,
@@ -74,6 +105,7 @@ class DetailDesainer extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget> [
+                      const Icon(Icons.star_border, color: Colors.black),
                       Text(
                           desainer.rating + '/5 ',
                           style: const TextStyle(
@@ -82,12 +114,12 @@ class DetailDesainer extends StatelessWidget {
                             fontFamily: 'Poppins',
                           )
                       ),
-                      const Icon(Icons.star_border, color: Colors.black),
                     ], // <Widget>[]
                   ),
                   SizedBox(width: 25),
                   Row(
                     children: <Widget> [
+                      const Icon(Icons.task_outlined, color: Colors.black),
                       Text(
                         desainer.jmlhProject + ' ',
                         style: const TextStyle(
@@ -96,57 +128,38 @@ class DetailDesainer extends StatelessWidget {
                           fontFamily: 'Poppins',
                         ),
                       ),
-                      const Icon(Icons.task_outlined, color: Colors.black),
                     ], // <Widget>[]
                   ),
-                ],
-              ), // Row
-            ),//Container Icon
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
                   Row(
                     children: <Widget> [
-                      SizedBox.fromSize(
-                        size: Size(56, 56),
-                        child: ClipOval(
-                          child: Material(
-                            color: fromCssColor('#FAF3E0'),
-                            elevation: 5,
-                            shadowColor: Colors.black,
-                            child: InkWell(
-                              splashColor: Colors.grey,
-                              onTap: () => _launchURL(desainer.linkWa),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                      Icons.whatsapp,
-                                      size: 35.0), // <-- Icon
-                                ],
+                      Container(padding: EdgeInsets.symmetric(horizontal: 10),
+                      ),
+                      ElevatedButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Icon(
+                                Icons.chat_outlined,
+                                size: 20.0), // <-- Icon
+                            Text(' Chat ',
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w300,
+                                fontFamily: 'Poppins',
                               ),
+                            ),
+                          ],
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(blacksand),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                side: BorderSide(color: blacksand)
                             ),
                           ),
                         ),
-                      )
-                    ], // <Widget>[]
-                  ),
-                  SizedBox(width: 25),
-                  Row(
-                    children: <Widget> [
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          primary: Colors.black,
-                          backgroundColor: fromCssColor('#FAF3E0'),
-                          elevation: 5,
-                          shadowColor: Colors.black,
-                        ),
-                        onPressed: () => _launchURL(desainer.linkPorto),
-                        child: Text('Portofolio'),
+                        onPressed: () => _launchURL(desainer.linkWa),
                       ),
                     ], // <Widget>[]
                   ),
@@ -154,44 +167,98 @@ class DetailDesainer extends StatelessWidget {
               ), // Row
             ),
             Container(
-              margin: const EdgeInsets.only(top: 20.0, left: 30.0),
-              child: Row(
-                children: <Widget>[
-                  Row(
-                    children: <Widget> [
-                      Text(
-                        'Pengalaman',
-                        style: const TextStyle(
-                          fontSize: 15.0,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                    ], // <Widget>[]
-                  ),
-                ],
-              ), // Row
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 10.0, left: 30.0),
-              child: Row(
-                children: <Widget>[
-                  Column(
-                    children: <Widget> [
-                      for (int i = 0; i < 8; i++)
-                        Text(
-                          'Designer Paris Fashion Week 2022', //ini belum bener ya
-                          style: const TextStyle(
-                            fontSize: 13.0,
-                            fontWeight: FontWeight.w300,
-                            fontFamily: 'Poppins',
-                          ),
-                        ),
-                    ],
-                  ),
-                ],
-              ), // Row
-            ),
+              child: GridViewFeeds(),
+            )//Container Icon
+            // Container(
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     children: <Widget>[
+            //       Row(
+            //         children: <Widget> [
+            //           SizedBox.fromSize(
+            //             size: Size(56, 56),
+            //             child: ClipOval(
+            //               child: Material(
+            //                 color: fromCssColor('#FAF3E0'),
+            //                 elevation: 5,
+            //                 shadowColor: Colors.black,
+            //                 child: InkWell(
+            //                   splashColor: Colors.grey,
+            //                   onTap: () => _launchURL(desainer.linkWa),
+            //                   child: Column(
+            //                     mainAxisAlignment: MainAxisAlignment.center,
+            //                     children: <Widget>[
+            //                       Icon(
+            //                           Icons.whatsapp,
+            //                           size: 35.0), // <-- Icon
+            //                     ],
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //           )
+            //         ], // <Widget>[]
+            //       ),
+            //
+            //       // Row(
+            //       //   children: <Widget> [
+            //       //     TextButton(
+            //       //       style: TextButton.styleFrom(
+            //       //         shape: RoundedRectangleBorder(
+            //       //           borderRadius: BorderRadius.circular(10.0),
+            //       //         ),
+            //       //         primary: Colors.black,
+            //       //         backgroundColor: fromCssColor('#FAF3E0'),
+            //       //         elevation: 5,
+            //       //         shadowColor: Colors.black,
+            //       //       ),
+            //       //       onPressed: () => _launchURL(desainer.linkPorto),
+            //       //       child: Text('Portofolio'),
+            //       //     ),
+            //       //   ], // <Widget>[]
+            //       // ),
+            //     ],
+            //   ), // Row
+            // ),
+            // Container(
+            //   margin: const EdgeInsets.only(top: 20.0, left: 30.0),
+            //   child: Row(
+            //     children: <Widget>[
+            //       Row(
+            //         children: <Widget> [
+            //           Text(
+            //             'Pengalaman',
+            //             style: const TextStyle(
+            //               fontSize: 15.0,
+            //               fontWeight: FontWeight.w400,
+            //               fontFamily: 'Poppins',
+            //             ),
+            //           ),
+            //         ], // <Widget>[]
+            //       ),
+            //     ],
+            //   ), // Row
+            // ),
+            // Container(
+            //   margin: const EdgeInsets.only(top: 10.0, left: 30.0),
+            //   child: Row(
+            //     children: <Widget>[
+            //       Column(
+            //         children: <Widget> [
+            //           for (int i = 0; i < 8; i++)
+            //             Text(
+            //               'Designer Paris Fashion Week 2022', //ini belum bener ya
+            //               style: const TextStyle(
+            //                 fontSize: 13.0,
+            //                 fontWeight: FontWeight.w300,
+            //                 fontFamily: 'Poppins',
+            //               ),
+            //             ),
+            //         ],
+            //       ),
+            //     ],
+            //   ), // Row
+            // ),
           ],
         ),
       ),

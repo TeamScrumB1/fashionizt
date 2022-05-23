@@ -26,6 +26,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    Size size = MediaQuery.of(context).size;
+
     return SafeArea(
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -39,6 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: Column(
                           children: [
                             Container(
+                              // height: size.height*0.08,
                               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 50),
                             ),
                             // Top Text
@@ -158,7 +161,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           ], // <Widget>[]
                                         ),
                                         Container(
-                                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 50),
+                                          height: size.height*0.1,
+                                          // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 50),
                                         ),
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
