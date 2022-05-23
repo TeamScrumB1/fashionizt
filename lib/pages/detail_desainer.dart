@@ -17,6 +17,7 @@ class DetailDesainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -37,38 +38,39 @@ class DetailDesainer extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget> [
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image:
-                    AssetImage('lib/Assets/images/cover.jpg'),
-                    //dari data desianer
-                    // CachedNetworkImageProvider(
-                    //     desainer.imgProfil),
-                    fit: BoxFit.fill,
-                  ),
-                  boxShadow: [new BoxShadow(color: Colors.black, blurRadius: 8.0)],
-                  color: Colors.white),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(padding: EdgeInsets.symmetric(vertical: 50)),
-                  CircleAvatar(
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: <Widget>[
+                Container(
+                  height: size.height*0.3,
+                  padding: EdgeInsets.only(bottom: 10),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image:
+                        AssetImage('lib/Assets/images/cover.jpg'),
+                        // data image dari konveksi
+                        // CachedNetworkImageProvider(
+                        //     konveksi.imgProfil),
+                        fit: BoxFit.fill,
+                      ),
+                      // boxShadow: [new BoxShadow(color: Colors.black, blurRadius: 8.0)],
+                      color: Colors.white),
+                ),
+                Positioned(
+                  top: 150,
+                  left: 100,
+                  child:   CircleAvatar(
                     backgroundImage:  CachedNetworkImageProvider(
                         desainer.imgProfil),
                     radius: 100,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            // CircleAvatar(
-            //   backgroundImage:  CachedNetworkImageProvider(
-            //       desainer.imgProfil),
-            //   radius: 100,
-            // ),
             Container(
-              margin: const EdgeInsets.only(top: 35.0),
+              margin: const EdgeInsets.only(top: 100.0),
               child: Text(
                 desainer.nama,
                 textAlign: TextAlign.center,

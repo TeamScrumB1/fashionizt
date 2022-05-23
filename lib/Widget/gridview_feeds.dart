@@ -24,6 +24,7 @@ class _GridViewFeedsState extends State<GridViewFeeds> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 1),
       child: FutureBuilder(

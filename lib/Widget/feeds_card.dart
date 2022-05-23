@@ -11,6 +11,8 @@ class FeedsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Card(
       // margin:EdgeInsets.symmetric(horizontal: 1),
       shape: RoundedRectangleBorder(
@@ -22,8 +24,8 @@ class FeedsCard extends StatelessWidget {
           // Padding(padding: EdgeInsets.symmetric(horizontal: 1),),
           Image(
             fit: BoxFit.fill,
-            width: 200,
-            height: 128,
+            width: size.width*0.5,
+            height: size.height*0.142,
             image: CachedNetworkImageProvider(
               produk.imgProduk,
             ),
