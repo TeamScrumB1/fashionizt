@@ -132,7 +132,7 @@ class DetailDesainer extends StatelessWidget {
                   ),
                   Row(
                     children: <Widget> [
-                      Container(padding: EdgeInsets.symmetric(horizontal: 10),
+                      Container(padding: EdgeInsets.symmetric(horizontal: 15),
                       ),
                       ElevatedButton(
                         child: Row(
