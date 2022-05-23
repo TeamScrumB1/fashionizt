@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:fashionizt/Widget/gridview_feeds.dart';
+import 'package:fashionizt/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:from_css_color/from_css_color.dart';
@@ -25,7 +26,7 @@ class DetailKonveksi extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
         ),
-        title: Text('Profil Garment',
+        title: const Text('Profil Garment',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w600,
@@ -44,7 +45,7 @@ class DetailKonveksi extends StatelessWidget {
                   height: size.height*0.3,
                   padding: EdgeInsets.only(bottom: 10),
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       image: DecorationImage(
                         image:
                         AssetImage('lib/Assets/images/cover.jpg'),
@@ -59,11 +60,15 @@ class DetailKonveksi extends StatelessWidget {
                 Positioned(
                   top: 150,
                   left: 100,
-                  child:   CircleAvatar(
-                    backgroundImage:  CachedNetworkImageProvider(
-                        konveksi.imgProfil),
-                    radius: 100,
-                  ),
+                  child: CircleAvatar(
+                    radius: 108,
+                    backgroundColor: Color(0xFFFFFFFF),
+                    child: CircleAvatar(
+                      backgroundImage:  CachedNetworkImageProvider(
+                          konveksi.imgProfil),
+                      radius: 100,
+                    ),
+                  )
                 ),
               ],
             ),
@@ -98,6 +103,7 @@ class DetailKonveksi extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget> [
+                      const Icon(Icons.star_border, color: Colors.black),
                       Text(
                           konveksi.rating + '/5 ',
                           style: const TextStyle(
@@ -106,12 +112,13 @@ class DetailKonveksi extends StatelessWidget {
                             fontFamily: 'Poppins',
                           )
                       ),
-                      const Icon(Icons.star_border, color: Colors.black),
+
                     ], // <Widget>[]
                   ),
                   SizedBox(width: 25),
                   Row(
                     children: <Widget> [
+                      const Icon(Icons.task_outlined, color: Colors.black),
                       Text(
                         konveksi.jmlhProject + ' ',
                         style: const TextStyle(
@@ -120,34 +127,40 @@ class DetailKonveksi extends StatelessWidget {
                           fontFamily: 'Poppins',
                         ),
                       ),
-                      const Icon(Icons.task_outlined, color: Colors.black),
+
                     ], // <Widget>[]
                   ),
                   Row(
                     children: <Widget> [
                       Container(padding: EdgeInsets.symmetric(horizontal: 15),
                       ),
-                      SizedBox.fromSize(
-                        child: ClipOval(
-                          child: Material(
-                            color: fromCssColor('#FAF3E0'),
-                            elevation: 5,
-                            shadowColor: Colors.black,
-                            child: InkWell(
-                              splashColor: Colors.grey,
-                              onTap: () => _launchURL(konveksi.linkWa),
-                              child: Column(
+                      ElevatedButton(
+                        child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                      Icons.chat_outlined,
-                                      size: 35.0), // <-- Icon
-                                ],
+                                children: const <Widget>[
+                                        Icon(
+                                            Icons.chat_outlined,
+                                            size: 20.0), // <-- Icon
+                                        Text(' Chat ',
+                                              style: TextStyle(
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.w300,
+                                              fontFamily: 'Poppins',
+                                              ),
+                                          ),
+                                        ],
+                                    ),
+                          style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(blacksand),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      side: BorderSide(color: blacksand)
+                                  ),
                               ),
-                            ),
                           ),
-                        ),
-                      )
+                          onPressed: () => _launchURL(konveksi.linkWa),
+                      ),
                     ], // <Widget>[]
                   ),
                 ],
@@ -164,14 +177,14 @@ class DetailKonveksi extends StatelessWidget {
             //       Row(
             //         children: <Widget> [
             //           TextButton(
-            //             style: TextButton.styleFrom(
-            //               shape: RoundedRectangleBorder(
-            //                 borderRadius: BorderRadius.circular(10.0),
+            //             style: ButtonStyle(
+            //               backgroundColor: MaterialStateProperty.all<Color>(blacksand),
+            //               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            //                 RoundedRectangleBorder(
+            //                     borderRadius: BorderRadius.circular(10),
+            //                     side: BorderSide(color: blacksand)
+            //                 ),
             //               ),
-            //               primary: Colors.black,
-            //               backgroundColor: fromCssColor('#FAF3E0'),
-            //               elevation: 5,
-            //               shadowColor: Colors.black,
             //             ),
             //             onPressed: () => _launchURL(konveksi.linkPorto),
             //             child: Text('Portofolio'),

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:fashionizt/Widget/gridview_feeds.dart';
+import 'package:fashionizt/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -59,13 +60,17 @@ class DetailDesainer extends StatelessWidget {
                       color: Colors.white),
                 ),
                 Positioned(
-                  top: 150,
-                  left: 100,
-                  child:   CircleAvatar(
-                    backgroundImage:  CachedNetworkImageProvider(
-                        desainer.imgProfil),
-                    radius: 100,
-                  ),
+                    top: 150,
+                    left: 100,
+                    child: CircleAvatar(
+                      radius: 108,
+                      backgroundColor: Color(0xFFFFFFFF),
+                      child: CircleAvatar(
+                        backgroundImage:  CachedNetworkImageProvider(
+                            desainer.imgProfil),
+                        radius: 100,
+                      ),
+                    )
                 ),
               ],
             ),
@@ -129,36 +134,33 @@ class DetailDesainer extends StatelessWidget {
                     children: <Widget> [
                       Container(padding: EdgeInsets.symmetric(horizontal: 10),
                       ),
-                      SizedBox.fromSize(
-                        size: Size(100, 50),
-                        child: ClipOval(
-                          child: Material(
-                            color: fromCssColor('#FAF3E0'),
-                            elevation: 1,
-                            shadowColor: Colors.black,
-                            child: InkWell(
-                              // splashColor: Colors.grey,
-                              onTap: () => _launchURL(desainer.linkWa),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(
-                                      Icons.chat_outlined,
-                                      size: 25.0), // <-- Icon
-                                  Text(
-                                    ' Chat ',
-                                    style: const TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w300,
-                                      fontFamily: 'Poppins',
-                                    ),
-                                  ),
-                                ],
+                      ElevatedButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Icon(
+                                Icons.chat_outlined,
+                                size: 20.0), // <-- Icon
+                            Text(' Chat ',
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w300,
+                                fontFamily: 'Poppins',
                               ),
+                            ),
+                          ],
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(blacksand),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                side: BorderSide(color: blacksand)
                             ),
                           ),
                         ),
-                      )
+                        onPressed: () => _launchURL(desainer.linkWa),
+                      ),
                     ], // <Widget>[]
                   ),
                 ],
