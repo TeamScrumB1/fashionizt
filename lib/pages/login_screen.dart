@@ -36,7 +36,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               Container(
                                 // height: size.height*0.08,
                                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 50),
-                                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
                               ), // Top Text
                               Container(
                                 padding: EdgeInsets.symmetric(horizontal: 30),
