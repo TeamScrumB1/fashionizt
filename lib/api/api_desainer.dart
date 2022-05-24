@@ -4,11 +4,11 @@ import '../Models/desainer_model.dart';
 
 class ApiServiceDes {
 
-  Future<Desainer> topHeadlines() async {
+  Future<DesainerElement> topHeadlines() async { //Desainer
     final response = await http.get(
-        Uri.parse('https://fashionizt.yufagency.com/koneksi_desainer.php'));
+        Uri.parse('https://api.yufagency.com/public/api/desainer'));
     if (response.statusCode == 200) {
-      return Desainer.fromJson(json.decode(response.body));
+      return DesainerElement.fromJson(json.decode(response.body)); //Desainer
     } else {
       throw Exception('Failed to load top headlines');
     }
