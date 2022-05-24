@@ -26,14 +26,15 @@ class DetailDesainer extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios_rounded, color: blush),
+          icon: Icon(Icons.arrow_back_ios_rounded, color:blush),
         ),
         title: Text('Profil Desainer',
             style: TextStyle(
               color: blush,
               fontWeight: FontWeight.w600,
               fontSize: 15,
-            )),
+            )
+        ),
         backgroundColor: blacksand,
       ),
       body: SingleChildScrollView(

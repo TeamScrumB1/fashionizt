@@ -31,7 +31,8 @@ class DetailKonveksi extends StatelessWidget {
               color: blush,
               fontWeight: FontWeight.w600,
               fontSize: 15,
-            )),
+            )
+        ),
         backgroundColor: blacksand,
       ),
       body: SingleChildScrollView(
