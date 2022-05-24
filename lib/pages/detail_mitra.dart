@@ -26,12 +26,13 @@ class DetailKonveksi extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back_ios_rounded, color: blush),
         ),
-        title: Text('Profil Garment',
+        title: Text('Profile Garment',
             style: TextStyle(
               color: blush,
               fontWeight: FontWeight.w600,
               fontSize: 15,
-            )),
+            )
+        ),
         backgroundColor: blacksand,
       ),
       body: SingleChildScrollView(
