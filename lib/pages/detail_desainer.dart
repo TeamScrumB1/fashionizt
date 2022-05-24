@@ -33,22 +33,23 @@ class DetailDesainer extends StatelessWidget {
               color: blush,
               fontWeight: FontWeight.w600,
               fontSize: 15,
+            )),
             )
         ),
         backgroundColor: blacksand,
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: <Widget> [
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
             Stack(
               clipBehavior: Clip.none,
               alignment: Alignment.center,
               children: <Widget>[
                 Container(
-                  height: size.height*0.3,
-                  padding: EdgeInsets.only(bottom: 10),
+                  height: size.height * 0.20,
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       image: DecorationImage(
                         image:
                         AssetImage('lib/Assets/images/cover.jpg'),
@@ -61,46 +62,56 @@ class DetailDesainer extends StatelessWidget {
                       color: Colors.white),
                 ),
                 Positioned(
-                    top: 150,
-                    left: 100,
+                    top: MediaQuery.of(context).size.height * 0.10,
+                    left: MediaQuery.of(context).size.width * 0.25,
+                    right: MediaQuery.of(context).size.width * 0.25,
                     child: CircleAvatar(
-                      radius: 108,
+                      radius: 88,
                       backgroundColor: Color(0xFFFFFFFF),
                       child: CircleAvatar(
-                        backgroundImage:  CachedNetworkImageProvider(
+                        backgroundImage: CachedNetworkImageProvider(
                             desainer.imgProfil),
-                        radius: 100,
+                        radius: 80,
                       ),
                     )
                 ),
               ],
             ),
             Container(
-              margin: const EdgeInsets.only(top: 100.0),
-              child: Text(
-                desainer.nama,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Poppins',
-                ),
+              height: size.height * 0.10,
+            ),
+            Container(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    // height: size.height * 0.1,
+                    child: Text(
+                      desainer.nama,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: 'Poppins',
+                      ),
+                    ),
+                  ),
+                  Container(
+                    // height: size.height * 0.1,
+                    child: Text(
+                      desainer.bio,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w300,
+                        fontFamily: 'Poppins',
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 8.0),
-              child: Text(
-                desainer.bio,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w300,
-                  fontFamily: 'Poppins',
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 16.0),
+              // height: size.height*0.1,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -115,151 +126,72 @@ class DetailDesainer extends StatelessWidget {
                             fontFamily: 'Poppins',
                           )
                       ),
-                    ], // <Widget>[]
-                  ),
-                  SizedBox(width: 25),
-                  Row(
-                    children: <Widget> [
-                      const Icon(Icons.task_outlined, color: Colors.black),
-                      Text(
-                        desainer.jmlhProject + ' ',
-                        style: const TextStyle(
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w300,
-                          fontFamily: 'Poppins',
-                        ),
+                      Container(
+                        width: size.width*0.08,
                       ),
+                      Row(
+                        children: <Widget> [
+                          const Icon(Icons.task_outlined, color: Colors.black),
+                          Text(
+                            desainer.jmlhProject + ' ',
+                            style: const TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w300,
+                              fontFamily: 'Poppins',
+                            ),
+                          ),
+                        ], // <Widget>[]
                     ], // <Widget>[]
                   ),
                   Row(
                     children: <Widget> [
                       Container(padding: EdgeInsets.symmetric(horizontal: 15),
                       ),
-                      ElevatedButton(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[
-                            Icon(
-                                Icons.chat_outlined,
-                                size: 20.0), // <-- Icon
-                            Text(' Chat ',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.w300,
-                                fontFamily: 'Poppins',
+                      Container(
+                        width: size.width*0.08,
+                      ),
+                      Row(
+                        children: <Widget> [
+                          ElevatedButton(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const <Widget>[
+                                Icon(
+                                    Icons.chat_outlined,
+                                    size: 20.0), // <-- Icon
+                                Text(' Chat ',
+                                  style: TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w300,
+                                    fontFamily: 'Poppins',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(blacksand),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    side: BorderSide(color: blacksand)
+                                ),
                               ),
                             ),
-                          ],
-                        ),
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(blacksand),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                side: BorderSide(color: blacksand)
-                            ),
+                            onPressed: () => _launchURL(desainer.linkWa),
                           ),
-                        ),
-                        onPressed: () => _launchURL(desainer.linkWa),
+                        ], // <Widget>[]
                       ),
                     ], // <Widget>[]
                   ),
+                  Container(
+                    height: size.height * 0.10,
+                  ),
                 ],
-              ), // Row
+              ),
             ),
             Container(
               child: GridViewFeeds(),
-            )//Container Icon
-            // Container(
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: <Widget>[
-            //       Row(
-            //         children: <Widget> [
-            //           SizedBox.fromSize(
-            //             size: Size(56, 56),
-            //             child: ClipOval(
-            //               child: Material(
-            //                 color: fromCssColor('#FAF3E0'),
-            //                 elevation: 5,
-            //                 shadowColor: Colors.black,
-            //                 child: InkWell(
-            //                   splashColor: Colors.grey,
-            //                   onTap: () => _launchURL(desainer.linkWa),
-            //                   child: Column(
-            //                     mainAxisAlignment: MainAxisAlignment.center,
-            //                     children: <Widget>[
-            //                       Icon(
-            //                           Icons.whatsapp,
-            //                           size: 35.0), // <-- Icon
-            //                     ],
-            //                   ),
-            //                 ),
-            //               ),
-            //             ),
-            //           )
-            //         ], // <Widget>[]
-            //       ),
-            //
-            //       // Row(
-            //       //   children: <Widget> [
-            //       //     TextButton(
-            //       //       style: TextButton.styleFrom(
-            //       //         shape: RoundedRectangleBorder(
-            //       //           borderRadius: BorderRadius.circular(10.0),
-            //       //         ),
-            //       //         primary: Colors.black,
-            //       //         backgroundColor: fromCssColor('#FAF3E0'),
-            //       //         elevation: 5,
-            //       //         shadowColor: Colors.black,
-            //       //       ),
-            //       //       onPressed: () => _launchURL(desainer.linkPorto),
-            //       //       child: Text('Portofolio'),
-            //       //     ),
-            //       //   ], // <Widget>[]
-            //       // ),
-            //     ],
-            //   ), // Row
-            // ),
-            // Container(
-            //   margin: const EdgeInsets.only(top: 20.0, left: 30.0),
-            //   child: Row(
-            //     children: <Widget>[
-            //       Row(
-            //         children: <Widget> [
-            //           Text(
-            //             'Pengalaman',
-            //             style: const TextStyle(
-            //               fontSize: 15.0,
-            //               fontWeight: FontWeight.w400,
-            //               fontFamily: 'Poppins',
-            //             ),
-            //           ),
-            //         ], // <Widget>[]
-            //       ),
-            //     ],
-            //   ), // Row
-            // ),
-            // Container(
-            //   margin: const EdgeInsets.only(top: 10.0, left: 30.0),
-            //   child: Row(
-            //     children: <Widget>[
-            //       Column(
-            //         children: <Widget> [
-            //           for (int i = 0; i < 8; i++)
-            //             Text(
-            //               'Designer Paris Fashion Week 2022', //ini belum bener ya
-            //               style: const TextStyle(
-            //                 fontSize: 13.0,
-            //                 fontWeight: FontWeight.w300,
-            //                 fontFamily: 'Poppins',
-            //               ),
-            //             ),
-            //         ],
-            //       ),
-            //     ],
-            //   ), // Row
-            // ),
+            ),
           ],
         ),
       ),
@@ -382,8 +314,8 @@ class ProfileKonveksi extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Icon(
-                                    Icons.whatsapp,
-                                    size: 35.0), // <-- Icon
+                                      Icons.whatsapp,
+                                      size: 35.0), // <-- Icon
                                 ],
                               ),
                             ),
@@ -452,7 +384,6 @@ class ProfileKonveksi extends StatelessWidget {
                 ],
               ), // Row
             ),
-
           ],
         ),
       ),
