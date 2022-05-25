@@ -162,7 +162,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       ], // <Widget>[]
                                     ),
                                     Container(
-                                      height: size.height * 0.13,
+                                      height: size.height * 0.1,
                                       // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 40),
                                     ),
                                     Row(

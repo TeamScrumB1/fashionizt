@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: size.height * 0.1,
                           ), // Top Text
                           Container(
-                            height: size.height * 0.1,
+                            height: size.height * 0.12,
                             child: Column(
                               crossAxisAlignment:
                               CrossAxisAlignment.start,
@@ -226,7 +226,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ], // <Widget>[]
                                     ),
                                     Container(
-                                      height: size.height*0.15,
+                                      height: size.height*0.12,
                                       // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 40),
                                     ),
                                     Row(
