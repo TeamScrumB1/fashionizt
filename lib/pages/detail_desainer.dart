@@ -32,7 +32,7 @@ class DetailDesainer extends StatelessWidget {
             style: TextStyle(
               color: blush,
               fontWeight: FontWeight.w600,
-              fontSize: 15,
+              fontSize: 20,
             )),
         backgroundColor: blacksand,
       ),
@@ -60,7 +60,7 @@ class DetailDesainer extends StatelessWidget {
                       color: Colors.white),
                 ),
                 Positioned(
-                    top: MediaQuery.of(context).size.height * 0.10,
+                    top: MediaQuery.of(context).size.height * 0.09,
                     left: MediaQuery.of(context).size.width * 0.25,
                     right: MediaQuery.of(context).size.width * 0.25,
                     child: CircleAvatar(
@@ -76,7 +76,7 @@ class DetailDesainer extends StatelessWidget {
               ],
             ),
             Container(
-              height: size.height * 0.10,
+              height: size.height * 0.15,
             ),
             Container(
               child: Column(
