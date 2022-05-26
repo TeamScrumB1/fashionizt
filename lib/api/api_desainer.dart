@@ -2,13 +2,13 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../Models/desainer_model.dart';
 
-class ApiServiceDes {
 
-  Future<DesainerElement> topHeadlines() async { //Desainer
+class ApiServiceDes {
+  Future<Desainer> topHeadlines() async {
     final response = await http.get(
-        Uri.parse('https://api.yufagency.com/public/api/desainer'));
+        Uri.parse('https://fashionizt.yufagency.com/koneksi_desainer.php'));
     if (response.statusCode == 200) {
-      return DesainerElement.fromJson(json.decode(response.body)); //Desainer
+      return Desainer.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to load top headlines');
     }

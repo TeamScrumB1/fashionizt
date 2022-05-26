@@ -98,21 +98,21 @@ class _DesainerExploreState extends State<DesainerExplore> {
                             )),
                         Spacer(),
                         TextButton(
-                            style: TextButton.styleFrom(),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PilihDesainer())
-                              );
-                            },
-                            child: Text('View All',
-                                style: TextStyle(
-                                  color: blacksand,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 14,
-                                )),
-                          ),
+                          style: TextButton.styleFrom(),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PilihDesainer())
+                            );
+                          },
+                          child: Text('View All',
+                              style: TextStyle(
+                                color: blacksand,
+                                fontWeight: FontWeight.w300,
+                                fontSize: 14,
+                              )),
+                        ),
                       ],
                     ),
                     Column(

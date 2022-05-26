@@ -4,9 +4,33 @@
 
 import 'dart:convert';
 
-List<dynamic> desainerFromJson(String str) => List<dynamic>.from(json.decode(str).map((x) => x));
+Desainer desainerFromJson(String str) => Desainer.fromJson(json.decode(str));
 
-String desainerToJson(List<dynamic> data) => json.encode(List<dynamic>.from(data.map((x) => x)));
+String desainerToJson(Desainer data) => json.encode(data.toJson());
+
+class Desainer {
+  Desainer({
+    required this.status,
+    required this.totalResults,
+    required this.desainer,
+  });
+
+  String status;
+  int totalResults;
+  List<DesainerElement> desainer;
+
+  factory Desainer.fromJson(Map<String, dynamic> json) => Desainer(
+    status: json["status"],
+    totalResults: json["totalResults"],
+    desainer: List<DesainerElement>.from(json["desainer"].map((x) => DesainerElement.fromJson(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "status": status,
+    "totalResults": totalResults,
+    "desainer": List<dynamic>.from(desainer.map((x) => x.toJson())),
+  };
+}
 
 class DesainerElement {
   DesainerElement({
@@ -19,12 +43,11 @@ class DesainerElement {
     required this.linkPorto,
     required this.gender,
     required this.jmlhProject,
-    required this.idKategori,
-    required this.idTarif,
-    required this.idPengalaman,
+    required this.kategori,
+    required this.tarif,
   });
 
-  int id;
+  String id;
   String imgProfil;
   String nama;
   String bio;
@@ -33,9 +56,8 @@ class DesainerElement {
   String linkPorto;
   String gender;
   String jmlhProject;
-  String idKategori;
-  String idTarif;
-  String idPengalaman;
+  String kategori;
+  String tarif;
 
   factory DesainerElement.fromJson(Map<String, dynamic> json) => DesainerElement(
     id: json["id"],
@@ -47,9 +69,8 @@ class DesainerElement {
     linkPorto: json["link_porto"],
     gender: json["gender"],
     jmlhProject: json["jmlh_project"],
-    idKategori: json["id_kategori"],
-    idTarif: json["id_tarif"],
-    idPengalaman: json["id_pengalaman"],
+    kategori: json["kategori"],
+    tarif: json["tarif"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -62,11 +83,7 @@ class DesainerElement {
     "link_porto": linkPorto,
     "gender": gender,
     "jmlh_project": jmlhProject,
-    "id_kategori": idKategori,
-    "id_tarif": idTarif,
-    "id_pengalaman": idPengalaman,
+    "kategori": kategori,
+    "tarif": tarif,
   };
 }
-
-
-
