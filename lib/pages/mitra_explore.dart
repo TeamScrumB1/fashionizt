@@ -5,6 +5,7 @@ import 'package:fashionizt/Pages/pilih_mitra.dart';
 import 'package:fashionizt/Widget/vertical_listview.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/cart_screen.dart';
+import 'package:fashionizt/pages/detail_mitra.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/category_product.dart';
 import 'package:fashionizt/Widget/mitra_slideview.dart';
@@ -139,7 +140,7 @@ class _MitraExploreState extends State<MitraExplore> {
                                           onTap: () {
                                             Navigator.push(context,
                                                 MaterialPageRoute(builder: (context) {
-                                                  return ProfileKonveksi(konveksi: konveksi!);
+                                                  return DetailKonveksi(konveksi: konveksi!);
                                                 }));
                                           },
                                           child: VerListMit(konveksi: konveksi!)

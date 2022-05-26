@@ -14,7 +14,7 @@ class DetailProduct extends StatelessWidget {
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
   }
-
+//
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
