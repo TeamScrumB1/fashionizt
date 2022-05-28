@@ -62,3 +62,15 @@ InputDecoration kTextFiledInputDecoration = InputDecoration(
   labelStyle:
   TextStyle(color: blush, fontSize: 18, fontWeight: FontWeight.w700),
 );
+
+InputDecoration TextFiledInputDecorationProfile = InputDecoration(
+  focusedBorder: UnderlineInputBorder(
+    borderSide: BorderSide(color: blacksand),
+  ),
+  enabledBorder: UnderlineInputBorder(
+    borderSide: BorderSide(color: blacksand, width: 2),
+  ),
+  labelText: "Username",
+  labelStyle:
+  TextStyle(color: blacksand, fontSize: 18, fontWeight: FontWeight.w700),
+);
