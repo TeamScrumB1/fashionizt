@@ -1,6 +1,6 @@
 import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/constants.dart';
-import 'package:fashionizt/pages/edit_myprofile.dart';
+import 'package:fashionizt/pages/my_profile.dart';
 import 'package:fashionizt/pages/pre_order.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +8,8 @@ import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import '../constants.dart';
 
-class MyProfile extends StatelessWidget {
-  const MyProfile({Key? key}) : super(key: key);
+class EditMyProfile extends StatelessWidget {
+  const EditMyProfile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class MyProfile extends StatelessWidget {
           },
         ),
         title: Text(
-          'My Profile',
+          'Edit My Profile',
           style: titleApps,
         ),
       ),
@@ -37,16 +37,35 @@ class MyProfile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
+            SizedBox(
               height: size.height*0.35,
               width: size.width*0.5,
-              child: CircleAvatar(
-                    backgroundImage: AssetImage('lib/Assets/images/fashionizt.png'),
-                    // backgroundImage: CachedNetworkImageProvider(
-                    //     konveksi.imgProfil),
-                    radius: 90,
-                  )
+              child: Stack(
+              clipBehavior: Clip.none,
+              fit: StackFit.expand,
+              children: [
+                CircleAvatar(
+                  backgroundImage: AssetImage('lib/Assets/images/fashionizt.png'),
+                  // backgroundImage: CachedNetworkImageProvider(
+                  //     konveksi.imgProfil),
+                  radius: 90,
+                ),
+                Positioned(
+                    bottom: MediaQuery.of(context).size.height * 0.05,
+                    left: MediaQuery.of(context).size.width * 0.30,
+                    // bottom: 0,
+                    // right: -25,
+                    child: RawMaterialButton(
+                      onPressed: () {},
+                      elevation: 1.0,
+                      fillColor: blacksand,
+                      child: Icon(Icons.camera_alt_outlined, color: Colors.white),
+                      padding: EdgeInsets.all(15.0),
+                      shape: CircleBorder(),
+                    )),
+              ],
             ),
+          ),
             Container(
               height: size.height * 0.001,
             ),
@@ -55,44 +74,55 @@ class MyProfile extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     // height: size.height * 0.1,
-                    child: Text(
-                      "Abdul Aziz",
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'Poppins',
-                      ),
-                    ),
-                  ),
-                  Container(
-                    // height: size.height * 0.1,
-                    child: Text(
-                      "082237808710",
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 14.0,
-                        fontFamily: 'Poppins',
-                      ),
-                    ),
-                  ),
-                  Container(
-                    // height: size.height * 0.1,
-                    child: Text(
-                      "AbdulAziz@gmail.com",
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: 'Poppins',
-                      ),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                    child: Column(
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                        children: [
+                          TextField(
+                            // readOnly: true, // * Just for Debug
+                              cursorColor: blacksand,
+                              style: TextStyle(color: blacksand),
+                              showCursor: true,
+                              //cursorColor: mainColor,
+                              decoration:
+                              TextFiledInputDecorationProfile.copyWith(
+                                  labelText: "Full Name :")
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                          ),
+                          TextField(
+                            // readOnly: true, // * Just for Debug
+                              cursorColor: blacksand,
+                              style: TextStyle(color: blacksand),
+                              showCursor: true,
+                              //cursorColor: mainColor,
+                              decoration:
+                              TextFiledInputDecorationProfile.copyWith(
+                                  labelText: " Phone :")
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                          ),
+                          TextField(
+                            // readOnly: true, // * Just for Debug
+                              cursorColor: blacksand,
+                              style: TextStyle(color: blacksand),
+                              showCursor: true,
+                              //cursorColor: mainColor,
+                              decoration:
+                              TextFiledInputDecorationProfile.copyWith(
+                                  labelText: " Email :")
+                          ),
+                        ]
                     ),
                   ),
                 ],
               ),
             ),
             Container(
-              height: size.height * 0.04,
+              height: size.height * 0.08,
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 1),
@@ -115,9 +145,10 @@ class MyProfile extends StatelessWidget {
                 ),
                 onPressed: () {Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
-                      return EditMyProfile();
+                       return MyProfile();
                     }));},
-                child: Text('Edit Profile'),
+                child:
+                Text('Save'),
               ),
             ),
             // Container(
