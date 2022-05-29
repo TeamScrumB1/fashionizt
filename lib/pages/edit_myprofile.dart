@@ -258,20 +258,19 @@ class EditMyProfile extends StatelessWidget {
           ],
         ),
       ),
-
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: blacksand,
-        child: Icon(Icons.assignment,color: blush,),
-        onPressed: (){
-          Navigator.push((context),
-              MaterialPageRoute(builder: (context){
-                return PreOrder();
-              })
-          );
-        },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavBar2(),
+//       floatingActionButton: FloatingActionButton(
+//         backgroundColor: blacksand,
+//         child: Icon(Icons.assignment,color: blush,),
+//         onPressed: (){
+//           Navigator.push((context),
+//               MaterialPageRoute(builder: (context){
+//                 return PreOrder();
+//               })
+//           );
+//         },
+//       ),
+//       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+//       bottomNavigationBar: BottomNavBar2(),
     );
   }
 }
