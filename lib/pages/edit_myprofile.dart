@@ -122,7 +122,7 @@ class EditMyProfile extends StatelessWidget {
               ),
             ),
             Container(
-              height: size.height * 0.08,
+              height: size.height * 0.03,
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 1),
@@ -151,127 +151,22 @@ class EditMyProfile extends StatelessWidget {
                 Text('Save'),
               ),
             ),
-            // Container(
-            //   child: Column(
-            //     children: <Widget>[
-            //       Container(
-            //         // height: size.height * 0.1,
-            //         // child: Text(
-            //         //   konveksi.nama,
-            //         //   textAlign: TextAlign.center,
-            //         //   style: const TextStyle(
-            //         //     fontSize: 20.0,
-            //         //     fontWeight: FontWeight.w500,
-            //         //     fontFamily: 'Poppins',
-            //         //   ),
-            //         // ),
-            //       ),
-            //       Container(
-            //         // height: size.height * 0.1,
-            //         // child: Text(
-            //         //   konveksi.bio,
-            //         //   textAlign: TextAlign.center,
-            //         //   style: const TextStyle(
-            //         //     fontSize: 14.0,
-            //         //     fontWeight: FontWeight.w300,
-            //         //     fontFamily: 'Poppins',
-            //         //   ),
-            //         // ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // Container(
-            //   // height: size.height*0.1,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: <Widget>[
-            //       Row(
-            //         children: <Widget> [
-            //           // const Icon(Icons.star_border, color: Colors.black),
-            //           // Text(
-            //           //     konveksi.rating + '/5 ',
-            //           //     style: const TextStyle(
-            //           //       fontSize: 14.0,
-            //           //       fontWeight: FontWeight.w300,
-            //           //       fontFamily: 'Poppins',
-            //           //     )
-            //           // ),
-            //           Container(
-            //             width: size.width*0.08,
-            //           ),
-            //           Row(
-            //             children: <Widget> [
-            //               // const Icon(Icons.task_outlined, color: Colors.black),
-            //               // Text(
-            //               //   konveksi.jmlhProject + ' ',
-            //               //   style: const TextStyle(
-            //               //     fontSize: 14.0,
-            //               //     fontWeight: FontWeight.w300,
-            //               //     fontFamily: 'Poppins',
-            //               //   ),
-            //               // ),
-            //             ], // <Widget>[]
-            //           ),
-            //           Container(
-            //             width: size.width*0.08,
-            //           ),
-            //           Row(
-            //             children: <Widget> [
-            //               // ElevatedButton(
-            //               //   child: Row(
-            //               //     mainAxisAlignment: MainAxisAlignment.center,
-            //               //     children: const <Widget>[
-            //               //       Icon(
-            //               //           Icons.chat_outlined,
-            //               //           size: 20.0), // <-- Icon
-            //               //       Text(' Chat ',
-            //               //         style: TextStyle(
-            //               //           fontSize: 14.0,
-            //               //           fontWeight: FontWeight.w300,
-            //               //           fontFamily: 'Poppins',
-            //               //         ),
-            //               //       ),
-            //               //     ],
-            //               //   ),
-            //               //   style: ButtonStyle(
-            //               //     backgroundColor: MaterialStateProperty.all<Color>(blacksand),
-            //               //     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            //               //       RoundedRectangleBorder(
-            //               //           borderRadius: BorderRadius.circular(10),
-            //               //           side: BorderSide(color: blacksand)
-            //               //       ),
-            //               //     ),
-            //               //   ),
-            //               //   onPressed: () => _launchURL(konveksi.linkWa),
-            //               // ),
-            //             ], // <Widget>[]
-            //           ),
-            //         ], // <Widget>[]
-            //       ),
-            //       Container(
-            //         height: size.height * 0.10,
-            //       ),
-            //     ],
-            //   ),
-            // ),
           ],
         ),
       ),
-
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: blacksand,
-        child: Icon(Icons.assignment,color: blush,),
-        onPressed: (){
-          Navigator.push((context),
-              MaterialPageRoute(builder: (context){
-                return PreOrder();
-              })
-          );
-        },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavBar2(),
+//       floatingActionButton: FloatingActionButton(
+//         backgroundColor: blacksand,
+//         child: Icon(Icons.assignment,color: blush,),
+//         onPressed: (){
+//           Navigator.push((context),
+//               MaterialPageRoute(builder: (context){
+//                 return PreOrder();
+//               })
+//           );
+//         },
+//       ),
+//       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+//       bottomNavigationBar: BottomNavBar2(),
     );
   }
 }
