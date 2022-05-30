@@ -93,6 +93,8 @@ class BottomNavBar extends StatelessWidget {
 
 class BottomNavBar2 extends StatelessWidget {
   const BottomNavBar2({Key? key}) : super(key: key);
+
+  get username => null;
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -113,7 +115,7 @@ class BottomNavBar2 extends StatelessWidget {
                   onPressed: (){
                     Navigator.pop((context),
                         MaterialPageRoute(builder: (context){
-                          return HomePages();
+                          return HomePages(username: username);
                         })
                     );
                   },

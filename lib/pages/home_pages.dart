@@ -15,7 +15,8 @@ import 'package:fashionizt/Pages/login_screen.dart';
 
 import '../constants.dart';
 class HomePages extends StatelessWidget {
-  const HomePages({Key? key}) : super(key: key);
+  const HomePages({Key? key,required this.username}) : super(key: key);
+  final String username;
 
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';

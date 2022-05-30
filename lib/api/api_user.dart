@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../Models/user_model.dart';
 
-class ApiServiceDes {
+class ApiServiceUs {
 
   Future<User> topHeadlines() async {
     final response = await http.get(

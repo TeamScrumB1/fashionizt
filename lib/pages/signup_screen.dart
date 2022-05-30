@@ -1,14 +1,16 @@
+import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:fashionizt/pages/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:from_css_color/from_css_color.dart';
 import 'package:fashionizt/animation/animations.dart';
 import 'package:fashionizt/pages/signup_screen.dart';
 import '../constants.dart';
-
+import 'package:http/http.dart' as http;
 
 class SignUpScreen extends StatefulWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -18,9 +20,49 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final feature = ["Login", "SignUp"];
+  TextEditingController user = new TextEditingController();
+  TextEditingController email = new TextEditingController();
+  TextEditingController pass = new TextEditingController();
+  bool hidePassword = true;
+  bool hidePassword2 = true;
 
-  int i = 0;
+  //api register
+  Future register() async {
+    final response = await http.post(Uri.parse("https://fashionizt.yufagency.com/signup.php"), body: {
+      "username": user.text,
+      "email": email.text,
+      "password": pass.text,
+    });
+
+    var data = json.decode(response.body);
+    if (data == "Error") {
+      Fluttertoast.showToast(
+        msg: "User Already Exist",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black.withOpacity(0.2),
+        fontSize: 15,
+        textColor: blush,
+      );
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) {
+            return SignUpScreen();
+          })
+      );
+    } else {
+      Fluttertoast.showToast(
+        msg: "Registration Successful",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black.withOpacity(0.2),
+        fontSize: 15,
+        textColor: blush,
+      );
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen(),),);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,25 +119,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   CrossAxisAlignment.start,
                                   children: [
                                     TextField(
-                                      // readOnly: true, // * Just for Debug
+                                      controller: user,
                                       cursorColor: blush,
                                       style:
                                       TextStyle(color: blush),
                                       showCursor: true,
-                                      //cursorColor: mainColor,
                                       decoration:
                                       kTextFiledInputDecoration, //ada di constant.dart
                                     ),
                                     Container(
                                       height: size.height * 0.02,
                                     ),
-                                    TextField(
-                                      // readOnly: true, // * Just for Debug
+                                    TextFormField(
+                                        controller: email,
+                                        onSaved: (input) => email = input! as TextEditingController,
+                                        validator: (input) => input!.contains('@')
+                                            ? "Email id should be valid"
+                                            : null,
                                         cursorColor: blush,
                                         style: TextStyle(
                                             color: blush),
                                         showCursor: true,
-                                        //cursorColor: mainColor,
                                         decoration:
                                         kTextFiledInputDecoration
                                             .copyWith(
@@ -104,33 +148,72 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     Container(
                                       height: size.height * 0.02,
                                     ),
-                                    TextField(
-                                      // readOnly: true, // * Just for Debug
-                                        cursorColor: blush,
-                                        style: TextStyle(
-                                            color: blush),
-                                        showCursor: true,
-                                        //cursorColor: mainColor,
-                                        decoration:
-                                        kTextFiledInputDecoration
-                                            .copyWith(
-                                            labelText:
-                                            "Password")),
+                                    TextFormField(
+                                      controller: pass,
+                                      cursorColor: blush,
+                                      style: TextStyle(color: blush),
+                                      showCursor: true,
+                                      keyboardType: TextInputType.text,
+                                      onSaved: (input) => pass = input! as TextEditingController,
+                                      validator: (input) => (input?.length ?? 0) < 3
+                                          ? "Password should be more than 3 characters"
+                                          : null,
+                                      obscureText: hidePassword,
+                                      decoration: InputDecoration(
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(color: blush),
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(color: blush, width: 2),
+                                        ),
+                                        labelText: "Password",
+                                        labelStyle:
+                                        TextStyle(color: blush, fontSize: 18, fontWeight: FontWeight.w700),
+                                        suffixIcon: IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              hidePassword = !hidePassword;
+                                            });
+                                          },
+                                          color: blush.withOpacity(0.4),
+                                          icon: Icon(hidePassword
+                                              ? Icons.visibility_off
+                                              : Icons.visibility),
+                                        ),
+                                      ),
+                                    ),
                                     Container(
                                       height: size.height * 0.02,
                                     ),
-                                    TextField(
-                                      // readOnly: true, // * Just for Debug
-                                        cursorColor: blush,
-                                        style: TextStyle(
-                                            color: blush),
-                                        showCursor: true,
-                                        //cursorColor: mainColor,
-                                        decoration:
-                                        kTextFiledInputDecoration
-                                            .copyWith(
-                                            labelText:
-                                            "Confirm Password")),
+                                    TextFormField(
+                                      cursorColor: blush,
+                                      style: TextStyle(color: blush),
+                                      showCursor: true,
+                                      keyboardType: TextInputType.text,
+                                      obscureText: hidePassword2,
+                                      decoration: InputDecoration(
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(color: blush),
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(color: blush, width: 2),
+                                        ),
+                                        labelText: "Confirm Password",
+                                        labelStyle:
+                                        TextStyle(color: blush, fontSize: 18, fontWeight: FontWeight.w700),
+                                        suffixIcon: IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              hidePassword2 = !hidePassword2;
+                                            });
+                                          },
+                                          color: blush.withOpacity(0.4),
+                                          icon: Icon(hidePassword2
+                                              ? Icons.visibility_off
+                                              : Icons.visibility),
+                                        ),
+                                      ),
+                                    ),
                                     Container(
                                       height: size.height * 0.05,
                                     ),
@@ -151,11 +234,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                               shadowColor: Colors.black,
                                               textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700, fontFamily: 'Poppins'),
                                             ),
-                                            onPressed: () { //Masih mengarah ke login
-                                              Navigator.push(context,
-                                                  MaterialPageRoute(builder: (context) {
-                                                    return LoginScreen();
-                                                  }));},
+                                            onPressed: () {
+                                              register();
+                                              },
                                             child: Text('Sign Up'),
                                           ),
                                         )
