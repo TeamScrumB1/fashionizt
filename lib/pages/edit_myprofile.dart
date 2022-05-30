@@ -29,7 +29,7 @@ class EditMyProfile extends StatelessWidget {
           },
         ),
         title: Text(
-          'Edit My Profile',
+          'Edit Profile',
           style: titleApps,
         ),
       ),
@@ -134,8 +134,8 @@ class EditMyProfile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   padding: const EdgeInsets.all(5.0),
-                  primary: blacksand,
-                  backgroundColor: blush,
+                  primary: blush,
+                  backgroundColor: blacksand,
                   shadowColor: Colors.black,
                   textStyle: const TextStyle(
                       fontSize: 18,

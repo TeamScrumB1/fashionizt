@@ -1,6 +1,7 @@
 import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/edit_myprofile.dart';
+import 'package:fashionizt/pages/login_screen.dart';
 import 'package:fashionizt/pages/pre_order.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,19 @@ class MyProfile extends StatelessWidget {
           'My Profile',
           style: titleApps,
         ),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.push((context),
+                  MaterialPageRoute(builder: (context){
+                    return LoginScreen();
+                  })
+              );
+            },
+            icon: const Icon(Icons.logout_rounded, size: 25,),
+            color: blush,
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -92,7 +106,7 @@ class MyProfile extends StatelessWidget {
               ),
             ),
             Container(
-              height: size.height * 0.04,
+              height: size.height * 0.02,
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 1),
@@ -104,8 +118,8 @@ class MyProfile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   padding: const EdgeInsets.all(5.0),
-                  primary: blacksand,
-                  backgroundColor: blush,
+                  primary: blush,
+                  backgroundColor: blacksand,
                   shadowColor: Colors.black,
                   textStyle: const TextStyle(
                       fontSize: 18,

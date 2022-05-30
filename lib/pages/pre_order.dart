@@ -2,6 +2,8 @@ import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fashionizt/Widget/gridview_produk.dart';
+import 'package:flutter/painting.dart';
 
 class PreOrder extends StatelessWidget {
   const PreOrder({Key? key}) : super(key: key);
@@ -35,7 +37,7 @@ class PreOrder extends StatelessWidget {
             ),
           ),
           Tab(
-            child: Text('History', style: TextStyle(
+            child: Text('Riwayat', style: TextStyle(
               fontSize: 16,
               ),
             ),
@@ -44,7 +46,7 @@ class PreOrder extends StatelessWidget {
         ),
       ),
       body: TabBarView(
-        children: [
+        children: <Widget>[
          SingleChildScrollView(
               padding: EdgeInsets.all(22.0),
               child: Column(
@@ -107,11 +109,63 @@ class PreOrder extends StatelessWidget {
                   )
              ])
           ),
-          Container(
-
-          ),
-        ],
-      )
+          Scaffold(
+            body: ListView.builder(
+              itemCount: 5,
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) => Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.only(left: 15, right: 15),
+                margin: EdgeInsets.only(top: 10),
+                  child: Card(
+                    elevation: 1,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text("Judul Project", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
+                                  Text("Spesifikasi"),
+                                  Text("Budget :", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: blacksand))
+                                ],
+                              ),
+                            ],
+                          ),
+                          Spacer(),
+                          Column(
+                              children: [
+                                Text("24-10-2022", style: TextStyle(fontSize: 12, color: Colors.grey)),
+                                TextButton(
+                                  onPressed: (){},
+                                  style: TextButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    backgroundColor: blacksand,
+                                  ),
+                                  child: Text("Detail", style: TextStyle(color: blush)),
+                                ),
+                              ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              ),
+            )
+          )
+          ])
         ),
       );
 }
