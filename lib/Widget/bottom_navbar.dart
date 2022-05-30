@@ -4,8 +4,12 @@ import 'package:fashionizt/pages/my_profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../Api/api_short_desainer.dart';
+
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({Key? key}) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(

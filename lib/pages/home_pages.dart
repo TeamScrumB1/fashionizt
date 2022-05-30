@@ -3,6 +3,7 @@ import 'package:fashionizt/Widget/button_role.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';
 import 'package:fashionizt/pages/cart_screen.dart';
+import 'package:fashionizt/pages/my_profile.dart';
 import 'package:fashionizt/pages/pre_order.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,16 +28,16 @@ class HomePages extends StatelessWidget {
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context, MaterialPageRoute(builder: (context){
-              return LoginScreen();
-            }));
-          },
-          icon: Icon(Icons.logout_rounded),
-          color: blush,
-        ),
+      //  centerTitle: true,
+      //  leading: IconButton(
+      //    onPressed: () {
+      //      Navigator.pop(context, MaterialPageRoute(builder: (context){
+      //        return LoginScreen();
+      //      }));
+      //    },
+      //    icon: Icon(Icons.logout_rounded),
+      //    color: blush,
+      //  ),
         backgroundColor: blacksand,
         elevation: 0,
         title: Text(
@@ -72,13 +73,13 @@ class HomePages extends StatelessWidget {
             icon: const Icon(Icons.shopping_cart, size: 25,),
             color: blush,
           ),
+          ],
           // IconButton(
           //   onPressed: (){},
           //   icon: const Icon(Icons.notifications_active,size: 25,),
           //   color: blush,
           // ),
 
-        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: blacksand,
