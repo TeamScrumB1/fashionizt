@@ -7,8 +7,10 @@ class PreOrder extends StatelessWidget {
   const PreOrder({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => DefaultTabController(
+    length: 2,
+    child: Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: blacksand,
         leading: IconButton(
@@ -22,78 +24,94 @@ class PreOrder extends StatelessWidget {
           'Pre Order',
           style: titleApps,
         ),
+        bottom: TabBar(
+          indicatorColor: blush,
+          labelColor: blush,
+          tabs:<Widget>[
+          Tab(
+            child: Text('Form', style: TextStyle(
+              fontSize: 16,
+              ),
+            ),
+          ),
+          Tab(
+            child: Text('History', style: TextStyle(
+              fontSize: 16,
+              ),
+            ),
+          ),
+        ],
+        ),
       ),
-      body: Container(
-        padding: EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('Judul :', style: TextStyle(fontWeight: FontWeight.w600)),
-            const SizedBox(height: 5),
-            TextField(
-              maxLines: 1,
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    borderSide: BorderSide(width: 1)
-                ),
-              ),
-            ),
-            Padding(padding: EdgeInsets.only(top: 15.0),),
-            Text('Kebutuhan Spesifikasi :', style: TextStyle(fontWeight: FontWeight.w600)),
-            const SizedBox(height: 5),
-            TextField(
-              maxLines: 5,
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    borderSide: BorderSide(width: 1)
-                ),
-              ),
-            ),
-            Padding(padding: EdgeInsets.only(top: 15.0),),
-            Text('Budget :', style: TextStyle(fontWeight: FontWeight.w600)),
-            const SizedBox(height: 5),
-            TextField(
-              maxLines: 1,
-              decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(7),
-                    borderSide: BorderSide(width: 1)
+      body: TabBarView(
+        children: [
+         SingleChildScrollView(
+              padding: EdgeInsets.all(22.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Judul :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 5),
+                  TextField(
+                    maxLines: 1,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                       border: OutlineInputBorder(),
+                    ),
                   ),
-              ),
-            ),
-            Padding(padding: EdgeInsets.only(top: 15.0),),
-            Text('Lampiran :', style: TextStyle(fontWeight: FontWeight.w600)),
-            const SizedBox(height: 5),
-            TextField(
-              maxLines: 1,
-              decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(7),
-                      borderSide: BorderSide(width: 1)
+                  const SizedBox(height: 20),
+                  Text('Kebutuhan Spesifikasi :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 5),
+                  TextField(
+                    maxLines: 1,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
                   ),
-              ),
-            ),
-            SizedBox(height: 20,),
+                  const SizedBox(height: 20),
+                  Text('Budget :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 5),
+                  TextField(
+                    maxLines: 1,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text('Lampiran :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 5),
+                  TextField(
+                    maxLines: 1,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Card(
+                    color: blacksand,
+                    elevation: 5,
+                    child: Container(
+                      height: 40,
+                      child: InkWell(
+                        splashColor: blush,
+                        onTap: (){},
+                        child: Center(
+                          child: Text("Submit", style: TextStyle(fontSize: 15, color: blush),),
+                        ),
+                      ),
+                    ),
+                  )
+             ])
+          ),
+          Container(
 
-            Card(
-              color: blacksand,
-              elevation: 5,
-              child: Container(
-                height: 40,
-                child: InkWell(
-                  splashColor: blush,
-                  onTap: (){},
-                  child: Center(
-                    child: Text("Submit", style: TextStyle(fontSize: 15, color: blush),),
-                  ),
-                ),
-              ),
-            )
-              ],
-            )
+          ),
+        ],
+      )
         ),
       );
-  }
 }
