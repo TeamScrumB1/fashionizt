@@ -74,7 +74,7 @@ class EditMyProfile extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     // height: size.height * 0.1,
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                     child: Column(
                         crossAxisAlignment:
                         CrossAxisAlignment.start,

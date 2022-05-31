@@ -7,40 +7,48 @@ import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fashionizt/Widget/alert_dialog.dart';
 import '../constants.dart';
 
-class MyProfile extends StatelessWidget {
-  const MyProfile({Key? key}) : super(key: key);
-
+class MyProfile extends StatefulWidget {
   @override
+  _MyProfileState createState() => _MyProfileState();
+}
+
+class _MyProfileState extends State<MyProfile>{
+  @override
+  String title = 'AlertDialog';
+  bool tappedYes = false;
+
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
         backgroundColor: blacksand,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_rounded),
-          color: blush,
-          onPressed: (){
-            Navigator.pop(context);
-          },
-        ),
+        automaticallyImplyLeading: false,
+       // leading: IconButton(
+       //   icon: const Icon(Icons.arrow_back_ios_rounded),
+       //   color: blush,
+       //   onPressed: (){
+       //     Navigator.pop(context);
+       //   },
+       // ),
         title: Text(
           'My Profile',
           style: titleApps,
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {
-              Navigator.push((context),
-                  MaterialPageRoute(builder: (context){
-                    return LoginScreen();
-                  })
-              );
+            onPressed: () async {
+              final action = await AlertDialogs.yesCancelDialog(context,'Logout','are you sure ?');
+              if(action == DialogsAction.yes) {
+                setState(() => tappedYes = true);
+              } else {
+                setState(() => tappedYes = false);
+              }
             },
             icon: const Icon(Icons.logout_rounded, size: 25,),
             color: blush,
@@ -70,7 +78,7 @@ class MyProfile extends StatelessWidget {
                   Container(
                     // height: size.height * 0.1,
                     child: Text(
-                      "Abdul Aziz",
+                      "admin",
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 20.0,
@@ -93,7 +101,7 @@ class MyProfile extends StatelessWidget {
                   Container(
                     // height: size.height * 0.1,
                     child: Text(
-                      "AbdulAziz@gmail.com",
+                      "admin@gmail.com",
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 14.0,
