@@ -38,161 +38,165 @@ class DetailProjectUser extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            // Container(
-            //     height: size.height*0.35,
-            //     width: size.width*0.5,
-            //     child: CircleAvatar(
-            //       backgroundImage: AssetImage('lib/Assets/images/fashionizt.png'),
-            //       // backgroundImage: CachedNetworkImageProvider(
-            //       //     konveksi.imgProfil),
-            //       radius: 90,
-            //     )
-            // ),
-            Container(
-              height: size.height * 0.02,
-            ),
-            Container(
-              child: Text(
-                'Judul :',
-                //konveksi.nama,
-                style: const TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Poppins',
-                ),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              // Container(
+              //     height: size.height*0.35,
+              //     width: size.width*0.5,
+              //     child: CircleAvatar(
+              //       backgroundImage: AssetImage('lib/Assets/images/fashionizt.png'),
+              //       // backgroundImage: CachedNetworkImageProvider(
+              //       //     konveksi.imgProfil),
+              //       radius: 90,
+              //     )
+              // ),
+              Container(
+                height: size.height * 0.02,
               ),
-            ),
-        Container(
-                  height: size.height * 0.04,
-                  child: Text(
-                    'Kaos Event',
-                    //konveksi.nama,
-                    style: const TextStyle(
-                      fontSize: 15.0,
-                      fontFamily: 'Poppins',
-                    ),
+              Container(
+                child: Text(
+                  'Judul :',
+                  //konveksi.nama,
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Poppins',
                   ),
-        ),
-            Container(
-              child: Text(
-                'Kebutuhan Spesifik : ',
-                //konveksi.nama,
-                style: const TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Poppins',
                 ),
               ),
-            ),
-            Container(
-              height: size.height * 0.08,
-              child: Text(
-                'Saya ingin kaos saya bisa dibuat acara formal dan juga informal',
-                //konveksi.nama,
-                style: const TextStyle(
-                  fontSize: 15.0,
-                  fontFamily: 'Poppins',
+              Container(
+                height: size.height * 0.04,
+                child: Text(
+                  'Kaos Event',
+                  //konveksi.nama,
+                  style: const TextStyle(
+                    fontSize: 15.0,
+                    fontFamily: 'Poppins',
+                  ),
                 ),
               ),
-            ),
-            Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+              Container(
+                child: Text(
+                  'Kebutuhan Spesifik : ',
+                  //konveksi.nama,
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+              ),
+              Container(
+                height: size.height * 0.08,
+                child: Text(
+                  'Saya ingin kaos saya bisa dibuat acara formal dan juga informal',
+                  //konveksi.nama,
+                  style: const TextStyle(
+                    fontSize: 15.0,
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text("Desainer :",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600)
+                      ),
+                      Row(
                         children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text("Desainer :",
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600)
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  CircleAvatar(
-                                    backgroundImage: AssetImage('lib/Assets/images/fashionizt.png'),
-                                    // backgroundImage: CachedNetworkImageProvider(
-                                    //     konveksi.imgProfil),
-                                    radius: 30,
-                                  ),
-                                  Column(
-                                    children: <Widget>[
-                                      Text(" Ivan Gunawan ",
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w600)
-                                      ),
-                                      FlatButton(
-                                        onPressed: null,
-                                        child: Text('Accepted',
-                                            style: TextStyle(
-                                                color: Colors.green
-                                            )
-                                        ),
-                                        textColor: blacksand,
-                                        shape: RoundedRectangleBorder(side: BorderSide(
-                                            color: Colors.green,
-                                            width: 1,
-                                            style: BorderStyle.solid
-                                        ), borderRadius: BorderRadius.circular(50)),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
+                          CircleAvatar(
+                            backgroundImage: AssetImage('lib/Assets/images/fashionizt.png'),
+                            // backgroundImage: CachedNetworkImageProvider(
+                            //     konveksi.imgProfil),
+                            radius: 30,
                           ),
-                          Spacer(),
                           Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text("Desainer :",
+                              Text(" Ivan Gunawan ",
                                   style: TextStyle(
-                                      fontSize: 17,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.w600)
                               ),
-                              Row(
-                                children: <Widget>[
-                                  CircleAvatar(
-                                    backgroundImage: AssetImage('lib/Assets/images/fashionizt.png'),
-                                    // backgroundImage: CachedNetworkImageProvider(
-                                    //     konveksi.imgProfil),
-                                    radius: 30,
-                                  ),
-                                  Column(
-                                    children: <Widget>[
-                                      Text(" Ivan Gunawan ",
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w600)
-                                      ),
-                                      FlatButton(
-                                        onPressed: null,
-                                        child: Text('Accepted',
-                                            style: TextStyle(
-                                                color: Colors.green
-                                            )
-                                        ),
-                                        textColor: blacksand,
-                                        shape: RoundedRectangleBorder(side: BorderSide(
-                                            color: Colors.green,
-                                            width: 1,
-                                            style: BorderStyle.solid
-                                        ), borderRadius: BorderRadius.circular(50)),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
+                              FlatButton(
+                                onPressed: (){},
+                                child: Text('Accepted',
+                                    style: TextStyle(
+                                        color: Colors.green
+                                    )
+                                ),
+                                textColor: blacksand,
+                                shape: RoundedRectangleBorder(side: BorderSide(
+                                    color: Colors.green,
+                                    width: 1,
+                                    style: BorderStyle.solid
+                                ), borderRadius: BorderRadius.circular(50)),
+                              )
                             ],
                           ),
                         ],
                       ),
                     ],
+                  ),
+                  Spacer(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text("Mitra Produksi :",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600)
+                      ),
+                      Row(
+                        children: <Widget>[
+                          CircleAvatar(
+                            backgroundImage: AssetImage('lib/Assets/images/fashionizt.png'),
+                            // backgroundImage: CachedNetworkImageProvider(
+                            //     konveksi.imgProfil),
+                            radius: 30,
+                          ),
+                          Column(
+                            children: <Widget>[
+                              Text(" Ivan Gunawan ",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600)
+                              ),
+                              FlatButton(
+                                onPressed: (){},
+                                child: Text('Accepted',
+                                    style: TextStyle(
+                                        color: Colors.green
+                                    )
+                                ),
+                                textColor: blacksand,
+                                shape: RoundedRectangleBorder(side: BorderSide(
+                                    color: Colors.green,
+                                    width: 1,
+                                    style: BorderStyle.solid
+                                ), borderRadius: BorderRadius.circular(50)),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ),
+            ],
+          ),
+        ),
+
             ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: blacksand,
