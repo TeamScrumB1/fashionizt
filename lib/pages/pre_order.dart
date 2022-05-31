@@ -73,7 +73,7 @@ class PreOrder extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Text('Budget :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
+                  Text('Biaya :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
                   const SizedBox(height: 5),
                   TextField(
                     maxLines: 1,

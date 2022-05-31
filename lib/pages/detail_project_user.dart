@@ -1,13 +1,7 @@
-import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/constants.dart';
-import 'package:fashionizt/pages/edit_myprofile.dart';
-import 'package:fashionizt/pages/login_screen.dart';
-import 'package:fashionizt/pages/pre_order.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fashionizt/Widget/alert_dialog.dart';
 import '../constants.dart';
 
 class DetailProjectUser extends StatelessWidget {
@@ -15,8 +9,6 @@ class DetailProjectUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBody: true,
@@ -39,7 +31,7 @@ class DetailProjectUser extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -54,14 +46,14 @@ class DetailProjectUser extends StatelessWidget {
               //     )
               // ),
               Container(
-                height: size.height * 0.02,
+                height: size.height * 0.01,
               ),
               Container(
                 child: Text(
                   'Judul :',
                   //konveksi.nama,
                   style: const TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     fontWeight: FontWeight.w600,
                     fontFamily: 'Poppins',
                   ),
@@ -73,7 +65,7 @@ class DetailProjectUser extends StatelessWidget {
                   'Kaos Event',
                   //konveksi.nama,
                   style: const TextStyle(
-                    fontSize: 15.0,
+                    fontSize: 14.0,
                     fontFamily: 'Poppins',
                   ),
                 ),
@@ -83,7 +75,7 @@ class DetailProjectUser extends StatelessWidget {
                   'Kebutuhan Spesifik : ',
                   //konveksi.nama,
                   style: const TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     fontWeight: FontWeight.w600,
                     fontFamily: 'Poppins',
                   ),
@@ -95,7 +87,7 @@ class DetailProjectUser extends StatelessWidget {
                   'Saya ingin kaos saya bisa dibuat acara formal dan juga informal',
                   //konveksi.nama,
                   style: const TextStyle(
-                    fontSize: 15.0,
+                    fontSize: 14.0,
                     fontFamily: 'Poppins',
                   ),
                 ),
@@ -109,7 +101,7 @@ class DetailProjectUser extends StatelessWidget {
                     children: <Widget>[
                       Text("Desainer :",
                           style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.w600)
                       ),
                       Row(
@@ -124,7 +116,7 @@ class DetailProjectUser extends StatelessWidget {
                             children: <Widget>[
                               Text(" Ivan Gunawan ",
                                   style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w600)
                               ),
                               FlatButton(
@@ -153,7 +145,7 @@ class DetailProjectUser extends StatelessWidget {
                     children: <Widget>[
                       Text("Mitra Produksi :",
                           style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               fontWeight: FontWeight.w600)
                       ),
                       Row(
@@ -168,7 +160,7 @@ class DetailProjectUser extends StatelessWidget {
                             children: <Widget>[
                               Text(" Ivan Gunawan ",
                                   style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w600)
                               ),
                               FlatButton(
@@ -196,21 +188,7 @@ class DetailProjectUser extends StatelessWidget {
             ],
           ),
         ),
-
             ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: blacksand,
-        child: Icon(Icons.assignment,color: blush,),
-        onPressed: (){
-          Navigator.push((context),
-              MaterialPageRoute(builder: (context){
-                return PreOrder();
-              })
-          );
-        },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavBar2(),
     );
   }
 }
