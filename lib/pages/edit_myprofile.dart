@@ -145,7 +145,7 @@ class EditMyProfile extends StatelessWidget {
                 ),
                 onPressed: () {Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
-                       return MyProfile();
+                       return MyBottomNavBar(currentTab: 1,currentScreen: MyProfile());
                     }));},
                 child:
                 Text('Save'),

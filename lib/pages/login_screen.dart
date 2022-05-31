@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -43,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
         fontSize: 15,
         textColor: blush,
       );
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePages(username: username),),);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),),);
     } else {
       Fluttertoast.showToast(
         msg: "Username or Password Incorrect",
@@ -56,8 +57,6 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {

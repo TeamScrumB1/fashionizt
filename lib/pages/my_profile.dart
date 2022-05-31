@@ -249,20 +249,6 @@ class _MyProfileState extends State<MyProfile>{
           ],
         ),
       ),
-
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: blacksand,
-        child: Icon(Icons.assignment,color: blush,),
-        onPressed: (){
-          Navigator.push((context),
-              MaterialPageRoute(builder: (context){
-                return PreOrder();
-              })
-          );
-        },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavBar2(),
     );
   }
 }

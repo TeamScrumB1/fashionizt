@@ -16,8 +16,7 @@ import 'package:fashionizt/Pages/login_screen.dart';
 
 import '../constants.dart';
 class HomePages extends StatelessWidget {
-  const HomePages({Key? key,required this.username}) : super(key: key);
-  final String username;
+  const HomePages({Key? key}) : super(key: key);
 
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
@@ -26,7 +25,6 @@ class HomePages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
       appBar: AppBar(
       //  centerTitle: true,
       //  leading: IconButton(
@@ -81,19 +79,6 @@ class HomePages extends StatelessWidget {
           // ),
 
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: blacksand,
-        child: Icon(Icons.assignment,color: blush,),
-        onPressed: (){
-          Navigator.push((context),
-              MaterialPageRoute(builder: (context){
-                return PreOrder();
-              })
-          );
-        },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavBar(),
       body: Container(
         child: ListView(
           children: [
