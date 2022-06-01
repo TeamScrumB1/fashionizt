@@ -135,7 +135,8 @@ class _MyProfileState extends State<MyProfile>{
                       FontWeight.w700,
                       fontFamily: 'Poppins'),
                 ),
-                onPressed: () {Navigator.push(context,
+                onPressed: () {
+                  Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
                       return EditMyProfile();
                     }));},

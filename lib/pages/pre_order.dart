@@ -1,4 +1,5 @@
 import 'package:fashionizt/constants.dart';
+import 'package:fashionizt/pages/detail_project_user.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -266,7 +267,12 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                               children: [
                                 Text("24-10-2022", style: TextStyle(fontSize: 12, color: Colors.grey)),
                                 TextButton(
-                                  onPressed: (){},
+                                  onPressed: (){
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                          return DetailProjectUser();
+                                        }));
+                                  },
                                   style: TextButton.styleFrom(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10.0),
