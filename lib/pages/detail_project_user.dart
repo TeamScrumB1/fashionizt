@@ -1,21 +1,10 @@
-import 'package:fashionizt/Widget/bottom_navbar.dart';
-import 'package:fashionizt/Widget/button_role.dart';
-import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/horizontal_prodes_listview.dart';
 import 'package:fashionizt/Widget/horizontal_promit_listview.dart';
-import 'package:fashionizt/Widget/sub_tittle.dart';
-import 'package:fashionizt/pages/cart_screen.dart';
-import 'package:fashionizt/pages/my_profile.dart';
-import 'package:fashionizt/pages/pre_order.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fashionizt/Widget/horizontal_mit_listview.dart';
-import 'package:fashionizt/Widget/my_slideview.dart';
-import 'package:fashionizt/Widget/horizontal_des_listview.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fashionizt/constants.dart';
-import 'package:fashionizt/Pages/login_screen.dart';
 
 import '../constants.dart';
 class DetailProjectUser extends StatelessWidget {
@@ -51,7 +40,7 @@ class DetailProjectUser extends StatelessWidget {
         height: size.height*1,
         width: size.width*1,
         child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: size.width*0.03, vertical:size.height*0.03,),
+          padding: EdgeInsets.symmetric(horizontal: size.width*0.03, vertical:size.height*0.01,),
           children: [
             Container(
               child: Column(
@@ -68,7 +57,8 @@ class DetailProjectUser extends StatelessWidget {
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins',
-                      color: blacksand,
+                      color: Colors.black,
+                      //color: blacksand,
                     ),
                   ),
                   Container(
@@ -81,7 +71,8 @@ class DetailProjectUser extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14.0,
                       fontFamily: 'Poppins',
-                      color: blacksand,
+                      color: Colors.black,
+                      //color: blacksand,
                     ),
                   ),
                   Container(
@@ -95,7 +86,8 @@ class DetailProjectUser extends StatelessWidget {
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins',
-                      color: blacksand,
+                      color: Colors.black,
+                      //color: blacksand,
                     ),
                   ),
                   Container(
@@ -108,7 +100,8 @@ class DetailProjectUser extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14.0,
                       fontFamily: 'Poppins',
-                      color: blacksand,
+                      color: Colors.black,
+                      //color: blacksand,
                     ),
                   ),
                   Container(
@@ -122,7 +115,8 @@ class DetailProjectUser extends StatelessWidget {
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Poppins',
-                      color: blacksand,
+                      color: Colors.black,
+                      //color: blacksand,
                     ),
                   ),
                 ],
@@ -133,9 +127,9 @@ class DetailProjectUser extends StatelessWidget {
               //konveksi.nama,
               style: TextStyle(
                 fontSize: 18.0,
-                fontWeight: FontWeight.w600,
                 fontFamily: 'Poppins',
-                color: blacksand,
+                color: Colors.black,
+                //color: blacksand,
               ),
             ),
             HorProDesListView(),
@@ -148,9 +142,9 @@ class DetailProjectUser extends StatelessWidget {
               //konveksi.nama,
               style: TextStyle(
                 fontSize: 18.0,
-                fontWeight: FontWeight.w600,
                 fontFamily: 'Poppins',
-                color: blacksand,
+                color: Colors.black,
+                //color: blacksand,
               ),
             ),
             HorProMitListView(),
