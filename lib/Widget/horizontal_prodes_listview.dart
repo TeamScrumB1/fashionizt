@@ -1,0 +1,67 @@
+import 'package:fashionizt/Pages/detail_desainer.dart';
+import 'package:fashionizt/Widget/card_des_profile.dart';
+import 'package:fashionizt/Widget/card_prodes_profile.dart';
+import 'package:flutter/material.dart';
+import 'package:fashionizt/Api/api_short_desainer.dart';
+import 'package:fashionizt/Models/desainer_model.dart';
+
+class HorProDesListView extends StatefulWidget {
+  const HorProDesListView({Key? key}) : super(key: key);
+
+  @override
+  State<HorProDesListView> createState() => _HorProDesListViewState();
+}
+
+class _HorProDesListViewState extends State<HorProDesListView> {
+  late Future<Desainer> _desainer;
+  @override
+  void initState(){
+    super.initState();
+    _desainer = ApiServiceDes().topHeadlines();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 275,
+      child: FutureBuilder(
+        future: _desainer,
+        builder: (context, AsyncSnapshot<Desainer> snapshot){
+          var state = snapshot.connectionState;
+          if(state!=ConnectionState.done){
+            return Center(child: CircularProgressIndicator());
+          }else{
+            if(snapshot.hasData){
+              return Container(
+                height: 250,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    var desainer = snapshot.data?.desainer[index];
+                    return InkWell(
+                        onTap: (){
+                          Navigator.push((context),
+                              MaterialPageRoute(builder: (context){
+                                return DetailDesainer(desainer: desainer!);
+                              })
+                          );
+                        },
+                        child: CardProDesProfile(
+                            desainer: desainer!
+                        )
+                    );
+                  },
+                  itemCount: snapshot.data?.desainer.length,
+                ),
+              );
+            }else if(snapshot.hasError){
+              return Center(child: Text(snapshot.error.toString()));
+            }else{
+              return Text('');
+            }
+          }
+        },
+      ),
+    );
+  }
+}
