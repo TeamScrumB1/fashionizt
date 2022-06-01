@@ -1,0 +1,77 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fashionizt/Models/desainer_model.dart';
+import 'package:fashionizt/constants.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import '../theme.dart';
+
+class CardProDesProfile extends StatelessWidget {
+  final DesainerElement desainer;
+  const CardProDesProfile({required this.desainer});
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      elevation: 1,
+      child: Container(
+        margin: EdgeInsets.all(5),
+        height: size.height*1,
+        width: size.width*0.4,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20.0),
+                child: CircleAvatar(
+                  backgroundImage:  CachedNetworkImageProvider(
+                      desainer.imgProfil),
+                  radius: 65,
+                ),
+              ),
+            ),
+            Text(
+              desainer.nama,
+              style: nameHorizontalCardTextStyle,
+            ),
+            SizedBox(height: 5),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(
+                    Icons.star,
+                    size: 20.0,
+                    color: Colors.amber,
+                  ),
+                  Text(desainer.rating,style: ratingHorizontalCardTextStyle,),
+                ],
+              ),
+            ),
+            SizedBox(height: 5),
+            FlatButton(
+              onPressed: (){},
+              child: Text('Accepted',
+                  style: TextStyle(
+                      color: Colors.green
+                  )
+              ),
+              textColor: blacksand,
+              shape: RoundedRectangleBorder(side: BorderSide(
+                  color: Colors.green,
+                  width: 1,
+                  style: BorderStyle.solid
+              ), borderRadius: BorderRadius.circular(50)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
