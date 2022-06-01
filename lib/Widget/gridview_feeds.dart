@@ -40,7 +40,7 @@ class _GridViewFeedsState extends State<GridViewFeeds> {
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  childAspectRatio: size.height*0.0018,
+                  childAspectRatio: 1/1,
                 ),
                 itemBuilder: (context, index) {
                   var feeds = snapshot.data?.produk[index];
