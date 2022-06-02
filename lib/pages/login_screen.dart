@@ -28,8 +28,8 @@ class _LoginScreenState extends State<LoginScreen> {
   //api login
   Future login() async {
     final response = await http.post(Uri.parse("https://fashionizt.yufagency.com/login.php"), body: {
-      "username": "yusrilf",
-      "password": "yyy123",
+      "username": user.text,
+      "password": pass.text,
     });
 
     var datauser = json.decode(response.body);

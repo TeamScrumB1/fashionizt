@@ -5,8 +5,8 @@ import 'package:fashionizt/Data/data_kategori.dart';
 import 'package:fashionizt/Data/data_kategori.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fashionizt/size_config.dart';
-
 import '../pages/kategori_pages.dart';
+
 
 class CategoryProduct extends StatelessWidget {
 

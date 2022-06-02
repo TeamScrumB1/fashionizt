@@ -1,7 +1,11 @@
+import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/edit_myprofile.dart';
+import 'package:fashionizt/pages/login_screen.dart';
+import 'package:fashionizt/pages/pre_order.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fashionizt/Widget/alert_dialog.dart';
 import '../constants.dart';
