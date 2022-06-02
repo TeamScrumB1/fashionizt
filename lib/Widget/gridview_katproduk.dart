@@ -1,24 +1,35 @@
-import 'package:fashionizt/Api/api_produk.dart';
 import 'package:fashionizt/Models/produk_model.dart';
 import 'package:fashionizt/Pages/detail_product.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/product_card.dart';
 
-class GridViewProduk extends StatefulWidget {
-  const GridViewProduk({Key? key}) : super(key: key);
+import '../api/api_kategori.dart';
+
+class GridViewKatProduk extends StatefulWidget {
+  GridViewKatProduk({
+    Key? key,
+    required this.nama_kategori,
+  }): super(key: key);
+
+  String nama_kategori;
 
   @override
-  State<GridViewProduk> createState() => _GridViewProdukState();
+  State<GridViewKatProduk> createState() => _GridViewKatProdukState( nama_kategori: nama_kategori);
 }
 
-class _GridViewProdukState extends State<GridViewProduk> {
+class _GridViewKatProdukState extends State<GridViewKatProduk> {
   late Future<Produk> _produk;
+
+  _GridViewKatProdukState({
+    required this.nama_kategori,
+  });
+    String nama_kategori;
 
   @override
   void initState(){
     super.initState();
-    _produk = ApiServiceProd().topHeadlines();
+    _produk = ApiServiceKat(nama_kategori: nama_kategori).topHeadlines();
   }
 
   @override
@@ -60,7 +71,7 @@ class _GridViewProdukState extends State<GridViewProduk> {
             }else if(snapshot.hasError){
               return Center(child: Text(snapshot.error.toString()));
             }else{
-              return Text('');
+              return Text('Tidak ada data');
             }
           }
         },

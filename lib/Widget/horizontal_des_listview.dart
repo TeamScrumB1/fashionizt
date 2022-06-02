@@ -22,7 +22,8 @@ class _HorDesListViewState extends State<HorDesListView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
+      height: 275,
+      padding: EdgeInsets.only(left: 10),
       child: FutureBuilder(
         future: _desainer,
         builder: (context, AsyncSnapshot<Desainer> snapshot){

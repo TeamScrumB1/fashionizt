@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/produk_model.dart';
+import 'package:fashionizt/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,38 +12,43 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
+        borderRadius: BorderRadius.circular(15),
       ),
-      elevation: 5,
+    elevation: 1,
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(15),
       child: Column(
         children: [
-          SizedBox(height: 15),
           Image(
             fit: BoxFit.fill,
-            width: 200,
-            height: 190,
+            width: size.width*0.5,
+            height: size.height*0.23,
             image: CachedNetworkImageProvider(
               produk.imgProduk,
             ),
           ),
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 5,right: 5,top: 5),
+                    padding: const EdgeInsets.only(top: 5),
                     child: Text(
                       produk.nama,
                       style: nameHorizontalCardTextStyle,
                     ),
                   ),
-                  Text(
-                    produk.deskripsi,
-                    style: bioHorizontalCardTextStyle,
-                      textAlign: TextAlign.center
-                  ),
+                 // SizedBox(height: 10),
+                 // Text(
+                 //   produk.deskripsi,
+                 //   style: bioHorizontalCardTextStyle,
+                 //     textAlign: TextAlign.center
+                 // ),
+                  SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children : [
@@ -50,8 +56,10 @@ class ProductCard extends StatelessWidget {
                         child: Text(
                           'Rp '+ produk.harga,
                           style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'Poppins',
+                            color: blacksand,
                           ),
                         ),
                       ),
@@ -61,7 +69,7 @@ class ProductCard extends StatelessWidget {
                           Icon(
                             Icons.star,
                             size: 20.0,
-                            color: Colors.yellow,
+                            color: Colors.amber,
                           ),
                           Text(produk.rating, style: ratingHorizontalCardTextStyle,),
                         ],
@@ -73,6 +81,7 @@ class ProductCard extends StatelessWidget {
           )
         ],
       ),
+    )
     );
   }
 }

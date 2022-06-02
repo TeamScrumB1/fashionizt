@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
+import 'package:fashionizt/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:from_css_color/from_css_color.dart';
-
 import '../theme.dart';
 
 class VerListDes extends StatelessWidget {
@@ -19,8 +18,8 @@ class VerListDes extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
-          color: lightYellowColor,
-          elevation: 5,
+          color: whiteColor,
+          elevation: 1,
           shadowColor: Colors.black,
           child: Padding(
               padding: EdgeInsets.only(top: 13, left: 30, bottom: 13),
@@ -63,7 +62,7 @@ class VerListDes extends StatelessWidget {
                                     Text(
                                       desainer.rating + '/5',
                                     ),
-                                    Icon(Icons.star_border, color: Colors.black),
+                                    Icon(Icons.star_border, color: Colors.black, size: 18),
                                   ],
                                 ),
                                 SizedBox(width: 10,),
@@ -71,9 +70,9 @@ class VerListDes extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      desainer.jmlhProject,
+                                      desainer.jmlhProject+ ' ',
                                     ),
-                                    Icon(Icons.task_outlined, color: Colors.black),
+                                    Icon(Icons.task_outlined, color: Colors.black, size: 18),
                                   ],
                                 )
                               ],
@@ -103,8 +102,8 @@ class VerListMit extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
-          color: fromCssColor('#FAF3E0'),
-          elevation: 5,
+          color: whiteColor,
+          elevation: 1,
           shadowColor: Colors.black,
           child: Padding(
               padding: EdgeInsets.only(top: 13, left: 30, bottom: 13),
@@ -146,11 +145,11 @@ class VerListMit extends StatelessWidget {
                                   children: [
                                     Text(
                                       konveksi.rating + '/5',
-                                      // style:subtitleHorizontalCardTextStyle.copyWith(
-                                      //   fontSize: 10,
-                                      // ),
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                      ),
                                     ),
-                                    Icon(Icons.star_border, color: Colors.black),
+                                    Icon(Icons.star_border, color: Colors.black, size: 18),
                                   ],
                                 ),
                                 SizedBox(width: 10,),
@@ -159,11 +158,11 @@ class VerListMit extends StatelessWidget {
                                   children: [
                                     Text(
                                       konveksi.jmlhProject,
-                                      // style:subtitleHorizontalCardTextStyle.copyWith(
-                                      //   fontSize: 10,
-                                      // ),
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                      ),
                                     ),
-                                    Icon(Icons.task_outlined, color: Colors.black),
+                                    Icon(Icons.task_outlined, color: Colors.black, size: 18),
                                   ],
                                 )
                               ],

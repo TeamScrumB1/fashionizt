@@ -15,14 +15,14 @@ class CardDesProfile extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
-      elevation: 5,
+      elevation: 1,
       child: Container(
         margin: EdgeInsets.all(5),
         width: 150,
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(13),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
                 child: CircleAvatar(
@@ -36,6 +36,7 @@ class CardDesProfile extends StatelessWidget {
               desainer.nama,
               style: nameHorizontalCardTextStyle,
             ),
+            SizedBox(height: 5),
             Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -43,12 +44,13 @@ class CardDesProfile extends StatelessWidget {
                   Icon(
                     Icons.star,
                     size: 20.0,
-                    color: Colors.yellow,
+                    color: Colors.amber,
                   ),
                   Text(desainer.rating,style: ratingHorizontalCardTextStyle,),
                 ],
               ),
             ),
+            SizedBox(height: 5),
             Text(
               desainer.bio,
               style: bioHorizontalCardTextStyle,

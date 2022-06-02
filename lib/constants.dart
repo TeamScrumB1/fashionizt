@@ -4,15 +4,17 @@ import 'package:from_css_color/from_css_color.dart';
 
 const kPrimaryColor = Color(0xFFFF7643);
 const kPrimaryLightColor = Color(0xFFFFECDF);
-Color whiteColor =Color(0xffFBFBFB);
+Color greyy =Color(0xd8e0e0e0);
+Color darkgrey =Color(0xd8686868);
 Color blackColor =Color(0xff000000);
 Color lightYellowColor =Color(0xffFAF3E0);
 Color darkYellowColor =Color(0xFFEABF9F);
 Color brownColor =Color(0xFFB68974);
 Color brown = fromCssColor('#874E4C');
 Color nude = fromCssColor('#E2B091');
-Color blacksand = fromCssColor('#3F3931');
-Color blush = fromCssColor('#EABCAC');
+Color blacksand = fromCssColor('#6F6059');
+Color blush = fromCssColor('#FAF3E0');
+
 // Color blush = Color(0xFFFAF3E0);
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
@@ -48,3 +50,27 @@ OutlineInputBorder outlineInputBorder() {
     borderSide: BorderSide(color: kTextColor),
   );
 }
+
+InputDecoration kTextFiledInputDecoration = InputDecoration(
+  focusedBorder: UnderlineInputBorder(
+    borderSide: BorderSide(color: blush),
+  ),
+  enabledBorder: UnderlineInputBorder(
+    borderSide: BorderSide(color: blush, width: 2),
+  ),
+  labelText: "Username",
+  labelStyle:
+  TextStyle(color: blush, fontSize: 18, fontWeight: FontWeight.w700),
+);
+
+InputDecoration TextFiledInputDecorationProfile = InputDecoration(
+  focusedBorder: UnderlineInputBorder(
+    borderSide: BorderSide(color: blacksand),
+  ),
+  enabledBorder: UnderlineInputBorder(
+    borderSide: BorderSide(color: blacksand, width: 2),
+  ),
+  labelText: "Username",
+  labelStyle:
+  TextStyle(color: blacksand, fontSize: 18, fontWeight: FontWeight.w700),
+);

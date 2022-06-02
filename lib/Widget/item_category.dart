@@ -14,13 +14,13 @@ class ItemCategory extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
-        width: 100,
+        width: 80,
         child: Column(
           children: [
             AspectRatio(
               aspectRatio: 1,
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 7),
+                margin: EdgeInsets.symmetric(horizontal: 0),
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(20.0),
                     child: Image.asset(
@@ -30,7 +30,13 @@ class ItemCategory extends StatelessWidget {
                 ),
               ),
             ),
-            Text(nama),
+            SizedBox(height: 10),
+            Text(
+              nama,
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
           ],
         ),
       ),

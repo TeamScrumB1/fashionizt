@@ -1,33 +1,34 @@
 import 'package:fashionizt/Api/api_produk.dart';
 import 'package:fashionizt/Models/produk_model.dart';
 import 'package:fashionizt/Pages/detail_product.dart';
+import 'package:fashionizt/Widget/feeds_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/product_card.dart';
 
-class GridViewProduk extends StatefulWidget {
-  const GridViewProduk({Key? key}) : super(key: key);
+class GridViewFeeds extends StatefulWidget {
+  const GridViewFeeds({Key? key}) : super(key: key);
 
   @override
-  State<GridViewProduk> createState() => _GridViewProdukState();
+  State<GridViewFeeds> createState() => _GridViewFeedsState();
 }
 
-class _GridViewProdukState extends State<GridViewProduk> {
-  late Future<Produk> _produk;
+class _GridViewFeedsState extends State<GridViewFeeds> {
+  late Future<Produk> _feeds;
 
   @override
   void initState(){
     super.initState();
-    _produk = ApiServiceProd().topHeadlines();
+    _feeds = ApiServiceProd().topHeadlines();
   }
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.only(right: 8, left: 8),
-      // height: 250,
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 1),
       child: FutureBuilder(
-        future: _produk,
+        future: _feeds,
         builder: (context, AsyncSnapshot<Produk> snapshot){
           var state = snapshot.connectionState;
           if(state!=ConnectionState.done){
@@ -38,21 +39,21 @@ class _GridViewProdukState extends State<GridViewProduk> {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1/1.53,
+                  crossAxisCount: 3,
+                  childAspectRatio: 1/1,
                 ),
                 itemBuilder: (context, index) {
-                  var produk = snapshot.data?.produk[index];
+                  var feeds = snapshot.data?.produk[index];
                   return InkWell(
                       onTap: (){
                         Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context){
-                              return DetailProduct(detail: produk!);
+                              return DetailProduct(detail: feeds!);
                             })
                         );
                       },
-                      child: ProductCard(produk: produk!)
+                      child: FeedsCard(produk: feeds!)
                   );
                 },
                 itemCount: snapshot.data?.produk.length,

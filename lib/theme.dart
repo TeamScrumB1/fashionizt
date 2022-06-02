@@ -6,20 +6,20 @@ Color blackColor =Color(0xff000000);
 Color lightYellowColor =Color(0xffFAF3E0);
 
 TextStyle menuFilterTextStyle = TextStyle(
-  color: blackColor,
+  color: blacksand,
   fontWeight: FontWeight.w300,
   fontSize: 12,
 );
 
 //card explore desainer & mitra
 TextStyle titleVerticalCardTextStyle = TextStyle(
-  color: blackColor,
+  color: Colors.black,
   fontWeight: FontWeight.w500,
   fontSize: 15,
 );
 
 TextStyle subtitleVerticalCardTextStyle = TextStyle(
-  color: blackColor,
+  color: Colors.black,
   fontWeight: FontWeight.w300,
   fontSize: 12,
 );
@@ -28,11 +28,11 @@ TextStyle subtitleVerticalCardTextStyle = TextStyle(
 TextStyle nameHorizontalCardTextStyle = TextStyle(
   color: blackColor,
   fontWeight: FontWeight.w600,
-  fontSize: 15,
+  fontSize: 16,
 );
 
 TextStyle ratingHorizontalCardTextStyle = TextStyle(
-  color: blackColor,
+  color: Colors.black,
   fontWeight: FontWeight.w400,
   fontSize: 13,
 );
@@ -43,7 +43,7 @@ TextStyle bioHorizontalCardTextStyle = TextStyle(
   fontSize: 12,
 );
 TextStyle titleApps = TextStyle(
-  fontSize: 23,
+  fontSize: 20,
   fontWeight: FontWeight.bold,
   color: blush,
 );
@@ -52,11 +52,10 @@ TextStyle nameProductTextStyle = TextStyle(
   fontWeight: FontWeight.w600,
   fontSize: 17,
 );
-
 TextStyle priceProductTextStyle = TextStyle(
   color: blackColor,
   fontWeight: FontWeight.w600,
-  fontSize: 17,
+  fontSize: 16,
 );
 
 ThemeData theme() {

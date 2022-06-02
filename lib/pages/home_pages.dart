@@ -1,7 +1,6 @@
 import 'package:fashionizt/Widget/button_role.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';
-import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +8,9 @@ import 'package:fashionizt/Widget/horizontal_mit_listview.dart';
 import 'package:fashionizt/Widget/my_slideview.dart';
 import 'package:fashionizt/Widget/horizontal_des_listview.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+
+import '../constants.dart';
 class HomePages extends StatelessWidget {
   const HomePages({Key? key}) : super(key: key);
 
@@ -20,12 +22,23 @@ class HomePages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+      //  centerTitle: true,
+      //  leading: IconButton(
+      //    onPressed: () {
+      //      Navigator.pop(context, MaterialPageRoute(builder: (context){
+      //        return LoginScreen();
+      //      }));
+      //    },
+      //    icon: Icon(Icons.logout_rounded),
+      //    color: blush,
+      //  ),
         backgroundColor: blacksand,
         elevation: 0,
         title: Text(
           'Fashionizt',
           style: titleApps,
         ),
+        automaticallyImplyLeading: false,
         // Container(
         //   width: 700,
         //   height: 40,
@@ -52,26 +65,34 @@ class HomePages extends StatelessWidget {
               _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
             },
             icon: const Icon(Icons.shopping_cart, size: 25,),
-            color: Colors.black,
             color: blush,
           ),
-          IconButton(
-            onPressed: (){},
-            icon: const Icon(Icons.notifications_active,size: 25,),
-            color: blush,
-          ),
-        ],
+          ],
+          // IconButton(
+          //   onPressed: (){},
+          //   icon: const Icon(Icons.notifications_active,size: 25,),
+          //   color: blush,
+          // ),
+
       ),
       body: Container(
         child: ListView(
-          children: <Widget>[
+          children: [
             SlideView(),
-            ButtonRole(),
+            Role(),
             SubTittle(sub: "Top Desainer"),
             HorDesListView(),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              //child: SubTittle(sub: "Kategori")
+            ),
             SubTittle(sub: "Top Mitra Produksi"),
             HorMitListView(),
-            SubTittle(sub: "Produk Rekomendasi",),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              //child: SubTittle(sub: "Kategori")
+            ),
+            SubTittle(sub: "Rekomendasi Produk",),
             GridViewProduk(),
           ],
         ),
