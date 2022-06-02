@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fashionizt/constants.dart';
 
 
+
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: blacksand,

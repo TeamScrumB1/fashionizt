@@ -2,10 +2,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../Models/produk_model.dart';
 
-class ApiServiceProd {
+class ApiServiceKat {
+  ApiServiceKat({
+    required this.nama_kategori,
+  });
+
+  String nama_kategori;
+
   Future<Produk> topHeadlines() async {
     final response = await http.get(
-        Uri.parse('https://api.yufagency.com/produk_desc_rating'));
+        Uri.parse('https://api.yufagency.com/product_filter_category/$nama_kategori'));
     if (response.statusCode == 200) {
       return Produk.fromJson(json.decode(response.body));
     } else {

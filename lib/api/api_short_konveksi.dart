@@ -5,7 +5,7 @@ import '../Models/konveksi_model.dart';
 class ApiServiceMit {
   Future<Konveksi> topHeadlines() async {
     final response = await http.get(
-        Uri.parse('https://fashionizt.yufagency.com/shorting_konveksi.php'));
+        Uri.parse('https://api.yufagency.com/konveksi_desc_rating'));
     if (response.statusCode == 200) {
       return Konveksi.fromJson(json.decode(response.body));
     } else {
