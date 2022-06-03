@@ -1,11 +1,7 @@
 import 'package:fashionizt/Api/api_short_konveksi.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
-import 'package:fashionizt/Widget/gridview_produk.dart';
-import 'package:fashionizt/Widget/my_slideview.dart';
 import 'package:fashionizt/constants.dart';
-import 'package:fashionizt/pages/cart_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:fashionizt/Widget/category_product.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Widget/gridview_katproduk.dart';
 import '../theme.dart';

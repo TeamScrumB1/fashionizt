@@ -3,7 +3,7 @@ import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/my_slideview.dart';
 import 'package:fashionizt/constants.dart';
-import 'package:fashionizt/pages/cart_screen.dart';
+import 'package:fashionizt/pages/Keranjang_produk.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/category_product.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -56,7 +56,13 @@ class _MallExploreState extends State<MallExplore> {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context){
+                    return KeranjangProduk();
+                  })
+              );
+              // _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
             },
             icon: const Icon(
               Icons.shopping_cart,

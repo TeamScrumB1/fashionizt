@@ -1,10 +1,7 @@
-import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/Widget/button_role.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';
-import 'package:fashionizt/pages/cart_screen.dart';
-import 'package:fashionizt/pages/my_profile.dart';
-import 'package:fashionizt/pages/pre_order.dart';
+import 'package:fashionizt/pages/Keranjang_produk.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +9,6 @@ import 'package:fashionizt/Widget/horizontal_mit_listview.dart';
 import 'package:fashionizt/Widget/my_slideview.dart';
 import 'package:fashionizt/Widget/horizontal_des_listview.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:fashionizt/Pages/login_screen.dart';
 
 import '../constants.dart';
 class HomePages extends StatelessWidget {
@@ -66,12 +62,18 @@ class HomePages extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             onPressed: () {
-              _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
+              // _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context){
+                    return KeranjangProduk();
+                  })
+              );
             },
             icon: const Icon(Icons.shopping_cart, size: 25,),
             color: blush,
           ),
-          ],
+        ],
           // IconButton(
           //   onPressed: (){},
           //   icon: const Icon(Icons.notifications_active,size: 25,),
