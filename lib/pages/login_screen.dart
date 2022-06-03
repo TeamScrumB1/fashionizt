@@ -6,9 +6,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/animation/animations.dart';
 import 'package:fashionizt/pages/signup_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+
+import '../routes.dart';
+import '../shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -20,10 +24,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool hidePassword = true;
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
-  String username = '';
-
-  TextEditingController user = new TextEditingController();
-  TextEditingController pass = new TextEditingController();
+  final PrefService _prefService = PrefService();
+  final user = new TextEditingController();
+  final pass = new TextEditingController();
 
   //api login
   Future login() async {
@@ -32,6 +35,8 @@ class _LoginScreenState extends State<LoginScreen> {
       "password": pass.text,
     });
 
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('username', user.text);
     var datauser = json.decode(response.body);
 
     if (datauser == "Success") {
@@ -128,12 +133,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                       cursorColor: blush,
                                       style: TextStyle(color: blush),
                                       showCursor: true,
-                                      //cursorColor: mainColor,
                                       keyboardType: TextInputType.text,
-                                      onSaved: (input) => pass = input! as TextEditingController,
-                                      validator: (input) => (input?.length ?? 0) < 3
-                                          ? "Password should be more than 3 characters"
-                                          : null,
+                                      // onSaved: (input) => pass = input! as TextEditingController,
+                                      // validator: (input) => (input?.length ?? 0) < 3
+                                      //     ? "Password should be more than 3 characters"
+                                      //     : null,
                                       obscureText: hidePassword,
                                       decoration: InputDecoration(
                                         focusedBorder: UnderlineInputBorder(
@@ -184,8 +188,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   FontWeight.w700,
                                                   fontFamily: 'Poppins'),
                                             ),
-                                            onPressed: () {
-                                              login();
+                                            onPressed: () async {
+                                              _prefService.createCache(user.text).whenComplete(() {
+                                                if (user.text.isNotEmpty && pass.text.isNotEmpty) {
+                                                  login();
+                                                }
+                                              });
                                             },
                                             child: Text('Login'),
                                           ),

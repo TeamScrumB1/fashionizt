@@ -1,3 +1,4 @@
+import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/Widget/button_role.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';
@@ -9,13 +10,29 @@ import 'package:fashionizt/Widget/horizontal_mit_listview.dart';
 import 'package:fashionizt/Widget/my_slideview.dart';
 import 'package:fashionizt/Widget/horizontal_des_listview.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:fashionizt/Pages/login_screen.dart';
 import '../constants.dart';
-class HomePages extends StatelessWidget {
-  const HomePages({Key? key}) : super(key: key);
+import '../shared_preferences.dart';
+
+class HomePages extends StatefulWidget {
+  @override
+  _HomePagesState createState() => _HomePagesState();
+}
+
+class _HomePagesState extends State<HomePages> {
+  // const HomePages({Key? key}) : super(key: key);
+  final PrefService _prefService = PrefService();
 
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
+  }
+
+  @override
+  void initState(){
+    _prefService.readCache("username").then((value) {
+      print('username : ' + value.toString());
+    });
+    super.initState();
   }
 
   @override

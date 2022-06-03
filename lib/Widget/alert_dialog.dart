@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fashionizt/pages/login_screen.dart';
 import '../constants.dart';
+import '../routes.dart';
+import '../shared_preferences.dart';
 
 enum DialogsAction { yes, cancel }
 
 class AlertDialogs {
+  static final PrefService _prefService = PrefService();
+
   static Future<DialogsAction> yesCancelDialog(
       BuildContext context,
       String title,
@@ -29,11 +33,12 @@ class AlertDialogs {
               ),
             ),
             TextButton(
-              onPressed: () => Navigator.push((context),
-                  MaterialPageRoute(builder: (context){
-                    return LoginScreen();
-                  })
-              ),
+              onPressed: () async {
+                await PrefService.removeCache("username").then((value) {
+                  print('username : ' + value.toString());
+                  Navigator.of(context).pushNamed(LoginRoute);
+                });
+              },
               child: Text(
                 'Confirm',
                 style: TextStyle(
