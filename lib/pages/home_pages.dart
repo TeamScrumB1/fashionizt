@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/horizontal_mit_listview.dart';
 import 'package:fashionizt/Widget/my_slideview.dart';
 import 'package:fashionizt/Widget/horizontal_des_listview.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fashionizt/Pages/login_screen.dart';
 import '../constants.dart';
@@ -37,6 +38,10 @@ class _HomePagesState extends State<HomePages> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp
+    ]);
     return Scaffold(
       appBar: AppBar(
       //  centerTitle: true,
