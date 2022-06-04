@@ -45,7 +45,7 @@ class EditMyProfile extends StatelessWidget {
               fit: StackFit.expand,
               children: [
                 CircleAvatar(
-                  backgroundImage: AssetImage('lib/Assets/images/fashionizt.png'),
+                  backgroundImage: AssetImage('lib/Assets/images/profil.jpg'),
                   // backgroundImage: CachedNetworkImageProvider(
                   //     konveksi.imgProfil),
                   radius: 90,
