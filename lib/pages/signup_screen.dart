@@ -4,6 +4,7 @@ import 'package:fashionizt/Models/desainer_model.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:fashionizt/pages/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:from_css_color/from_css_color.dart';
@@ -99,6 +100,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp
+    ]);
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     Size size = MediaQuery.of(context).size;
