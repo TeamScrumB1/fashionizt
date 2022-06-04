@@ -8,10 +8,10 @@ import 'package:fashionizt/constants.dart';
 
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: blacksand,
-    statusBarIconBrightness: Brightness.dark,
-  ));
+ // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+ //   statusBarColor: blacksand,
+ //   statusBarIconBrightness: Brightness.dark,
+ // ));
   runApp(const MyApp());
 }
 

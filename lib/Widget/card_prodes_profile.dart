@@ -1,18 +1,27 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
-import 'package:fashionizt/constants.dart';
+import 'package:fashionizt/Widget/horizontal_prodes_listview.dart';
+// import 'package:fashionizt/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../theme.dart';
-
-class CardProDesProfile extends StatelessWidget {
+class CardProDesProfile extends StatefulWidget {
+  const CardProDesProfile({Key? key,required this.desainer}) : super(key: key);
   final DesainerElement desainer;
-  const CardProDesProfile({required this.desainer});
+
+  @override
+  State<CardProDesProfile> createState() => _CardProDesProfileState(desainer: desainer);
+}
+
+class _CardProDesProfileState extends State<CardProDesProfile> {
+  final DesainerElement desainer;
+  _CardProDesProfileState({required this.desainer});
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    String status = "false";
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
@@ -54,23 +63,40 @@ class CardProDesProfile extends StatelessWidget {
               ),
             ),
             SizedBox(height: 5),
+            status == "false" || status == desainer.id ?
             ElevatedButton(
               onPressed: (){},
-              child: Text('Accepted',
-                  style: TextStyle(
-                      color: Colors.green
-                  )
+              child: Text(
+                'Accepted',
+                style: TextStyle(
+                  color: Colors.green,
+                ),
               ),
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.green)
-                        )
-                    )
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.green),
+                  ),
                 )
-            ),
+              ),
+            ) : Container(
+              width: size.width*0.3,
+              height: size.height*0.04,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.red,
+              ),
+              child: Center(
+                child: Text(
+                  'Rejected',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
