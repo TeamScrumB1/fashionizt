@@ -4,8 +4,6 @@ import 'package:fashionizt/Models/desainer_model.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:fashionizt/pages/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:from_css_color/from_css_color.dart';
@@ -25,6 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController user = new TextEditingController();
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
+  TextEditingController cpass = new TextEditingController();
   bool hidePassword = true;
   bool hidePassword2 = true;
 
@@ -34,12 +33,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
       "username": user.text,
       "email": email.text,
       "password": pass.text,
+      "cpassword" : cpass.text,
     });
 
     var data = json.decode(response.body);
-    if (data == "Error") {
+    if
+    (data == "Blank") {
+      Fluttertoast.showToast(
+        msg: "Please Fill Out The Entire Form",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black.withOpacity(0.2),
+        fontSize: 15,
+        textColor: blush,
+      );
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) {
+            return SignUpScreen();
+          })
+      );
+    } else if (data == "Error") {
       Fluttertoast.showToast(
         msg: "User Already Exist",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black.withOpacity(0.2),
+        fontSize: 15,
+        textColor: blush,
+      );
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) {
+            return SignUpScreen();
+          })
+      );
+    } else if (data == "Wrong Password") {
+      Fluttertoast.showToast(
+        msg: "Password Does Not Match",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.TOP,
         timeInSecForIosWeb: 1,
@@ -188,6 +219,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       height: size.height * 0.02,
                                     ),
                                     TextFormField(
+                                      controller: cpass,
                                       cursorColor: blush,
                                       style: TextStyle(color: blush),
                                       showCursor: true,
@@ -238,7 +270,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             ),
                                             onPressed: () {
                                               register();
-                                              },
+                                            },
                                             child: Text('Sign Up'),
                                           ),
                                         )
