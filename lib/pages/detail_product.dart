@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/Models/produk_model.dart';
+// import 'package:fashionizt/Widget/Iconkeranjang.dart';
 import 'package:fashionizt/pages/Keranjang_produk.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,12 @@ class _DetailProductState extends State<DetailProduct> {
 
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
+  }
+
+  @override
+  void initState(){
+    _getAllKeranjang();
+    super.initState();
   }
 
   @override
@@ -58,6 +65,9 @@ class _DetailProductState extends State<DetailProduct> {
                   iconSize: 25.0,
                   onPressed: () {
                     upsertKeranjang();
+                    setState(() {
+                      _getAllKeranjang();
+                    });
                   },
                 ),
               ),
@@ -100,23 +110,51 @@ class _DetailProductState extends State<DetailProduct> {
         //  color: Colors.black,
         //),),
         actions: [
-          ElevatedButton(
-            child: Icon(Icons.shopping_cart),
-            style: ElevatedButton.styleFrom(
-              shape: CircleBorder(),
-              padding: EdgeInsets.all(5),
-              primary: Colors.black38,
-              onPrimary: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context){
-                    return KeranjangProduk();
-                  })
-              );
-              // _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
-            },
+          Stack(
+            children: <Widget>[
+              ElevatedButton(
+                child: Icon(Icons.shopping_cart),
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(5),
+                  primary: Colors.black38,
+                  onPrimary: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context){
+                        return KeranjangProduk();
+                      })
+                  );
+                  // _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
+                },
+              ),
+              listKeranjang.length == 0 ? Container() : Positioned(
+                right: 7,
+                top: 2,
+                child: Stack(
+                  children: <Widget>[
+                    Icon(
+                      Icons.brightness_1,
+                      size: 20,
+                      color: Colors.orange,
+                    ),
+                    Positioned(
+                      top: 3.0,
+                      right: 7.0,
+                      child: Text(
+                        listKeranjang.length.toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
         ],
       ),
@@ -338,5 +376,15 @@ class _DetailProductState extends State<DetailProduct> {
       Harga: detail.harga,
       Gambar: detail.imgProduk,
     ));
+  }
+  List<CartShop> listKeranjang = [];
+  Future<void> _getAllKeranjang() async {
+    var list = await db.getAllKeranjang();
+    setState(() {
+      listKeranjang.clear();
+      list!.forEach((keranjang) {
+        listKeranjang.add(CartShop.fromMap(keranjang));
+      });
+    });
   }
 }

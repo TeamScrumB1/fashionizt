@@ -5,7 +5,6 @@ import 'package:fashionizt/Models/Cart.dart';
 class DbHelper {
   static final DbHelper _instance = DbHelper._internal();
   static Database? _database;
-
   final String tableName = 'tableKeranjang';
   final String columnId = 'Id';
   final String columnNamaProduk = 'NamaProduk';
@@ -53,6 +52,12 @@ class DbHelper {
     ]);
 
     return result.toList();
+  }
+  Future<String?> jumlahKeranjang() async{
+    var dbClient = await _db;
+    String count = "SELECT count(*) FROM tableKeranjang";
+    var result = await dbClient!.rawQuery(count);
+    return result.toString();
   }
 
   Future<int?> updateKeranjang(CartShop keranjang) async {
