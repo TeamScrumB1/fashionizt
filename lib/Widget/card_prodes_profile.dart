@@ -54,19 +54,22 @@ class CardProDesProfile extends StatelessWidget {
               ),
             ),
             SizedBox(height: 5),
-            FlatButton(
+            ElevatedButton(
               onPressed: (){},
               child: Text('Accepted',
                   style: TextStyle(
                       color: Colors.green
                   )
               ),
-              textColor: blacksand,
-              shape: RoundedRectangleBorder(side: BorderSide(
-                  color: Colors.green,
-                  width: 1,
-                  style: BorderStyle.solid
-              ), borderRadius: BorderRadius.circular(50)),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            side: BorderSide(color: Colors.green)
+                        )
+                    )
+                )
             ),
           ],
         ),

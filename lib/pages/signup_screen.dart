@@ -270,7 +270,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             ),
                                             onPressed: () {
                                               register();
-                                              },
+                                            },
                                             child: Text('Sign Up'),
                                           ),
                                         )

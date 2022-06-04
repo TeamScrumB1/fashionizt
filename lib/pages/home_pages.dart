@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/horizontal_mit_listview.dart';
 import 'package:fashionizt/Widget/my_slideview.dart';
 import 'package:fashionizt/Widget/horizontal_des_listview.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../constants.dart';
 import '../shared_preferences.dart';
@@ -39,6 +40,10 @@ class _HomePagesState extends State<HomePages> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp
+    ]);
     return RefreshIndicator(
       onRefresh: _getAllKeranjang,
       child: Scaffold(
@@ -79,7 +84,6 @@ class _HomePagesState extends State<HomePages> {
           //     ),
           //   ),
           // ),
-
           actions: <Widget>[
             Stack(
               children: <Widget>[
