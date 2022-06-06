@@ -274,7 +274,7 @@ class _DetailProductState extends State<DetailProduct> {
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                       child: Text(
-                        'Flutter adalah sebuah framework aplikasi mobil sumber terbuka yang diciptakan oleh Google. Flutter digunakan dalam pengembangan aplikasi untuk sistem operasi Android, iOS, Windows, Linux, MacOS, serta menjadi metode utama untuk membuat aplikasi Google Fuchsia. ',
+                        detail.deskripsi,
                         textAlign: TextAlign.justify,
                       ),
                     ),
@@ -431,13 +431,15 @@ class _DetailProductState extends State<DetailProduct> {
         'Harga' : keranjang.Harga,
         'Jumlah' : keranjang.Jumlah+1,
         'Gambar' : keranjang.Gambar,
+        'Status' : keranjang.Status,
       }));
     }else{
       await db.saveKeranjang(CartShop(
         NamaProduk: detail.nama,
         Harga: detail.harga,
         Gambar: detail.imgProduk,
-        Jumlah : 1,
+        Jumlah: 1,
+        Status: 0,
       ));
     }
   }
