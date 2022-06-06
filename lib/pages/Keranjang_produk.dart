@@ -1,8 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/theme.dart';
+// import 'package:line_icons/line_icon.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class KeranjangProduk extends StatefulWidget {
 class _KeranjangProdukState extends State<KeranjangProduk> {
   List<CartShop> listKeranjang = [];
   DbHelper db = DbHelper();
+  int total = 0;
 
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
@@ -49,17 +51,19 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
           child: Row(
             children: [
               Container(
-                width: size.width*0.5,
+                width: size.width*0.6,
                 alignment: Alignment.center,
-                child: Column(
+                padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                child: Row(
                   children: <Widget>[
-                    // Text(
-                    //     'Total',
-                    //     style:
-                    //     TextStyle(color: blacksand, fontSize: 18.0)),
-                    Text('Rp. 300.000',
+                    Text(
+                        'Total : ',
                         style:
-                        TextStyle(color: blacksand, fontSize: 18.0)),
+                        TextStyle(color: blacksand, fontSize: 15.0)
+                    ),
+                    Text(hitungTotal().toString(),
+                        style:
+                        TextStyle(color: blacksand, fontSize: 18.0, fontWeight: FontWeight.bold)),
                   ],
                 ),
                 decoration: BoxDecoration(
@@ -67,7 +71,7 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                 ),
               ),
               Container(
-                width: size.width*0.5,
+                width: size.width*0.4,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: blacksand,
@@ -141,7 +145,7 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                           style: TextStyle(fontWeight: FontWeight.w600, color: brownColor),
                           children: [
                             TextSpan(
-                                text: " x1",
+                                text: " x${keranjang.Jumlah}",
                                 style: Theme.of(context).textTheme.bodyText1),
                           ],
                         ),
@@ -174,6 +178,22 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
         listKeranjang.add(CartShop.fromMap(keranjang));
       });
     });
+  }
+  String hitungTotal(){
+    double total = 0;
+    String output = "";
+
+    for(int i=0; i < listKeranjang.length; i++){
+      total = total +  (double.parse(listKeranjang[i].Harga) * listKeranjang[i].Jumlah);
+    }
+
+    if(total/1000 >= 1){
+        output = (total/1000).toInt().toString()+ "."+ (1000+(total%1000)).toString().substring(1,4)+ ".000";
+    }else{
+      output = total.toInt().toString()+".000";
+    }
+
+    return "Rp " + output;
   }
 
   Future<void> _deleteKeranjang(CartShop keranjang, int position) async {
