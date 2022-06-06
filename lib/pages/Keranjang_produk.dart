@@ -7,6 +7,8 @@ import 'package:fashionizt/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fashionizt/Widget/bottom_navbar.dart';
+import 'package:fashionizt/pages/home_pages.dart';
 
 class KeranjangProduk extends StatefulWidget {
   const KeranjangProduk({Key? key}) : super(key: key);
@@ -93,9 +95,9 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
           color: blush,
-          onPressed: () {
-            Navigator.pop(context);
-          },
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),),);
+            },
         ),
         title: Text(
           'Keranjang',
@@ -107,9 +109,19 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
           itemBuilder: (context,index){
             CartShop keranjang = listKeranjang[index];
             return Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Row(
                 children: [
+                  Checkbox(
+                      activeColor: blacksand,
+                      value: keranjang.Status == 0 ? false : true,
+                      onChanged: (bool? value){
+                        setState(() {
+                          statusKeranjang(keranjang);
+                          _getAllKeranjang();
+                        });
+                      }
+                  ),
                   SizedBox(
                     width: 100,
                     child: AspectRatio(
@@ -205,16 +217,6 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                         Icons.delete,
                         color: blacksand,
                       ),
-                  ),
-                  Checkbox(
-                    activeColor: blacksand,
-                    value: keranjang.Status == 0 ? false : true,
-                    onChanged: (bool? value){
-                      setState(() {
-                        statusKeranjang(keranjang);
-                        _getAllKeranjang();
-                      });
-                    }
                   ),
                 ],
               ),

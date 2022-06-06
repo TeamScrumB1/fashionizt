@@ -1,10 +1,14 @@
 import 'package:fashionizt/Api/api_short_konveksi.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
+import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/constants.dart';
+import 'package:fashionizt/Models/Cart.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Widget/gridview_katproduk.dart';
 import '../theme.dart';
+import 'package:badges/badges.dart';
+import 'package:fashionizt/pages/Keranjang_produk.dart';
 
 class KategoriPage extends StatefulWidget {
   void _launchURL(String _url) async {
@@ -21,6 +25,8 @@ class KategoriPage extends StatefulWidget {
 }
 
 class _KategoriPageState extends State<KategoriPage> {
+  List<CartShop> listKeranjang = [];
+  DbHelper db = DbHelper();
 
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
@@ -37,14 +43,17 @@ class _KategoriPageState extends State<KategoriPage> {
 
   @override
   void initState() {
+    _getAllKeranjang();
     super.initState();
     _konveksi = ApiServiceMit().topHeadlines();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return RefreshIndicator(
+      onRefresh: _getAllKeranjang,
+        child: Scaffold(
+        appBar: AppBar(
         backgroundColor: blacksand,
         elevation: 0,
         leading: IconButton(
@@ -58,18 +67,27 @@ class _KategoriPageState extends State<KategoriPage> {
           'Fashionizt',
           style: titleApps,
         ),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
-            },
-            icon: const Icon(
-              Icons.shopping_cart,
-              size: 25,
-            ),
-            color: blush,
-          ),
-        ],
+          actions: [
+            Center(
+              child: Badge(
+                badgeColor: Colors.orange,
+                borderSide: BorderSide(color: blush),
+                badgeContent: Text(
+                  listKeranjang.length.toString(),
+                  style: TextStyle(color: Colors.white, fontSize: 10),
+                ),
+                position: BadgePosition.topEnd(top: 0, end: 5),
+                child: IconButton(icon: Icon(Icons.shopping_cart, size: 25, color: blush),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context){
+                            return KeranjangProduk();
+                          })
+                      );
+                    }),
+              ),
+            )
+          ]
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -92,6 +110,16 @@ class _KategoriPageState extends State<KategoriPage> {
               GridViewKatProduk(nama_kategori: nama_kategori),
             ],
           )),
+        ),
     );
+  }
+  Future<void> _getAllKeranjang() async {
+    var list = await db.getAllKeranjang();
+    setState(() {
+      listKeranjang.clear();
+      list!.forEach((keranjang) {
+        listKeranjang.add(CartShop.fromMap(keranjang));
+      });
+    });
   }
 }

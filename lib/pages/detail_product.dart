@@ -4,6 +4,7 @@ import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/Models/produk_model.dart';
 // import 'package:fashionizt/Widget/Iconkeranjang.dart';
 import 'package:fashionizt/pages/Keranjang_produk.dart';
+import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -11,6 +12,7 @@ import 'package:fashionizt/constants.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:badges/badges.dart';
+import 'package:fashionizt/Widget/bottom_navbar.dart';
 
 class DetailProduct extends StatefulWidget {
   const DetailProduct({Key? key,required this.detail,this.keranjang}) : super(key: key);
@@ -112,9 +114,9 @@ class _DetailProductState extends State<DetailProduct> {
                   primary: Colors.black38,
                   onPrimary: Colors.white,
                 ),
-                onPressed: (){
-                  Navigator.pop(context);
-                },
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),),);
+              },
             ),
           ]
         ),
@@ -126,7 +128,7 @@ class _DetailProductState extends State<DetailProduct> {
         //),),
 
           actions: [
-            listKeranjang.length == 0 ? Container() : Center(
+            Center(
               child: Badge(
                 badgeColor: Colors.orange,
                 borderSide: BorderSide(color: Colors.white),

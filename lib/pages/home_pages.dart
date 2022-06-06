@@ -86,9 +86,10 @@ class _HomePagesState extends State<HomePages> {
           //   ),
           // ),
           actions: [
-            listKeranjang.length == 0 ? Container() : Center(
+             Center(
               child: Badge(
                 badgeColor: Colors.orange,
+                animationType: BadgeAnimationType.slide,
                 borderSide: BorderSide(color: blush),
                   badgeContent: Text(
                     listKeranjang.length.toString(),

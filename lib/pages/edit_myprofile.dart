@@ -82,7 +82,9 @@ class _EditMyProfileState extends State<EditMyProfile> {
                     // bottom: 0,
                     // right: -25,
                     child: RawMaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        pickImage();
+                      },
                       elevation: 1.0,
                       fillColor: blacksand,
                       child: Icon(Icons.camera_alt_outlined, color: Colors.white),
