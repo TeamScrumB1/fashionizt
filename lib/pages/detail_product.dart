@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:cool_alert/cool_alert.dart';
 
 class DetailProduct extends StatefulWidget {
   const DetailProduct({Key? key,required this.detail,this.keranjang}) : super(key: key);
@@ -40,10 +41,10 @@ class _DetailProductState extends State<DetailProduct> {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: Container(
-          decoration: BoxDecoration(
+         decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
-                BoxShadow(
+                 BoxShadow(
                   color: Colors.grey,
                   offset: Offset(0,3),
                   blurRadius: 3,
@@ -57,9 +58,9 @@ class _DetailProductState extends State<DetailProduct> {
              Container(
               width: size.width*0.3,
               alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  border: Border(right: BorderSide(width: 0.5,color: Colors.black)),
-                ),
+             // decoration: BoxDecoration(
+             //     border: Border(right: BorderSide(width: 0.5,color: Colors.black)),
+             //   ),
                 child: IconButton(
                   icon: Icon(Icons.add_shopping_cart_outlined, color: blacksand),
                   iconSize: 25.0,
@@ -68,6 +69,15 @@ class _DetailProductState extends State<DetailProduct> {
                     setState(() {
                       _getAllKeranjang();
                     });
+                    CoolAlert.show(
+                      context: context,
+                      type: CoolAlertType.success,
+                      title: 'Berhasil',
+                      text: 'Dimasukkan ke Keranjang',
+                      backgroundColor: Colors.grey,
+                      confirmBtnColor: blacksand,
+                      confirmBtnTextStyle: TextStyle(color: blush, fontWeight:FontWeight.w600,fontSize: 18.0),
+                    );
                   },
                 ),
               ),
@@ -81,7 +91,7 @@ class _DetailProductState extends State<DetailProduct> {
                   onPressed: () {
                     _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
                   },
-                  child: const Text('Buy Now',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),),
+                  child: Text('Buy Now',style: TextStyle(color: blush,fontSize: 18,fontWeight: FontWeight.bold),),
                 ),
               ),
             ],
