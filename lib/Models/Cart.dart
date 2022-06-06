@@ -1,15 +1,33 @@
-import 'Product.dart';
+class CartShop{
+  late int? id;
+  late String NamaProduk;
+  late String Harga;
+  late String Gambar;
 
-class Cart {
-  final Product product;
-  final int numOfItem;
+  CartShop(
+      {
+        this.id,
+        required this.NamaProduk,
+        required this.Harga,
+        required this.Gambar
+      });
 
-  Cart({required this.product, required this.numOfItem});
+  Map<String,dynamic> toMap(){
+    var map = Map<String, dynamic>();
+
+    if(id != null){
+      map['Id'] = id;
+    }
+    map['NamaProduk'] = NamaProduk;
+    map['Harga'] = Harga;
+    map['Gambar'] = Gambar;
+    return map;
+  }
+
+  CartShop.fromMap(Map<String,dynamic> map){
+    this.id = map['Id'];
+    this.NamaProduk = map['NamaProduk'];
+    this.Harga = map['Harga'];
+    this.Gambar = map['Gambar'];
+  }
 }
-// Demo data for our cart
-List<Cart> demoCarts = [
-  Cart(product: demoProducts[0], numOfItem: 1),
-  Cart(product: demoProducts[1], numOfItem: 1),
-  Cart(product: demoProducts[2], numOfItem: 1),
-  Cart(product: demoProducts[3], numOfItem: 5),
-];

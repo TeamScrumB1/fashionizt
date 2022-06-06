@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fashionizt/Widget/alert_dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
+import '../shared_preferences.dart';
 
 class MyProfile extends StatefulWidget {
   @override
@@ -16,9 +18,23 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile>{
-  @override
+  final PrefService _prefService = PrefService();
+  late String username = '';
   String title = 'AlertDialog';
   bool tappedYes = false;
+
+  @override
+  void initState() {
+    super.initState();
+    initial();
+  }
+
+  void initial() async {
+    SharedPreferences _preferences = await SharedPreferences.getInstance();
+    setState(() {
+      username = _preferences.getString("username")!;
+    });
+  }
 
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -63,7 +79,7 @@ class _MyProfileState extends State<MyProfile>{
               height: size.height*0.35,
               width: size.width*0.5,
               child: CircleAvatar(
-                    backgroundImage: AssetImage('lib/Assets/images/fashionizt.png'),
+                    backgroundImage: AssetImage('lib/Assets/images/profil.jpg'),
                     // backgroundImage: CachedNetworkImageProvider(
                     //     konveksi.imgProfil),
                     radius: 90,
@@ -78,7 +94,8 @@ class _MyProfileState extends State<MyProfile>{
                   Container(
                     // height: size.height * 0.1,
                     child: Text(
-                      "admin",
+                      '$username ',
+                      // "admin",
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 20.0,
@@ -135,7 +152,8 @@ class _MyProfileState extends State<MyProfile>{
                       FontWeight.w700,
                       fontFamily: 'Poppins'),
                 ),
-                onPressed: () {Navigator.push(context,
+                onPressed: () {
+                  Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
                       return EditMyProfile();
                     }));},

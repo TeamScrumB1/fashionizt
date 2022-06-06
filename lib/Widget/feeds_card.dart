@@ -25,7 +25,7 @@ class FeedsCard extends StatelessWidget {
           Image(
             fit: BoxFit.fill,
             width: size.width*0.5,
-            height: size.height*0.142,
+            height: size.height*0.147,
             image: CachedNetworkImageProvider(
               produk.imgProduk,
             ),

@@ -190,6 +190,8 @@ import 'package:fashionizt/pages/my_profile.dart';
 import 'package:fashionizt/pages/pre_order.dart';
 import 'package:flutter/material.dart';
 
+import '../shared_preferences.dart';
+
 class MyBottomNavBar extends StatefulWidget {
   MyBottomNavBar({Key? key,required this.currentTab,required this.currentScreen}) : super(key: key);
   int currentTab;
@@ -207,6 +209,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
     MyProfile(),
   ];
   final PageStorageBucket bucket = PageStorageBucket();
+  final PrefService _prefService = PrefService();
 
   @override
   Widget build(BuildContext context) {
@@ -283,8 +286,13 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
                   MaterialButton(
                     onPressed: (){
                       setState(() {
-                        currentScreen = MyProfile();
-                        currentTab = 1;
+                        _prefService.readCache("username").then((value) {
+                          print('username : ' + value.toString());
+                          if (value != null) {
+                            currentScreen = MyProfile();
+                            currentTab = 1;
+                          }
+                        });
                       });
                     },
                     minWidth: 40,

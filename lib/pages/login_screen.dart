@@ -6,9 +6,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/animation/animations.dart';
 import 'package:fashionizt/pages/signup_screen.dart';
+import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+
+import '../routes.dart';
+import '../shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -20,10 +25,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool hidePassword = true;
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
-  String username = '';
-
-  TextEditingController user = new TextEditingController();
-  TextEditingController pass = new TextEditingController();
+  final PrefService _prefService = PrefService();
+  final user = new TextEditingController();
+  final pass = new TextEditingController();
 
   //api login
   Future login() async {
@@ -32,6 +36,8 @@ class _LoginScreenState extends State<LoginScreen> {
       "password": pass.text,
     });
 
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('username', user.text);
     var datauser = json.decode(response.body);
 
     if (datauser == "Success") {
@@ -60,6 +66,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp
+    ]);
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     Size size = MediaQuery.of(context).size;
@@ -128,12 +138,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                       cursorColor: blush,
                                       style: TextStyle(color: blush),
                                       showCursor: true,
-                                      //cursorColor: mainColor,
                                       keyboardType: TextInputType.text,
-                                      onSaved: (input) => pass = input! as TextEditingController,
-                                      validator: (input) => (input?.length ?? 0) < 3
-                                          ? "Password should be more than 3 characters"
-                                          : null,
+                                      // onSaved: (input) => pass = input! as TextEditingController,
+                                      // validator: (input) => (input?.length ?? 0) < 3
+                                      //     ? "Password should be more than 3 characters"
+                                      //     : null,
                                       obscureText: hidePassword,
                                       decoration: InputDecoration(
                                         focusedBorder: UnderlineInputBorder(
@@ -184,117 +193,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                                   FontWeight.w700,
                                                   fontFamily: 'Poppins'),
                                             ),
-                                            onPressed: () {
-                                              login();
+                                            onPressed: () async {
+                                              _prefService.createCache(user.text).whenComplete(() {
+                                                if (user.text.isNotEmpty && pass.text.isNotEmpty) {
+                                                  login();
+                                                }
+                                              });
                                             },
                                             child: Text('Login'),
                                           ),
                                         )
                                       ], // <Widget>[]
                                     ),
-                                    Container(
-                                      height: size.height * 0.02,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Divider(
-                                            color: blush,
-                                            height: 1.5,
-                                          ),
-                                        ),
-                                        Text(
-                                          "OR  ",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: blush,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Divider(
-                                            color: blush,
-                                            height: 1.5,
-                                          ),
-                                        ),
-                                      ], // <Widget>[]
-                                    ),
-                                    Container(
-                                      height: size.height * 0.02,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Container(
-                                          padding: EdgeInsets.symmetric(horizontal: 1,),
-                                          width: width / 1.2,
-                                          height: 37,
-                                          child: TextButton(
-                                            style: TextButton.styleFrom(
-                                              side: (
-                                                  BorderSide(
-                                                      width: 1, color: blush)),
-                                              padding: const EdgeInsets.all(5.0),
-                                              primary: blush,
-                                              // backgroundColor: blush,
-                                              shadowColor: Colors.black,
-                                              textStyle: const TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight:
-                                                  FontWeight.w700,
-                                                  fontFamily: 'Poppins'),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.push(context,
-                                                  MaterialPageRoute(builder: (context) {
-                                                    return LoginScreen();
-                                                  }));
-                                            },
-                                            child:
-                                            Text('Login as Designer'),
-                                          ),
-                                        )
-                                      ], // <Widget>[]
-                                    ),
-                                    Container(
-                                      height: size.height * 0.03,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        Container(
-                                          padding: EdgeInsets.symmetric(horizontal: 1,),
-                                          width: width / 1.2,
-                                          height: 37,
-                                          child: TextButton(
-                                            style: TextButton.styleFrom(
-                                              side: (
-                                                  BorderSide(
-                                                      width: 1, color: blush)),
-                                              padding: const EdgeInsets.all(5.0),
-                                              primary: blush,
-                                              // backgroundColor: blush,
-                                              shadowColor: Colors.black,
-                                              textStyle: const TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight:
-                                                  FontWeight.w700,
-                                                  fontFamily: 'Poppins'),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.push(context,
-                                                  MaterialPageRoute(builder: (context) {
-                                                    return LoginScreen();
-                                                  }));
-                                            },
-                                            child: Text(
-                                                'Login as Mitra Produksi'),
-                                          ),
-                                        )
-                                      ], // <Widget>[]
-                                    ),
+
                                     Container(
                                       height: size.height*0.12,
                                       // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 40),

@@ -1,5 +1,8 @@
 import 'dart:convert';
+import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dropdown_button2/custom_dropdown_button2.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:fashionizt/pages/login_screen.dart';
@@ -23,8 +26,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController user = new TextEditingController();
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
+  TextEditingController cpass = new TextEditingController();
   bool hidePassword = true;
   bool hidePassword2 = true;
+  final List<String> items = [
+    'Customer',
+    'Designer',
+    'Mitra Produksi',
+  ];
+  String? selectedValue;
 
   //api register
   Future register() async {
@@ -32,12 +42,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
       "username": user.text,
       "email": email.text,
       "password": pass.text,
+      "cpassword" : cpass.text,
     });
 
     var data = json.decode(response.body);
-    if (data == "Error") {
+    if
+    (data == "Blank") {
+      Fluttertoast.showToast(
+        msg: "Please Fill Out The Entire Form",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black.withOpacity(0.2),
+        fontSize: 15,
+        textColor: blush,
+      );
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) {
+            return SignUpScreen();
+          })
+      );
+    } else if (data == "Error") {
       Fluttertoast.showToast(
         msg: "User Already Exist",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black.withOpacity(0.2),
+        fontSize: 15,
+        textColor: blush,
+      );
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) {
+            return SignUpScreen();
+          })
+      );
+    } else if (data == "Wrong Password") {
+      Fluttertoast.showToast(
+        msg: "Password Does Not Match",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.TOP,
         timeInSecForIosWeb: 1,
@@ -186,6 +228,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       height: size.height * 0.02,
                                     ),
                                     TextFormField(
+                                      controller: cpass,
                                       cursorColor: blush,
                                       style: TextStyle(color: blush),
                                       showCursor: true,
@@ -214,6 +257,73 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         ),
                                       ),
                                     ),
+
+                                  //  Divider(),
+                                    Text("\n What is your role? ",
+                                      style: TextStyle(
+                                        color: blush,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+
+                                    Form(
+                                      child: DropdownButton(
+                                        hint: Text(
+                                            'Select Role',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: blush,
+                                        ),
+                                        ),
+                                        value: selectedValue,
+                                        dropdownColor: blush,
+                                        style: TextStyle(
+                                          color: blacksand,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                        icon: Icon(Icons.arrow_drop_down_outlined),
+                                        iconSize: 22,
+                                        iconEnabledColor: blush,
+                                        iconDisabledColor: Colors.grey,
+                                        onChanged: (value){
+                                          setState(() {
+                                            selectedValue = value as String;
+                                          });
+                                        },
+                                        items: items.map((item){
+                                          return DropdownMenuItem<String>(
+                                            value: item,
+                                              child: Text(item,
+                                              style: TextStyle(
+                                                color: Colors.black45,
+                                                fontSize: 18,
+                                              ),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+
+                                  //  Form(
+                                  //    child: CustomDropdownButton2(
+                                  //        hint: 'Select Role',
+                                  //        value: selectedValue,
+                                  //        dropdownItems: items,
+                                  //        icon: Icon(Icons.arrow_forward_ios_outlined),
+                                  //        iconSize: 14,
+                                  //        iconEnabledColor: blush,
+                                  //        iconDisabledColor: Colors.grey,
+                                  //        onChanged: (value) {
+                                  //          setState(() {
+                                  //            selectedValue = value;
+                                  //          });
+                                  //        }
+                                  //    ),
+                                  //  ),
+
                                     Container(
                                       height: size.height * 0.05,
                                     ),
@@ -236,7 +346,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             ),
                                             onPressed: () {
                                               register();
-                                              },
+                                            },
                                             child: Text('Sign Up'),
                                           ),
                                         )

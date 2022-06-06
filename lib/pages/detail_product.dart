@@ -1,30 +1,50 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fashionizt/Data/db_helper.dart';
+import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/Models/produk_model.dart';
+// import 'package:fashionizt/Widget/Iconkeranjang.dart';
+import 'package:fashionizt/pages/Keranjang_produk.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:from_css_color/from_css_color.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:cool_alert/cool_alert.dart';
 
-class DetailProduct extends StatelessWidget {
-  const DetailProduct({Key? key,required this.detail}) : super(key: key);
+class DetailProduct extends StatefulWidget {
+  const DetailProduct({Key? key,required this.detail,this.keranjang}) : super(key: key);
+  final CartShop? keranjang;
   final ProdukElement detail;
+
+  @override
+  _DetailProductState createState() => _DetailProductState(detail: detail);
+}
+
+class _DetailProductState extends State<DetailProduct> {
+  _DetailProductState({required this.detail});
+  final ProdukElement detail;
+  DbHelper db = DbHelper();
 
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
   }
-//
+
+  @override
+  void initState(){
+    _getAllKeranjang();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: Container(
-          decoration: BoxDecoration(
+         decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
-                BoxShadow(
+                 BoxShadow(
                   color: Colors.grey,
                   offset: Offset(0,3),
                   blurRadius: 3,
@@ -35,20 +55,34 @@ class DetailProduct extends StatelessWidget {
           height: size.height*0.06,
           child: Row(
             children: [
-         //   Container(
-         //    width: size.width*0.3,
-         //    alignment: Alignment.center,
-         //    decoration: BoxDecoration(
-         //        border: Border(right: BorderSide(width: 0.5,color: Colors.black)),
-         //      ),
-         //      child: IconButton(
-         //        onPressed: () => _launchURL(detail.waDesainer),
-         //        icon: Icon(Icons.add_shopping_cart_outlined, color: blacksand),
-         //        iconSize: 25.0,
-         //      ),
-         //    ),
+             Container(
+              width: size.width*0.3,
+              alignment: Alignment.center,
+             // decoration: BoxDecoration(
+             //     border: Border(right: BorderSide(width: 0.5,color: Colors.black)),
+             //   ),
+                child: IconButton(
+                  icon: Icon(Icons.add_shopping_cart_outlined, color: blacksand),
+                  iconSize: 25.0,
+                  onPressed: () {
+                    upsertKeranjang();
+                    setState(() {
+                      _getAllKeranjang();
+                    });
+                    CoolAlert.show(
+                      context: context,
+                      type: CoolAlertType.success,
+                      title: 'Berhasil',
+                      text: 'Dimasukkan ke Keranjang',
+                      backgroundColor: Colors.grey,
+                      confirmBtnColor: blacksand,
+                      confirmBtnTextStyle: TextStyle(color: blush, fontWeight:FontWeight.w600,fontSize: 18.0),
+                    );
+                  },
+                ),
+              ),
               Container(
-                width: size.width,
+                width: size.width*0.7,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: blacksand,
@@ -57,7 +91,7 @@ class DetailProduct extends StatelessWidget {
                   onPressed: () {
                     _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
                   },
-                  child: const Text('Buy Now',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),),
+                  child: Text('Buy Now',style: TextStyle(color: blush,fontSize: 18,fontWeight: FontWeight.bold),),
                 ),
               ),
             ],
@@ -86,17 +120,51 @@ class DetailProduct extends StatelessWidget {
         //  color: Colors.black,
         //),),
         actions: [
-          ElevatedButton(
-            child: Icon(Icons.shopping_cart),
-            style: ElevatedButton.styleFrom(
-              shape: CircleBorder(),
-              padding: EdgeInsets.all(5),
-              primary: Colors.black38,
-              onPrimary: Colors.white,
-            ),
-            onPressed: () {
-              _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
-            },
+          Stack(
+            children: <Widget>[
+              ElevatedButton(
+                child: Icon(Icons.shopping_cart),
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(5),
+                  primary: Colors.black38,
+                  onPrimary: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context){
+                        return KeranjangProduk();
+                      })
+                  );
+                  // _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
+                },
+              ),
+              listKeranjang.length == 0 ? Container() : Positioned(
+                right: 7,
+                top: 2,
+                child: Stack(
+                  children: <Widget>[
+                    Icon(
+                      Icons.brightness_1,
+                      size: 20,
+                      color: Colors.orange,
+                    ),
+                    Positioned(
+                      top: 3.0,
+                      right: 7.0,
+                      child: Text(
+                        listKeranjang.length.toString(),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
         ],
       ),
@@ -311,5 +379,22 @@ class DetailProduct extends StatelessWidget {
         ),
       ),
     );
+  }
+  Future<void> upsertKeranjang() async {
+    await db.saveKeranjang(CartShop(
+      NamaProduk: detail.nama,
+      Harga: detail.harga,
+      Gambar: detail.imgProduk,
+    ));
+  }
+  List<CartShop> listKeranjang = [];
+  Future<void> _getAllKeranjang() async {
+    var list = await db.getAllKeranjang();
+    setState(() {
+      listKeranjang.clear();
+      list!.forEach((keranjang) {
+        listKeranjang.add(CartShop.fromMap(keranjang));
+      });
+    });
   }
 }
