@@ -10,6 +10,7 @@ class DbHelper {
   final String columnNamaProduk = 'NamaProduk';
   final String columnHarga = 'Harga';
   final String columnGambar = 'Gambar';
+  final String columnJumlah = 'Jumlah';
 
   DbHelper._internal();
   factory DbHelper() => _instance;
@@ -33,7 +34,8 @@ class DbHelper {
     var sql = "CREATE TABLE $tableName($columnId INTEGER PRIMARY KEY, "
         "$columnNamaProduk TEXT,"
         "$columnHarga TEXT,"
-        "$columnGambar TEXT)";
+        "$columnGambar TEXT,"
+        "$columnJumlah INTEGER)";
     await db.execute(sql);
   }
 
@@ -48,7 +50,8 @@ class DbHelper {
       columnId,
       columnNamaProduk,
       columnHarga,
-      columnGambar
+      columnGambar,
+      columnJumlah,
     ]);
 
     return result.toList();

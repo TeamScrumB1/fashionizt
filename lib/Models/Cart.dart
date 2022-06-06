@@ -3,13 +3,15 @@ class CartShop{
   late String NamaProduk;
   late String Harga;
   late String Gambar;
+  late int Jumlah;
 
   CartShop(
       {
         this.id,
         required this.NamaProduk,
         required this.Harga,
-        required this.Gambar
+        required this.Gambar,
+        required this.Jumlah,
       });
 
   Map<String,dynamic> toMap(){
@@ -21,6 +23,7 @@ class CartShop{
     map['NamaProduk'] = NamaProduk;
     map['Harga'] = Harga;
     map['Gambar'] = Gambar;
+    map['Jumlah'] = Jumlah;
     return map;
   }
 
@@ -29,5 +32,6 @@ class CartShop{
     this.NamaProduk = map['NamaProduk'];
     this.Harga = map['Harga'];
     this.Gambar = map['Gambar'];
+    this.Jumlah = map['Jumlah'];
   }
 }
