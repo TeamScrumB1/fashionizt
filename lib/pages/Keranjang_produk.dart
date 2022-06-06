@@ -143,13 +143,57 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                         TextSpan(
                           text: "\Rp ${keranjang.Harga}",
                           style: TextStyle(fontWeight: FontWeight.w600, color: brownColor),
-                          children: [
-                            TextSpan(
-                                text: " x${keranjang.Jumlah}",
-                                style: Theme.of(context).textTheme.bodyText1),
+                        ),
+                      ),
+                      Container(
+                        height: size.height*0.03,
+                        width: size.width*0.25,
+                        margin:
+                        EdgeInsets.only(top: 10.0),
+                        decoration: BoxDecoration(
+                            borderRadius:
+                            BorderRadius.circular(4),
+                            border: Border.all(
+                                color: blacksand)),
+                        child : Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            InkWell(
+                              onTap: () {
+                                kurangProduk(keranjang, index);
+                                setState(() {
+                                  _getAllKeranjang();
+                                });
+                              },
+                              child: Icon(
+                                Icons.remove,
+                                color: blacksand,
+                                size: 22,
+                              ),
+                            ),
+                            Text(
+                              "${keranjang.Jumlah}",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14.0),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                tambahProduk(keranjang);
+                                setState(() {
+                                  _getAllKeranjang();
+                                });
+                              },
+                              child: Icon(
+                                Icons.add,
+                                color: blacksand,
+                                size: 22,
+                              ),
+                            ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                   Spacer(),
@@ -181,7 +225,7 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
   }
   String hitungTotal(){
     double total = 0;
-    String output = "";
+    String output = "0";
 
     for(int i=0; i < listKeranjang.length; i++){
       total = total +  (double.parse(listKeranjang[i].Harga) * listKeranjang[i].Jumlah);
@@ -189,10 +233,9 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
 
     if(total/1000 >= 1){
         output = (total/1000).toInt().toString()+ "."+ (1000+(total%1000)).toString().substring(1,4)+ ".000";
-    }else{
+    }else if(total > 0 && total < 1000) {
       output = total.toInt().toString()+".000";
     }
-
     return "Rp " + output;
   }
 
@@ -202,5 +245,27 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
     setState(() {
       listKeranjang.removeAt(position);
     });
+  }
+  Future<void> tambahProduk(CartShop keranjang) async{
+    await db.updateKeranjang(CartShop.fromMap({
+      'Id' : keranjang.id,
+      'NamaProduk' : keranjang.NamaProduk,
+      'Harga' : keranjang.Harga,
+      'Jumlah' : keranjang.Jumlah+1,
+      'Gambar' : keranjang.Gambar,
+    }));
+  }
+  Future<void> kurangProduk(CartShop keranjang,int index) async{
+    if(keranjang.Jumlah-1 == 0){
+      _deleteKeranjang(keranjang, index);
+    }else{
+      await db.updateKeranjang(CartShop.fromMap({
+        'Id' : keranjang.id,
+        'NamaProduk' : keranjang.NamaProduk,
+        'Harga' : keranjang.Harga,
+        'Jumlah' : keranjang.Jumlah-1,
+        'Gambar' : keranjang.Gambar,
+      }));
+    }
   }
 }
