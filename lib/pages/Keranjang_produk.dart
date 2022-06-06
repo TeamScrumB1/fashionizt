@@ -3,6 +3,7 @@ import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/theme.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,10 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
   List<CartShop> listKeranjang = [];
   DbHelper db = DbHelper();
 
+  void _launchURL(String _url) async {
+    if (!await launch(_url)) throw 'Could not launch $_url';
+  }
+
   @override
   void initState(){
     _getAllKeranjang();
@@ -25,7 +30,59 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  offset: Offset(0,3),
+                  blurRadius: 3,
+                  spreadRadius: 3,
+                ),
+              ]
+          ),
+          height: size.height*0.06,
+          child: Row(
+            children: [
+              Container(
+                width: size.width*0.5,
+                alignment: Alignment.center,
+                child: Column(
+                  children: <Widget>[
+                    // Text(
+                    //     'Total',
+                    //     style:
+                    //     TextStyle(color: blacksand, fontSize: 18.0)),
+                    Text('Rp. 300.000',
+                        style:
+                        TextStyle(color: blacksand, fontSize: 18.0)),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+              ),
+              Container(
+                width: size.width*0.5,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: blacksand,
+                ),
+                child:  TextButton(
+                  onPressed: () {
+                    _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
+                  },
+                  child: const Text('Check Out',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: blacksand,
         elevation: 0,
