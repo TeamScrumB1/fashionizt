@@ -152,7 +152,7 @@ class EditMyProfile extends StatelessWidget {
               ),
             ),
           ],
-        ),
+        )
       ),
 //       floatingActionButton: FloatingActionButton(
 //         backgroundColor: blacksand,

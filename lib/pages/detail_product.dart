@@ -65,7 +65,7 @@ class _DetailProductState extends State<DetailProduct> {
                   icon: Icon(Icons.add_shopping_cart_outlined, color: blacksand),
                   iconSize: 25.0,
                   onPressed: () {
-                    upsertKeranjang();
+                    upsertKeranjang(detail.nama);
                     setState(() {
                       _getAllKeranjang();
                     });
@@ -380,12 +380,32 @@ class _DetailProductState extends State<DetailProduct> {
       ),
     );
   }
-  Future<void> upsertKeranjang() async {
-    await db.saveKeranjang(CartShop(
-      NamaProduk: detail.nama,
-      Harga: detail.harga,
-      Gambar: detail.imgProduk,
-    ));
+  Future<void> upsertKeranjang(String Nama) async {
+    bool status = false;
+    CartShop? keranjang;
+    for(int i = 0;i<listKeranjang.length;i++){
+      if(listKeranjang[i].NamaProduk == Nama){
+        status = true;
+        keranjang = listKeranjang[i];
+      }
+    }
+
+    if(status == true){
+      await db.updateKeranjang(CartShop.fromMap({
+        'Id' : keranjang!.id,
+        'NamaProduk' : keranjang.NamaProduk,
+        'Harga' : keranjang.Harga,
+        'Jumlah' : keranjang.Jumlah+1,
+        'Gambar' : keranjang.Gambar,
+      }));
+    }else{
+      await db.saveKeranjang(CartShop(
+        NamaProduk: detail.nama,
+        Harga: detail.harga,
+        Gambar: detail.imgProduk,
+        Jumlah : 1,
+      ));
+    }
   }
   List<CartShop> listKeranjang = [];
   Future<void> _getAllKeranjang() async {
