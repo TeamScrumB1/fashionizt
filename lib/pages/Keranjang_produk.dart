@@ -205,7 +205,17 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                         Icons.delete,
                         color: blacksand,
                       ),
-                  )
+                  ),
+                  Checkbox(
+                    activeColor: blacksand,
+                    value: keranjang.Status == 0 ? false : true,
+                    onChanged: (bool? value){
+                      setState(() {
+                        statusKeranjang(keranjang);
+                        _getAllKeranjang();
+                      });
+                    }
+                  ),
                 ],
               ),
             );
@@ -228,7 +238,9 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
     String output = "0";
 
     for(int i=0; i < listKeranjang.length; i++){
-      total = total +  (double.parse(listKeranjang[i].Harga) * listKeranjang[i].Jumlah);
+      if(listKeranjang[i].Status == 1){
+        total = total +  (double.parse(listKeranjang[i].Harga) * listKeranjang[i].Jumlah);
+      }
     }
 
     if(total/1000 >= 1){
@@ -253,7 +265,29 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
       'Harga' : keranjang.Harga,
       'Jumlah' : keranjang.Jumlah+1,
       'Gambar' : keranjang.Gambar,
+      'Status' : keranjang.Status,
     }));
+  }
+  Future<void> statusKeranjang(CartShop keranjang) async{
+    if(keranjang.Status == 1){
+      await db.updateKeranjang(CartShop.fromMap({
+        'Id' : keranjang.id,
+        'NamaProduk' : keranjang.NamaProduk,
+        'Harga' : keranjang.Harga,
+        'Jumlah' : keranjang.Jumlah,
+        'Gambar' : keranjang.Gambar,
+        'Status' : 0,
+      }));
+    }else{
+      await db.updateKeranjang(CartShop.fromMap({
+        'Id' : keranjang.id,
+        'NamaProduk' : keranjang.NamaProduk,
+        'Harga' : keranjang.Harga,
+        'Jumlah' : keranjang.Jumlah,
+        'Gambar' : keranjang.Gambar,
+        'Status' : 1,
+      }));
+    }
   }
   Future<void> kurangProduk(CartShop keranjang,int index) async{
     if(keranjang.Jumlah-1 == 0){
@@ -265,6 +299,7 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
         'Harga' : keranjang.Harga,
         'Jumlah' : keranjang.Jumlah-1,
         'Gambar' : keranjang.Gambar,
+        'Status' : keranjang.Status,
       }));
     }
   }

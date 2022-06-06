@@ -11,6 +11,7 @@ class DbHelper {
   final String columnHarga = 'Harga';
   final String columnGambar = 'Gambar';
   final String columnJumlah = 'Jumlah';
+  final String columnStatus = 'Status';
 
   DbHelper._internal();
   factory DbHelper() => _instance;
@@ -35,6 +36,7 @@ class DbHelper {
         "$columnNamaProduk TEXT,"
         "$columnHarga TEXT,"
         "$columnGambar TEXT,"
+        "$columnStatus INTEGER,"
         "$columnJumlah INTEGER)";
     await db.execute(sql);
   }
@@ -52,6 +54,7 @@ class DbHelper {
       columnHarga,
       columnGambar,
       columnJumlah,
+      columnStatus,
     ]);
 
     return result.toList();
