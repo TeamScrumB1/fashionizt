@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cool_alert/cool_alert.dart';
+import 'package:badges/badges.dart';
 
 class DetailProduct extends StatefulWidget {
   const DetailProduct({Key? key,required this.detail,this.keranjang}) : super(key: key);
@@ -101,17 +102,21 @@ class _DetailProductState extends State<DetailProduct> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: ElevatedButton(
-          child: Icon(Icons.arrow_back_ios_rounded),
-          style: ElevatedButton.styleFrom(
-            shape: CircleBorder(),
-            padding: EdgeInsets.all(5),
-            primary: Colors.black38,
-            onPrimary: Colors.white,
-          ),
-          onPressed: (){
-            Navigator.pop(context);
-          },
+        leading: Stack(
+          children: <Widget>[
+            ElevatedButton(
+                child: Icon(Icons.arrow_back_ios_rounded, size: 25),
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(5),
+                  primary: Colors.black38,
+                  onPrimary: Colors.white,
+                ),
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+            ),
+          ]
         ),
         //title: const Text('Detail Produk', style: TextStyle(
         //  fontFamily: 'Poppins',
@@ -119,54 +124,83 @@ class _DetailProductState extends State<DetailProduct> {
         //  fontSize: 20,
         //  color: Colors.black,
         //),),
-        actions: [
-          Stack(
-            children: <Widget>[
-              ElevatedButton(
-                child: Icon(Icons.shopping_cart),
-                style: ElevatedButton.styleFrom(
-                  shape: CircleBorder(),
-                  padding: EdgeInsets.all(5),
-                  primary: Colors.black38,
-                  onPrimary: Colors.white,
+
+          actions: [
+            listKeranjang.length == 0 ? Container() : Center(
+              child: Badge(
+                badgeColor: Colors.orange,
+                borderSide: BorderSide(color: Colors.white),
+                badgeContent: Text(
+                  listKeranjang.length.toString(),
+                  style: TextStyle(color: Colors.white, fontSize: 10),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context){
-                        return KeranjangProduk();
-                      })
-                  );
-                  // _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
-                },
-              ),
-              listKeranjang.length == 0 ? Container() : Positioned(
-                right: 7,
-                top: 2,
-                child: Stack(
-                  children: <Widget>[
-                    Icon(
-                      Icons.brightness_1,
-                      size: 20,
-                      color: Colors.orange,
+                position: BadgePosition.topEnd(top: 0, end: 13),
+                child: ElevatedButton(
+                    child: Icon(Icons.shopping_cart, size: 25),
+                    style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                      padding: EdgeInsets.all(5),
+                      primary: Colors.black38,
+                      onPrimary: Colors.white,
                     ),
-                    Positioned(
-                      top: 3.0,
-                      right: 7.0,
-                      child: Text(
-                        listKeranjang.length.toString(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ],
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context){
+                            return KeranjangProduk();
+                          })
+                      );
+                    }),
+              ),
+            )
+          ]
+        //actions: [
+        //  Stack(
+        //    children: <Widget>[
+        //      ElevatedButton(
+        //        child: Icon(Icons.shopping_cart),
+        //        style: ElevatedButton.styleFrom(
+        //          shape: CircleBorder(),
+        //          padding: EdgeInsets.all(5),
+        //          primary: Colors.black38,
+        //          onPrimary: Colors.white,
+        //        ),
+        //        onPressed: () {
+        //          Navigator.push(
+        //              context,
+        //              MaterialPageRoute(builder: (context){
+        //                return KeranjangProduk();
+        //              })
+        //          );
+        //          // _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
+        //        },
+        //      ),
+        //      listKeranjang.length == 0 ? Container() : Positioned(
+        //        right: 12,
+        //        top: 2,
+        //        child: Stack(
+        //          children: <Widget>[
+        //            Icon(
+        //              Icons.brightness_1,
+        //              size: 20,
+        //              color: Colors.orange,
+        //            ),
+        //            Positioned(
+        //              top: 3.0,
+        //              right: 7.0,
+        //              child: Text(
+        //                listKeranjang.length.toString(),
+        //                style: TextStyle(
+        //                  color: Colors.white,
+        //                  fontSize: 10,
+        //                ),
+        //              ),
+        //            )
+        //          ],
+        //        ),
+        //      )
+        //    ],
+        //  ),
+        //],
       ),
       extendBodyBehindAppBar: true,
 
