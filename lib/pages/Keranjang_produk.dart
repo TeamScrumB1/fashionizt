@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/pages/home_pages.dart';
+import 'package:fashionizt/pages/cart_empty.dart';
 
 class KeranjangProduk extends StatefulWidget {
   const KeranjangProduk({Key? key}) : super(key: key);
@@ -35,7 +36,8 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
+
+    return listKeranjang.isEmpty ? Scaffold (body: CartEmpty()) : Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: Container(
           decoration: BoxDecoration(
@@ -105,8 +107,8 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
         ),
       ),
       body: ListView.builder(
-          itemCount: listKeranjang.length,
-          itemBuilder: (context,index){
+            itemCount: listKeranjang.length,
+            itemBuilder: (context,index){
             CartShop keranjang = listKeranjang[index];
             return Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -124,15 +126,26 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                   ),
                   SizedBox(
                     width: 100,
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Color(0xFFF5F6F9),
-                          borderRadius: BorderRadius.circular(15),
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                       //   decoration: BoxDecoration(
+                       //   color: Color(0xFFF5F6F9),
+                       //   borderRadius: BorderRadius.circular(15),
+                       // ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network('${keranjang.Gambar}',
+                            fit: BoxFit.fill,
+                            width: size.width*0.5,
+                            height: size.height*0.23,
+                          ),
                         ),
-                        child: Image.network('${keranjang.Gambar}'),
+                        //child: Image.network('${keranjang.Gambar}'),
+                      ),
                       ),
                     ),
                   ),
@@ -221,9 +234,8 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                 ],
               ),
             );
-          }
-      ),
-    );
+          }),
+      );
   }
 
   Future<void> _getAllKeranjang() async {
