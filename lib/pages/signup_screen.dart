@@ -43,6 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       "email": email.text,
       "password": pass.text,
       "cpassword" : cpass.text,
+      "level" : selectedValue,
     });
 
     var data = json.decode(response.body);
@@ -259,11 +260,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
 
                                   //  Divider(),
-                                    Text("\n What is your role? ",
+                                    Text("\nWhat is your role? ",
                                       style: TextStyle(
                                         color: blush,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
                                       ),
                                     ),
 
@@ -272,8 +273,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         hint: Text(
                                             'Select Role',
                                         style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 18,
                                           color: blush,
+                                          fontWeight: FontWeight.w700,
                                         ),
                                         ),
                                         value: selectedValue,
@@ -282,6 +284,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           color: blacksand,
                                           fontSize: 16,
                                           fontWeight: FontWeight.w700,
+                                          fontFamily: 'Poppins',
                                         ),
                                         icon: Icon(Icons.arrow_drop_down_outlined),
                                         iconSize: 22,
@@ -353,7 +356,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       ], // <Widget>[]
                                     ),
                                     Container(
-                                      height: size.height * 0.1,
+                                      height: size.height * 0.05,
                                       // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 40),
                                     ),
                                     Row(
