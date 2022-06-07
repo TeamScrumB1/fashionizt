@@ -82,7 +82,7 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                 ),
                 child:  TextButton(
                   onPressed: () {
-                    _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
+                    _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Saya%20pesan%20produk%20dengan%20total%20harga%20:%20%0A'+hitungTotal().toString());
                   },
                   child: const Text('Check Out',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),),
                 ),
