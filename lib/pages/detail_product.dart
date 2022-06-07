@@ -129,22 +129,16 @@ class _DetailProductState extends State<DetailProduct> {
 
           actions: [
             Center(
-              child: Badge(
+              child: listKeranjang.length > 0 ? Badge(
                 badgeColor: Colors.orange,
-                borderSide: BorderSide(color: Colors.white),
+                animationType: BadgeAnimationType.slide,
+                borderSide: BorderSide(color: blush),
                 badgeContent: Text(
                   listKeranjang.length.toString(),
                   style: TextStyle(color: Colors.white, fontSize: 10),
                 ),
-                position: BadgePosition.topEnd(top: 0, end: 13),
-                child: ElevatedButton(
-                    child: Icon(Icons.shopping_cart, size: 25),
-                    style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                      padding: EdgeInsets.all(5),
-                      primary: Colors.black38,
-                      onPrimary: Colors.white,
-                    ),
+                position: BadgePosition.topEnd(top: 0, end: 5),
+                child: IconButton(icon: Icon(Icons.shopping_cart, size: 25, color: blush),
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context){
@@ -152,6 +146,15 @@ class _DetailProductState extends State<DetailProduct> {
                           })
                       );
                     }),
+              ) : IconButton(
+                  icon: Icon(Icons.shopping_cart, size: 25, color: blush),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context){
+                          return KeranjangProduk();
+                        })
+                    );
+                  }
               ),
             )
           ]

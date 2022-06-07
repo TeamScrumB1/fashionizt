@@ -87,8 +87,8 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
         ),
       ),
       body: TabBarView(
-        children: <Widget>[
-         SingleChildScrollView(
+          children: <Widget>[
+            SingleChildScrollView(
               padding: EdgeInsets.all(22.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

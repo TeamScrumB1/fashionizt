@@ -64,30 +64,40 @@ class _KategoriPageState extends State<KategoriPage> {
           },
         ),
         title: Text(
-          'Fashionizt',
+          'Kategori $nama_kategori',
           style: titleApps,
         ),
-          actions: [
-            Center(
-              child: Badge(
-                badgeColor: Colors.orange,
-                borderSide: BorderSide(color: blush),
-                badgeContent: Text(
-                  listKeranjang.length.toString(),
-                  style: TextStyle(color: Colors.white, fontSize: 10),
-                ),
-                position: BadgePosition.topEnd(top: 0, end: 5),
-                child: IconButton(icon: Icon(Icons.shopping_cart, size: 25, color: blush),
+            actions: [
+              Center(
+                child: listKeranjang.length > 0 ? Badge(
+                  badgeColor: Colors.orange,
+                  animationType: BadgeAnimationType.slide,
+                  borderSide: BorderSide(color: blush),
+                  badgeContent: Text(
+                    listKeranjang.length.toString(),
+                    style: TextStyle(color: Colors.white, fontSize: 10),
+                  ),
+                  position: BadgePosition.topEnd(top: 0, end: 5),
+                  child: IconButton(icon: Icon(Icons.shopping_cart, size: 25, color: blush),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context){
+                              return KeranjangProduk();
+                            })
+                        );
+                      }),
+                ) : IconButton(
+                    icon: Icon(Icons.shopping_cart, size: 25, color: blush),
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context){
                             return KeranjangProduk();
                           })
                       );
-                    }),
-              ),
-            )
-          ]
+                    }
+                ),
+              )
+            ]
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -96,14 +106,14 @@ class _KategoriPageState extends State<KategoriPage> {
                 margin: EdgeInsets.only(top: 10),
                 //child: SubTittle(sub: "Kategori")
               ),
-              Text(
-                "Kategori $nama_kategori",
-                style: Theme.of(context).textTheme.headline4!.copyWith(
-                  fontWeight: FontWeight.w800,
-                  color: blacksand,
-                  fontSize: 25,
-                ),
-              ),
+             // Text(
+             //   "Kategori $nama_kategori",
+             //   style: Theme.of(context).textTheme.headline4!.copyWith(
+             //     fontWeight: FontWeight.w800,
+             //     color: blacksand,
+             //     fontSize: 25,
+             //   ),
+             // ),
               Padding(
                 padding: const EdgeInsets.only(left: 25,right: 25, top: 10),
               ),
