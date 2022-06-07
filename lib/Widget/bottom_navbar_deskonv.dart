@@ -1,6 +1,7 @@
 import 'package:fashionizt/Widget/gridview_feeds.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/home_pages.dart';
+import 'package:fashionizt/pages/list_project.dart';
 import 'package:fashionizt/pages/my_profile.dart';
 import 'package:fashionizt/pages/pre_order.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
         onPressed: (){
           Navigator.push((context),
               MaterialPageRoute(builder: (context){
-                return PreOrder();
+                return ProjectList();
               })
           );
         },
@@ -87,7 +88,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
               Container(
                 margin: EdgeInsets.only(top: 25),
                 child: Text(
-                  'Pre Order',
+                  'Project List',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     color: blacksand,
