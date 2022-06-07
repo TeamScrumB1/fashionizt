@@ -87,7 +87,7 @@ class _HomePagesState extends State<HomePages> {
           // ),
           actions: [
              Center(
-              child: Badge(
+              child: listKeranjang.length > 0 ? Badge(
                 badgeColor: Colors.orange,
                 animationType: BadgeAnimationType.slide,
                 borderSide: BorderSide(color: blush),
@@ -104,7 +104,16 @@ class _HomePagesState extends State<HomePages> {
                       })
                   );
                 }),
-              ),
+              ) : IconButton(
+                  icon: Icon(Icons.shopping_cart, size: 25, color: blush),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context){
+                          return KeranjangProduk();
+                        })
+                    );
+                  }
+                  ),
             )
           ]
 

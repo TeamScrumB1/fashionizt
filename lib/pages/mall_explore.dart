@@ -1,7 +1,7 @@
-import 'package:fashionizt/Api/api_short_konveksi.dart';
+// import 'package:fashionizt/Api/api_short_konveksi.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
-import 'package:fashionizt/Models/konveksi_model.dart';
+// import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/my_slideview.dart';
 import 'package:fashionizt/constants.dart';
@@ -23,13 +23,13 @@ class _MallExploreState extends State<MallExplore> {
   List<CartShop> listKeranjang = [];
   DbHelper db = DbHelper();
   @override
-  late Future<Konveksi> _konveksi;
+  // late Future<Konveksi> _konveksi;
 
   @override
   void initState() {
     _getAllKeranjang();
     super.initState();
-    _konveksi = ApiServiceMit().topHeadlines();
+    // _konveksi = ApiServiceMit().topHeadlines();
   }
 
   @override
@@ -53,8 +53,9 @@ class _MallExploreState extends State<MallExplore> {
           ),
             actions: [
               Center(
-                child: Badge(
+                child: listKeranjang.length > 0 ? Badge(
                   badgeColor: Colors.orange,
+                  animationType: BadgeAnimationType.slide,
                   borderSide: BorderSide(color: blush),
                   badgeContent: Text(
                     listKeranjang.length.toString(),
@@ -69,6 +70,15 @@ class _MallExploreState extends State<MallExplore> {
                             })
                         );
                       }),
+                ) : IconButton(
+                    icon: Icon(Icons.shopping_cart, size: 25, color: blush),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context){
+                            return KeranjangProduk();
+                          })
+                      );
+                    }
                 ),
               )
             ]
