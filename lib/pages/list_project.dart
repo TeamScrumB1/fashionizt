@@ -37,7 +37,7 @@ class _ProjectListState extends State<ProjectList>{
           },
         ),
         title: Text(
-          'My Profile',
+          'My List Project',
           style: titleApps,
         ),
         actions: <Widget>[
