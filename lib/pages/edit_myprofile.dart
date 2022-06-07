@@ -6,16 +6,42 @@ import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+import 'dart:io';
+import 'dart:async';
 import '../constants.dart';
+import 'package:image_picker/image_picker.dart';
 
-class EditMyProfile extends StatelessWidget {
+class EditMyProfile extends StatefulWidget {
   const EditMyProfile({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
-    Size size = MediaQuery.of(context).size;
+  State<EditMyProfile> createState() => _EditMyProfileState();
+}
+
+class _EditMyProfileState extends State<EditMyProfile> {
+
+    File? image;
+
+    Future pickImage() async {
+      try {
+        final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+        if(image == null) return;
+
+        final imageTemp = File(image.path);
+
+        setState(() => this.image = imageTemp);
+      } on PlatformException catch(e) {
+        print('Failed to pick image: $e');
+      }
+    }
+
+    @override
+    Widget build(BuildContext context) {
+      final width = MediaQuery.of(context).size.width;
+      final height = MediaQuery.of(context).size.height;
+      Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       extendBody: true,
@@ -56,7 +82,9 @@ class EditMyProfile extends StatelessWidget {
                     // bottom: 0,
                     // right: -25,
                     child: RawMaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        pickImage();
+                      },
                       elevation: 1.0,
                       fillColor: blacksand,
                       child: Icon(Icons.camera_alt_outlined, color: Colors.white),
@@ -167,6 +195,6 @@ class EditMyProfile extends StatelessWidget {
 //       ),
 //       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 //       bottomNavigationBar: BottomNavBar2(),
-    );
+      );
   }
 }

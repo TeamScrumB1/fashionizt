@@ -12,6 +12,7 @@ import 'package:fashionizt/Widget/category_product.dart';
 import 'package:fashionizt/Widget/mitra_slideview.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../theme.dart';
+import 'package:badges/badges.dart';
 
 class MitraExplore extends StatefulWidget {
   const MitraExplore({Key? key}) : super(key: key);
@@ -54,48 +55,27 @@ class _MitraExploreState extends State<MitraExplore> {
           style: titleApps,
         ),
 
-        actions: <Widget>[
-          Stack(
-            children: <Widget>[
-              IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context){
-                        return KeranjangProduk();
-                      })
-                  );
-                },
-                icon: const Icon(Icons.shopping_cart, size: 25,),
-                color: blush,
-              ),
-              listKeranjang.length == 0 ? Container() : Positioned(
-                right: 1,
-                top: 2,
-                child: Stack(
-                  children: <Widget>[
-                    Icon(
-                      Icons.brightness_1,
-                      size: 20,
-                      color: Colors.orange,
-                    ),
-                    Positioned(
-                      top: 3.0,
-                      right: 6.0,
-                      child: Text(
-                        listKeranjang.length.toString(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                        ),
-                      ),
-                    )
-                  ],
+          actions: [
+            Center(
+              child: Badge(
+                badgeColor: Colors.orange,
+                borderSide: BorderSide(color: blush),
+                badgeContent: Text(
+                  listKeranjang.length.toString(),
+                  style: TextStyle(color: Colors.white, fontSize: 10),
                 ),
-              )
-            ],
-          ),
-        ],
+                position: BadgePosition.topEnd(top: 0, end: 5),
+                child: IconButton(icon: Icon(Icons.shopping_cart, size: 25, color: blush),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context){
+                            return KeranjangProduk();
+                          })
+                      );
+                    }),
+              ),
+            )
+          ],
       ),
       body: SingleChildScrollView(
           child: Column(

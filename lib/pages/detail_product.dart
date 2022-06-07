@@ -4,12 +4,15 @@ import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/Models/produk_model.dart';
 // import 'package:fashionizt/Widget/Iconkeranjang.dart';
 import 'package:fashionizt/pages/Keranjang_produk.dart';
+import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cool_alert/cool_alert.dart';
+import 'package:badges/badges.dart';
+import 'package:fashionizt/Widget/bottom_navbar.dart';
 
 class DetailProduct extends StatefulWidget {
   const DetailProduct({Key? key,required this.detail,this.keranjang}) : super(key: key);
@@ -65,7 +68,7 @@ class _DetailProductState extends State<DetailProduct> {
                   icon: Icon(Icons.add_shopping_cart_outlined, color: blacksand),
                   iconSize: 25.0,
                   onPressed: () {
-                    upsertKeranjang();
+                    upsertKeranjang(detail.nama);
                     setState(() {
                       _getAllKeranjang();
                     });
@@ -101,17 +104,21 @@ class _DetailProductState extends State<DetailProduct> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: ElevatedButton(
-          child: Icon(Icons.arrow_back_ios_rounded),
-          style: ElevatedButton.styleFrom(
-            shape: CircleBorder(),
-            padding: EdgeInsets.all(5),
-            primary: Colors.black38,
-            onPrimary: Colors.white,
-          ),
-          onPressed: (){
-            Navigator.pop(context);
-          },
+        leading: Stack(
+          children: <Widget>[
+            ElevatedButton(
+                child: Icon(Icons.arrow_back_ios_rounded, size: 25),
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: EdgeInsets.all(5),
+                  primary: Colors.black38,
+                  onPrimary: Colors.white,
+                ),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),),);
+              },
+            ),
+          ]
         ),
         //title: const Text('Detail Produk', style: TextStyle(
         //  fontFamily: 'Poppins',
@@ -119,54 +126,83 @@ class _DetailProductState extends State<DetailProduct> {
         //  fontSize: 20,
         //  color: Colors.black,
         //),),
-        actions: [
-          Stack(
-            children: <Widget>[
-              ElevatedButton(
-                child: Icon(Icons.shopping_cart),
-                style: ElevatedButton.styleFrom(
-                  shape: CircleBorder(),
-                  padding: EdgeInsets.all(5),
-                  primary: Colors.black38,
-                  onPrimary: Colors.white,
+
+          actions: [
+            Center(
+              child: Badge(
+                badgeColor: Colors.orange,
+                borderSide: BorderSide(color: Colors.white),
+                badgeContent: Text(
+                  listKeranjang.length.toString(),
+                  style: TextStyle(color: Colors.white, fontSize: 10),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context){
-                        return KeranjangProduk();
-                      })
-                  );
-                  // _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
-                },
-              ),
-              listKeranjang.length == 0 ? Container() : Positioned(
-                right: 7,
-                top: 2,
-                child: Stack(
-                  children: <Widget>[
-                    Icon(
-                      Icons.brightness_1,
-                      size: 20,
-                      color: Colors.orange,
+                position: BadgePosition.topEnd(top: 0, end: 13),
+                child: ElevatedButton(
+                    child: Icon(Icons.shopping_cart, size: 25),
+                    style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                      padding: EdgeInsets.all(5),
+                      primary: Colors.black38,
+                      onPrimary: Colors.white,
                     ),
-                    Positioned(
-                      top: 3.0,
-                      right: 7.0,
-                      child: Text(
-                        listKeranjang.length.toString(),
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ],
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context){
+                            return KeranjangProduk();
+                          })
+                      );
+                    }),
+              ),
+            )
+          ]
+        //actions: [
+        //  Stack(
+        //    children: <Widget>[
+        //      ElevatedButton(
+        //        child: Icon(Icons.shopping_cart),
+        //        style: ElevatedButton.styleFrom(
+        //          shape: CircleBorder(),
+        //          padding: EdgeInsets.all(5),
+        //          primary: Colors.black38,
+        //          onPrimary: Colors.white,
+        //        ),
+        //        onPressed: () {
+        //          Navigator.push(
+        //              context,
+        //              MaterialPageRoute(builder: (context){
+        //                return KeranjangProduk();
+        //              })
+        //          );
+        //          // _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
+        //        },
+        //      ),
+        //      listKeranjang.length == 0 ? Container() : Positioned(
+        //        right: 12,
+        //        top: 2,
+        //        child: Stack(
+        //          children: <Widget>[
+        //            Icon(
+        //              Icons.brightness_1,
+        //              size: 20,
+        //              color: Colors.orange,
+        //            ),
+        //            Positioned(
+        //              top: 3.0,
+        //              right: 7.0,
+        //              child: Text(
+        //                listKeranjang.length.toString(),
+        //                style: TextStyle(
+        //                  color: Colors.white,
+        //                  fontSize: 10,
+        //                ),
+        //              ),
+        //            )
+        //          ],
+        //        ),
+        //      )
+        //    ],
+        //  ),
+        //],
       ),
       extendBodyBehindAppBar: true,
 
@@ -240,7 +276,7 @@ class _DetailProductState extends State<DetailProduct> {
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                       child: Text(
-                        'Flutter adalah sebuah framework aplikasi mobil sumber terbuka yang diciptakan oleh Google. Flutter digunakan dalam pengembangan aplikasi untuk sistem operasi Android, iOS, Windows, Linux, MacOS, serta menjadi metode utama untuk membuat aplikasi Google Fuchsia. ',
+                        detail.deskripsi,
                         textAlign: TextAlign.justify,
                       ),
                     ),
@@ -380,12 +416,34 @@ class _DetailProductState extends State<DetailProduct> {
       ),
     );
   }
-  Future<void> upsertKeranjang() async {
-    await db.saveKeranjang(CartShop(
-      NamaProduk: detail.nama,
-      Harga: detail.harga,
-      Gambar: detail.imgProduk,
-    ));
+  Future<void> upsertKeranjang(String Nama) async {
+    bool status = false;
+    CartShop? keranjang;
+    for(int i = 0;i<listKeranjang.length;i++){
+      if(listKeranjang[i].NamaProduk == Nama){
+        status = true;
+        keranjang = listKeranjang[i];
+      }
+    }
+
+    if(status == true){
+      await db.updateKeranjang(CartShop.fromMap({
+        'Id' : keranjang!.id,
+        'NamaProduk' : keranjang.NamaProduk,
+        'Harga' : keranjang.Harga,
+        'Jumlah' : keranjang.Jumlah+1,
+        'Gambar' : keranjang.Gambar,
+        'Status' : keranjang.Status,
+      }));
+    }else{
+      await db.saveKeranjang(CartShop(
+        NamaProduk: detail.nama,
+        Harga: detail.harga,
+        Gambar: detail.imgProduk,
+        Jumlah: 1,
+        Status: 0,
+      ));
+    }
   }
   List<CartShop> listKeranjang = [];
   Future<void> _getAllKeranjang() async {

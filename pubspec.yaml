@@ -51,6 +51,8 @@ dependencies:
   dotted_border: ^2.0.0+2
   file_picker: ^4.6.0
   cool_alert: ^1.1.0
+  image_picker: ^0.8.5+3
+  badges: ^2.0.3
   
 
 

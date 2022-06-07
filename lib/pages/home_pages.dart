@@ -14,6 +14,7 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../constants.dart';
 import '../shared_preferences.dart';
+import 'package:badges/badges.dart';
 
 class HomePages extends StatefulWidget {
   @override
@@ -84,48 +85,68 @@ class _HomePagesState extends State<HomePages> {
           //     ),
           //   ),
           // ),
-          actions: <Widget>[
-            Stack(
-              children: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context){
-                          return KeranjangProduk();
-                        })
-                    );
-                  },
-                  icon: const Icon(Icons.shopping_cart, size: 25,),
-                  color: blush,
-                ),
-                listKeranjang.length == 0 ? Container() : Positioned(
-                  right: 1,
-                  top: 2,
-                  child: Stack(
-                    children: <Widget>[
-                      Icon(
-                        Icons.brightness_1,
-                        size: 20,
-                        color: Colors.orange,
-                      ),
-                      Positioned(
-                        top: 3.0,
-                        right: 6.0,
-                        child: Text(
-                          listKeranjang.length.toString(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                          ),
-                        ),
-                      )
-                    ],
+          actions: [
+             Center(
+              child: Badge(
+                badgeColor: Colors.orange,
+                animationType: BadgeAnimationType.slide,
+                borderSide: BorderSide(color: blush),
+                  badgeContent: Text(
+                    listKeranjang.length.toString(),
+                    style: TextStyle(color: Colors.white, fontSize: 10),
                   ),
-                )
-              ],
-            ),
-          ],
+                position: BadgePosition.topEnd(top: 0, end: 5),
+                child: IconButton(icon: Icon(Icons.shopping_cart, size: 25, color: blush),
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context){
+                        return KeranjangProduk();
+                      })
+                  );
+                }),
+              ),
+            )
+          ]
+
+
+         //actions: <Widget>[
+         //      IconButton(
+         //        onPressed: () {
+         //          Navigator.push(
+         //              context,
+         //              MaterialPageRoute(builder: (context){
+         //                return KeranjangProduk();
+         //              })
+         //          );
+         //        },
+         //        icon: Icon(Icons.shopping_cart, size: 25,),
+         //        color: blush,
+         //      ),
+         //      listKeranjang.length == 0 ? Container() : Positioned(
+         //        right: 7,
+         //        top: 3,
+         //        child: Stack(
+         //          children: <Widget>[
+         //            Icon(
+         //              Icons.brightness_1,
+         //              size: 20,
+         //              color: Colors.amber,
+         //            ),
+         //            Positioned(
+         //              top: 3.0,
+         //              right: 7.0,
+         //              child: Text(
+         //                listKeranjang.length.toString(),
+         //                style: TextStyle(
+         //                  color: Colors.white,
+         //                  fontSize: 10,
+         //                ),
+         //              ),
+         //            )
+         //          ],
+         //        ),
+         //  ),
+         //],
             // IconButton(
             //   onPressed: (){},
             //   icon: const Icon(Icons.notifications_active,size: 25,),
