@@ -1,3 +1,4 @@
+import 'package:fashionizt/Widget/gridview_feeds.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:fashionizt/pages/my_profile.dart';
@@ -34,7 +35,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: blacksand,
-        child: Icon(Icons.assignment,color: blush),
+        child: Icon(Icons.auto_awesome_motion_outlined,color: blush),
         onPressed: (){
           Navigator.push((context),
               MaterialPageRoute(builder: (context){
@@ -102,7 +103,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
                         _prefService.readCache("username").then((value) {
                           print('username : ' + value.toString());
                           if (value != null) {
-                            currentScreen = MyProfile();
+                            currentScreen = GridViewFeeds();
                             currentTab = 1;
                           }
                         });
