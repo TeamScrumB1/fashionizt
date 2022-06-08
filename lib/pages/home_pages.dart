@@ -97,21 +97,28 @@ class _HomePagesState extends State<HomePages> {
                   ),
                 position: BadgePosition.topEnd(top: 0, end: 5),
                 child: IconButton(icon: Icon(Icons.shopping_cart, size: 25, color: blush),
-                    onPressed: () {
-                      Navigator.push(context,
-                        MaterialPageRoute(builder: (context){
-                        return KeranjangProduk();
+                    onPressed: () async{
+                      final value = await Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context){
+                          return KeranjangProduk();
                       })
-                  );
+                    );
+                      setState(() {
+                        _getAllKeranjang();
+                      });
                 }),
               ) : IconButton(
                   icon: Icon(Icons.shopping_cart, size: 25, color: blush),
-                  onPressed: () {
-                    Navigator.push(context,
+                  onPressed: () async{
+                    final value = await Navigator.push(context,
                         MaterialPageRoute(builder: (context){
                           return KeranjangProduk();
                         })
                     );
+                    setState(() {
+                      _getAllKeranjang();
+                    });
                   }
                   ),
             )

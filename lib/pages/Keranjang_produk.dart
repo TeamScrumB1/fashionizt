@@ -98,7 +98,7 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
           icon: const Icon(Icons.arrow_back_ios_rounded),
           color: blush,
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),),);
+              Navigator.pop(context);
             },
         ),
         title: Text(

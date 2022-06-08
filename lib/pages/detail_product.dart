@@ -115,7 +115,7 @@ class _DetailProductState extends State<DetailProduct> {
                   onPrimary: Colors.white,
                 ),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),),);
+                Navigator.pop(context);
               },
             ),
           ]
@@ -137,25 +137,41 @@ class _DetailProductState extends State<DetailProduct> {
                   listKeranjang.length.toString(),
                   style: TextStyle(color: Colors.white, fontSize: 10),
                 ),
-                position: BadgePosition.topEnd(top: 0, end: 5),
-                child: IconButton(icon: Icon(Icons.shopping_cart, size: 25, color: blush),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context){
-                            return KeranjangProduk();
-                          })
-                      );
-                    }),
-              ) : IconButton(
-                  icon: Icon(Icons.shopping_cart, size: 25, color: blush),
+                position: BadgePosition.topEnd(top: 0, end: 13),
+                child: ElevatedButton(
+                  child: Icon(Icons.shopping_cart, size: 25),
+                  style: ElevatedButton.styleFrom(
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(5),
+                    primary: Colors.black38,
+                    onPrimary: Colors.white,
+                  ),
+                  onPressed: () async{
+                    final value = await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context){
+                          return KeranjangProduk();
+                        })
+                    );
+                    setState(() {
+                      _getAllKeranjang();
+                    });
+                  }),
+                ) : ElevatedButton(
+                  child: Icon(Icons.shopping_cart, size: 25),
+                  style: ElevatedButton.styleFrom(
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(5),
+                    primary: Colors.black38,
+                    onPrimary: Colors.white,
+                  ),
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context){
                           return KeranjangProduk();
                         })
                     );
-                  }
-              ),
+                  }),
             )
           ]
         //actions: [

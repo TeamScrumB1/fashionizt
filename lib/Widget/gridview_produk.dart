@@ -1,4 +1,6 @@
 import 'package:fashionizt/Api/api_produk.dart';
+import 'package:fashionizt/Data/db_helper.dart';
+import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/Models/produk_model.dart';
 import 'package:fashionizt/Pages/detail_product.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,13 +46,16 @@ class _GridViewProdukState extends State<GridViewProduk> {
                 itemBuilder: (context, index) {
                   var produk = snapshot.data?.produk[index];
                   return InkWell(
-                      onTap: (){
-                        Navigator.push(
+                      onTap: () async{
+                        final value = await Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context){
                               return DetailProduct(detail: produk!);
                             })
                         );
+                        setState(() {
+                          _getAllKeranjang();
+                        });
                       },
                       child: ProductCard(produk: produk!)
                   );
@@ -66,5 +71,16 @@ class _GridViewProdukState extends State<GridViewProduk> {
         },
       ),
     );
+  }
+  List<CartShop> listKeranjang = [];
+  DbHelper db = DbHelper();
+  Future<void> _getAllKeranjang() async {
+    var list = await db.getAllKeranjang();
+    setState(() {
+      listKeranjang.clear();
+      list!.forEach((keranjang) {
+        listKeranjang.add(CartShop.fromMap(keranjang));
+      });
+    });
   }
 }
