@@ -41,6 +41,7 @@ class _DetailProductState extends State<DetailProduct> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: Container(

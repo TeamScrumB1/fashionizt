@@ -1,6 +1,5 @@
 import 'package:fashionizt/Widget/gridview_feeds.dart';
 import 'package:fashionizt/constants.dart';
-import 'package:fashionizt/pages/detail_desainer.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:fashionizt/pages/list_project.dart';
 import 'package:fashionizt/pages/my_profile.dart';

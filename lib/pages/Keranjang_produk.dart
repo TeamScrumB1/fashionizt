@@ -36,6 +36,8 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
 
     return listKeranjang.isEmpty ? Scaffold (body: CartEmpty()) : Scaffold(
       bottomNavigationBar: BottomAppBar(
@@ -84,7 +86,11 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                   onPressed: () {
                     _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Saya%20pesan%20produk%20dengan%20total%20harga%20:%20%0A'+hitungTotal().toString());
                   },
-                  child: const Text('Check Out',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),),
+                  child: const Text('Check Out',
+                    style: TextStyle(color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ],
@@ -155,7 +161,7 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                     children: [
                       Text(
                         '${keranjang.NamaProduk}',
-                        style: TextStyle(color: Colors.black, fontSize: 16),
+                        style: TextStyle(color: Colors.black, fontSize: width*0.04),
                         maxLines: 2,
                       ),
                       //Text(
