@@ -273,17 +273,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         hint: Text(
                                             'Select Role',
                                         style: TextStyle(
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           color: blush,
-                                          fontWeight: FontWeight.w700,
+                                          fontWeight: FontWeight.normal,
                                         ),
                                         ),
                                         value: selectedValue,
-                                        dropdownColor: blush,
+                                        dropdownColor: blacksand,
                                         style: TextStyle(
-                                          color: blacksand,
+                                          color: blush,
                                           fontSize: 16,
-                                          fontWeight: FontWeight.w700,
+                                          fontWeight: FontWeight.w600,
                                           fontFamily: 'Poppins',
                                         ),
                                         icon: Icon(Icons.arrow_drop_down_outlined),
@@ -300,8 +300,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             value: item,
                                               child: Text(item,
                                               style: TextStyle(
-                                                color: Colors.black45,
-                                                fontSize: 18,
+                                                color: blush,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
                                               ),
                                                 overflow: TextOverflow.ellipsis,
                                               ),
@@ -328,7 +329,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   //  ),
 
                                     Container(
-                                      height: size.height * 0.05,
+                                      height: size.height * 0.03,
                                     ),
                                     Row(
                                       children: <Widget> [
@@ -356,7 +357,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       ], // <Widget>[]
                                     ),
                                     Container(
-                                      height: size.height * 0.05,
+                                      height: size.height * 0.04,
                                       // padding: EdgeInsets.symmetric(horizontal: 10, vertical: 40),
                                     ),
                                     Row(
