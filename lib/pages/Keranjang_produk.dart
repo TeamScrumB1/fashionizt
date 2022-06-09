@@ -235,7 +235,8 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                       onPressed: (){
                         _deleteKeranjang(keranjang, index);
                         setState(() {
-                          mycart.jumlahplus(listKeranjang.length-1);
+                          _getAllKeranjang();
+                          mycart.jumlahplus();
                         });
                       },
                       icon: Icon(

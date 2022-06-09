@@ -76,7 +76,8 @@ class _DetailProductState extends State<DetailProduct> {
                   onPressed: () {
                     upsertKeranjang(detail.nama);
                     setState(() {
-                      keranjang.jumlahplus(listKeranjang.length+1);
+                      _getAllKeranjang();
+                      keranjang.jumlahplus();
                     });
                     CoolAlert.show(
                       context: context,
@@ -473,6 +474,7 @@ class _DetailProductState extends State<DetailProduct> {
         Status: 0,
       ));
     }
+    _getAllKeranjang();
   }
   List<CartShop> listKeranjang = [];
   Future<void> _getAllKeranjang() async {
