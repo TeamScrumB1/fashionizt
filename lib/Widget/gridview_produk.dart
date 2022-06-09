@@ -25,6 +25,8 @@ class _GridViewProdukState extends State<GridViewProduk> {
 
   @override
   Widget build(BuildContext context) {
+    // var keranjang = Provider.of<KeranjangProv>(context, listen: true);
+
     return Container(
       margin: EdgeInsets.only(right: 8, left: 8),
       // height: 250,

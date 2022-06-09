@@ -1,13 +1,16 @@
-// import 'package:fashionizt/Api/api_short_konveksi.dart';
+import 'package:fashionizt/Data/ProviderCart.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
-// import 'package:fashionizt/Models/konveksi_model.dart';
+import 'package:fashionizt/Models/produk_model.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/my_slideview.dart';
+import 'package:fashionizt/api/api_produk.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/Keranjang_produk.dart';
+import 'package:fashionizt/pages/detail_product.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/category_product.dart';
+import 'package:provider/provider.dart';
 import '../theme.dart';
 import 'package:badges/badges.dart';
 
@@ -22,18 +25,19 @@ class MallExplore extends StatefulWidget {
 class _MallExploreState extends State<MallExplore> {
   List<CartShop> listKeranjang = [];
   DbHelper db = DbHelper();
+  // late Future<Produk> _produk;
   @override
-  // late Future<Konveksi> _konveksi;
 
   @override
   void initState() {
     _getAllKeranjang();
+    // _produk = ApiServiceProd().topHeadlines();
     super.initState();
-    // _konveksi = ApiServiceMit().topHeadlines();
   }
 
   @override
   Widget build(BuildContext context) {
+    var keranjang = Provider.of<KeranjangProv>(context, listen: true);
     return RefreshIndicator(
       onRefresh: _getAllKeranjang,
       child: Scaffold(
@@ -58,26 +62,38 @@ class _MallExploreState extends State<MallExplore> {
                   animationType: BadgeAnimationType.slide,
                   borderSide: BorderSide(color: blush),
                   badgeContent: Text(
-                    listKeranjang.length.toString(),
+                    keranjang.jumlah.toString(),
                     style: TextStyle(color: Colors.white, fontSize: 10),
                   ),
                   position: BadgePosition.topEnd(top: 0, end: 5),
                   child: IconButton(icon: Icon(Icons.shopping_cart, size: 25, color: blush),
-                      onPressed: () {
+                      onPressed: ()
+                      // async
+                      {
+                        // final value = await
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context){
                               return KeranjangProduk();
                             })
                         );
+                        // setState(() {
+                        //   _getAllKeranjang();
+                        // });
                       }),
                 ) : IconButton(
                     icon: Icon(Icons.shopping_cart, size: 25, color: blush),
-                    onPressed: () {
+                    onPressed: ()
+                    // async
+                    {
+                      // final value = await
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context){
                             return KeranjangProduk();
                           })
                       );
+                      // setState(() {
+                      //   _getAllKeranjang();
+                      // });
                     }
                 ),
               )

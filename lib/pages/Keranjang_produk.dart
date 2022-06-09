@@ -1,14 +1,16 @@
 // import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fashionizt/Data/ProviderCart.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/theme.dart';
+import 'package:provider/provider.dart';
 // import 'package:line_icons/line_icon.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fashionizt/Widget/bottom_navbar.dart';
-import 'package:fashionizt/pages/home_pages.dart';
+// import 'package:fashionizt/Widget/bottom_navbar.dart';
+// import 'package:fashionizt/pages/home_pages.dart';
 import 'package:fashionizt/pages/cart_empty.dart';
 
 class KeranjangProduk extends StatefulWidget {
@@ -36,8 +38,9 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final height = MediaQuery.of(context).size.height;
+    // final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    var mycart = Provider.of<KeranjangProv>(context,listen: true);
 
     return listKeranjang.isEmpty ? Scaffold (body: CartEmpty()) : Scaffold(
       bottomNavigationBar: BottomAppBar(
@@ -231,6 +234,9 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                   IconButton(
                       onPressed: (){
                         _deleteKeranjang(keranjang, index);
+                        setState(() {
+                          mycart.jumlahplus(listKeranjang.length-1);
+                        });
                       },
                       icon: Icon(
                         Icons.delete,

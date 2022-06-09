@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fashionizt/Data/ProviderCart.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/Models/produk_model.dart';
@@ -7,6 +8,7 @@ import 'package:fashionizt/pages/Keranjang_produk.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -42,6 +44,9 @@ class _DetailProductState extends State<DetailProduct> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final height = MediaQuery.of(context).size.height;
+
+    var keranjang = Provider.of<KeranjangProv>(context);
+
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: Container(
@@ -71,7 +76,7 @@ class _DetailProductState extends State<DetailProduct> {
                   onPressed: () {
                     upsertKeranjang(detail.nama);
                     setState(() {
-                      _getAllKeranjang();
+                      keranjang.jumlahplus(listKeranjang.length+1);
                     });
                     CoolAlert.show(
                       context: context,
@@ -135,7 +140,8 @@ class _DetailProductState extends State<DetailProduct> {
                 animationType: BadgeAnimationType.slide,
                 borderSide: BorderSide(color: blush),
                 badgeContent: Text(
-                  listKeranjang.length.toString(),
+                  // listKeranjang.length.toString(),
+                  keranjang.jumlah.toString(),
                   style: TextStyle(color: Colors.white, fontSize: 10),
                 ),
                 position: BadgePosition.topEnd(top: 0, end: 13),
@@ -147,16 +153,19 @@ class _DetailProductState extends State<DetailProduct> {
                     primary: Colors.black38,
                     onPrimary: Colors.white,
                   ),
-                  onPressed: () async{
-                    final value = await Navigator.push(
+                  onPressed: ()
+                  // async
+                  {
+                    // final value = await
+                    Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context){
                           return KeranjangProduk();
                         })
                     );
-                    setState(() {
-                      _getAllKeranjang();
-                    });
+                    // setState(() {
+                    //   _getAllKeranjang();
+                    // });
                   }),
                 ) : ElevatedButton(
                   child: Icon(Icons.shopping_cart, size: 25),
