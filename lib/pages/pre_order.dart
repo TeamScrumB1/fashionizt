@@ -3,13 +3,14 @@ import 'package:fashionizt/pages/detail_project_user.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 import 'dart:io';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:flutter/painting.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:fashionizt/Widget/bottom_navbar.dart';
+import 'package:fashionizt/pages/home_pages.dart';
 
 class PreOrder extends StatefulWidget {
   const PreOrder({Key? key}) : super(key: key);
@@ -59,9 +60,34 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_rounded),
           color: blush,
-          onPressed: (){
-            Navigator.pop(context);
-          },
+          onPressed: () => showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              title: const Text('Leave This Page'),
+              content: const Text('Are you sure?'),
+              actions: <Widget>[
+                TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                  child: Text('Cancel',
+                    style: TextStyle(
+                      color: blacksand,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),)),
+                  child: Text('OK',
+                    style: TextStyle(
+                      color: blacksand,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
         title: Text(
           'Pre Order',
@@ -87,8 +113,8 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
         ),
       ),
       body: TabBarView(
-        children: <Widget>[
-         SingleChildScrollView(
+          children: <Widget>[
+            SingleChildScrollView(
               padding: EdgeInsets.all(22.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

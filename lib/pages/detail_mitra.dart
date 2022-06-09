@@ -75,7 +75,7 @@ class DetailKonveksi extends StatelessWidget {
               ],
             ),
             Container(
-              height: size.height * 0.15,
+              height: size.height * 0.12,
             ),
             Container(
               child: Column(

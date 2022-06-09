@@ -57,8 +57,9 @@ class _MitraExploreState extends State<MitraExplore> {
 
           actions: [
             Center(
-              child: Badge(
+              child: listKeranjang.length > 0 ? Badge(
                 badgeColor: Colors.orange,
+                animationType: BadgeAnimationType.slide,
                 borderSide: BorderSide(color: blush),
                 badgeContent: Text(
                   listKeranjang.length.toString(),
@@ -73,6 +74,15 @@ class _MitraExploreState extends State<MitraExplore> {
                           })
                       );
                     }),
+              ) : IconButton(
+                  icon: Icon(Icons.shopping_cart, size: 25, color: blush),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context){
+                          return KeranjangProduk();
+                        })
+                    );
+                  }
               ),
             )
           ],
