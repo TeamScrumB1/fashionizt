@@ -1,4 +1,3 @@
-
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
 // import 'package:fashionizt/Models/Cart.dart';
@@ -6,6 +5,11 @@ import 'package:flutter/cupertino.dart';
 
 class KeranjangProv with ChangeNotifier{
   int jumlah = 0;
+
+  Future<int> getJumlah() async{
+    jumlah = await _getAllKeranjang();
+    return jumlah;
+  }
 
   jumlahplus()async{
     jumlah = await _getAllKeranjang();

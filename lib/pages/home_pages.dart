@@ -54,6 +54,7 @@ class _HomePagesState extends State<HomePages> {
     ]);
 
     var keranjang = Provider.of<KeranjangProv>(context, listen: true);
+    keranjang.jumlahplus();
     return RefreshIndicator(
       onRefresh: _getAllKeranjang,
       child: Scaffold(
@@ -100,15 +101,11 @@ class _HomePagesState extends State<HomePages> {
                 badgeColor: Colors.orange,
                 animationType: BadgeAnimationType.slide,
                 borderSide: BorderSide(color: blush),
-                  badgeContent: keranjang.jumlah == 0 ? Text(
-                    // listKeranjang.length.toString(),
-                    listKeranjang.length.toString(),
-                    style: TextStyle(color: Colors.white, fontSize: 10),
-                  ) : Text(
-                    // listKeranjang.length.toString(),
-                    keranjang.jumlah.toString(),
-                    style: TextStyle(color: Colors.white, fontSize: 10),
-                  ),
+                badgeContent: Text(
+                  // listKeranjang.length.toString(),
+                  keranjang.jumlah.toString(),
+                  style: TextStyle(color: Colors.white, fontSize: 10),
+                ),
                 position: BadgePosition.topEnd(top: 0, end: 5),
                 child: IconButton(icon: Icon(Icons.shopping_cart, size: 25, color: blush),
                     onPressed: ()
