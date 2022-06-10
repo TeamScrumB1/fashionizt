@@ -87,6 +87,16 @@ class _ProjectListState extends State<ProjectList>{
                       ],
                     ),
                     Row(
+                      children: <Widget>[
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(" Anonymous", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Column(
