@@ -60,7 +60,7 @@ class _MitraExploreState extends State<MitraExplore> {
 
           actions: [
             Center(
-              child: listKeranjang.length > 0 ? Badge(
+              child: keranjang.jumlah > 0 ? Badge(
                 badgeColor: Colors.orange,
                 animationType: BadgeAnimationType.slide,
                 borderSide: BorderSide(color: blush),

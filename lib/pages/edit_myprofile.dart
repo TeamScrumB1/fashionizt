@@ -1,10 +1,10 @@
 import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/my_profile.dart';
-import 'package:fashionizt/pages/pre_order.dart';
+// import 'package:fashionizt/pages/pre_order.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:fashionizt/pages/home_pages.dart';
+// import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'dart:io';
@@ -40,7 +40,6 @@ class _EditMyProfileState extends State<EditMyProfile> {
     @override
     Widget build(BuildContext context) {
       final width = MediaQuery.of(context).size.width;
-      final height = MediaQuery.of(context).size.height;
       Size size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -182,19 +181,6 @@ class _EditMyProfileState extends State<EditMyProfile> {
           ],
         ),
       ),
-//       floatingActionButton: FloatingActionButton(
-//         backgroundColor: blacksand,
-//         child: Icon(Icons.assignment,color: blush,),
-//         onPressed: (){
-//           Navigator.push((context),
-//               MaterialPageRoute(builder: (context){
-//                 return PreOrder();
-//               })
-//           );
-//         },
-//       ),
-//       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-//       bottomNavigationBar: BottomNavBar2(),
-      );
+    );
   }
 }

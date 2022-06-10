@@ -103,14 +103,6 @@ class _KategoriPageState extends State<KategoriPage> {
                 margin: EdgeInsets.only(top: 10),
                 //child: SubTittle(sub: "Kategori")
               ),
-             // Text(
-             //   "Kategori $nama_kategori",
-             //   style: Theme.of(context).textTheme.headline4!.copyWith(
-             //     fontWeight: FontWeight.w800,
-             //     color: blacksand,
-             //     fontSize: 25,
-             //   ),
-             // ),
               Padding(
                 padding: const EdgeInsets.only(left: 25,right: 25, top: 10),
               ),

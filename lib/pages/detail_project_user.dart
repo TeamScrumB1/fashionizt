@@ -5,8 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fashionizt/constants.dart';
-import 'package:file_picker/file_picker.dart';
-import 'dart:io';
 
 import '../constants.dart';
 
@@ -58,15 +56,6 @@ class _DetailProjectUserState extends State<DetailProjectUser>{
           style: titleApps,
         ),
         automaticallyImplyLeading: false,
-        actions: <Widget>[
-          // IconButton(
-          //   onPressed: () {
-          //     _launchURL('https://api.whatsapp.com/send?phone=6285808322783&text=Transaksi%20akan%20dialihkan%20ke%20admin%20Fashionizt');
-          //   },
-          //   icon: const Icon(Icons.shopping_cart, size: 25,),
-          //   color: blush,
-          // ),
-        ],
       ),
       body: Container(
         height: size.height*1,

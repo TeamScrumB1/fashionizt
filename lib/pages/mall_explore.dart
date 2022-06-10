@@ -1,13 +1,10 @@
 import 'package:fashionizt/Data/ProviderCart.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
-import 'package:fashionizt/Models/produk_model.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/my_slideview.dart';
-import 'package:fashionizt/api/api_produk.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/Keranjang_produk.dart';
-import 'package:fashionizt/pages/detail_product.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/category_product.dart';
 import 'package:provider/provider.dart';
@@ -57,7 +54,7 @@ class _MallExploreState extends State<MallExplore> {
           ),
             actions: [
               Center(
-                child: listKeranjang.length > 0 ? Badge(
+                child: keranjang.jumlah > 0 ? Badge(
                   badgeColor: Colors.orange,
                   animationType: BadgeAnimationType.slide,
                   borderSide: BorderSide(color: blush),
@@ -91,9 +88,6 @@ class _MallExploreState extends State<MallExplore> {
                             return KeranjangProduk();
                           })
                       );
-                      // setState(() {
-                      //   _getAllKeranjang();
-                      // });
                     }
                 ),
               )
@@ -128,14 +122,7 @@ class _MallExploreState extends State<MallExplore> {
                       )),
                   Spacer(),
                   TextButton(
-                    onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => PilihDesainer(),
-                      //   ),
-                      // );
-                    },
+                    onPressed: () {},
                     child: Text('View All',
                         style: TextStyle(
                           color: blacksand,
