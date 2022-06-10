@@ -1,8 +1,11 @@
+import 'package:fashionizt/Data/ProviderCart.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
+import 'package:fashionizt/Models/produk_model.dart';
 import 'package:fashionizt/Widget/button_role.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';
+import 'package:fashionizt/api/api_produk.dart';
 import 'package:fashionizt/pages/Keranjang_produk.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +18,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../constants.dart';
 import '../shared_preferences.dart';
 import 'package:badges/badges.dart';
+import 'package:provider/provider.dart';
 
 class HomePages extends StatefulWidget {
   @override
@@ -22,10 +26,11 @@ class HomePages extends StatefulWidget {
 }
 
 class _HomePagesState extends State<HomePages> {
-  // const HomePages({Key? key}) : super(key: key);
   final PrefService _prefService = PrefService();
+  // late Future<Produk> _produk;
   List<CartShop> listKeranjang = [];
   DbHelper db = DbHelper();
+
   void _launchURL(String _url) async {
     if (!await launch(_url)) throw 'Could not launch $_url';
   }
@@ -36,6 +41,8 @@ class _HomePagesState extends State<HomePages> {
     _prefService.readCache("username").then((value) {
       print('username : ' + value.toString());
     });
+
+    // _produk = ApiServiceProd().topHeadlines();
     super.initState();
   }
 
@@ -45,6 +52,9 @@ class _HomePagesState extends State<HomePages> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp
     ]);
+
+    var keranjang = Provider.of<KeranjangProv>(context, listen: true);
+    keranjang.jumlahplus();
     return RefreshIndicator(
       onRefresh: _getAllKeranjang,
       child: Scaffold(
@@ -91,78 +101,47 @@ class _HomePagesState extends State<HomePages> {
                 badgeColor: Colors.orange,
                 animationType: BadgeAnimationType.slide,
                 borderSide: BorderSide(color: blush),
-                  badgeContent: Text(
-                    listKeranjang.length.toString(),
-                    style: TextStyle(color: Colors.white, fontSize: 10),
-                  ),
+                badgeContent: Text(
+                  // listKeranjang.length.toString(),
+                  keranjang.jumlah.toString(),
+                  style: TextStyle(color: Colors.white, fontSize: 10),
+                ),
                 position: BadgePosition.topEnd(top: 0, end: 5),
                 child: IconButton(icon: Icon(Icons.shopping_cart, size: 25, color: blush),
-                    onPressed: () {
-                      Navigator.push(context,
-                        MaterialPageRoute(builder: (context){
-                        return KeranjangProduk();
+                    onPressed: ()
+                    // async
+                    {
+                      // final value = await
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context){
+                          return KeranjangProduk();
                       })
-                  );
+                    );
+                      // setState(() {
+                      //   _getAllKeranjang();
+                      // });
                 }),
               ) : IconButton(
                   icon: Icon(Icons.shopping_cart, size: 25, color: blush),
-                  onPressed: () {
+                  onPressed: ()
+                  // async
+                  {
+                    // final value = await
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context){
                           return KeranjangProduk();
                         })
                     );
+                    // setState(() {
+                    //   _getAllKeranjang();
+                    // });
                   }
                   ),
             )
           ]
-
-
-         //actions: <Widget>[
-         //      IconButton(
-         //        onPressed: () {
-         //          Navigator.push(
-         //              context,
-         //              MaterialPageRoute(builder: (context){
-         //                return KeranjangProduk();
-         //              })
-         //          );
-         //        },
-         //        icon: Icon(Icons.shopping_cart, size: 25,),
-         //        color: blush,
-         //      ),
-         //      listKeranjang.length == 0 ? Container() : Positioned(
-         //        right: 7,
-         //        top: 3,
-         //        child: Stack(
-         //          children: <Widget>[
-         //            Icon(
-         //              Icons.brightness_1,
-         //              size: 20,
-         //              color: Colors.amber,
-         //            ),
-         //            Positioned(
-         //              top: 3.0,
-         //              right: 7.0,
-         //              child: Text(
-         //                listKeranjang.length.toString(),
-         //                style: TextStyle(
-         //                  color: Colors.white,
-         //                  fontSize: 10,
-         //                ),
-         //              ),
-         //            )
-         //          ],
-         //        ),
-         //  ),
-         //],
-            // IconButton(
-            //   onPressed: (){},
-            //   icon: const Icon(Icons.notifications_active,size: 25,),
-            //   color: blush,
-            // ),
-
         ),
+
         body: Container(
           child: ListView(
             children: [
@@ -181,6 +160,53 @@ class _HomePagesState extends State<HomePages> {
                 //child: SubTittle(sub: "Kategori")
               ),
               SubTittle(sub: "Rekomendasi Produk",),
+              // GridViewProduk(),
+              // Container(
+              //   margin: EdgeInsets.only(right: 8, left: 8),
+              //   // height: 250,
+              //   child: FutureBuilder(
+              //     future: _produk,
+              //     builder: (context, AsyncSnapshot<Produk> snapshot){
+              //       var state = snapshot.connectionState;
+              //       if(state!=ConnectionState.done){
+              //         return Center(child: CircularProgressIndicator());
+              //       }else{
+              //         if(snapshot.hasData){
+              //           return GridView.builder(
+              //             shrinkWrap: true,
+              //             physics: NeverScrollableScrollPhysics(),
+              //             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //               crossAxisCount: 2,
+              //               childAspectRatio: 1/1.53,
+              //             ),
+              //             itemBuilder: (context, index) {
+              //               var produk = snapshot.data?.produk[index];
+              //               return InkWell(
+              //                   onTap: () async{
+              //                     final value = await Navigator.push(
+              //                         context,
+              //                         MaterialPageRoute(builder: (context){
+              //                           return DetailProduct(detail: produk!);
+              //                         })
+              //                     );
+              //                     setState(() {
+              //                       _getAllKeranjang();
+              //                     });
+              //                   },
+              //                   child: ProductCard(produk: produk!)
+              //               );
+              //             },
+              //             itemCount: snapshot.data?.produk.length,
+              //           );
+              //         }else if(snapshot.hasError){
+              //           return Center(child: Text(snapshot.error.toString()));
+              //         }else{
+              //           return Text('');
+              //         }
+              //       }
+              //     },
+              //   ),
+              // ),
               GridViewProduk(),
             ],
           ),

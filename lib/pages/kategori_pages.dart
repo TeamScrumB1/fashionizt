@@ -1,9 +1,9 @@
-import 'package:fashionizt/Api/api_short_konveksi.dart';
-import 'package:fashionizt/Models/konveksi_model.dart';
+import 'package:fashionizt/Data/ProviderCart.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/Models/Cart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Widget/gridview_katproduk.dart';
 import '../theme.dart';
@@ -39,17 +39,14 @@ class _KategoriPageState extends State<KategoriPage> {
   String nama_kategori;
 
   @override
-  late Future<Konveksi> _konveksi;
-
-  @override
   void initState() {
     _getAllKeranjang();
     super.initState();
-    _konveksi = ApiServiceMit().topHeadlines();
   }
 
   @override
   Widget build(BuildContext context) {
+    var keranjang = Provider.of<KeranjangProv>(context, listen: true);
     return RefreshIndicator(
       onRefresh: _getAllKeranjang,
         child: Scaffold(
@@ -74,7 +71,7 @@ class _KategoriPageState extends State<KategoriPage> {
                   animationType: BadgeAnimationType.slide,
                   borderSide: BorderSide(color: blush),
                   badgeContent: Text(
-                    listKeranjang.length.toString(),
+                    keranjang.jumlah.toString(),
                     style: TextStyle(color: Colors.white, fontSize: 10),
                   ),
                   position: BadgePosition.topEnd(top: 0, end: 5),

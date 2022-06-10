@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fashionizt/Data/ProviderCart.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/Models/produk_model.dart';
@@ -7,6 +8,7 @@ import 'package:fashionizt/pages/Keranjang_produk.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -42,6 +44,9 @@ class _DetailProductState extends State<DetailProduct> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final height = MediaQuery.of(context).size.height;
+
+    var keranjang = Provider.of<KeranjangProv>(context);
+
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: Container(
@@ -72,6 +77,7 @@ class _DetailProductState extends State<DetailProduct> {
                     upsertKeranjang(detail.nama);
                     setState(() {
                       _getAllKeranjang();
+                      keranjang.jumlahplus();
                     });
                     CoolAlert.show(
                       context: context,
@@ -116,7 +122,7 @@ class _DetailProductState extends State<DetailProduct> {
                   onPrimary: Colors.white,
                 ),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),),);
+                Navigator.pop(context);
               },
             ),
           ]
@@ -135,28 +141,48 @@ class _DetailProductState extends State<DetailProduct> {
                 animationType: BadgeAnimationType.slide,
                 borderSide: BorderSide(color: blush),
                 badgeContent: Text(
-                  listKeranjang.length.toString(),
+                  // listKeranjang.length.toString(),
+                  keranjang.jumlah.toString(),
                   style: TextStyle(color: Colors.white, fontSize: 10),
                 ),
-                position: BadgePosition.topEnd(top: 0, end: 5),
-                child: IconButton(icon: Icon(Icons.shopping_cart, size: 25, color: blush),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context){
-                            return KeranjangProduk();
-                          })
-                      );
-                    }),
-              ) : IconButton(
-                  icon: Icon(Icons.shopping_cart, size: 25, color: blush),
+                position: BadgePosition.topEnd(top: 0, end: 13),
+                child: ElevatedButton(
+                  child: Icon(Icons.shopping_cart, size: 25),
+                  style: ElevatedButton.styleFrom(
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(5),
+                    primary: Colors.black38,
+                    onPrimary: Colors.white,
+                  ),
+                  onPressed: ()
+                  // async
+                  {
+                    // final value = await
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context){
+                          return KeranjangProduk();
+                        })
+                    );
+                    // setState(() {
+                    //   _getAllKeranjang();
+                    // });
+                  }),
+                ) : ElevatedButton(
+                  child: Icon(Icons.shopping_cart, size: 25),
+                  style: ElevatedButton.styleFrom(
+                    shape: CircleBorder(),
+                    padding: EdgeInsets.all(5),
+                    primary: Colors.black38,
+                    onPrimary: Colors.white,
+                  ),
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context){
                           return KeranjangProduk();
                         })
                     );
-                  }
-              ),
+                  }),
             )
           ]
         //actions: [
@@ -448,6 +474,7 @@ class _DetailProductState extends State<DetailProduct> {
         Status: 0,
       ));
     }
+    _getAllKeranjang();
   }
   List<CartShop> listKeranjang = [];
   Future<void> _getAllKeranjang() async {

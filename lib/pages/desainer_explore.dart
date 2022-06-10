@@ -1,3 +1,4 @@
+import 'package:fashionizt/Data/ProviderCart.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Pages/detail_desainer.dart';
 import 'package:fashionizt/Pages/pilih_desainer.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/Models/desainer_model.dart';
 import 'package:fashionizt/Api/api_short_desainer.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../theme.dart';
 import 'package:badges/badges.dart';
@@ -40,6 +42,7 @@ class _DesainerExploreState extends State<DesainerExplore> {
 
   @override
   Widget build(BuildContext context) {
+    var keranjang = Provider.of<KeranjangProv>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: blacksand,
@@ -62,7 +65,7 @@ class _DesainerExploreState extends State<DesainerExplore> {
                 animationType: BadgeAnimationType.slide,
                 borderSide: BorderSide(color: blush),
                 badgeContent: Text(
-                  listKeranjang.length.toString(),
+                  keranjang.jumlah.toString(),
                   style: TextStyle(color: Colors.white, fontSize: 10),
                 ),
                 position: BadgePosition.topEnd(top: 0, end: 5),

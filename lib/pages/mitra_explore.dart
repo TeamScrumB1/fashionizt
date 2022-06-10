@@ -1,4 +1,5 @@
 import 'package:fashionizt/Api/api_short_konveksi.dart';
+import 'package:fashionizt/Data/ProviderCart.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/Models/konveksi_model.dart';
@@ -10,6 +11,7 @@ import 'package:fashionizt/pages/detail_mitra.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/Widget/category_product.dart';
 import 'package:fashionizt/Widget/mitra_slideview.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../theme.dart';
 import 'package:badges/badges.dart';
@@ -39,6 +41,7 @@ class _MitraExploreState extends State<MitraExplore> {
 
   @override
   Widget build(BuildContext context) {
+    var keranjang = Provider.of<KeranjangProv>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: blacksand,
@@ -62,7 +65,7 @@ class _MitraExploreState extends State<MitraExplore> {
                 animationType: BadgeAnimationType.slide,
                 borderSide: BorderSide(color: blush),
                 badgeContent: Text(
-                  listKeranjang.length.toString(),
+                  keranjang.jumlah.toString(),
                   style: TextStyle(color: Colors.white, fontSize: 10),
                 ),
                 position: BadgePosition.topEnd(top: 0, end: 5),
