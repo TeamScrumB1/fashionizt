@@ -89,7 +89,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
               Container(
                 margin: EdgeInsets.only(top: 25),
                 child: Text(
-                  'Project List',
+                  'List Project',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     color: blacksand,
