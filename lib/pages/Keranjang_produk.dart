@@ -1,16 +1,12 @@
-// import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fashionizt/Data/ProviderCart.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:provider/provider.dart';
-// import 'package:line_icons/line_icon.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:fashionizt/Widget/bottom_navbar.dart';
-// import 'package:fashionizt/pages/home_pages.dart';
 import 'package:fashionizt/pages/cart_empty.dart';
 
 class KeranjangProduk extends StatefulWidget {
@@ -167,11 +163,6 @@ class _KeranjangProdukState extends State<KeranjangProduk> {
                         style: TextStyle(color: Colors.black, fontSize: width*0.04),
                         maxLines: 2,
                       ),
-                      //Text(
-                      // cart.product.owner,
-                      // style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
-                      //  maxLines: 2,
-                      // ),
                       SizedBox(height: 10),
                       Text.rich(
                         TextSpan(

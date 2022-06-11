@@ -1,11 +1,7 @@
-import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/edit_myprofile.dart';
-import 'package:fashionizt/pages/login_screen.dart';
-import 'package:fashionizt/pages/pre_order.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fashionizt/Widget/alert_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,7 +40,7 @@ class _MyProfileState extends State<MyProfile>{
 
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    // final height = MediaQuery.of(context).size.height;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBody: true,
@@ -167,110 +163,6 @@ class _MyProfileState extends State<MyProfile>{
                 child: Text('Edit Profile'),
               ),
             ),
-            // Container(
-            //   child: Column(
-            //     children: <Widget>[
-            //       Container(
-            //         // height: size.height * 0.1,
-            //         // child: Text(
-            //         //   konveksi.nama,
-            //         //   textAlign: TextAlign.center,
-            //         //   style: const TextStyle(
-            //         //     fontSize: 20.0,
-            //         //     fontWeight: FontWeight.w500,
-            //         //     fontFamily: 'Poppins',
-            //         //   ),
-            //         // ),
-            //       ),
-            //       Container(
-            //         // height: size.height * 0.1,
-            //         // child: Text(
-            //         //   konveksi.bio,
-            //         //   textAlign: TextAlign.center,
-            //         //   style: const TextStyle(
-            //         //     fontSize: 14.0,
-            //         //     fontWeight: FontWeight.w300,
-            //         //     fontFamily: 'Poppins',
-            //         //   ),
-            //         // ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // Container(
-            //   // height: size.height*0.1,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: <Widget>[
-            //       Row(
-            //         children: <Widget> [
-            //           // const Icon(Icons.star_border, color: Colors.black),
-            //           // Text(
-            //           //     konveksi.rating + '/5 ',
-            //           //     style: const TextStyle(
-            //           //       fontSize: 14.0,
-            //           //       fontWeight: FontWeight.w300,
-            //           //       fontFamily: 'Poppins',
-            //           //     )
-            //           // ),
-            //           Container(
-            //             width: size.width*0.08,
-            //           ),
-            //           Row(
-            //             children: <Widget> [
-            //               // const Icon(Icons.task_outlined, color: Colors.black),
-            //               // Text(
-            //               //   konveksi.jmlhProject + ' ',
-            //               //   style: const TextStyle(
-            //               //     fontSize: 14.0,
-            //               //     fontWeight: FontWeight.w300,
-            //               //     fontFamily: 'Poppins',
-            //               //   ),
-            //               // ),
-            //             ], // <Widget>[]
-            //           ),
-            //           Container(
-            //             width: size.width*0.08,
-            //           ),
-            //           Row(
-            //             children: <Widget> [
-            //               // ElevatedButton(
-            //               //   child: Row(
-            //               //     mainAxisAlignment: MainAxisAlignment.center,
-            //               //     children: const <Widget>[
-            //               //       Icon(
-            //               //           Icons.chat_outlined,
-            //               //           size: 20.0), // <-- Icon
-            //               //       Text(' Chat ',
-            //               //         style: TextStyle(
-            //               //           fontSize: 14.0,
-            //               //           fontWeight: FontWeight.w300,
-            //               //           fontFamily: 'Poppins',
-            //               //         ),
-            //               //       ),
-            //               //     ],
-            //               //   ),
-            //               //   style: ButtonStyle(
-            //               //     backgroundColor: MaterialStateProperty.all<Color>(blacksand),
-            //               //     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            //               //       RoundedRectangleBorder(
-            //               //           borderRadius: BorderRadius.circular(10),
-            //               //           side: BorderSide(color: blacksand)
-            //               //       ),
-            //               //     ),
-            //               //   ),
-            //               //   onPressed: () => _launchURL(konveksi.linkWa),
-            //               // ),
-            //             ], // <Widget>[]
-            //           ),
-            //         ], // <Widget>[]
-            //       ),
-            //       Container(
-            //         height: size.height * 0.10,
-            //       ),
-            //     ],
-            //   ),
-            // ),
           ],
         ),
       ),

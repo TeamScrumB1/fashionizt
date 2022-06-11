@@ -1,11 +1,9 @@
 import 'package:fashionizt/Data/ProviderCart.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
-import 'package:fashionizt/Models/produk_model.dart';
 import 'package:fashionizt/Widget/button_role.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';
-import 'package:fashionizt/api/api_produk.dart';
 import 'package:fashionizt/pages/Keranjang_produk.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,7 +25,6 @@ class HomePages extends StatefulWidget {
 
 class _HomePagesState extends State<HomePages> {
   final PrefService _prefService = PrefService();
-  // late Future<Produk> _produk;
   List<CartShop> listKeranjang = [];
   DbHelper db = DbHelper();
 
@@ -42,7 +39,6 @@ class _HomePagesState extends State<HomePages> {
       print('username : ' + value.toString());
     });
 
-    // _produk = ApiServiceProd().topHeadlines();
     super.initState();
   }
 
@@ -59,16 +55,6 @@ class _HomePagesState extends State<HomePages> {
       onRefresh: _getAllKeranjang,
       child: Scaffold(
         appBar: AppBar(
-        //  centerTitle: true,
-        //  leading: IconButton(
-        //    onPressed: () {
-        //      Navigator.pop(context, MaterialPageRoute(builder: (context){
-        //        return LoginScreen();
-        //      }));
-        //    },
-        //    icon: Icon(Icons.logout_rounded),
-        //    color: blush,
-        //  ),
           backgroundColor: blacksand,
           elevation: 0,
           title: Text(
@@ -97,7 +83,7 @@ class _HomePagesState extends State<HomePages> {
           // ),
           actions: [
              Center(
-              child: listKeranjang.length > 0 ? Badge(
+              child: keranjang.jumlah > 0 ? Badge(
                 badgeColor: Colors.orange,
                 animationType: BadgeAnimationType.slide,
                 borderSide: BorderSide(color: blush),
@@ -118,9 +104,6 @@ class _HomePagesState extends State<HomePages> {
                           return KeranjangProduk();
                       })
                     );
-                      // setState(() {
-                      //   _getAllKeranjang();
-                      // });
                 }),
               ) : IconButton(
                   icon: Icon(Icons.shopping_cart, size: 25, color: blush),
@@ -133,9 +116,6 @@ class _HomePagesState extends State<HomePages> {
                           return KeranjangProduk();
                         })
                     );
-                    // setState(() {
-                    //   _getAllKeranjang();
-                    // });
                   }
                   ),
             )
@@ -160,53 +140,6 @@ class _HomePagesState extends State<HomePages> {
                 //child: SubTittle(sub: "Kategori")
               ),
               SubTittle(sub: "Rekomendasi Produk",),
-              // GridViewProduk(),
-              // Container(
-              //   margin: EdgeInsets.only(right: 8, left: 8),
-              //   // height: 250,
-              //   child: FutureBuilder(
-              //     future: _produk,
-              //     builder: (context, AsyncSnapshot<Produk> snapshot){
-              //       var state = snapshot.connectionState;
-              //       if(state!=ConnectionState.done){
-              //         return Center(child: CircularProgressIndicator());
-              //       }else{
-              //         if(snapshot.hasData){
-              //           return GridView.builder(
-              //             shrinkWrap: true,
-              //             physics: NeverScrollableScrollPhysics(),
-              //             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //               crossAxisCount: 2,
-              //               childAspectRatio: 1/1.53,
-              //             ),
-              //             itemBuilder: (context, index) {
-              //               var produk = snapshot.data?.produk[index];
-              //               return InkWell(
-              //                   onTap: () async{
-              //                     final value = await Navigator.push(
-              //                         context,
-              //                         MaterialPageRoute(builder: (context){
-              //                           return DetailProduct(detail: produk!);
-              //                         })
-              //                     );
-              //                     setState(() {
-              //                       _getAllKeranjang();
-              //                     });
-              //                   },
-              //                   child: ProductCard(produk: produk!)
-              //               );
-              //             },
-              //             itemCount: snapshot.data?.produk.length,
-              //           );
-              //         }else if(snapshot.hasError){
-              //           return Center(child: Text(snapshot.error.toString()));
-              //         }else{
-              //           return Text('');
-              //         }
-              //       }
-              //     },
-              //   ),
-              // ),
               GridViewProduk(),
             ],
           ),
