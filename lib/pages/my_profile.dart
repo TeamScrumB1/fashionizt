@@ -9,8 +9,11 @@ import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fashionizt/Widget/alert_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../Models/user_model.dart';
+import '../api/api_user.dart';
 import '../constants.dart';
 import '../shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class MyProfile extends StatefulWidget {
   @override
@@ -22,11 +25,14 @@ class _MyProfileState extends State<MyProfile>{
   late String username = '';
   String title = 'AlertDialog';
   bool tappedYes = false;
+  late UserElement user;
+  late Future<User> _user;
 
   @override
   void initState() {
     super.initState();
     initial();
+    _user = ApiServiceUs().topHeadlines();
   }
 
   void initial() async {
@@ -118,7 +124,8 @@ class _MyProfileState extends State<MyProfile>{
                   Container(
                     // height: size.height * 0.1,
                     child: Text(
-                      "admin@gmail.com",
+                      'email@gmail.com',
+                      // user.email,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 14.0,
