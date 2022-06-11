@@ -1,6 +1,7 @@
 import 'package:fashionizt/Widget/gridview_feeds.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/edit_myprofile.dart';
+import 'package:fashionizt/pages/edit_myprofile_deskonv.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -185,7 +186,7 @@ class _MyProfileDesKonvState extends State<MyProfileDesKonv>{
                 onPressed: () {
                   Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
-                      return EditMyProfile();
+                      return EditMyProfileDesKonv();
                     }));},
                 child: Text('Edit Profile'),
               ),
