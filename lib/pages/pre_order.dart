@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/detail_project_user.dart';
 import 'package:fashionizt/theme.dart';
@@ -7,9 +8,12 @@ import 'dart:io';
 import 'package:flutter/painting.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/pages/home_pages.dart';
+import '../constants.dart';
+import 'package:http/http.dart' as http;
 
 class PreOrder extends StatefulWidget {
   const PreOrder({Key? key}) : super(key: key);
@@ -23,6 +27,9 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
 
   File? _file;
   PlatformFile? _platformFile;
+  TextEditingController judul = new TextEditingController();
+  TextEditingController kebutuhan = new TextEditingController();
+  TextEditingController biaya = new TextEditingController();
 
   selectFile() async {
     final file = await FilePicker.platform.pickFiles(
@@ -39,6 +46,70 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
     loadingController.forward();
   }
 
+  Future submit() async {
+    final uri = Uri.parse("https://fashionizt.yufagency.com/order.php");
+    var request = http.MultipartRequest('POST',uri);
+    request.fields['judul'] = judul.text;
+    request.fields['kebutuhan'] = kebutuhan.text;
+    request.fields['biaya'] = biaya.text;
+    var pic = await http.MultipartFile.fromPath("lampiran", _file!.path); //Unhandled Exception: Null check operator used on a null value
+    request.files.add(pic);
+
+    await request.send().then((result) {
+      http.Response.fromStream(result).then((response) {
+        var message = jsonDecode(response.body);
+        if (message == "Error") {
+          Fluttertoast.showToast(
+            msg: "Data Input Failed",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.black.withOpacity(0.2),
+            fontSize: 15,
+            textColor: blush,
+          );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) {
+                return PreOrder();
+              })
+          );
+        } else if (message == "Blank")  {
+          Fluttertoast.showToast(
+            msg: "Please Fill Out The Entire Form",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.black.withOpacity(0.2),
+            fontSize: 15,
+            textColor: blush,
+          );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) {
+                return PreOrder();
+              })
+          );
+        } else {
+          Fluttertoast.showToast(
+            msg: "Preorder Successful",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.black.withOpacity(0.2),
+            fontSize: 15,
+            textColor: blush,
+          );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) {
+                return PreOrder();
+              })
+          );
+        }
+      });
+    }).catchError((e) {
+      print(e);
+    });
+  }
+
   @override
   void initState() {
     loadingController = AnimationController(
@@ -53,269 +124,274 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) => DefaultTabController(
     length: 2,
     child: Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: blacksand,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_rounded),
-          color: blush,
-          onPressed: () => showDialog<String>(
-            context: context,
-            builder: (BuildContext context) => AlertDialog(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-              title: const Text('Leave This Page'),
-              content: const Text('Are you sure?'),
-              actions: <Widget>[
-                TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
-                  child: Text('Cancel',
-                    style: TextStyle(
-                      color: blacksand,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),)),
-                  child: Text('OK',
-                    style: TextStyle(
-                      color: blacksand,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        title: Text(
-          'Pre Order',
-          style: titleApps,
-        ),
-        bottom: TabBar(
-          indicatorColor: blush,
-          labelColor: blush,
-          tabs:<Widget>[
-          Tab(
-            child: Text('Form', style: TextStyle(
-              fontSize: 16,
-              ),
-            ),
-          ),
-          Tab(
-            child: Text('Riwayat', style: TextStyle(
-              fontSize: 16,
-              ),
-            ),
-          ),
-        ],
-        ),
-      ),
-      body: TabBarView(
-          children: <Widget>[
-            SingleChildScrollView(
-              padding: EdgeInsets.all(22.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Judul :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
-                  const SizedBox(height: 5),
-                  TextField(
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                       border: OutlineInputBorder(),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Text('Kebutuhan Spesifikasi :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
-                  const SizedBox(height: 5),
-                  TextField(
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Text('Biaya :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
-                  const SizedBox(height: 5),
-                  TextField(
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          backgroundColor: blacksand,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_rounded),
+            color: blush,
+            onPressed: () => showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                title: const Text('Leave This Page'),
+                content: const Text('Are you sure?'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                    child: Text('Cancel',
+                      style: TextStyle(
+                        color: blacksand,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Text('Lampiran :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
-                  GestureDetector(
-                    onTap: selectFile,
-                    child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
-                        child: DottedBorder(
-                          borderType: BorderType.RRect,
-                          radius: Radius.circular(6),
-                          dashPattern: [10, 4],
-                          strokeCap: StrokeCap.round,
-                          color: Colors.blue.shade400,
-                          child: Container(
-                            width: double.infinity,
-                            height: 100,
-                            decoration: BoxDecoration(
-                                color: Colors.blue.shade50.withOpacity(.3),
-                                borderRadius: BorderRadius.circular(6)
+                  TextButton(
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),)),
+                    child: Text('OK',
+                      style: TextStyle(
+                        color: blacksand,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          title: Text(
+            'Pre Order',
+            style: titleApps,
+          ),
+          bottom: TabBar(
+            indicatorColor: blush,
+            labelColor: blush,
+            tabs:<Widget>[
+              Tab(
+                child: Text('Form', style: TextStyle(
+                  fontSize: 16,
+                ),
+                ),
+              ),
+              Tab(
+                child: Text('Riwayat', style: TextStyle(
+                  fontSize: 16,
+                ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
+            children: <Widget>[
+              SingleChildScrollView(
+                  padding: EdgeInsets.all(22.0),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Judul :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: judul,
+                          maxLines: 1,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text('Kebutuhan Spesifikasi :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: kebutuhan,
+                          maxLines: 1,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text('Biaya :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: biaya,
+                          maxLines: 1,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
                             ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text('Lampiran :', style: TextStyle(fontSize: 16 ,fontWeight: FontWeight.w600)),
+                        GestureDetector(
+                          onTap: selectFile,
+                          child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
+                              child: DottedBorder(
+                                borderType: BorderType.RRect,
+                                radius: Radius.circular(6),
+                                dashPattern: [10, 4],
+                                strokeCap: StrokeCap.round,
+                                color: Colors.blue.shade400,
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                      color: Colors.blue.shade50.withOpacity(.3),
+                                      borderRadius: BorderRadius.circular(6)
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Iconsax.folder_open, color: Colors.blue, size: 40,),
+                                      SizedBox(height: 15,),
+                                      Text('Tambahkan File Desain Anda', style: TextStyle(fontSize: 15, color: Colors.grey.shade400),),
+                                    ],
+                                  ),
+                                ),
+                              )
+                          ),
+                        ),
+                        _platformFile != null
+                            ? Container(
+                            padding: EdgeInsets.all(5),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Iconsax.folder_open, color: Colors.blue, size: 40,),
-                                SizedBox(height: 15,),
-                                Text('Tambahkan File Desain Anda', style: TextStyle(fontSize: 15, color: Colors.grey.shade400),),
-                              ],
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Desain Anda',
+                                    style: TextStyle(color: Colors.grey.shade600, fontSize: 15, ),),
+                                  SizedBox(height: 10,),
+                                  Container(
+                                      padding: EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(6),
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.shade200,
+                                              offset: Offset(0, 1),
+                                              blurRadius: 3,
+                                              spreadRadius: 2,
+                                            )
+                                          ]
+                                      ),
+                                      child: Row(
+                                          children: [
+                                            ClipRRect(
+                                                borderRadius: BorderRadius.circular(6),
+                                                child: Image.file(_file!, width: 70,)
+                                            ),
+                                            SizedBox(width: 10,),
+                                            Expanded(
+                                                child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(_platformFile!.name,
+                                                        style: TextStyle(fontSize: 13, color: Colors.black),),
+                                                      SizedBox(height: 5,),
+                                                      Text('${(_platformFile!.size / 1024).ceil()} KB',
+                                                        style: TextStyle(fontSize: 13, color: Colors.grey.shade500),
+                                                      ),
+                                                      SizedBox(height: 5,),
+                                                      Container(
+                                                        height: 5,
+                                                        clipBehavior: Clip.hardEdge,
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(6),
+                                                          color: Colors.blue.shade50,
+                                                        ),
+                                                        child: LinearProgressIndicator(
+                                                          value: loadingController.value,
+                                                        ),
+                                                      ),
+                                                    ]
+                                                )
+                                            )
+                                          ]
+                                      )
+                                  )
+                                ]
+                            )
+                        ):
+                        SizedBox(height: 20),
+                        Card(
+                          color: blacksand,
+                          elevation: 5,
+                          child: Container(
+                            height: 40,
+                            child: InkWell(
+                              splashColor: blush,
+                              onTap: (){
+                                submit();
+                              },
+                              child: Center(
+                                child: Text("Submit", style: TextStyle(fontSize: 16, color: blush, fontWeight: FontWeight.bold),),
+                              ),
                             ),
                           ),
                         )
-                    ),
-                  ),
-                  _platformFile != null
-                      ? Container(
-                    padding: EdgeInsets.all(5),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Desain Anda',
-                              style: TextStyle(color: Colors.grey.shade600, fontSize: 15, ),),
-                            SizedBox(height: 10,),
-                            Container(
-                              padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
-                                  color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.shade200,
-                                        offset: Offset(0, 1),
-                                        blurRadius: 3,
-                                        spreadRadius: 2,
-                                      )
-                                    ]
-                                ),
-                                child: Row(
-                                    children: [
-                                      ClipRRect(
-                                          borderRadius: BorderRadius.circular(6),
-                                          child: Image.file(_file!, width: 70,)
-                                      ),
-                                      SizedBox(width: 10,),
-                                      Expanded(
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(_platformFile!.name,
-                                                  style: TextStyle(fontSize: 13, color: Colors.black),),
-                                                SizedBox(height: 5,),
-                                                Text('${(_platformFile!.size / 1024).ceil()} KB',
-                                                  style: TextStyle(fontSize: 13, color: Colors.grey.shade500),
-                                                ),
-                                                SizedBox(height: 5,),
-                                                Container(
-                                                  height: 5,
-                                                  clipBehavior: Clip.hardEdge,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(6),
-                                                    color: Colors.blue.shade50,
-                                                  ),
-                                                    child: LinearProgressIndicator(
-                                                      value: loadingController.value,
-                                                    ),
-                                                ),
-                                              ]
-                                          )
-                                      )
-                                    ]
-                                )
-                            )
-                          ]
-                      )
-                  ):
-                  SizedBox(height: 20),
-                  Card(
-                    color: blacksand,
-                    elevation: 5,
-                    child: Container(
-                      height: 40,
-                      child: InkWell(
-                        splashColor: blush,
-                        onTap: (){},
-                        child: Center(
-                          child: Text("Submit", style: TextStyle(fontSize: 16, color: blush, fontWeight: FontWeight.bold),),
-                        ),
-                      ),
-                    ),
-                  )
-             ])
-          ),
-          Scaffold(
-            body: ListView.builder(
-              itemCount: 5,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) => Container(
-                width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.only(left: 15, right: 15),
-                margin: EdgeInsets.only(top: 10),
-                  child: Card(
-                    elevation: 1,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: Container(
+                      ])
+              ),
+              Scaffold(
+                  body: ListView.builder(
+                    itemCount: 5,
+                    shrinkWrap: true,
+                    itemBuilder: (BuildContext context, int index) => Container(
                       width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
+                      padding: EdgeInsets.only(left: 15, right: 15),
+                      margin: EdgeInsets.only(top: 10),
+                      child: Card(
+                        elevation: 1,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                        ),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Column(
+                              Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Text("Judul Project", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
-                                  Text("Spesifikasi"),
-                                  Text("Biaya :", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: blacksand))
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text("Judul Project", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
+                                      Text("Spesifikasi"),
+                                      Text("Biaya :", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: blacksand))
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Spacer(),
+                              Column(
+                                children: [
+                                  Text("24-10-2022", style: TextStyle(fontSize: 12, color: Colors.grey)),
+                                  TextButton(
+                                    onPressed: (){
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                            return DetailProjectUser();
+                                          }));
+                                    },
+                                    style: TextButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10.0),
+                                      ),
+                                      backgroundColor: blacksand,
+                                    ),
+                                    child: Text("Detail", style: TextStyle(color: blush)),
+                                  ),
                                 ],
                               ),
                             ],
                           ),
-                          Spacer(),
-                          Column(
-                              children: [
-                                Text("24-10-2022", style: TextStyle(fontSize: 12, color: Colors.grey)),
-                                TextButton(
-                                  onPressed: (){
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                          return DetailProjectUser();
-                                        }));
-                                  },
-                                  style: TextButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    backgroundColor: blacksand,
-                                  ),
-                                  child: Text("Detail", style: TextStyle(color: blush)),
-                                ),
-                              ],
-                          ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-              ),
-            )
-          )
-          ])
-        ),
-      );
+                  )
+              )
+            ])
+    ),
+  );
 }
