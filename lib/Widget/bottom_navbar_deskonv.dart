@@ -3,6 +3,7 @@ import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:fashionizt/pages/list_project.dart';
 import 'package:fashionizt/pages/my_profile.dart';
+import 'package:fashionizt/pages/my_profile_deskonv.dart';
 import 'package:fashionizt/pages/pre_order.dart';
 import 'package:flutter/material.dart';
 import '../shared_preferences.dart';
@@ -104,7 +105,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
                         _prefService.readCache("username").then((value) {
                           print('username : ' + value.toString());
                           if (value != null) {
-                            currentScreen = MyProfile();
+                            currentScreen = MyProfileDesKonv();
                             currentTab = 1;
                           }
                         });
