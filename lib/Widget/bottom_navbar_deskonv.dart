@@ -86,6 +86,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
                   ),
                 ],
               ),
+
               Container(
                 margin: EdgeInsets.only(top: 25),
                 child: Text(

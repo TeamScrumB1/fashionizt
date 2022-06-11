@@ -1,9 +1,6 @@
-import 'package:fashionizt/Widget/gridview_feeds.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/home_pages.dart';
-import 'package:fashionizt/pages/list_project.dart';
 import 'package:fashionizt/pages/my_profile.dart';
-import 'package:fashionizt/pages/my_profile_deskonv.dart';
 import 'package:fashionizt/pages/pre_order.dart';
 import 'package:flutter/material.dart';
 import '../shared_preferences.dart';
@@ -37,11 +34,11 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: blacksand,
-        child: Icon(Icons.auto_awesome_motion_outlined,color: blush),
+        child: Icon(Icons.assignment,color: blush),
         onPressed: (){
           Navigator.push((context),
               MaterialPageRoute(builder: (context){
-                return ProjectList();
+                return PreOrder();
               })
           );
         },
@@ -89,7 +86,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
               Container(
                 margin: EdgeInsets.only(top: 25),
                 child: Text(
-                  'Project List',
+                  'Pre Order',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     color: blacksand,
@@ -105,7 +102,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
                         _prefService.readCache("username").then((value) {
                           print('username : ' + value.toString());
                           if (value != null) {
-                            currentScreen = MyProfileDesKonv();
+                            currentScreen = MyProfile();
                             currentTab = 1;
                           }
                         });
