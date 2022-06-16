@@ -13,6 +13,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/pages/home_pages.dart';
+import '../Api/api_project.dart';
+import '../Models/project_model.dart';
+import '../Widget/card_project.dart';
 import '../constants.dart';
 import 'package:http/http.dart' as http;
 
@@ -25,6 +28,8 @@ class PreOrder extends StatefulWidget {
 
 class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin{
   late AnimationController loadingController;
+
+  late Future<Project> _project;
 
   File? _file;
   PlatformFile? _platformFile;
@@ -118,6 +123,7 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
       duration: const Duration(seconds: 10),
     )..addListener(() { setState(() {}); });
 
+    _project = ApiServiceProject().topHeadlines();
     super.initState();
   }
 
@@ -331,67 +337,41 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                         )
                       ])
               ),
-              Scaffold(
-                  body: ListView.builder(
-                    itemCount: 5,
-                    shrinkWrap: true,
-                    itemBuilder: (BuildContext context, int index) => Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      margin: EdgeInsets.only(top: 10),
-                      child: Card(
-                        elevation: 1,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                        ),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text("Judul Project", style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
-                                      Text("Spesifikasi"),
-                                      Text("Biaya :", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: blacksand))
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Spacer(),
-                              Column(
-                                children: [
-                                  Text("24-10-2022", style: TextStyle(fontSize: 12, color: Colors.grey)),
-                                  TextButton(
-                                    onPressed: (){
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) {
-                                            return DetailProjectUser();
-                                          }));
-                                    },
-                                    style: TextButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10.0),
-                                      ),
-                                      backgroundColor: blacksand,
-                                    ),
-                                    child: Text("Detail", style: TextStyle(color: blush)),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-              )
+              Container(
+                child: FutureBuilder(
+                  future: _project,
+                  builder: (context, AsyncSnapshot<Project> snapshot) {
+                    var state = snapshot.connectionState;
+                    if (state != ConnectionState.done) {
+                      return Center(child: CircularProgressIndicator());
+                    } else {
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: snapshot.data?.project.length,
+                          itemBuilder: (context, index) {
+                            var project = snapshot.data?.project[index];
+                            return InkWell(
+                                onTap: () {
+                                  // Navigator.push(context,
+                                  //     MaterialPageRoute(builder: (context) {
+                                  //       return DetailProject(project: project!);
+                                  //     }));
+                                },
+                                child: CardProject(project: project!)
+                            );
+                            },
+                        );
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text(snapshot.error.toString()));
+                      } else {
+                        return Text('');
+                      }
+                    }
+                    },
+                ),
+              ),
             ])
     ),
   );
