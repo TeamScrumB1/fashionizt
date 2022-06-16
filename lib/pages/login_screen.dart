@@ -4,15 +4,12 @@ import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fashionizt/animation/animations.dart';
 import 'package:fashionizt/pages/signup_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
-
-import '../routes.dart';
 import '../shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -71,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
       DeviceOrientation.portraitUp
     ]);
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    // final height = MediaQuery.of(context).size.height;
     Size size = MediaQuery.of(context).size;
 
     return SafeArea(
@@ -248,13 +245,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
-  // bool validateAndSave() {
-  //   final form = globalFormKey.currentState;
-  //   if (form.validate()) {
-  //     form.save();
-  //     return true;
-  //   }
-  //   return false;
-  // }
 }

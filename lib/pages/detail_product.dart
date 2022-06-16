@@ -3,9 +3,7 @@ import 'package:fashionizt/Data/ProviderCart.dart';
 import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/Models/produk_model.dart';
-// import 'package:fashionizt/Widget/Iconkeranjang.dart';
 import 'package:fashionizt/pages/Keranjang_produk.dart';
-import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +12,6 @@ import 'package:fashionizt/constants.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:badges/badges.dart';
-import 'package:fashionizt/Widget/bottom_navbar.dart';
 
 class DetailProduct extends StatefulWidget {
   const DetailProduct({Key? key,required this.detail,this.keranjang}) : super(key: key);
@@ -43,7 +40,6 @@ class _DetailProductState extends State<DetailProduct> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final height = MediaQuery.of(context).size.height;
 
     var keranjang = Provider.of<KeranjangProv>(context);
 

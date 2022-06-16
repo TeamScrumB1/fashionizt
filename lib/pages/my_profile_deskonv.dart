@@ -1,5 +1,7 @@
+import 'package:fashionizt/Widget/gridview_feeds.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/edit_myprofile.dart';
+import 'package:fashionizt/pages/edit_myprofile_deskonv.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,12 +13,12 @@ import '../constants.dart';
 import '../shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-class MyProfile extends StatefulWidget {
+class MyProfileDesKonv extends StatefulWidget {
   @override
-  _MyProfileState createState() => _MyProfileState();
+  _MyProfileDesKonvState createState() => _MyProfileDesKonvState();
 }
 
-class _MyProfileState extends State<MyProfile>{
+class _MyProfileDesKonvState extends State<MyProfileDesKonv>{
   final PrefService _prefService = PrefService();
   late String username = '';
   String title = 'AlertDialog';
@@ -77,18 +79,44 @@ class _MyProfileState extends State<MyProfile>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              height: size.height*0.35,
-              width: size.width*0.5,
-              child: CircleAvatar(
-                    backgroundImage: AssetImage('lib/Assets/images/profil.jpg'),
-                    // backgroundImage: CachedNetworkImageProvider(
-                    //     konveksi.imgProfil),
-                    radius: 90,
-                  )
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: <Widget>[
+                Container(
+                  height: size.height * 0.20,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image:
+                        AssetImage('lib/Assets/images/cover.jpg'),
+                        // data image dari konveksi
+                        // CachedNetworkImageProvider(
+                        //     konveksi.imgProfil),
+                        fit: BoxFit.fill,
+                      ),
+                      // boxShadow: [new BoxShadow(color: Colors.black, blurRadius: 8.0)],
+                      color: Colors.white),
+                ),
+                Positioned(
+                    top: MediaQuery.of(context).size.height * 0.09,
+                    left: MediaQuery.of(context).size.width * 0.25,
+                    right: MediaQuery.of(context).size.width * 0.25,
+                    child: CircleAvatar(
+                      radius: 88,
+                      backgroundColor: Color(0xFFFFFFFF),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('lib/Assets/images/profil.jpg'),
+                        // backgroundImage: CachedNetworkImageProvider(
+                        //     konveksi.imgProfil),
+                        radius: 80,
+                      ),
+                    )
+                ),
+              ],
             ),
             Container(
-              height: size.height * 0.001,
+              height: size.height * 0.14,
             ),
             Container(
               child: Column(
@@ -158,10 +186,13 @@ class _MyProfileState extends State<MyProfile>{
                 onPressed: () {
                   Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
-                      return EditMyProfile();
+                      return EditMyProfileDesKonv();
                     }));},
                 child: Text('Edit Profile'),
               ),
+            ),
+            Container(
+              child: GridViewFeeds(),
             ),
           ],
         ),

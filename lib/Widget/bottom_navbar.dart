@@ -4,6 +4,7 @@ import 'package:fashionizt/pages/my_profile.dart';
 import 'package:fashionizt/pages/pre_order.dart';
 import 'package:flutter/material.dart';
 import '../shared_preferences.dart';
+import 'package:fashionizt/pages/list_project.dart';
 
 class MyBottomNavBar extends StatefulWidget {
   MyBottomNavBar({Key? key,required this.currentTab,required this.currentScreen}) : super(key: key);
@@ -39,6 +40,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
           Navigator.push((context),
               MaterialPageRoute(builder: (context){
                 return PreOrder();
+                //return ProjectList();
               })
           );
         },

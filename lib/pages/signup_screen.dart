@@ -1,17 +1,8 @@
 import 'dart:convert';
 import 'dart:ui';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dropdown_button2/custom_dropdown_button2.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:fashionizt/Models/desainer_model.dart';
-import 'package:fashionizt/Models/konveksi_model.dart';
 import 'package:fashionizt/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:from_css_color/from_css_color.dart';
-import 'package:fashionizt/animation/animations.dart';
-import 'package:fashionizt/pages/signup_screen.dart';
 import '../constants.dart';
 import 'package:http/http.dart' as http;
 
@@ -110,7 +101,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    // final height = MediaQuery.of(context).size.height;
     Size size = MediaQuery.of(context).size;
 
     return SafeArea(
@@ -310,24 +301,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         }).toList(),
                                       ),
                                     ),
-
-                                  //  Form(
-                                  //    child: CustomDropdownButton2(
-                                  //        hint: 'Select Role',
-                                  //        value: selectedValue,
-                                  //        dropdownItems: items,
-                                  //        icon: Icon(Icons.arrow_forward_ios_outlined),
-                                  //        iconSize: 14,
-                                  //        iconEnabledColor: blush,
-                                  //        iconDisabledColor: Colors.grey,
-                                  //        onChanged: (value) {
-                                  //          setState(() {
-                                  //            selectedValue = value;
-                                  //          });
-                                  //        }
-                                  //    ),
-                                  //  ),
-
                                     Container(
                                       height: size.height * 0.03,
                                     ),
