@@ -14,9 +14,10 @@ class Role extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     List<Map<String, dynamic>> role = [
-      {"icon": "lib/Assets/svg/desainer.svg", "text": "Desainer", "press": DesainerExplore()},
-      {"icon": "lib/Assets/svg/mall.svg", "text": "Marketplace", "press": MallExplore()},
-      {"icon": "lib/Assets/svg/sewing.svg", "text": "Mitra Produksi", "press": MitraExplore()},
+      //{"icon": "lib/Assets/svg/fitting_room.svg", "text": "Fitting Room",}, //"press": MitraExplore()},
+      {"icon": "lib/Assets/svg/designer.svg", "text": "Desainer", "press": DesainerExplore()},
+      {"icon": "lib/Assets/svg/ecommerce.svg", "text": "Mall", "press": MallExplore()},
+      {"icon": "lib/Assets/svg/mitra.svg", "text": "Mitra Produksi", "press": MitraExplore()},
     ];
     return Padding(
       padding: EdgeInsets.all(getProportionateScreenWidth(20)),
@@ -60,12 +61,12 @@ class RoleCard extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.all(getProportionateScreenWidth(10)),
-              height: getProportionateScreenWidth(65),
-              width: getProportionateScreenWidth(65),
+              padding: EdgeInsets.all(getProportionateScreenWidth(5)),
+              height: getProportionateScreenWidth(70),
+              width: getProportionateScreenWidth(70),
               decoration: BoxDecoration(
-                color: blush,
                 borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey)
               ),
               child: SvgPicture.asset(icon!),
             ),
