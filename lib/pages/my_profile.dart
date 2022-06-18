@@ -24,12 +24,12 @@ class _MyProfileState extends State<MyProfile>{
   late UserElement user;
   late Future<User> _user;
 
-  @override
-  void initState() {
-    super.initState();
-    initial();
-    _user = ApiServiceUs().topHeadlines();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   initial();
+  //   _user = ApiServiceUs().topHeadlines();
+  // }
 
   void initial() async {
     SharedPreferences _preferences = await SharedPreferences.getInstance();

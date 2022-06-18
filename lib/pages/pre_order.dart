@@ -336,7 +336,8 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                         )
                       ])
               ),
-              Container(
+            SingleChildScrollView(
+              child: Container(
                 child: FutureBuilder(
                   future: _project,
                   builder: (context, AsyncSnapshot<Project> snapshot) {
@@ -371,6 +372,7 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                     },
                 ),
               ),
+            ),
             ])
     ),
   );

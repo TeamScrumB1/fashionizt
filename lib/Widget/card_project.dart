@@ -34,8 +34,8 @@ class CardProject extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(project.judul, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
-                        Text("Spesifikasi : \n"
-                            +project.kebutuhan, textAlign: TextAlign.left),
+                        // Text("Spesifikasi : \n"
+                        //     +project.kebutuhan, textAlign: TextAlign.left, softWrap: false),
                         Text("Biaya : " +project.biaya, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: blacksand))
                       ],
                     ),
@@ -45,9 +45,6 @@ class CardProject extends StatelessWidget {
                 Column(
                   children: [
                     Text(project.createdAt, style: TextStyle(fontSize: 12, color: Colors.grey)),
-                    SizedBox(
-                      height: 35,
-                    ),
                     TextButton(
                       onPressed: (){
                         // Navigator.push(context,
