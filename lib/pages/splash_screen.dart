@@ -1,3 +1,4 @@
+import 'package:fashionizt/Widget/bottom_navbar_deskonv.dart';
 import 'package:fashionizt/pages/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -19,20 +20,22 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState(){
     _prefService.readCache("username").then((value) {
-      print('username : ' + value.toString());
-      if (value != null) {
+      var user = value.toString();
+      print('username : ' + user);
+      var level = value.toString().split(' ');
+      print(level[0]);
+      if (level[0] == "customer") {
         return Timer(Duration(seconds: 2),
                 () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),),));
-      } else {
+      } else if(level[0] == "designer" || level[0] == "mitra"){
+        return Timer(Duration(seconds: 2),
+                () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> MyBottomNavBarPro(currentTab: 0,currentScreen: HomePages()),),));
+      }else {
         return Timer(Duration(seconds: 2),
                 () => Navigator.of(context).pushNamed(LoginRoute));
       }
     });
    super.initState();
-   // Timer(Duration(seconds: 3),() {
-   //   Navigator.pushReplacement(
-   //       context, MaterialPageRoute(builder: (context) => LoginScreen()));
-   // });
   }
 
   Widget build(BuildContext context) {

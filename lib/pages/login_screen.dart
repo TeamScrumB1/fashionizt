@@ -1,5 +1,10 @@
 import 'dart:convert';
+import 'package:fashionizt/Data/db_helper_user.dart';
+import 'package:fashionizt/Models/User.dart';
+import 'package:fashionizt/Models/user_model.dart';
 import 'package:fashionizt/Widget/bottom_navbar.dart';
+import 'package:fashionizt/Widget/bottom_navbar_deskonv.dart';
+import 'package:fashionizt/api/api_user.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -25,6 +30,10 @@ class _LoginScreenState extends State<LoginScreen> {
   final PrefService _prefService = PrefService();
   final user = new TextEditingController();
   final pass = new TextEditingController();
+  DbHelperUser db = DbHelperUser();
+  Future<User>? _user;
+  List<UserList> listUser = [];
+  late UserElement? akun;
 
   //api login
   Future login() async {
@@ -32,12 +41,12 @@ class _LoginScreenState extends State<LoginScreen> {
       "username": user.text,
       "password": pass.text,
     });
-
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString('username', user.text);
     var datauser = json.decode(response.body);
+    var level = datauser.substring(8,datauser.length);
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('username', level + " " + user.text);
 
-    if (datauser == "Success") {
+    if (datauser == "Success customer") {
       Fluttertoast.showToast(
         msg: "Login Successful",
         toastLength: Toast.LENGTH_SHORT,
@@ -48,7 +57,18 @@ class _LoginScreenState extends State<LoginScreen> {
         textColor: blush,
       );
       Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),),);
-    } else {
+    } else if(datauser == "Success mitra produksi" || datauser == "Success designer"){
+      Fluttertoast.showToast(
+        msg: "Login Successful",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.TOP,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black.withOpacity(0.2),
+        fontSize: 15,
+        textColor: blush,
+      );
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBarPro(currentTab: 0,currentScreen: HomePages()),),);
+    }else {
       Fluttertoast.showToast(
         msg: "Username or Password Incorrect",
         toastLength: Toast.LENGTH_SHORT,
@@ -245,4 +265,5 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
 }

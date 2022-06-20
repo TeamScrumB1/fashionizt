@@ -1,3 +1,4 @@
+import 'package:fashionizt/Data/db_helper_user.dart';
 import 'package:flutter/material.dart';
 import 'package:fashionizt/pages/login_screen.dart';
 import '../constants.dart';
@@ -8,6 +9,7 @@ enum DialogsAction { yes, cancel }
 
 class AlertDialogs {
   static final PrefService _prefService = PrefService();
+  static DbHelperUser db = DbHelperUser();
 
   static Future<DialogsAction> yesCancelDialog(
       BuildContext context,
@@ -34,6 +36,7 @@ class AlertDialogs {
             ),
             TextButton(
               onPressed: () async {
+                await db.clearUser();
                 await PrefService.removeCache("username").then((value) {
                   print('username : ' + value.toString());
                   Navigator.of(context).pushNamed(LoginRoute);
