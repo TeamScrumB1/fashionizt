@@ -27,7 +27,6 @@ class PreOrder extends StatefulWidget {
 
 class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin{
   late AnimationController loadingController;
-
   late Future<Project> _project;
 
   File? _file;
@@ -356,7 +355,7 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                                 onTap: () {
                                   Navigator.push(context,
                                       MaterialPageRoute(builder: (context) {
-                                        return DetailProjectUser();
+                                        return DetailProjectUser(project :project!);
                                       }));
                                 },
                                 child: CardProject(project: project!)

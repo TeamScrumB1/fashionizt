@@ -50,7 +50,7 @@ class CardProject extends StatelessWidget {
                       onPressed: (){
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                              return DetailProjectUser();
+                              return DetailProjectUser(project: project);
                             }));
                       },
                       style: TextButton.styleFrom(
