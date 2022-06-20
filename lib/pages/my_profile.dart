@@ -101,7 +101,7 @@ class _MyProfileState extends State<MyProfile>{
                   Container(
                     // height: size.height * 0.1,
                     child: Text(
-                      listUser.length == 1 ?  listUser[i].Username +listUser.length.toString() : 'Customer'+listUser.length.toString(),
+                      listUser.length == 1 ?  listUser[i].Username : 'Customer'+listUser.length.toString(),
                       // "admin",
                       // listUser[0].Nama,
                       textAlign: TextAlign.center,

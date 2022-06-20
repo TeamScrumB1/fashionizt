@@ -23,6 +23,7 @@ class _MyProfileDesKonvState extends State<MyProfileDesKonv>{
   bool tappedYes = false;
   DbHelperUser db = DbHelperUser();
   List<UserList> listUser = [];
+  int i = 0;
 
   @override
   void initState() {
@@ -124,7 +125,7 @@ class _MyProfileDesKonvState extends State<MyProfileDesKonv>{
                   Container(
                     // height: size.height * 0.1,
                     child: Text(
-                      '$username ',
+                    listUser.length == 1 ?  listUser[i].Username : 'Customer'+listUser.length.toString(),
                       // "admin",
                       textAlign: TextAlign.center,
                       style: const TextStyle(
@@ -148,7 +149,7 @@ class _MyProfileDesKonvState extends State<MyProfileDesKonv>{
                   Container(
                     // height: size.height * 0.1,
                     child: Text(
-                      'email@gmail.com',
+                      listUser.length == 1 ? listUser[i].Email : 'customer@fashionizt.com',
                       // user.email,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
