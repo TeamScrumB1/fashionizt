@@ -1,13 +1,10 @@
 import 'package:fashionizt/Data/db_helper_user.dart';
 import 'package:fashionizt/Models/User.dart';
 import 'package:fashionizt/Widget/bottom_navbar.dart';
-import 'package:fashionizt/Widget/bottom_navbar_deskonv.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/my_profile.dart';
-// import 'package:fashionizt/pages/pre_order.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
-// import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'dart:io';
@@ -195,10 +192,7 @@ class _EditMyProfileState extends State<EditMyProfile> {
                   });
                   Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
-                      if(listUser[0].Level == "customer")
                         return MyBottomNavBar(currentTab: 1,currentScreen: MyProfile());
-                      else
-                        return MyBottomNavBarPro(currentTab: 1,currentScreen: MyProfile());
                     })
                   );
                   },
@@ -212,7 +206,6 @@ class _EditMyProfileState extends State<EditMyProfile> {
     );
   }
   Future<void> updateUser() async{
-      print('Update User');
       await db.updateUser(UserList.fromMap({
         'Id' : listUser[0].id,
         'IDUser' : listUser[0].IDUser,
