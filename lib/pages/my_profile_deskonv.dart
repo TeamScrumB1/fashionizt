@@ -1,7 +1,8 @@
 import 'package:fashionizt/Data/db_helper_user.dart';
 import 'package:fashionizt/Models/User.dart';
+import 'package:fashionizt/Widget/gridview_feeds.dart';
 import 'package:fashionizt/constants.dart';
-import 'package:fashionizt/pages/edit_myprofile.dart';
+import 'package:fashionizt/pages/edit_myprofile_deskonv.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,29 +10,28 @@ import 'package:fashionizt/Widget/alert_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 import '../shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
-class MyProfile extends StatefulWidget {
+class MyProfileDesKonv extends StatefulWidget {
   @override
-  _MyProfileState createState() => _MyProfileState();
+  _MyProfileDesKonvState createState() => _MyProfileDesKonvState();
 }
 
-class _MyProfileState extends State<MyProfile>{
+class _MyProfileDesKonvState extends State<MyProfileDesKonv>{
   final PrefService _prefService = PrefService();
   late String username = '';
   String title = 'AlertDialog';
   bool tappedYes = false;
+  DbHelperUser db = DbHelperUser();
   List<UserList> listUser = [];
   int i = 0;
-  DbHelperUser db = DbHelperUser();
 
   @override
   void initState() {
     _getUser();
     super.initState();
     initial();
-    // _user = ApiServiceUs().topHeadlines();
   }
+
   void initial() async {
     SharedPreferences _preferences = await SharedPreferences.getInstance();
     setState(() {
@@ -65,7 +65,6 @@ class _MyProfileState extends State<MyProfile>{
               final action = await AlertDialogs.yesCancelDialog(context,'Logout','are you sure ?');
               if(action == DialogsAction.yes) {
                 setState(() {
-                  // _deleteUser(listUser.length-1);
                   tappedYes = true;
                 });
               } else {
@@ -81,18 +80,44 @@ class _MyProfileState extends State<MyProfile>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              height: size.height*0.35,
-              width: size.width*0.5,
-              child: CircleAvatar(
-                    backgroundImage: AssetImage('lib/Assets/images/profil.jpg'),
-                    // backgroundImage: CachedNetworkImageProvider(
-                    //     konveksi.imgProfil),
-                    radius: 90,
-                  )
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: <Widget>[
+                Container(
+                  height: size.height * 0.20,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image:
+                        AssetImage('lib/Assets/images/cover.jpg'),
+                        // data image dari konveksi
+                        // CachedNetworkImageProvider(
+                        //     konveksi.imgProfil),
+                        fit: BoxFit.fill,
+                      ),
+                      // boxShadow: [new BoxShadow(color: Colors.black, blurRadius: 8.0)],
+                      color: Colors.white),
+                ),
+                Positioned(
+                    top: MediaQuery.of(context).size.height * 0.09,
+                    left: MediaQuery.of(context).size.width * 0.25,
+                    right: MediaQuery.of(context).size.width * 0.25,
+                    child: CircleAvatar(
+                      radius: 88,
+                      backgroundColor: Color(0xFFFFFFFF),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('lib/Assets/images/profil.jpg'),
+                        // backgroundImage: CachedNetworkImageProvider(
+                        //     konveksi.imgProfil),
+                        radius: 80,
+                      ),
+                    )
+                ),
+              ],
             ),
             Container(
-              height: size.height * 0.001,
+              height: size.height * 0.14,
             ),
             Container(
               child: Column(
@@ -100,9 +125,8 @@ class _MyProfileState extends State<MyProfile>{
                   Container(
                     // height: size.height * 0.1,
                     child: Text(
-                      listUser.length == 1 ?  listUser[i].Username : 'Customer'+listUser.length.toString(),
+                    listUser.length == 1 ?  listUser[i].Username : 'Customer'+listUser.length.toString(),
                       // "admin",
-                      // listUser[0].Nama,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 20.0,
@@ -127,7 +151,6 @@ class _MyProfileState extends State<MyProfile>{
                     child: Text(
                       listUser.length == 1 ? listUser[i].Email : 'customer@fashionizt.com',
                       // user.email,
-                      // listUser[0].Email,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 14.0,
@@ -164,10 +187,13 @@ class _MyProfileState extends State<MyProfile>{
                 onPressed: () {
                   Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
-                      return EditMyProfile();
+                      return EditMyProfileDesKonv();
                     }));},
                 child: Text('Edit Profile'),
               ),
+            ),
+            Container(
+              child: GridViewFeeds(),
             ),
           ],
         ),

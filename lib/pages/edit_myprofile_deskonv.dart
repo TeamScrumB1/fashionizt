@@ -12,17 +12,15 @@ import 'dart:async';
 import '../constants.dart';
 import 'package:image_picker/image_picker.dart';
 
-class EditMyProfile extends StatefulWidget {
-  const EditMyProfile({Key? key}) : super(key: key);
+class EditMyProfileDesKonv extends StatefulWidget {
+  const EditMyProfileDesKonv({Key? key}) : super(key: key);
 
   @override
-  State<EditMyProfile> createState() => _EditMyProfileState();
+  State<EditMyProfileDesKonv> createState() => _EditMyProfileDesKonvState();
 }
 
-class _EditMyProfileState extends State<EditMyProfile> {
-
+class _EditMyProfileDesKonvState extends State<EditMyProfileDesKonv> {
     File? image;
-
     Future pickImage() async {
       try {
         final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -62,22 +60,28 @@ class _EditMyProfileState extends State<EditMyProfile> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(
-              height: size.height*0.35,
-              width: size.width*0.5,
-              child: Stack(
+            Stack(
               clipBehavior: Clip.none,
-              fit: StackFit.expand,
-              children: [
-                CircleAvatar(
-                  backgroundImage: AssetImage('lib/Assets/images/profil.jpg'),
-                  // backgroundImage: CachedNetworkImageProvider(
-                  //     konveksi.imgProfil),
-                  radius: 90,
+              alignment: Alignment.center,
+              children: <Widget>[
+                Container(
+                  height: size.height * 0.20,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        image:
+                        AssetImage('lib/Assets/images/cover.jpg'),
+                        // data image dari konveksi
+                        // CachedNetworkImageProvider(
+                        //     konveksi.imgProfil),
+                        fit: BoxFit.fill,
+                      ),
+                      // boxShadow: [new BoxShadow(color: Colors.black, blurRadius: 8.0)],
+                      color: Colors.white),
                 ),
                 Positioned(
-                    bottom: MediaQuery.of(context).size.height * 0.05,
-                    left: MediaQuery.of(context).size.width * 0.30,
+                    bottom: MediaQuery.of(context).size.height * 0.006,
+                    left: MediaQuery.of(context).size.width * 0.8,
                     // bottom: 0,
                     // right: -25,
                     child: RawMaterialButton(
@@ -91,11 +95,25 @@ class _EditMyProfileState extends State<EditMyProfile> {
                       shape: CircleBorder(),
                     )
                 ),
+                Positioned(
+                    top: MediaQuery.of(context).size.height * 0.09,
+                    left: MediaQuery.of(context).size.width * 0.25,
+                    right: MediaQuery.of(context).size.width * 0.25,
+                    child: CircleAvatar(
+                      radius: 88,
+                      backgroundColor: Color(0xFFFFFFFF),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('lib/Assets/images/profil.jpg'),
+                        // backgroundImage: CachedNetworkImageProvider(
+                        //     konveksi.imgProfil),
+                        radius: 80,
+                      ),
+                    )
+                ),
               ],
             ),
-          ),
             Container(
-              height: size.height * 0.001,
+              height: size.height * 0.1,
             ),
             Container(
               child: Column(

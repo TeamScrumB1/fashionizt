@@ -67,3 +67,19 @@ class UserElement {
     "level": level,
   };
 }
+
+class Mydata{
+  int id = 0;
+  int IDUser = 0;
+  String Username = "";
+  String Email = "";
+  String Level = "";
+
+  setData(int id,int IDUser,String Username,String Email,String Level){
+    this.id = id;
+    this.Level = Level;
+    this.IDUser = IDUser;
+    this.Username = Username;
+    this.Email = Email;
+  }
+}

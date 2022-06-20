@@ -51,9 +51,6 @@ class DetailDesainer extends StatelessWidget {
                       image: DecorationImage(
                         image:
                         AssetImage('lib/Assets/images/cover.jpg'),
-                        // data image dari konveksi
-                        // CachedNetworkImageProvider(
-                        //     konveksi.imgProfil),
                         fit: BoxFit.fill,
                       ),
                       // boxShadow: [new BoxShadow(color: Colors.black, blurRadius: 8.0)],
