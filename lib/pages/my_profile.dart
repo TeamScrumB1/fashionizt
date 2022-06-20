@@ -32,7 +32,6 @@ class _MyProfileState extends State<MyProfile>{
     initial();
     // _user = ApiServiceUs().topHeadlines();
   }
-
   void initial() async {
     SharedPreferences _preferences = await SharedPreferences.getInstance();
     setState(() {
