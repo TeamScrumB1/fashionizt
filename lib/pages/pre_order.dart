@@ -16,7 +16,7 @@ import '../Api/api_project.dart';
 import '../Data/db_helper_user.dart';
 import '../Models/User.dart';
 import '../Models/project_model.dart';
-import '../Widget/card_project.dart';
+import '../Widget/card_project_customer.dart';
 import '../constants.dart';
 import 'package:http/http.dart' as http;
 
@@ -36,7 +36,6 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
   var dataUser;
 
   late AnimationController loadingController;
-
   late Future<Project> _project;
 
   File? _file;
@@ -364,10 +363,10 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                             var project = snapshot.data?.project[index];
                             return InkWell(
                                 onTap: () {
-                                  // Navigator.push(context,
-                                  //     MaterialPageRoute(builder: (context) {
-                                  //       return DetailProject(project: project!);
-                                  //     }));
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                        return DetailProjectUser(project :project!);
+                                      }));
                                 },
                                 child: CardProject(project: project!)
                             );

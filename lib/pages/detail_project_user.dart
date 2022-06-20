@@ -5,17 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:fashionizt/constants.dart';
-
+import '../Models/project_model.dart';
 import '../constants.dart';
 
-class DetailProjectUser extends StatefulWidget {
-  const DetailProjectUser({Key? key}) : super(key: key);
+class DetailProjectUser extends StatelessWidget {
+  const DetailProjectUser({Key? key,required this.project}) : super(key: key);
+  final ProjectElement project;
 
-  @override
-  _DetailProjectUserState createState() => _DetailProjectUserState();
-}
-
-class _DetailProjectUserState extends State<DetailProjectUser>{
  //File? _file;
  //PlatformFile? _platformFile;
 
@@ -73,7 +69,6 @@ class _DetailProjectUserState extends State<DetailProjectUser>{
                   ),
                   Text(
                     'Judul :',
-                    //konveksi.nama,
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
@@ -87,8 +82,7 @@ class _DetailProjectUserState extends State<DetailProjectUser>{
                     //child: SubTittle(sub: "Kategori")
                   ),
                   Text(
-                    'Kaos Event',
-                    //konveksi.nama,
+                    project.judul,
                     style: TextStyle(
                       fontSize: 14.0,
                       fontFamily: 'Poppins',
@@ -102,7 +96,6 @@ class _DetailProjectUserState extends State<DetailProjectUser>{
                   ),
                   Text(
                     'Kebutuhan Spesifik : ',
-                    //konveksi.nama,
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
@@ -116,8 +109,7 @@ class _DetailProjectUserState extends State<DetailProjectUser>{
                     //child: SubTittle(sub: "Kategori")
                   ),
                   Text(
-                    'Saya ingin kaos saya bisa dibuat acara formal dan juga informal',
-                    //konveksi.nama,
+                    project.kebutuhan,
                     style: TextStyle(
                       fontSize: 14.0,
                       fontFamily: 'Poppins',
@@ -131,7 +123,6 @@ class _DetailProjectUserState extends State<DetailProjectUser>{
                   ),
                   Text(
                     'Biaya : ',
-                    //konveksi.nama,
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
@@ -145,8 +136,7 @@ class _DetailProjectUserState extends State<DetailProjectUser>{
                     //child: SubTittle(sub: "Kategori")
                   ),
                   Text(
-                    '100.000',
-                    //konveksi.nama,
+                    project.biaya,
                     style: TextStyle(
                       fontSize: 14.0,
                       fontFamily: 'Poppins',
@@ -160,7 +150,6 @@ class _DetailProjectUserState extends State<DetailProjectUser>{
                   ),
                   Text(
                     'Lampiran : ',
-                    //konveksi.nama,
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
@@ -233,7 +222,6 @@ class _DetailProjectUserState extends State<DetailProjectUser>{
                   ),
                   Text(
                     'Pelamar : ',
-                    //konveksi.nama,
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
@@ -247,7 +235,6 @@ class _DetailProjectUserState extends State<DetailProjectUser>{
             ),
             Text(
               'Desainer ',
-              //konveksi.nama,
               style: TextStyle(
                 fontSize: 16.0,
                 fontFamily: 'Poppins',
@@ -262,7 +249,6 @@ class _DetailProjectUserState extends State<DetailProjectUser>{
             ),
             Text(
               'Mitra Produksi ',
-              //konveksi.nama,
               style: TextStyle(
                 fontSize: 16.0,
                 fontFamily: 'Poppins',

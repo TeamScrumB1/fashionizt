@@ -1,6 +1,8 @@
-import 'package:fashionizt/Widget/bottom_navbar.dart';
+import 'package:fashionizt/Data/db_helper_user.dart';
+import 'package:fashionizt/Models/User.dart';
+import 'package:fashionizt/Widget/bottom_navbar_deskonv.dart';
 import 'package:fashionizt/constants.dart';
-import 'package:fashionizt/pages/my_profile.dart';
+import 'package:fashionizt/pages/my_profile_deskonv.dart';
 // import 'package:fashionizt/pages/pre_order.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,18 @@ class EditMyProfileDesKonv extends StatefulWidget {
 
 class _EditMyProfileDesKonvState extends State<EditMyProfileDesKonv> {
     File? image;
+    final username = new TextEditingController();
+    final email = new TextEditingController();
+    GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+    DbHelperUser db = DbHelperUser();
+    List<UserList> listUser = [];
+
+    @override
+    void initState(){
+      _getUser();
+      super.initState();
+    }
+
     Future pickImage() async {
       try {
         final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -80,22 +94,6 @@ class _EditMyProfileDesKonvState extends State<EditMyProfileDesKonv> {
                       color: Colors.white),
                 ),
                 Positioned(
-                    bottom: MediaQuery.of(context).size.height * 0.006,
-                    left: MediaQuery.of(context).size.width * 0.8,
-                    // bottom: 0,
-                    // right: -25,
-                    child: RawMaterialButton(
-                      onPressed: () {
-                        pickImage();
-                      },
-                      elevation: 1.0,
-                      fillColor: blacksand,
-                      child: Icon(Icons.camera_alt_outlined, color: Colors.white),
-                      padding: EdgeInsets.all(15.0),
-                      shape: CircleBorder(),
-                    )
-                ),
-                Positioned(
                     top: MediaQuery.of(context).size.height * 0.09,
                     left: MediaQuery.of(context).size.width * 0.25,
                     right: MediaQuery.of(context).size.width * 0.25,
@@ -110,11 +108,47 @@ class _EditMyProfileDesKonvState extends State<EditMyProfileDesKonv> {
                       ),
                     )
                 ),
+                Positioned(
+                    bottom: MediaQuery.of(context).size.height * 0.01,
+                    left: MediaQuery.of(context).size.width * 0.8,
+                    // bottom: 0,
+                    // right: -25,
+                    child: RawMaterialButton(
+                      onPressed: () {
+                        pickImage();
+                      },
+                      elevation: 1.0,
+                      fillColor: blacksand,
+                      child: Icon(Icons.drive_file_rename_outline_outlined, color: Colors.white),
+                      padding: EdgeInsets.all(15.0),
+                      shape: CircleBorder(),
+                    )
+                ),
               ],
             ),
             Container(
-              height: size.height * 0.1,
+              height: size.height * 0.025,
             ),
+            Container(
+                padding: EdgeInsets.only(bottom: size.height*0.0001, left: size.width*0.4 ),
+                // bottom: MediaQuery.of(context).size.height * 0.0001,
+                // left: MediaQuery.of(context).size.width * 0.6,
+                // bottom: 0,
+                // right: -25,
+                child: RawMaterialButton(
+                  onPressed: () {
+                    pickImage();
+                  },
+                  elevation: 1.0,
+                  fillColor: blacksand,
+                  child: Icon(Icons.camera_alt_outlined, color: Colors.white),
+                  padding: EdgeInsets.all(15.0),
+                  shape: CircleBorder(),
+                )
+            ),
+            // Container(
+            //   height: size.height * 0.05,
+            // ),
             Container(
               child: Column(
                 children: <Widget>[
@@ -125,12 +159,14 @@ class _EditMyProfileDesKonvState extends State<EditMyProfileDesKonv> {
                         crossAxisAlignment:
                         CrossAxisAlignment.start,
                         children: [
-                          TextField(
+                          TextFormField(
                             // readOnly: true, // * Just for Debug
+                              controller: username,
                               cursorColor: blacksand,
                               style: TextStyle(color: blacksand),
                               showCursor: true,
                               //cursorColor: mainColor,
+                              keyboardType: TextInputType.text,
                               decoration:
                               TextFiledInputDecorationProfile.copyWith(
                                   labelText: "Full Name :")
@@ -146,17 +182,19 @@ class _EditMyProfileDesKonvState extends State<EditMyProfileDesKonv> {
                               //cursorColor: mainColor,
                               decoration:
                               TextFiledInputDecorationProfile.copyWith(
-                                  labelText: " Phone :")
+                                  labelText: "Password :")
                           ),
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                           ),
-                          TextField(
+                          TextFormField(
                             // readOnly: true, // * Just for Debug
+                              controller: email,
                               cursorColor: blacksand,
                               style: TextStyle(color: blacksand),
                               showCursor: true,
                               //cursorColor: mainColor,
+                              keyboardType: TextInputType.text,
                               decoration:
                               TextFiledInputDecorationProfile.copyWith(
                                   labelText: " Email :")
@@ -189,10 +227,16 @@ class _EditMyProfileDesKonvState extends State<EditMyProfileDesKonv> {
                       FontWeight.w700,
                       fontFamily: 'Poppins'),
                 ),
-                onPressed: () {Navigator.push(context,
-                    MaterialPageRoute(builder: (context) {
-                       return MyBottomNavBar(currentTab: 1,currentScreen: MyProfile());
-                    }));},
+                onPressed: () {
+                  setState(() {
+                    updateUser();
+                  });
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                          return MyBottomNavBarPro(currentTab: 1,currentScreen: MyProfileDesKonv());
+                      })
+                  );
+                },
                 child:
                 Text('Save'),
               ),
@@ -201,5 +245,23 @@ class _EditMyProfileDesKonvState extends State<EditMyProfileDesKonv> {
         ),
       ),
     );
+  }
+  Future<void> updateUser()async{
+      await db.updateUser(UserList.fromMap({
+        'Id' : listUser[0].id,
+        'IDUser' : listUser[0].IDUser,
+        'Username' : username.text,
+        'Email' : email.text,
+        'Level' : listUser[0].Level,
+      }));
+  }
+  Future<void> _getUser() async{
+    var list = await db.getUser();
+    listUser.clear();
+    setState(() {
+      list!.forEach((user) {
+        listUser.add(UserList.fromMap(user));
+      });
+    });
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../Models/project_model.dart';
 import '../constants.dart';
+import '../pages/detail_project_user.dart';
 import '../theme.dart';
 
 class CardProject extends StatelessWidget {
@@ -47,10 +48,10 @@ class CardProject extends StatelessWidget {
                     Text(project.createdAt, style: TextStyle(fontSize: 12, color: Colors.grey)),
                     TextButton(
                       onPressed: (){
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) {
-                        //       return DetailProjectUser();
-                        //     }));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                              return DetailProjectUser(project: project);
+                            }));
                       },
                       style: TextButton.styleFrom(
                         shape: RoundedRectangleBorder(

@@ -1,11 +1,10 @@
 import 'package:fashionizt/constants.dart';
-import 'package:fashionizt/pages/detail_project_desainer_mitra.dart';
-//import 'package:fashionizt/pages/detail_project_desainer_mitra.dart';
-import 'package:fashionizt/pages/edit_myprofile.dart';
-import 'package:fashionizt/pages/login_screen.dart';
-import 'package:fashionizt/pages/pre_order.dart';
+import 'package:fashionizt/pages/detail_project_deskonv.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
+import '../Api/api_project.dart';
+import '../Models/project_model.dart';
+import '../Widget/card_project_deskonv.dart';
 import '../constants.dart';
 
 class ProjectList extends StatefulWidget {
@@ -14,12 +13,18 @@ class ProjectList extends StatefulWidget {
 }
 
 class _ProjectListState extends State<ProjectList>{
-  @override
+  late Future<Project> _project;
 
+  @override
+  void initState() {
+    _project = ApiServiceProject().topHeadlines();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // final width = MediaQuery.of(context).size.width;
     // final height = MediaQuery.of(context).size.height;
-
     // Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBody: true,
@@ -37,107 +42,42 @@ class _ProjectListState extends State<ProjectList>{
           'List Project',
           style: titleApps,
         ),
-        // actions: <Widget>[
-        //   IconButton(
-        //     onPressed: () async {
-        //
-        //     },
-        //     icon: const Icon(Icons.logout_rounded, size: 25,),
-        //     color: blush,
-        //   ),
-        // ],
       ),
       body: SingleChildScrollView(
-        physics: ScrollPhysics(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              child: ListView.builder(
-                itemCount: 5,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) => Container(
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.only(left: 15, right: 15),
-                  margin: EdgeInsets.only(top: 10),
-                  child: Card(
-                    elevation: 1,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.only(right: 5, left: 5),
-                      margin: EdgeInsets.only(bottom: 8, top: 8),
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 18,
-                                  backgroundImage: AssetImage('lib/Assets/images/profil.jpg'),
-                                ),
-                                SizedBox(width: 10),
-                                Text("Anonymous", style: TextStyle(fontSize: 17,color: Colors.black, fontWeight: FontWeight.w500)),
-                                Spacer(),
-                                Text("24-06-2022", style: TextStyle(fontSize: 12, color: Colors.grey)),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 8, right: 8),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text("Custom Kaos", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                                    Text("Spesifikasi"),
-                                    Text("Biaya :", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: blacksand))
-                                  ],
-                                ),
-                                Spacer(),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 20),
-                                  child: Row(
-                                    children: [
-                                      Column(
-                                        children: [
-                                          TextButton(
-                                            onPressed: (){
-                                               Navigator.push(context,
-                                                   MaterialPageRoute(builder: (context) {
-                                                     return DetailProjectDesainer();
-                                                   }));
-                                            },
-                                            style: TextButton.styleFrom(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(10.0),
-                                              ),
-                                              backgroundColor: blacksand,
-                                            ),
-                                            child: Text("Detail", style: TextStyle(color: blush)),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+        child: Container(
+          child: FutureBuilder(
+            future: _project,
+            builder: (context, AsyncSnapshot<Project> snapshot) {
+              var state = snapshot.connectionState;
+              if (state != ConnectionState.done) {
+                return Center(child: CircularProgressIndicator());
+              } else {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: snapshot.data?.project.length,
+                    itemBuilder: (context, index) {
+                      var project = snapshot.data?.project[index];
+                      return InkWell(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                                  return DetailProjectDesKonv(project: project!);
+                                }));
+                          },
+                          child: CardProjectDeskonv(project: project!)
+                      );
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(child: Text(snapshot.error.toString()));
+                } else {
+                  return Text('');
+                }
+              }
+            },
+          ),
         ),
       ),
     );
