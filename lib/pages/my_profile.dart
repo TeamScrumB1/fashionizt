@@ -1,3 +1,5 @@
+import 'package:fashionizt/Data/db_helper_user.dart';
+import 'package:fashionizt/Models/User.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/edit_myprofile.dart';
 import 'package:fashionizt/theme.dart';
@@ -5,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fashionizt/Widget/alert_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../Models/user_model.dart';
-import '../api/api_user.dart';
 import '../constants.dart';
 import '../shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -21,14 +21,16 @@ class _MyProfileState extends State<MyProfile>{
   late String username = '';
   String title = 'AlertDialog';
   bool tappedYes = false;
-  late UserElement user;
-  late Future<User> _user;
+  List<UserList> listUser = [];
+  int i = 0;
+  DbHelperUser db = DbHelperUser();
 
   @override
   void initState() {
+    _getUser();
     super.initState();
     initial();
-    _user = ApiServiceUs().topHeadlines();
+    // _user = ApiServiceUs().topHeadlines();
   }
 
   void initial() async {
@@ -63,7 +65,10 @@ class _MyProfileState extends State<MyProfile>{
             onPressed: () async {
               final action = await AlertDialogs.yesCancelDialog(context,'Logout','are you sure ?');
               if(action == DialogsAction.yes) {
-                setState(() => tappedYes = true);
+                setState(() {
+                  // _deleteUser(listUser.length-1);
+                  tappedYes = true;
+                });
               } else {
                 setState(() => tappedYes = false);
               }
@@ -96,8 +101,9 @@ class _MyProfileState extends State<MyProfile>{
                   Container(
                     // height: size.height * 0.1,
                     child: Text(
-                      '$username ',
+                      listUser.length == 1 ?  listUser[i].Username +listUser.length.toString() : 'Customer'+listUser.length.toString(),
                       // "admin",
+                      // listUser[0].Nama,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 20.0,
@@ -120,8 +126,9 @@ class _MyProfileState extends State<MyProfile>{
                   Container(
                     // height: size.height * 0.1,
                     child: Text(
-                      'email@gmail.com',
+                      listUser.length == 1 ? listUser[i].Email : 'customer@fashionizt.com',
                       // user.email,
+                      // listUser[0].Email,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 14.0,
@@ -167,5 +174,14 @@ class _MyProfileState extends State<MyProfile>{
         ),
       ),
     );
+  }
+  Future<void> _getUser() async{
+    var list = await db.getUser();
+    listUser.clear();
+    setState(() {
+      list!.forEach((user) {
+        listUser.add(UserList.fromMap(user));
+      });
+    });
   }
 }

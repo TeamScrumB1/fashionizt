@@ -1,28 +1,25 @@
-import 'package:fashionizt/Widget/gridview_feeds.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:fashionizt/pages/list_project.dart';
-import 'package:fashionizt/pages/my_profile.dart';
 import 'package:fashionizt/pages/my_profile_deskonv.dart';
-import 'package:fashionizt/pages/pre_order.dart';
 import 'package:flutter/material.dart';
 import '../shared_preferences.dart';
 
-class MyBottomNavBar extends StatefulWidget {
-  MyBottomNavBar({Key? key,required this.currentTab,required this.currentScreen}) : super(key: key);
+class MyBottomNavBarPro extends StatefulWidget {
+  MyBottomNavBarPro({Key? key,required this.currentTab,required this.currentScreen}) : super(key: key);
   int currentTab;
   Widget currentScreen;
   @override
-  State<MyBottomNavBar> createState() => _MyBottomNavBarState(currentTab: currentTab,currentScreen: currentScreen);
+  State<MyBottomNavBarPro> createState() => _MyBottomNavBarState(currentTab: currentTab,currentScreen: currentScreen);
 }
 
-class _MyBottomNavBarState extends State<MyBottomNavBar> {
+class _MyBottomNavBarState extends State<MyBottomNavBarPro> {
   _MyBottomNavBarState({required this.currentTab,required this.currentScreen});
   int currentTab;
   Widget currentScreen;
   final List<Widget> screens = [
     HomePages(),
-    MyProfile(),
+    MyProfileDesKonv(),
   ];
   final PageStorageBucket bucket = PageStorageBucket();
   final PrefService _prefService = PrefService();

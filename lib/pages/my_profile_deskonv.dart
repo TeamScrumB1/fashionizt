@@ -1,17 +1,15 @@
+import 'package:fashionizt/Data/db_helper_user.dart';
+import 'package:fashionizt/Models/User.dart';
 import 'package:fashionizt/Widget/gridview_feeds.dart';
 import 'package:fashionizt/constants.dart';
-import 'package:fashionizt/pages/edit_myprofile.dart';
 import 'package:fashionizt/pages/edit_myprofile_deskonv.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fashionizt/Widget/alert_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../Models/user_model.dart';
-import '../api/api_user.dart';
 import '../constants.dart';
 import '../shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 class MyProfileDesKonv extends StatefulWidget {
   @override
@@ -23,14 +21,14 @@ class _MyProfileDesKonvState extends State<MyProfileDesKonv>{
   late String username = '';
   String title = 'AlertDialog';
   bool tappedYes = false;
-  late UserElement user;
-  late Future<User> _user;
+  DbHelperUser db = DbHelperUser();
+  List<UserList> listUser = [];
 
   @override
   void initState() {
+    _getUser();
     super.initState();
     initial();
-    _user = ApiServiceUs().topHeadlines();
   }
 
   void initial() async {
@@ -65,7 +63,9 @@ class _MyProfileDesKonvState extends State<MyProfileDesKonv>{
             onPressed: () async {
               final action = await AlertDialogs.yesCancelDialog(context,'Logout','are you sure ?');
               if(action == DialogsAction.yes) {
-                setState(() => tappedYes = true);
+                setState(() {
+                  tappedYes = true;
+                });
               } else {
                 setState(() => tappedYes = false);
               }
@@ -198,5 +198,14 @@ class _MyProfileDesKonvState extends State<MyProfileDesKonv>{
         ),
       ),
     );
+  }
+  Future<void> _getUser() async{
+    var list = await db.getUser();
+    listUser.clear();
+    setState(() {
+      list!.forEach((user) {
+        listUser.add(UserList.fromMap(user));
+      });
+    });
   }
 }
