@@ -23,6 +23,8 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../variabels.dart';
+
 class HomePages extends StatefulWidget {
   @override
   _HomePagesState createState() => _HomePagesState();
@@ -186,6 +188,7 @@ class _HomePagesState extends State<HomePages> {
       }));
     }
     setState(() {
+      IDUserGlob = User[0];
       _getUser();
     });
   }

@@ -114,7 +114,7 @@ class _MyProfileState extends State<MyProfile>{
                   Container(
                     // height: size.height * 0.1,
                     child: Text(
-                      "082237808710",
+                      listUser.length == 1 ? listUser[i].Level : '',
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 14.0,

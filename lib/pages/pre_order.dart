@@ -13,10 +13,14 @@ import 'package:iconsax/iconsax.dart';
 import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import '../Api/api_project.dart';
+import '../Data/db_helper_user.dart';
+import '../Models/User.dart';
 import '../Models/project_model.dart';
 import '../Widget/card_project.dart';
 import '../constants.dart';
 import 'package:http/http.dart' as http;
+
+import '../variabels.dart';
 
 class PreOrder extends StatefulWidget {
   const PreOrder({Key? key}) : super(key: key);
@@ -26,6 +30,11 @@ class PreOrder extends StatefulWidget {
 }
 
 class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin{
+  List<UserList> listUser = [];
+  DbHelperUser dbu = DbHelperUser();
+  // UserElement? akun;
+  var dataUser;
+
   late AnimationController loadingController;
 
   late Future<Project> _project;
@@ -57,6 +66,7 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
     request.fields['judul'] = judul.text;
     request.fields['kebutuhan'] = kebutuhan.text;
     request.fields['biaya'] = biaya.text;
+    request.fields['id_user'] = IDUserGlob ;
     var pic = await http.MultipartFile.fromPath("lampiran", _file!.path); //Unhandled Exception: Null check operator used on a null value
     request.files.add(pic);
 
@@ -376,4 +386,13 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
             ])
     ),
   );
+  Future<void> _getUser() async{
+    var list = await dbu.getUser();
+    listUser.clear();
+    setState(() {
+      list!.forEach((user) {
+        listUser.add(UserList.fromMap(user));
+      });
+    });
+  }
 }
