@@ -13,14 +13,14 @@ import 'dart:io';
 
 import '../constants.dart';
 
-class DetailProjectDesainer extends StatefulWidget {
-  const DetailProjectDesainer({Key? key}) : super(key: key);
+class DetailProjectDesKonv extends StatefulWidget {
+  const DetailProjectDesKonv({Key? key}) : super(key: key);
 
   @override
-  _DetailProjectDesainerState createState() => _DetailProjectDesainerState();
+  _DetailProjectDesKonvState createState() => _DetailProjectDesKonvState();
 }
 
-class _DetailProjectDesainerState extends State<DetailProjectDesainer>{
+class _DetailProjectDesKonvState extends State<DetailProjectDesKonv>{
   //File? _file;
   //PlatformFile? _platformFile;
 

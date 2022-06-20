@@ -14,7 +14,7 @@ import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import '../Api/api_project.dart';
 import '../Models/project_model.dart';
-import '../Widget/card_project.dart';
+import '../Widget/card_project_customer.dart';
 import '../constants.dart';
 import 'package:http/http.dart' as http;
 
@@ -354,10 +354,10 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                             var project = snapshot.data?.project[index];
                             return InkWell(
                                 onTap: () {
-                                  // Navigator.push(context,
-                                  //     MaterialPageRoute(builder: (context) {
-                                  //       return DetailProject(project: project!);
-                                  //     }));
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                        return DetailProjectUser();
+                                      }));
                                 },
                                 child: CardProject(project: project!)
                             );
