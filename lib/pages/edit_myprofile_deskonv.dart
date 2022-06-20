@@ -80,22 +80,6 @@ class _EditMyProfileDesKonvState extends State<EditMyProfileDesKonv> {
                       color: Colors.white),
                 ),
                 Positioned(
-                    bottom: MediaQuery.of(context).size.height * 0.006,
-                    left: MediaQuery.of(context).size.width * 0.8,
-                    // bottom: 0,
-                    // right: -25,
-                    child: RawMaterialButton(
-                      onPressed: () {
-                        pickImage();
-                      },
-                      elevation: 1.0,
-                      fillColor: blacksand,
-                      child: Icon(Icons.camera_alt_outlined, color: Colors.white),
-                      padding: EdgeInsets.all(15.0),
-                      shape: CircleBorder(),
-                    )
-                ),
-                Positioned(
                     top: MediaQuery.of(context).size.height * 0.09,
                     left: MediaQuery.of(context).size.width * 0.25,
                     right: MediaQuery.of(context).size.width * 0.25,
@@ -110,11 +94,47 @@ class _EditMyProfileDesKonvState extends State<EditMyProfileDesKonv> {
                       ),
                     )
                 ),
+                Positioned(
+                    bottom: MediaQuery.of(context).size.height * 0.01,
+                    left: MediaQuery.of(context).size.width * 0.8,
+                    // bottom: 0,
+                    // right: -25,
+                    child: RawMaterialButton(
+                      onPressed: () {
+                        pickImage();
+                      },
+                      elevation: 1.0,
+                      fillColor: blacksand,
+                      child: Icon(Icons.drive_file_rename_outline_outlined, color: Colors.white),
+                      padding: EdgeInsets.all(15.0),
+                      shape: CircleBorder(),
+                    )
+                ),
               ],
             ),
             Container(
-              height: size.height * 0.1,
+              height: size.height * 0.025,
             ),
+            Container(
+                padding: EdgeInsets.only(bottom: size.height*0.0001, left: size.width*0.4 ),
+                // bottom: MediaQuery.of(context).size.height * 0.0001,
+                // left: MediaQuery.of(context).size.width * 0.6,
+                // bottom: 0,
+                // right: -25,
+                child: RawMaterialButton(
+                  onPressed: () {
+                    pickImage();
+                  },
+                  elevation: 1.0,
+                  fillColor: blacksand,
+                  child: Icon(Icons.camera_alt_outlined, color: Colors.white),
+                  padding: EdgeInsets.all(15.0),
+                  shape: CircleBorder(),
+                )
+            ),
+            // Container(
+            //   height: size.height * 0.05,
+            // ),
             Container(
               child: Column(
                 children: <Widget>[
