@@ -1,4 +1,7 @@
+import 'package:fashionizt/Data/db_helper_user.dart';
+import 'package:fashionizt/Models/User.dart';
 import 'package:fashionizt/Widget/bottom_navbar.dart';
+import 'package:fashionizt/Widget/bottom_navbar_deskonv.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/my_profile.dart';
 // import 'package:fashionizt/pages/pre_order.dart';
@@ -20,8 +23,18 @@ class EditMyProfile extends StatefulWidget {
 }
 
 class _EditMyProfileState extends State<EditMyProfile> {
-
     File? image;
+    final username = new TextEditingController();
+    final email = new TextEditingController();
+    GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
+    DbHelperUser db = DbHelperUser();
+    List<UserList> listUser = [];
+
+    @override
+    void initState(){
+      _getUser();
+      super.initState();
+    }
 
     Future pickImage() async {
       try {
@@ -106,16 +119,19 @@ class _EditMyProfileState extends State<EditMyProfile> {
                     child: Column(
                         crossAxisAlignment:
                         CrossAxisAlignment.start,
+                        key: globalFormKey,
                         children: [
-                          TextField(
+                          TextFormField(
                             // readOnly: true, // * Just for Debug
+                              controller: username,
                               cursorColor: blacksand,
                               style: TextStyle(color: blacksand),
                               showCursor: true,
                               //cursorColor: mainColor,
+                              keyboardType: TextInputType.text,
                               decoration:
                               TextFiledInputDecorationProfile.copyWith(
-                                  labelText: "Full Name :")
+                                  labelText: "Username :")
                           ),
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -128,20 +144,22 @@ class _EditMyProfileState extends State<EditMyProfile> {
                               //cursorColor: mainColor,
                               decoration:
                               TextFiledInputDecorationProfile.copyWith(
-                                  labelText: " Phone :")
+                                  labelText: "Password :")
                           ),
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                           ),
-                          TextField(
+                          TextFormField(
                             // readOnly: true, // * Just for Debug
+                              controller: email,
                               cursorColor: blacksand,
                               style: TextStyle(color: blacksand),
                               showCursor: true,
                               //cursorColor: mainColor,
+                              keyboardType: TextInputType.text,
                               decoration:
                               TextFiledInputDecorationProfile.copyWith(
-                                  labelText: " Email :")
+                                  labelText: "Email :")
                           ),
                         ]
                     ),
@@ -171,10 +189,19 @@ class _EditMyProfileState extends State<EditMyProfile> {
                       FontWeight.w700,
                       fontFamily: 'Poppins'),
                 ),
-                onPressed: () {Navigator.push(context,
+                onPressed: () {
+                  setState(() {
+                    updateUser();
+                  });
+                  Navigator.push(context,
                     MaterialPageRoute(builder: (context) {
-                       return MyBottomNavBar(currentTab: 1,currentScreen: MyProfile());
-                    }));},
+                      if(listUser[0].Level == "customer")
+                        return MyBottomNavBar(currentTab: 1,currentScreen: MyProfile());
+                      else
+                        return MyBottomNavBarPro(currentTab: 1,currentScreen: MyProfile());
+                    })
+                  );
+                  },
                 child:
                 Text('Save'),
               ),
@@ -183,5 +210,24 @@ class _EditMyProfileState extends State<EditMyProfile> {
         ),
       ),
     );
+  }
+  Future<void> updateUser() async{
+      print('Update User');
+      await db.updateUser(UserList.fromMap({
+        'Id' : listUser[0].id,
+        'IDUser' : listUser[0].IDUser,
+        'Username' : username.text,
+        'Email' : email.text,
+        'Level' : listUser[0].Level,
+      }));
+  }
+  Future<void> _getUser() async{
+      var list = await db.getUser();
+      listUser.clear();
+      setState(() {
+        list!.forEach((user) {
+          listUser.add(UserList.fromMap(user));
+        });
+      });
   }
 }
