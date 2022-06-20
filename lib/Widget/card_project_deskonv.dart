@@ -66,7 +66,7 @@ class CardProjectDeskonv extends StatelessWidget {
                                       onPressed: (){
                                         Navigator.push(context,
                                             MaterialPageRoute(builder: (context) {
-                                              return DetailProjectDesKonv();
+                                              return DetailProjectDesKonv(project: project);
                                             }));
                                       },
                                       style: TextButton.styleFrom(

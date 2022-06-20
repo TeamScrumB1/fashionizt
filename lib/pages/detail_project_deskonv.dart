@@ -1,7 +1,3 @@
-import 'package:fashionizt/Widget/horizontal_prodes_listview.dart';
-import 'package:fashionizt/Widget/horizontal_promit_listview.dart';
-import 'package:fashionizt/animation/animations.dart';
-import 'package:fashionizt/pages/list_project.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,17 +6,13 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
-
+import '../Models/project_model.dart';
 import '../constants.dart';
 
-class DetailProjectDesKonv extends StatefulWidget {
-  const DetailProjectDesKonv({Key? key}) : super(key: key);
+class DetailProjectDesKonv extends StatelessWidget {
+  const DetailProjectDesKonv({Key? key,required this.project}) : super(key: key);
+  final ProjectElement project;
 
-  @override
-  _DetailProjectDesKonvState createState() => _DetailProjectDesKonvState();
-}
-
-class _DetailProjectDesKonvState extends State<DetailProjectDesKonv>{
   //File? _file;
   //PlatformFile? _platformFile;
 
@@ -87,7 +79,6 @@ class _DetailProjectDesKonvState extends State<DetailProjectDesKonv>{
                   ),
                   Text(
                     'Judul :',
-                    //konveksi.nama,
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
@@ -101,8 +92,7 @@ class _DetailProjectDesKonvState extends State<DetailProjectDesKonv>{
                     //child: SubTittle(sub: "Kategori")
                   ),
                   Text(
-                    'Kaos Event',
-                    //konveksi.nama,
+                    project.judul,
                     style: TextStyle(
                       fontSize: 14.0,
                       fontFamily: 'Poppins',
@@ -116,7 +106,6 @@ class _DetailProjectDesKonvState extends State<DetailProjectDesKonv>{
                   ),
                   Text(
                     'Kebutuhan Spesifik : ',
-                    //konveksi.nama,
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
@@ -130,8 +119,7 @@ class _DetailProjectDesKonvState extends State<DetailProjectDesKonv>{
                     //child: SubTittle(sub: "Kategori")
                   ),
                   Text(
-                    'Saya ingin kaos saya bisa dibuat acara formal dan juga informal',
-                    //konveksi.nama,
+                    project.kebutuhan,
                     style: TextStyle(
                       fontSize: 14.0,
                       fontFamily: 'Poppins',
@@ -159,8 +147,7 @@ class _DetailProjectDesKonvState extends State<DetailProjectDesKonv>{
                     //child: SubTittle(sub: "Kategori")
                   ),
                   Text(
-                    '100.000',
-                    //konveksi.nama,
+                    project.biaya,
                     style: TextStyle(
                       fontSize: 14.0,
                       fontFamily: 'Poppins',
@@ -174,7 +161,6 @@ class _DetailProjectDesKonvState extends State<DetailProjectDesKonv>{
                   ),
                   Text(
                     'Lampiran : ',
-                    //konveksi.nama,
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,
@@ -244,7 +230,6 @@ class _DetailProjectDesKonvState extends State<DetailProjectDesKonv>{
                   ),
                   Text(
                     'Diajukan oleh : ',
-                    //konveksi.nama,
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w600,

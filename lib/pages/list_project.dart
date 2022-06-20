@@ -63,7 +63,7 @@ class _ProjectListState extends State<ProjectList>{
                           onTap: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                                  return DetailProjectDesKonv();
+                                  return DetailProjectDesKonv(project: project!);
                                 }));
                           },
                           child: CardProjectDeskonv(project: project!)
