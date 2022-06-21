@@ -24,7 +24,7 @@ class CardProjectDeskonv extends StatelessWidget {
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.only(right: 5, left: 5),
-                margin: EdgeInsets.only(bottom: 8, top: 8),
+                margin: EdgeInsets.only(bottom: 8),
                 child: Column(
                   children: <Widget>[
                     Padding(
@@ -36,7 +36,7 @@ class CardProjectDeskonv extends StatelessWidget {
                             backgroundImage: AssetImage('lib/Assets/images/profil.jpg'),
                           ),
                           SizedBox(width: 10),
-                          Text("Anonymous", style: TextStyle(fontSize: 17,color: Colors.black, fontWeight: FontWeight.w500)),
+                          Text("Anonymous", style: TextStyle(fontSize: 17,color: Colors.black, fontWeight: FontWeight.w600)),
                           Spacer(),
                           Text(project.createdAt,  style: TextStyle(fontSize: 12, color: Colors.grey)),
                         ],
@@ -50,8 +50,10 @@ class CardProjectDeskonv extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(project.judul, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                              SizedBox(height: 5),
+                              Text(project.judul, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
                               // Text("Spesifikasi"),
+                              SizedBox(height: 10),
                               Text("Biaya : " +project.biaya, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: blacksand))
                             ],
                           ),

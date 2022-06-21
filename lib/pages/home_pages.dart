@@ -172,11 +172,19 @@ class _HomePagesState extends State<HomePages> {
   Future<void> insertUser (String DataPack) async {
     var User = DataPack.split(' ');
     if(listUser.length == 0){
+      String tingkat = "";
+      if(User[3] == "customer"){
+        tingkat = "Customer";
+      }else if(User[3] == "designer"){
+        tingkat = "Desainer";
+      }else{
+        tingkat = "Mitra Produksi";
+      }
       await dbu.saveUser(UserList(
         IDUser: int.parse(User[0]),
         Username: User[1],
         Email: User[2],
-        Level: User[3],
+        Level: tingkat,
       ));
     }else{
       await dbu.updateUser(UserList.fromMap({

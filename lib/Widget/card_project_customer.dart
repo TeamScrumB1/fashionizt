@@ -37,6 +37,7 @@ class CardProject extends StatelessWidget {
                         Text(project.judul, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
                         // Text("Spesifikasi : \n"
                         //     +project.kebutuhan, textAlign: TextAlign.left, softWrap: false),
+                        SizedBox(height: 10),
                         Text("Biaya : " +project.biaya, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: blacksand))
                       ],
                     ),

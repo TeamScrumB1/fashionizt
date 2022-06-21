@@ -8,6 +8,7 @@ import 'dart:io';
 import 'package:flutter/painting.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:fashionizt/Widget/bottom_navbar.dart';
@@ -347,6 +348,8 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
               ),
             SingleChildScrollView(
               child: Container(
+                padding: EdgeInsets.all(8),
+                margin: EdgeInsets.only(top: 5),
                 child: FutureBuilder(
                   future: _project,
                   builder: (context, AsyncSnapshot<Project> snapshot) {

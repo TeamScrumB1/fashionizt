@@ -45,6 +45,8 @@ class _ProjectListState extends State<ProjectList>{
       ),
       body: SingleChildScrollView(
         child: Container(
+          padding: EdgeInsets.all(8),
+          margin: EdgeInsets.only(top: 5),
           child: FutureBuilder(
             future: _project,
             builder: (context, AsyncSnapshot<Project> snapshot) {
