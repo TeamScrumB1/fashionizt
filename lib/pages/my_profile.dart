@@ -6,6 +6,7 @@ import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fashionizt/Widget/alert_dialog.dart';
+import 'package:flutter/painting.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants.dart';
 import '../shared_preferences.dart';
@@ -112,12 +113,20 @@ class _MyProfileState extends State<MyProfile>{
                     ),
                   ),
                   Container(
+                    padding: EdgeInsets.only(top: 1, bottom: 1, right: 7, left: 7),
+                    margin: EdgeInsets.only(bottom: 5, top: 5),
+                    decoration: BoxDecoration(
+                      //color: blush,
+                      border: Border.all(color: blacksand),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                     // height: size.height * 0.1,
                     child: Text(
                       listUser.length == 1 ? listUser[i].Level : '',
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 14.0,
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        color: blacksand,
                         fontFamily: 'Poppins',
                       ),
                     ),
