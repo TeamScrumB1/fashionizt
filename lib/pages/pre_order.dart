@@ -376,7 +376,38 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                             },
                         );
                       } else if (snapshot.hasError) {
-                        return Center(child: Text(snapshot.error.toString()));
+                        return Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: AssetImage('lib/Assets/images/empty_po.png'),
+                                ),
+                              ),
+                              margin: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+                              height: 300,
+                            ),
+                            Text(
+                              "Pre Order Is Empty",
+                              style: TextStyle(
+                                  color: blacksand,
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.bold
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              'Sepertinya anda belum pernah Pre Order sama sekali',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        );
                       } else {
                         return Text('');
                       }
