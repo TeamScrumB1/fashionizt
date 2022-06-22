@@ -377,34 +377,38 @@ class _PreOrderState extends State<PreOrder> with SingleTickerProviderStateMixin
                         );
                       } else if (snapshot.hasError) {
                         return Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
+                              margin: EdgeInsets.only(top: 10),
+                              width: double.infinity,
+                              height: MediaQuery.of(context).size.height * 0.5,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   fit: BoxFit.fill,
-                                  image: AssetImage('lib/Assets/images/empty_po.png'),
+                                  image: AssetImage('lib/Assets/images/empty_preorder.png'),
                                 ),
                               ),
-                              margin: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-                              height: 300,
                             ),
                             Text(
-                              "Pre Order Is Empty",
+                              'Pre-Order Is Empty',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: blacksand,
                                   fontSize: 26,
-                                  fontWeight: FontWeight.bold
-                              ),
-                              textAlign: TextAlign.center,
+                                  fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 20),
                             Text(
-                              'Sepertinya anda belum pernah Pre Order sama sekali',
+                              'Sepertinya anda belum melakukan Pre Order sama sekali',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 14,
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w400),
+                            ),
+                            SizedBox(
+                              height: 30,
                             ),
                           ],
                         );
