@@ -13,6 +13,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:badges/badges.dart';
 
+import 'detail_desainer.dart';
+
 class DetailProduct extends StatefulWidget {
   const DetailProduct({Key? key,required this.detail,this.keranjang}) : super(key: key);
   final CartShop? keranjang;
@@ -357,8 +359,13 @@ class _DetailProductState extends State<DetailProduct> {
                                                 fontWeight: FontWeight.w500,
                                               ),
                                             ),
-                                              onPressed: () {
-                                            },
+                                              onPressed: (){
+                                                /*Navigator.push((context),
+                                                    MaterialPageRoute(builder: (context){
+                                                      return DetailDesainer(desainer: desainer!);
+                                                    })
+                                                );*/
+                                              },
                                             style: ElevatedButton.styleFrom(
                                               primary: Colors.white,
                                               onPrimary: blacksand,
