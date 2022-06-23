@@ -43,11 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
       "password": pass.text,
     });
     var datauser = json.decode(response.body);
-    var level = datauser.substring(8,datauser.length);
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    preferences.setString('username', level + " " + user.text);
 
     if (datauser == "Success customer") {
+      var level = datauser.substring(8,datauser.length);
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      preferences.setString('username', level + " " + user.text);
       Fluttertoast.showToast(
         msg: "Login Successful",
         toastLength: Toast.LENGTH_SHORT,
@@ -59,6 +59,9 @@ class _LoginScreenState extends State<LoginScreen> {
       );
       Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBar(currentTab: 0,currentScreen: HomePages()),),);
     } else if(datauser == "Success mitra produksi" || datauser == "Success designer"){
+      var level = datauser.substring(8,datauser.length);
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      preferences.setString('username', level + " " + user.text);
       Fluttertoast.showToast(
         msg: "Login Successful",
         toastLength: Toast.LENGTH_SHORT,
@@ -69,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
         textColor: blush,
       );
       Navigator.push(context, MaterialPageRoute(builder: (context)=> MyBottomNavBarPro(currentTab: 0,currentScreen: HomePages()),),);
-    }else {
+    }else if(datauser == "Error") {
       Fluttertoast.showToast(
         msg: "Username or Password Incorrect",
         toastLength: Toast.LENGTH_SHORT,
