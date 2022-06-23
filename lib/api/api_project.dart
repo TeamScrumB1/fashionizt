@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import '../Models/project_model.dart';
 import '../variabels.dart';
 
-
 class ApiServiceProject {
   Future<Project> topHeadlines() async {
     final response = await http.post(

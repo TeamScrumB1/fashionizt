@@ -2,7 +2,7 @@ import 'package:fashionizt/constants.dart';
 import 'package:fashionizt/pages/detail_project_deskonv.dart';
 import 'package:fashionizt/theme.dart';
 import 'package:flutter/material.dart';
-import '../Models/project_model.dart';
+import '../Models/project_list_all_model.dart';
 import '../Widget/card_project_deskonv.dart';
 import '../api/api_project_list.dart';
 import '../constants.dart';

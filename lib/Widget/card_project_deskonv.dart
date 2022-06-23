@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../Models/project_model.dart';
+import '../Models/project_list_all_model.dart';
 import '../constants.dart';
 import '../pages/detail_project_deskonv.dart';
 import '../theme.dart';
@@ -36,7 +36,7 @@ class CardProjectDeskonv extends StatelessWidget {
                             backgroundImage: AssetImage('lib/Assets/images/profil.jpg'),
                           ),
                           SizedBox(width: 10),
-                          Text("Anonymous", style: TextStyle(fontSize: 17,color: Colors.black, fontWeight: FontWeight.w600)),
+                          Text(project.username, style: TextStyle(fontSize: 17,color: Colors.black, fontWeight: FontWeight.w600)),
                           Spacer(),
                           Text(project.createdAt,  style: TextStyle(fontSize: 12, color: Colors.grey)),
                         ],

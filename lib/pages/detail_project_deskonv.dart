@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:fashionizt/constants.dart';
 import 'package:file_picker/file_picker.dart';
 import 'dart:io';
-import '../Models/project_model.dart';
+import '../Models/project_list_all_model.dart';
 import '../constants.dart';
 
 class DetailProjectDesKonv extends StatelessWidget {
@@ -252,11 +252,12 @@ class DetailProjectDesKonv extends StatelessWidget {
                     backgroundImage: AssetImage('lib/Assets/images/profil.jpg',
                     ),
                   ),
+                  SizedBox(width: 10),
                   Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(' Anonymous',
+                          Text(project.username,
                           style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                           )
                         ],
