@@ -3,7 +3,6 @@ import 'package:fashionizt/Data/db_helper.dart';
 import 'package:fashionizt/Data/db_helper_user.dart';
 import 'package:fashionizt/Models/Cart.dart';
 import 'package:fashionizt/Models/User.dart';
-import 'package:fashionizt/Models/user_model.dart';
 import 'package:fashionizt/Widget/button_role.dart';
 import 'package:fashionizt/Widget/gridview_produk.dart';
 import 'package:fashionizt/Widget/sub_tittle.dart';

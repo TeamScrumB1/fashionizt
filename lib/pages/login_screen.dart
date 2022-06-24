@@ -6,6 +6,7 @@ import 'package:fashionizt/Models/user_model.dart';
 import 'package:fashionizt/Widget/bottom_navbar.dart';
 import 'package:fashionizt/Widget/bottom_navbar_deskonv.dart';
 import 'package:fashionizt/api/api_user.dart';
+import 'package:fashionizt/pages/connectivity.dart';
 import 'package:fashionizt/pages/home_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -86,20 +87,17 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   bool ActiveConnection = false;
-  String T = "";
   Future CheckUserConnection() async {
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         setState(() {
           ActiveConnection = true;
-          T = "Turn off the data and reopen again";
         });
       }
     } on SocketException catch (_) {
       setState(() {
         ActiveConnection = false;
-        T = "Turn On the data and reopen again";
       });
     }
   }
@@ -291,9 +289,15 @@ class _LoginScreenState extends State<LoginScreen> {
     }else{
       return Column(
         children: [
-          Text("Active Connection? $ActiveConnection"),
-          const Divider(),
-          Text(T),
+          Container(
+            color: Colors.white,
+            child: Column(
+              children: <Widget>[
+                Connectivity(),
+              ],
+            ),
+          ),
+          // Text("$ActiveConnection"),
         ],
       );
     }
